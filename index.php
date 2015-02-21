@@ -1,5 +1,5 @@
 <?php include ('includes/header.php'); ?>
-<?php error_reporting(-1);
+<?php error_reporting(1);
 ini_set('display_errors', 'On');
 ?>
 
@@ -43,11 +43,11 @@ vex.dialog.prompt({
 <?php if(isset($_GET['thanks'])) {
   ?>
 <script type="text/javascript">
-var vexdiag = vex.dialog.alert('<?php if($_GET['thanks'] == 1) {Thanks for registering for Rebuilding Together!');
+var vexdiag = vex.dialog.alert('<?php if($_GET['thanks'] == 1) { ?>Thanks for registering for Rebuilding Together!');
 setTimeout(function() {
-   vex.close(vexdiag.data().vex.id); }, 3000);
-  
-</script>
+   vex.close(vexdiag.data().vex.id); }, 3000);<?php } else { ?>Thanks for registering with Rebuilding Together! Please visit the registration table upon arrival at your event!');<?php } ?>
+
+</script>  
 <?php } ?>
 
 <div class="center">

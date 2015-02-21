@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php error_reporting(E_ERROR);
+//ini_set('display_errors', 'On');
+?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
