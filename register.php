@@ -11,8 +11,8 @@
       document.registered.submit();
     }
 </script>
-<?php } else { $submit_url = "signature.php"; }
- } else { $submit_url = "preregister.php"; }
+<?php } else { $submit_url = "capture-register.php"; }
+ } else { $submit_url = "capture-register.php"; }
 ?>
 
 
