@@ -58,6 +58,10 @@ EOS;
 		return FALSE;
 }
 
+function create_volunteer($email) {
+	//function to create a volunteer, 
+}
+
 function validate_volunteer_email($email) {
 	//function to validate via email address that a pre-registered volunteer exists in the system
 	$db_link = setup_db();
