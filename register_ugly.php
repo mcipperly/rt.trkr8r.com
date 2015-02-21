@@ -113,7 +113,7 @@ EOS;
 EOS;
 			}
 			else {
-				$class_html = "full_width";
+				$class_html = "full-width";
 				$plural_html_a = $plural_html_b = "";
 			}
 			$html = <<<EOS
