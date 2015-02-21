@@ -58,8 +58,28 @@ EOS;
 		return FALSE;
 }
 
-function create_volunteer($email) {
-	//function to create a volunteer, 
+function create_volunteer($email, $preregistered = 0) {
+	//function to create a volunteer, using email address as the identifying info
+	$db_link = setup_db();
+
+	if(!$email)
+		return FALSE;
+	
+	$email = mysqli_real_escape_string($db_link, $email);
+
+	$query = "SELECT COUNT(1) FROM `volunteer` WHERE `email` LIKE '{$email}'";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	if(_get_one($result))
+		return FALSE;
+	
+	$query = <<<EOS
+INSERT INTO `volunteer`
+(email, preregistered, date_added, time_added)
+VALUES
+('{$email}', {$preregistered}, CURRENT_DATE(), CURRENT_TIME())
+EOS;
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	return TRUE;
 }
 
 function validate_volunteer_email($email) {
@@ -69,6 +89,8 @@ function validate_volunteer_email($email) {
 	if(!$email)
 		return 0;
 	
+	$email = mysqli_real_escape_string($db_link, $email);
+
 	$query = "SELECT `volunteer_id` FROM `volunteer` WHERE `email` LIKE '{$email}'";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
