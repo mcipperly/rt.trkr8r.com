@@ -1,0 +1,63 @@
+.signature-pad-box {
+  position: absolute;
+  font-size: 10px;
+  width: 700px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  margin-left: -350px;
+  margin-top: -200px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.signature-pad-body {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 20px;
+  bottom: 60px;
+  border: 1px solid #000000;
+}
+
+.signature-pad-body
+  canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+
+.signature-pad-footer {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  height: 40px;
+}
+
+.signature-pad-footer
+  .description {
+    color: #000000;
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 1.8em;
+  }
+
+.signature-pad-footer
+  .button {
+    position: absolute;
+    bottom: 0;
+  }
+
+.signature-pad-footer
+  .button.clear {
+    left: 0;
+  }
+
+.signature-pad-footer
+  .button.save {
+    right: 0;
+  }
