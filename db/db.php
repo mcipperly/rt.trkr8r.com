@@ -71,6 +71,30 @@ function validate_volunteer_email($email) {
 	return (int) _get_one($result);
 }
 
+function get_volunteer_info($volunteer_id) {
+	//function to return vital volunteer info (name, email address)
+	$db_link = setup_db();
+
+	if(!$volunteer_id )
+		return FALSE;
+
+	$query = "SELECT `volunteer_id`, `email` FROM `volunteer` WHERE `volunteer_id` = {$volunteer_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
+	$volunteer = _get_row($result);
+
+	$query = "SELECT `value` FROM `form_response` WHERE element_id = 1 AND volunteer_id = {$volunteer_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$volunteer['firstname'] = _get_row($result);
+	
+	$query = "SELECT `value` FROM `form_response` WHERE element_id = 2 AND volunteer_id = {$volunteer_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$volunteer['lastname'] = _get_row($result);
+
+	return $volunteer;
+}
+
+
 function get_form_elements() {
 	// function to return all valid wavier form elements, in order
 	$db_link = setup_db();
@@ -86,7 +110,7 @@ function add_form_responses($volunteer_id, $responses) {
 	//this will erase previous responses
 	$db_link = setup_db();
 
-	if(!$volunteer_id)
+	if(!$volunteer_id || !$responses)
 		return FALSE;
 	
 	$query = "DELETE FROM `form_response` WHERE `volunteer_id` = {$volunteer_id}";
@@ -125,5 +149,6 @@ EOS;
 
 	return _get_all($result);
 }
+
 
 ?>
