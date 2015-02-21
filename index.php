@@ -37,6 +37,13 @@ vex.dialog.prompt({
 }
 </script>
 
+<?php if(isset($_GET['thanks']) && $_GET['thanks'] == 1) {
+  ?>
+<script type="text/javascript">
+  vex.dialog.alert('Thanks for registering for Rebuilding Together!');
+</script>
+<?php } ?>
+
 <div class="center">
     <img src="assets/imgs/rt-logo.png" class="logo">
 </div>
