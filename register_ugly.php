@@ -119,8 +119,8 @@ EOS;
 			}
 			$html = <<<EOS
         <div class="{$cols} cols">
-{$plural_html_a}
             <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>
+{$plural_html_a}
             <input class="{$class_html}" type="{$element['type']}" placeholder="" name="{$element['name']}{$plural_html_b}">
 {$plural_html_c}
 			</div>

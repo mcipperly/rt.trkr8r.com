@@ -1,18 +1,29 @@
-<?php include ('includes/header.php'); ?>
+<?php include ( 'includes/header.php'); ?>
 <?php require_once('db/db.php'); ?>
 
-<?php if(isset($_COOKIE[ 'onsite']) && validate_onsite($_COOKIE[ 'onsite'])) { if(isset($_REQUEST[ 'email']) && validate_volunteer_email($_REQUEST[ 'email'])) { ?>
-<form name="registered" action="signature.php" method="POST">
-    <input type="hidden" name="email" value="">
+<?php if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
+  if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
+    ?><form name="registered" action="signature.php" method="POST">
+<input type="hidden" name="email" value="">
 </form>
 <script type="text/javascript">
-    window.onload = function() {
-        document.registered.submit();
+    window.onload = function() { 
+      document.registered.submit();
     }
 </script>
-<?php } else { $submit_url="capture-register.php" ; } } else { $submit_url="capture-register.php" ; } ?>
+<?php } else { $submit_url = "signature.php"; }
+ } else { $submit_url = "preregister.php"; }
+?>
 
+<?php
 
+$elements = get_form_elements();
+
+$col_count = 0;
+$asterisk_count = 0;
+foreach($elements as $key => $element) {
+	if($key == 0) {
+		$html = <<<EOS
 <div class="row interior-header">
     <div class="eight cols">
         <h1>Register</h1>
@@ -24,62 +35,110 @@
 </div>
 <div class="clear"></div>
 
-<form action="<?php print($submit_url); ?>" method="POST">
+<form action="{$submit_url}" method="POST">
+EOS;
+		print($html);
+	}
+
+	if($col_count % 12 == 0) {
+		$html = <<<EOS
     <div class="row">
-        <div class="six cols">
-            <label for="lastname">First Name</label>
-            <input class="full-width" type="text" placeholder="" name="firstname">
-        </div>
-        <div class="four cols">
-            <label for="firstname">Last Name</label>
-            <input class="full-width" type="text" placeholder="" name="lastname">
-        </div>
+EOS;
+		print($html);
+	}
 
-        <div class="two cols">
-            <label for="age">Age<sup class="sml">*</sup>
-            </label>
-            <input class="full-width" type="text" placeholder="" name="age">
-        </div>
+	switch($element['cols'])
+	{
+		case 1:
+			$cols = "one";
+			break;
+		case 2:
+			$cols = "two";
+			break;
+		case 3:
+			$cols = "three";
+			break;
+		case 4:
+			$cols = "four";
+			break;
+		case 5:
+			$cols = "five";
+			break;
+		case 6:
+			$cols = "six";
+			break;
+		case 7:
+			$cols = "seven";
+			break;
+		case 8:
+			$cols = "eight";
+			break;
+		case 9:
+			$cols = "nine";
+			break;
+		case 10:
+			$cols = "ten";
+			break;
+		case 11:
+			$cols = "eleven";
+			break;
+		case 12:
+			$cols = "twelve";
+			break;
+	}
+	
+	$asterisk_string = "";
+	if($element['description']) {
+		$asterisk_count++;
+	
+		for($i = 0; $i < $asterisk_count; $i++)
+			$asterisk_string .= "*";
+	}
 
-    </div>
-
-    <div class="row">
-        <div class="four cols">
-            <label for="email">Email</label>
-            <input class="full-width" type="email" placeholder="" name="email" <?php if(isset($_REQUEST[ 'email'])) print( "value='".$_REQUEST[ 'email']. "'"); ?>>
+	switch($element['type']) {
+		case "text":
+			if($element['plural']) {
+				$class_html = "";
+				$plural_html_a = <<<EOS
+            <div class="multi-field-wrapper">
+                <div class="multi-fields">
+                    <div class="multi-field">
+EOS;
+				$plural_html_b = "[]";
+				$plural_html_c = <<<EOS
+                        <button type="button" class="remove-field">Remove</button>
+                    </div>
+                </div><button type="button" class="add-field">Add field</button>
+            </div>
+            <script src="assets/js/add_inputs.js"></script>
+EOS;
+			}
+			else {
+				$class_html = "full-width";
+				$plural_html_a = $plural_html_b = $plural_html_c = "";
+			}
+			$html = <<<EOS
+        <div class="{$cols} cols">
+            <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>
+{$plural_html_a}
+            <input class="{$class_html}" type="{$element['type']}" placeholder="" name="{$element['name']}{$plural_html_b}">
+{$plural_html_c}
+			</div>
+EOS;
+			break;
+		case "checkbox":
+			$html = <<<EOS
+        <div class="{$cols} cols">
+            <label for="{$element['name']}" style="display:inline">{$element['label']}</label>
+			<input type="{$element['type']}" name="{$element['name']} value="1" />
         </div>
-        <div class="three cols">
-            <label for="phone">Phone</label>
-            <input class="full-width" type="text" placeholder="" name="phone">
-        </div>
-        <div class="five cols">
-            <label for="company">Affiliation or Company</label>
-            <input class="full-width" type="text" placeholder="" name="company">
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <div class="nine cols">
-            <label for="address1">Address</label>
-            <input class="full-width" type="text" placeholder="" name="address1">
-        </div>
-        <div class="three cols">
-
-            <label for="address2">Apt/Suite/Floor</label>
-            <input class="full-width" type="text" placeholder="" name="address2">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="seven cols">
-            <label for="ciry">City</label>
-            <input class="full-width" type="text" placeholder="" name="city">
-        </div>
-        <div class="two cols">
-            <label for="state">State</label>
-            <select class="full-width" name="state">
+EOS;
+			break;
+		case "select":
+			$html = <<<EOS
+        <div class="{$cols} cols">
+            <label for="{$element['name']}">{$element['label']}</label>
+            <select class="full-width" name="{$element['name']}">
                 <option value="AL">AL</option>
                 <option value="AK">AK</option>
                 <option value="AZ">AZ</option>
@@ -133,56 +192,59 @@
                 <option value="WY">WY</option>
             </select>
         </div>
-        <div class="three cols">
-            <label for="postalcode">Zip</label>
-            <input type="text" class="full-width" name="postalcode">
-        </div>
+EOS;
+			break;
+		default:
+			$html = "";
+			break;
+	}
+	
+	print($html);
+	
+	$col_count += $element['cols'];
+	
+	if($col_count % 12 == 0) {
+		$html = <<<EOS
     </div>
-    
+EOS;
+		print($html);
+	}
 
-    <div class="row">
-        <div class="twelve cols">
-            <label for="skills">Please List Any Home Repair Skills</label>
-            <!-- ///////////////////////////////// -->
-            <!-- ///////////////////////////////// -->
-            <!-- ///////////////////////////////// -->
-            <!--ROB LOOK HERE -->
-            <!-- ///////////////////////////////// -->
-            <!-- ///////////////////////////////// -->
-            <!-- ///////////////////////////////// -->
-            <div class="multi-field-wrapper">
-                <div class="multi-fields">
-                    <div class="multi-field">
-                        <input type="text" name="skills">
-                        <button type="button" class="remove-field">Remove</button>
-                    </div>
-                </div><button type="button" class="add-field">Add More Skills</button>
-            </div>
-            <script src="assets/js/add_inputs.js"></script>
-            <!-- ///////////////////////////////// -->
-            <!-- ///////////////////////////////// -->
-            <!-- ///////////////////////////////// -->
-            <!--ROB STOP LOOKING -->
-            <!-- ///////////////////////////////// -->
-            <!-- ///////////////////////////////// -->
-            <!-- ///////////////////////////////// -->
-        </div>
-
-        <div class="row">
-            <div class="twelve cols">
-                <label for="future_interest">Are you interested in receiving information about future volunteer opportunities?</label>
-                <input type="checkbox"><span class="label-body">&nbsp;Yes</span>
-                <span style="padding-left: 20px;"><input type="checkbox"><span class="label-body">&nbsp;No</span></span>
-
-            </div>
-        </div>
-
-        <input type="submit" value="Submit">
+	if($key + 1 == sizeof($elements)) {
+		$html = <<<EOS
+    <input type="submit" value="Submit">
 
 </form>
+EOS;
+		print($html);
+	}
+}
 
-<p class="sml"><sup>*</sup><em>If you are under 18 years of age you must also complete a Parental Permission Form</em>
-</p>
+	$asterisk_string = "";
+	if($element['description']) {
+		$asterisk_count++;
+	
+		for($i = 0; $i < $asterisk_count; $i++)
+			$asterisk_string .= "*";
+	}
 
 
-<?php include ('includes/footer.php'); ?>
+$asterisk_count = 0;
+foreach($elements as $element) {
+	if($element['description']) {
+		$asterisk_count++;
+		$asterisk_string = "";
+
+		for($i = 0; $i < $asterisk_count; $i++)
+			$asterisk_string .= "*";
+		
+		$html = <<<EOS
+<p class="sml"><sup>{$asterisk_string}</sup><em>{$element['description']}</em></p>
+EOS;
+		print($html);
+	}
+}
+
+?>
+
+<?php include ( 'includes/footer.php'); ?>
