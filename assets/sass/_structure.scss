@@ -1,9 +1,23 @@
 /*----------------------------------------------------
 	STRUCTURE
 -----------------------------------------------------*/
+.logo {
+    border-bottom: 1px solid #BAEFAB;
+    padding-bottom: 44px;
+    margin-bottom: 35px;
+}
+
+.welcome {
+    margin-top: 15px !important;
+    
+    button {
+        min-height: 75px;
+    }
+}
 
 footer {
     color: $drk-green;
     border-top: 1px solid $drk-green;
+    margin-top: 45px;
 }
     

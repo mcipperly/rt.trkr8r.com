@@ -32,8 +32,8 @@ input[type="button"] {
     border: solid 1px $green;
     background: $drk-green;
     background: -webkit-gradient(linear, left top, left bottom, from($green), to($drk-green));
-    background: -moz-linear-gradient(top,  $green,  $drk-green);
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='$green', endColorstr='$drk-green');
+    background: -moz-linear-gradient(top, $green, $drk-green);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green', endColorstr='$drk-green');
 }
 .button:hover,
 button:hover,
@@ -46,6 +46,10 @@ input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
     text-decoration: none;
+    color: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from($drk-green), to($green));
+    background: -moz-linear-gradient(top, $drk-green, $green);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$drk-green', endColorstr='$green');
 }
 .button:active,
 button:focus,
@@ -54,6 +58,10 @@ input[type="reset"]:active,
 input[type="button"]:active {
     position: relative;
     top: 1px;
+    color: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from($drk-green), to($green));
+    background: -moz-linear-gradient(top, $drk-green, $green);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$drk-green', endColorstr='$green');
 }
 /*----------------------------------------------------
 	Form Inputs

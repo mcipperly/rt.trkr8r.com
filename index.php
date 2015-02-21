@@ -1,14 +1,14 @@
 <?php include ( 'includes/header.php'); ?>
 
 <div class="center">
-    <img src="assets/imgs/rt-logo.png">
+    <img src="assets/imgs/rt-logo.png" class="logo">
 </div>
 
 <h1 class="center">Welcome! Choose Which Fits You Best</h1>
-<div class="row center">
+<div class="row center welcome">
     <div class="four cols">
         <a href="#">
-            <button>I am Registering On-Site</button>
+            <button>I am Registering <br class="hidden-phone">On-Site</button>
         </a>
     </div>
 
