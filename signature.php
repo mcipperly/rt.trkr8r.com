@@ -1,4 +1,6 @@
 <?php include ( 'includes/header.php'); ?>
+require_once('db/db.php');
+
 
 <div class="row interior-header">
     <div class="eight cols">
@@ -40,6 +42,8 @@
     <button data-action="clear">Clear</button>
     <button data-action="save">Save</button>
     <form name="signaturepad" action="capture-signature.php" method="POST">
+        <input type="hidden" name="firstname" value="firstname"></input>
+        <input type="hidden" name="lastname" value="lastname"></input>
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
     </form>
 </div>

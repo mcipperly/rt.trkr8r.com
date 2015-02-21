@@ -108,8 +108,7 @@ EOS;
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}</label>
-            <input type="{$element['type']}"><span class="label-body">&nbsp;Yes</span>
-            <span style="padding-left: 20px;"><input type="checkbox"><span class="label-body">&nbsp;No</span></span>
+			<input type="{$element['type']}" name="{$element['name']} value="1" />
         </div>
 EOS;
 			break;
