@@ -1,4 +1,5 @@
 <?php
+require_once('db/db.php');
 
 $data_pieces = explode(",", $_REQUEST['signature-b64']);
 $encoded_image = $data_pieces[1];
