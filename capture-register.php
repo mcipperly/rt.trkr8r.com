@@ -14,7 +14,10 @@ if(!$volunteer_id) {
 $responses = array();
 
 foreach($_POST as $name => $response) {
-  $responses[$name] = $response;
+  if(is_array($response)) {
+    $responses[$name] = implode(', ', $response);
+  } else {
+    $responses[$name] = $response;
 }
 
 print_r($responses);

@@ -104,7 +104,8 @@ EOS;
                 <div class="multi-fields">
                     <div class="multi-field">
 EOS;
-				$plural_html_b = <<<EOS
+				$plural_html_b = "[]";
+				$plural_html_c = <<<EOS
                         <button type="button" class="remove-field">Remove</button>
                     </div>
                 </div><button type="button" class="add-field">Add field</button>
@@ -114,14 +115,15 @@ EOS;
 			}
 			else {
 				$class_html = "full-width";
-				$plural_html_a = $plural_html_b = "";
+				$plural_html_a = $plural_html_b = $plural_html_c = "";
 			}
 			$html = <<<EOS
         <div class="{$cols} cols">
 {$plural_html_a}
             <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>
-            <input class="{$class_html}" type="{$element['type']}" placeholder="" name="{$element['name']}">
-        </div>
+            <input class="{$class_html}" type="{$element['type']}" placeholder="" name="{$element['name']}{$plural_html_b}">
+{$plural_html_c}
+			</div>
 EOS;
 			break;
 		case "checkbox":
