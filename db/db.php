@@ -180,10 +180,10 @@ function add_signature($volunteer_id, $file_name) {
 	//function to store volunteer signature file info
 	$db_link = setup_db();
 
-	if(!$volunteer_id)
+	if(!($volunteer_id && $file_name && file_exists("sigs/{$file_name}")))
 		return FALSE;
 	
-	if
+	
 }
 
 ?>
