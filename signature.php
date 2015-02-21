@@ -1,10 +1,33 @@
-<html>
-<head>
-	<title>Signature Test Page</title>
-	<link rel="stylesheet" href="signature.css">
-</head>
-<body>
-	<div id="signature-pad" class="signature-pad-box">
+<?php include ( 'includes/header.php'); ?>
+
+<div class="row interior-header">
+    <div class="eight cols">
+        <h1>Confirm Your Details</h1>
+    </div>
+
+    <div class="four cols">
+        <img src="assets/imgs/rt-logo_small.png" class="right">
+    </div>
+</div>
+<div class="clear"></div>
+
+<div class="row">
+    <div class="six cols">
+        <p>Details here!</p>
+    </div>
+    <div class="six cols">
+        <p>Details here!</p>
+    </div>
+
+</div>
+
+<h2>Waiver of Liability</h2>
+<p class="justify">Text</p>
+
+<h2>Media Release</h2>
+<p class="justify">Text</p>
+
+<div id="signature-pad" class="signature-pad-box">
 		<div class="signature-pad-body">
 			<canvas></canvas>
 		</div>
@@ -53,5 +76,4 @@ saveButton.addEventListener("click", function (event) {
 
         </script>
 
-</body>
-</html>
+<?php include ( 'includes/footer.php'); ?>

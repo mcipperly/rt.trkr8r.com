@@ -2,7 +2,7 @@
 <?php require_once('db/db.php'); ?>
 
 <?php if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
-  if(isset($_REQUEST['email']) && validate_volunteer_email($email)) {
+  if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
     ?><form name="registered" action="signature.php" method="POST">
 <input type="hidden" name="email" value="">
 </form>
@@ -11,7 +11,7 @@
       document.registered.submit();
     }
 </script>
-<? }
+<?php }
  }
 ?>
 
