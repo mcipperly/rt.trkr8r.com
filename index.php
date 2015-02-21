@@ -12,7 +12,7 @@ vex.dialog.prompt({
   callback: function(value) {
     if(value) {
       if(validateEmail(value)) {
-        window.location.assign("/register.php?email="+value);
+        window.location.assign("/register.php?email="+encodeURIComponent(value));
       } else {
         invalidEmail(value);
       }
@@ -27,7 +27,7 @@ vex.dialog.prompt({
   callback: function(value) {
     if(value) { 
       if (validateEmail(value)) {
-        window.location.assign("/register.php?email="+value);
+        window.location.assign("/register.php?email="+encodeURIComponent(value));
       } else { 
         invalidEmail(value);
       }

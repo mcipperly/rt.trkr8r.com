@@ -35,7 +35,7 @@
         <canvas></canvas>
     </div>
 <div class="signature-pad-footer">
-    <button class="button clear" data-action="clear">Clear</button>
+    <button data-action="clear">Clear</button>
     <form name="signature-pad" action="capture-signature.php" method="POST">
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
         <input type="submit" class="button save" value="save" data-action="save"></input>
@@ -44,7 +44,7 @@
 </div>
 
 <script src="assets/js/signature_pad.js"></script>
-        <script type="text/javascript">
+<script type="text/javascript">
 var wrapper = document.getElementById("signature-pad"),
     clearButton = wrapper.querySelector("[data-action=clear]"),
     saveButton = wrapper.querySelector("[data-action=save]"),
@@ -77,6 +77,6 @@ saveButton.addEventListener("click", function (event) {
 });
 
 
-        </script>
+</script>
 
 <?php include ( 'includes/footer.php'); ?>
