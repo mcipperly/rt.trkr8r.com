@@ -26,13 +26,13 @@
             <input class="full-width" type="text" placeholder="" name="address2">
         </div>
         <div class="row">
-            <div class="eight cols">
+            <div class="five cols">
                 <label for="ciry">City</label>
                 <input class="full-width" type="text" placeholder="" name="city">
             </div>
-            <div class="one col">
+            <div class="three cols">
                 <label for="state">State</label>
-                <select class="full-width" name="state">
+                <select name="state">
                     <option value="AL">Alabama</option>
                     <option value="AK">Alaska</option>
                     <option value="AZ">Arizona</option>
@@ -86,9 +86,9 @@
                     <option value="WY">Wyoming</option>
                 </select>
             </div>
-            <div class="three col">
+            <div class="three cols">
                 <label for="postalcode">Zip</label>
-                <input type="text" placeholder="" name="postalcode">
+                <input type="text" name="postalcode">
             </div>
         </div>
 
