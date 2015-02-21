@@ -107,7 +107,7 @@ EOS;
 		case "checkbox":
 			$html = <<<EOS
         <div class="{$cols} cols">
-            <label for="{$element['name']}">{$element['label']}</label>
+            <label for="{$element['name']}" style="display:inline">{$element['label']}</label>&nbsp;
 			<input type="{$element['type']}" name="{$element['name']} value="1" />
         </div>
 EOS;
