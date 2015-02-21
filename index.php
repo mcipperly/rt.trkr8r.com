@@ -1,7 +1,4 @@
 <?php include ('includes/header.php'); ?>
-<?php error_reporting(1);
-ini_set('display_errors', 'On');
-?>
 
 <script type="text/javascript">
 function validateEmail(email) { 
@@ -46,7 +43,6 @@ vex.dialog.prompt({
 var vexdiag = vex.dialog.alert('<?php if($_GET['thanks'] == 1) { ?><div class="thanks">Thanks for registering for Rebuilding Together Pittsburgh!</div>');
 setTimeout(function() {
    vex.close(vexdiag.data().vex.id); }, 3000);<?php } else { ?><div class="thanks">Thanks for registering with Rebuilding Together Pittsburgh! Please visit the registration table upon arrival at your event!</div>');<?php } ?>
-
 </script>  
 <?php } ?>
 

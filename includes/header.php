@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-ini_set('display_errors', '1');
+//ini_set('display_errors', '1');
 error_reporting(E_ALL & ~E_WARNING & ~E_NOTICE & ~E_DEPRECATED);
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
