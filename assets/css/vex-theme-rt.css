@@ -120,7 +120,7 @@
   .vex.vex-theme-plain .vex-dialog-form .vex-dialog-message {
     margin-bottom: 0.5em; }
   .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input {
-    margin-bottom: 1em; }
+    margin: 1em 0 0 0; }
     .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input textarea, .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="date"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="datetime"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="datetime-local"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="email"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="month"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="number"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="password"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="search"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="tel"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="text"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="time"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="url"], .vex.vex-theme-plain .vex-dialog-form .vex-dialog-input input[type="week"] {
     height: 45px;
         width: 100%;
@@ -148,7 +148,7 @@
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    font: 1.7rem $primary-font;
+    font-size: 1.7rem;
     text-transform: uppercase;
     padding: 10px 15px 10px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
@@ -158,7 +158,6 @@
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
     box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
-    margin-top: 15px;
     color: #fff !important;
     cursor: pointer;
     box-sizing: border-box;
@@ -187,11 +186,12 @@
           -o-animation: none;
           -webkit-backface-visibility: hidden; } }
     .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-primary {
-      background: #3288e6;
-      color: #fff; }
+       }
     .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-secondary {
       background: #e0e0e0;
-      color: #777; }
+      color: #777; 
+    border: none;
+    margin-left: 12px;}
 
 .vex-loading-spinner.vex-theme-plain {
   height: 2.5em;
