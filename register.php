@@ -130,11 +130,8 @@
         <div class="row">
     <div class="twelve cols">
         <label for="future_interest">Are you interested in receiving information about future volunteer opportunities?</label>
-        <input type="checkbox">
-    <span class="label-body">Yes</span>
-        
-        <input type="checkbox">
-    <span class="label-body">No</span>
+        <input type="checkbox"><span class="label-body">&nbsp;Yes</span>
+        <span style="padding-left: 20px;"><input type="checkbox"><span class="label-body">&nbsp;No</span></span>
         
         </div>
     </div>
