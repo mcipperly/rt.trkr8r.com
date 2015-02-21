@@ -22,12 +22,60 @@ $elements = get_form_elements();
 $col_count = 0;
 foreach($elements as $key => $element) {
 	if($key == 0) {
-		
+		$html = <<<EOS
+<div class="row interior-header">
+    <div class="eight cols">
+        <h1>Register</h1>
+    </div>
+
+    <div class="four cols">
+        <img src="assets/imgs/rt-logo_small.png" class="right">
+    </div>
+</div>
+<div class="clear"></div>
+
+<form action="{$submit_url}" method="POST">
+EOS;
+		print($html);
+	}
+
+	if($col_count % 12 == 0) {
+		$html = <<<EOS
+    <div class="row">
+EOS;
+		print($html);
+	}
+
+	$html = <<<EOS
+        <div class="{$element['cols']} cols">
+            <label for="{$element['name']}">{$element['label']}</label>
+            <input class="full-width" type="{$element['type']}" placeholder="" name="{$element['name']}">
+        </div>
+EOS;
+	print($html);
+	
+	$col_count += $element['cols'];
+	
+	if($col_count % 12 == 0) {
+		$html = <<<EOS
+    </div>
+EOS;
+		print($html);
+	}
+
+	if($key == sizeof($elements)) {
+		$html = <<<EOS
+    <input type="submit" value="Submit">
+
+</form>
+EOS;
+		print($html);
 	}
 }
 
 ?>
 
+<!--
 <div class="row interior-header">
     <div class="eight cols">
         <h1>Register</h1>
@@ -172,6 +220,7 @@ foreach($elements as $key => $element) {
     <input type="submit" value="Submit">
 
 </form>
+-->
 
 <p class="sml"><sup>*</sup><em>If you are under 18 years of age you must also complete a Parental Permission Form</em>
 </p>

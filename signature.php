@@ -35,8 +35,8 @@
         <canvas></canvas>
     </div>
 <div class="signature-pad-footer">
+    <button class="button clear" data-action="clear">Clear</button>
     <form name="signature-pad" action="capture-signature.php" method="POST">
-        <button class="button clear" data-action="clear">Clear</button>
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
         <input type="submit" class="button save" value="save" data-action="save"></input>
     </form>
