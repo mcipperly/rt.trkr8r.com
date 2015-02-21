@@ -7,9 +7,13 @@
 <script type="text/javascript">
 
 function getPreEmail() {
-    vex.dialog.prompt
-        message: 'Please enter your email address:'
-        placeholder: 'Email Address'
+vex.dialog.prompt({
+  message: 'Please enter your email address:',
+  placeholder: 'Email Address',
+  callback: function(value) {
+    return console.log(value);
+  }
+});
 }
 </script>
 

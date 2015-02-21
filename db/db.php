@@ -8,6 +8,7 @@ function setup_db() {
 }
 
 function _get_one($result) {
+
 	$row = mysqli_fetch_row($result);
 	return $row[0];
 }
