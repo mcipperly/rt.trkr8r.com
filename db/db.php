@@ -136,7 +136,7 @@ function add_form_responses($volunteer_id, $responses) {
 	//this will erase previous responses
 	$db_link = setup_db();
 
-	if(!$volunteer_id || !$responses)
+	if(!($volunteer_id && $responses))
 		return FALSE;
 	
 	$query = "DELETE FROM `form_response` WHERE `volunteer_id` = {$volunteer_id}";
@@ -176,5 +176,14 @@ EOS;
 	return _get_all($result);
 }
 
+function add_signature($volunteer_id, $file_name) {
+	//function to store volunteer signature file info
+	$db_link = setup_db();
+
+	if(!$volunteer_id)
+		return FALSE;
+	
+	if
+}
 
 ?>
