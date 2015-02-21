@@ -12,11 +12,14 @@ foreach($_POST as $name => $response) {
 
 add_form_responses($volunteer_id, $responses);
 
-Header("HTTP/1.1 302 Moved Temporarily");
+print($volunteer_id);
+print_r($responses);
+
+//Header("HTTP/1.1 302 Moved Temporarily");
 if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) { 
-  Header("Location: signature.php?vid=" . $volunteer_id); 
+ // Header("Location: signature.php?vid=" . $volunteer_id); 
 } else {
-  Header("Location: index.php?thanks=2");
+//  Header("Location: index.php?thanks=2");
 }
 ?>
 </body>

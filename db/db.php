@@ -149,7 +149,7 @@ function add_form_responses($volunteer_id, $responses) {
 		$name = mysqli_real_escape_string($db_link, $name);
 		$value = mysqli_real_escape_string($db_link, $value);
 		
-		$sql = "SELECT `element_id` FROM `form_element` WHERE `name` LIKE '{$name}'";
+		$query = "SELECT `element_id` FROM `form_element` WHERE `name` LIKE '{$name}'";
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 		$element_id = _get_one($result);
 		
