@@ -30,26 +30,28 @@
             <label for="email">Email</label>
             <input class="full-width" type="email" placeholder="" name="email">
         </div>
-        <div class="four cols">
+        <div class="three cols">
             <label for="phone">Phone</label>
             <input class="full-width" type="text" placeholder="" name="phone">
         </div>
-        <div class="four cols">
+        <div class="five cols">
             <label for="company">Affiliation or Company</label>
             <input class="full-width" type="text" placeholder="" name="company">
         </div>
-        
-
-
     </div>
 
 
 
     <div class="row">
-        <div class="twelve cols">
+        <div class="ten cols">
             <label for="address1">Home Address</label>
             <input class="full-width" type="text" placeholder="" name="address1">
+        </div>
+            <div class="two cols">
+                
+            <label for="address2">Home Address</label>
             <input class="full-width" type="text" placeholder="" name="address2">
+        </div>
         </div>
         <div class="row">
             <div class="seven cols">

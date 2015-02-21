@@ -6,7 +6,7 @@ vex.dialog.prompt({
   message: 'Please enter your email address:',
   placeholder: 'Email Address',
   callback: function(value) {
-    return console.log(value);
+    window.location.assign("/register.php?email="+value);
   }
 });
 }
