@@ -98,16 +98,29 @@ EOS;
 	switch($element['type']) {
 		case "text":
 			if($element['plural']) {
-				$plural_html_a = "";
-				$plural_html_b = "";
+				$class_html = "";
+				$plural_html_a = <<<EOS
+            <div class="multi-field-wrapper">
+                <div class="multi-fields">
+                    <div class="multi-field">
+EOS;
+				$plural_html_b = <<<EOS
+                        <button type="button" class="remove-field">Remove</button>
+                    </div>
+                </div><button type="button" class="add-field">Add field</button>
+            </div>
+            <script src="assets/js/add_inputs.js"></script>
+EOS;
 			}
 			else {
+				$class_html = "full_width";
 				$plural_html_a = $plural_html_b = "";
 			}
 			$html = <<<EOS
         <div class="{$cols} cols">
+{$plural_html_a}
             <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>
-            <input class="full-width" type="{$element['type']}" placeholder="" name="{$element['name']}">
+            <input class="{$class_html}" type="{$element['type']}" placeholder="" name="{$element['name']}">
         </div>
 EOS;
 			break;
