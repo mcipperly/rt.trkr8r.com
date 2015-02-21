@@ -11,8 +11,8 @@
       document.registered.submit();
     }
 </script>
-<?php }
- }
+<?php } else { $submit_url = "signature.php"; }
+ } else { $submit_url = "preregister.php"; }
 ?>
 
 
@@ -27,7 +27,7 @@
 </div>
 <div class="clear"></div>
 
-<form action="validate.php" method="POST">
+<form action="<?php print($submit_url); ?>" method="POST">
     <div class="row">
         <div class="six cols">
             <label for="lastname">First Name</label>
