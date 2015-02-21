@@ -10,7 +10,6 @@ function getPreEmail() {
     vex.dialog.prompt
         message: 'Please enter your email address:'
         placeholder: 'Email Address'
-        callback: (value) -> console.log(value)
 }
 </script>
 

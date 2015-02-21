@@ -12,17 +12,18 @@
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,700,600,800,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/assets/css/rt-theme.css" type="text/css">
 
-    <script src="/assets/js/vex.combined.min.js"></script>
-    <script>vex.defaultOptions.className = 'vex-theme-plain';</script>
-    <link rel="stylesheet" href="/assets/css/vex.css" type="text/css">
-    <link rel="stylesheet" href="/assets/css/vex-theme-plain.css" type="text/css">
-
     <!--[if lt IE 9]>
             <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    <script src="/assets/js/vex.combined.min.js"></script>
+    <script>vex.defaultOptions.className = 'vex-theme-plain';</script>
+    <link rel="stylesheet" href="/assets/css/vex.css" type="text/css">
+    <link rel="stylesheet" href="/assets/css/vex-theme-plain.css" type="text/css">
+
 </head>
 
 <body>

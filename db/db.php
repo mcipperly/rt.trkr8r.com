@@ -57,6 +57,14 @@ EOS;
 		return FALSE;
 }
 
+function get_form_elements() {
+	// function to return all valid wavier form elements, in order
+	$db_link = setup_db();
+	
+	$query = "SELECT * FROM `form_element` ORDER BY `ord` ASC";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
+	return _get_all($result);
+}
 
 ?>
