@@ -58,6 +58,19 @@ EOS;
 		return FALSE;
 }
 
+function validate_volunteer_email($email) {
+	//function to validate via email address that a pre-registered volunteer exists in the system
+	$db_link = setup_db();
+
+	if(!$email)
+		return 0;
+	
+	$query = "SELECT `volunteer_id` FROM `volunteer` WHERE `email` LIKE '{$email}'";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
+	return (int) _get_one($result);
+}
+
 function get_form_elements() {
 	// function to return all valid wavier form elements, in order
 	$db_link = setup_db();
@@ -66,6 +79,12 @@ function get_form_elements() {
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	return _get_all($result);
+}
+
+function add_form_responses($volunteer_id, $responses) {
+	//function to store waiver form responses for a given volunteer.
+	//this will erase previous responses
+	$db_link = setup_db();
 }
 
 ?>
