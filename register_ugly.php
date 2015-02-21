@@ -20,7 +20,7 @@
 $elements = get_form_elements();
 
 $col_count = 0;
-$asterisk = 0;
+$asterisk_count = 0;
 foreach($elements as $key => $element) {
 	if($key == 0) {
 		$html = <<<EOS
@@ -89,9 +89,9 @@ EOS;
 	
 	$asterisk_string = "";
 	if($element['description']) {
-		$asterisk++;
+		$asterisk_count++;
 	
-		for($i = 0; $i < $asterisk; $i++)
+		for($i = 0; $i < 2; $i++)
 			$asterisk_string .= "*";
 	}
 

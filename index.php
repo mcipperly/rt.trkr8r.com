@@ -1,4 +1,7 @@
 <?php include ('includes/header.php'); ?>
+<?php error_reporting(-1);
+ini_set('display_errors', 'On');
+?>
 
 <script type="text/javascript">
 function validateEmail(email) { 
@@ -37,10 +40,10 @@ vex.dialog.prompt({
 }
 </script>
 
-<?php if(isset($_GET['thanks']) && $_GET['thanks'] == 1) {
+<?php if(isset($_GET['thanks'])) {
   ?>
 <script type="text/javascript">
-var vexdiag = vex.dialog.alert('Thanks for registering for Rebuilding Together!');
+var vexdiag = vex.dialog.alert('<?php if($_GET['thanks'] == 1) {Thanks for registering for Rebuilding Together!');
 setTimeout(function() {
    vex.close(vexdiag.data().vex.id); }, 3000);
   
