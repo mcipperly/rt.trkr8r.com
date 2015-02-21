@@ -5,25 +5,28 @@
 </div>
 
 <h1 class="center">Welcome! Choose Which Fits You Best</h1>
+<div class="container">
 <div class="row center welcome">
-    <div class="four cols">
+    <div class="one-third col">
         <a href="#">
-            <button>I am Registering <br class="hidden-phone">On-Site</button>
+            <button>I am Registering On-Site</button>
         </a>
     </div>
 
-    <div class="four cols">
+    <div class="one-third col">
         <a href="#">
             <button>I am Pre-Registering</button>
         </a>
     </div>
 
-    <div class="four cols">
+    <div class="one-third col">
         <a href="#">
             <button>I Already Pre-Registered</button>
         </a>
     </div>
+</div>
 
 </div>
+
 
 <?php include ( 'includes/footer.php'); ?>

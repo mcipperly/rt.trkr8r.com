@@ -10,12 +10,13 @@ button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
+    font-weight:600 !important;
     display: inline-block;
     outline: none;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    font: 1.8rem $primary-font;
+    font: 1.7rem $primary-font;
     text-transform: uppercase;
     padding: 10px 15px 10px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, .3);
