@@ -10,10 +10,12 @@ vex.dialog.prompt({
   message: 'Please enter your email address:',
   placeholder: 'Email Address',
   callback: function(value) {
-    if(validateEmail(value)) {
-      window.location.assign("/register.php?email="+value);
-    } else {
-      invalidEmail(value);
+    if(value) {
+      if(validateEmail(value)) {
+        window.location.assign("/register.php?email="+value);
+      } else {
+        invalidEmail(value);
+      }
     }
   }
 });
@@ -28,6 +30,7 @@ vex.dialog.prompt({
         window.location.assign("/register.php?email="+value);
       } else { 
         invalidEmail(value);
+      }
     }
   }
 });

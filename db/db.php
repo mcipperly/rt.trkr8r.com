@@ -154,6 +154,9 @@ EOS;
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	}
 	
+	$query = "UPDATE `volunteer` SET `status_id` = 2 WHERE `status_id` < 2 AND `volunteer_id` = {$volunteer_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
 	return TRUE;
 }
 
@@ -183,7 +186,20 @@ function add_signature($volunteer_id, $file_name) {
 	if(!($volunteer_id && $file_name && file_exists("sigs/{$file_name}")))
 		return FALSE;
 	
+	$file_name = mysqli_real_escape_string($db_link, $file_name);
 	
+	$query = <<<EOS
+INSERT INTO `volunteer_signature`
+(`volunteer_id`, `signature_date`, `file_name`)
+VALUES
+({$volunteer_id}, CURRENT_DATE(), '{$file_name}')
+EOS;
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
+	$query = "UPDATE `volunteer` SET `status_id` = 3 WHERE `status_id` < 3 AND `volunteer_id` = {$volunteer_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
 }
 
 ?>
