@@ -40,8 +40,9 @@ vex.dialog.prompt({
 <?php if(isset($_GET['thanks']) && $_GET['thanks'] == 1) {
   ?>
 <script type="text/javascript">
+var vexdiag = vex.dialog.alert('Thanks for registering for Rebuilding Together!');
 setTimeout(function() {
-  vex.dialog.alert('Thanks for registering for Rebuilding Together!'); }, 5000);
+   vex.close(vexdiag.data().vex.id); }, 3000);
   
 </script>
 <?php } ?>

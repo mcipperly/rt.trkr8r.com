@@ -91,16 +91,30 @@ EOS;
 	if($element['description']) {
 		$asterisk++;
 	
-		for($i = 0; $i < sizeof($asterisk); $i++)
+		for($i = 0; $i < $asterisk; $i++)
 			$asterisk_string .= "*";
 	}
 
-	$html = <<<EOS
+	switch($element['type']) {
+		case "text":
+			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>
             <input class="full-width" type="{$element['type']}" placeholder="" name="{$element['name']}">
         </div>
 EOS;
+			break;
+		case "checkbox":
+			$html = <<<EOS
+        <div class="{$cols} cols">
+            <label for="{$element['name']">{$element['label']}</label>
+            <input type="{$element['type']}"><span class="label-body">&nbsp;Yes</span>
+            <span style="padding-left: 20px;"><input type="checkbox"><span class="label-body">&nbsp;No</span></span>
+        </div>
+EOS;
+			break;
+	}
+	
 	print($html);
 	
 	$col_count += $element['cols'];
@@ -262,7 +276,6 @@ EOS;
             <label for="future_interest">Are you interested in receiving information about future volunteer opportunities?</label>
             <input type="checkbox"><span class="label-body">&nbsp;Yes</span>
             <span style="padding-left: 20px;"><input type="checkbox"><span class="label-body">&nbsp;No</span></span>
-
         </div>
     </div>
 
