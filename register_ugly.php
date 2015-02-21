@@ -97,6 +97,13 @@ EOS;
 
 	switch($element['type']) {
 		case "text":
+			if($element['plural']) {
+				$plural_html_a = "";
+				$plural_html_b = "";
+			}
+			else {
+				$plural_html_a = $plural_html_b = "";
+			}
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>

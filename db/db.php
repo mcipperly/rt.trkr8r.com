@@ -145,14 +145,19 @@ function add_form_responses($volunteer_id, $responses) {
 	$query = "DELETE FROM `form_response` WHERE `volunteer_id` = {$volunteer_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
-	foreach($responses as $response) {
-		$value = mysqli_real_escape_string($db_link, $response['value']);
+	foreach($responses as $name => $value) {
+		$name = mysqli_real_escape_string($db_link, $name);
+		$value = mysqli_real_escape_string($db_link, $value);
+		
+		$sql = "SELECT `element_id` FROM `form_element` WHERE `name` LIKE '{$name}'";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		$element_id = _get_one($result);
 		
 		$query = <<<EOS
 INSERT INTO `form_response`
 (volunteer_id, element_id, value, date_added, time_added)
 VALUES
-({$volunteer_id}, {$response['element_id']}, '{$value}', CURRENT_DATE(), CURRENT_TIME())
+({$volunteer_id}, {$element_id}, '{$value}', CURRENT_DATE(), CURRENT_TIME())
 EOS;
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	}

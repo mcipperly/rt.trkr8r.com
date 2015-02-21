@@ -1,5 +1,5 @@
-<?php include ( 'includes/header.php'); ?>
-<?php require_once( 'db/db.php'); ?>
+<?php include ('includes/header.php'); ?>
+<?php require_once('db/db.php'); ?>
 
 <?php if(isset($_COOKIE[ 'onsite']) && validate_onsite($_COOKIE[ 'onsite'])) { if(isset($_REQUEST[ 'email']) && validate_volunteer_email($_REQUEST[ 'email'])) { ?>
 <form name="registered" action="signature.php" method="POST">
@@ -147,7 +147,7 @@
             <div class="multi-field-wrapper">
                 <div class="multi-fields">
                     <div class="multi-field">
-                        <input type="text" name="stuff[]">
+                        <input type="text" name="skills">
                         <button type="button" class="remove-field">Remove</button>
                     </div>
                 </div><button type="button" class="add-field">Add field</button>
@@ -172,4 +172,4 @@
 </p>
 
 
-<?php include ( 'includes/footer.php'); ?>
+<?php include ('includes/footer.php'); ?>
