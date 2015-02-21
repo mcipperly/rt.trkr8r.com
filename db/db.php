@@ -107,4 +107,23 @@ EOS;
 	return TRUE;
 }
 
+function get_form_responses($volunteer_id) {
+	//function to fetch waiver form responses for a given volunteer.
+	$db_link = setup_db();
+
+	if(!$volunteer_id)
+		return FALSE;
+	
+	$query = <<<EOS
+SELECT `response_id`, `name`, `value`
+FROM `form_response`
+JOIN `form_element` USING (element_id)
+WHERE `volunteer_id` = {$volunteer_id}
+ORDER BY `ord`
+EOS;
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
+	return _get_all($result);
+}
+
 ?>

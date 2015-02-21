@@ -43,13 +43,13 @@
 
 
     <div class="row">
-        <div class="ten cols">
+        <div class="nine cols">
             <label for="address1">Home Address</label>
             <input class="full-width" type="text" placeholder="" name="address1">
         </div>
-            <div class="two cols">
-                
-            <label for="address2">Home Address</label>
+            <div class="three cols">
+            
+            <label for="address2">Apt/Suite/Floor</label>
             <input class="full-width" type="text" placeholder="" name="address2">
         </div>
         </div>
