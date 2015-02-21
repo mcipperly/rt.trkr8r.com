@@ -143,17 +143,29 @@
     <div class="row">
         <div class="twelve cols">
             <label for="skills">Please List Any Home Repair Skills</label>
+            <!-- ///////////////////////////////// -->
+            <!-- ///////////////////////////////// -->
+            <!-- ///////////////////////////////// -->
             <!--ROB LOOK HERE -->
+            <!-- ///////////////////////////////// -->
+            <!-- ///////////////////////////////// -->
+            <!-- ///////////////////////////////// -->
             <div class="multi-field-wrapper">
                 <div class="multi-fields">
                     <div class="multi-field">
                         <input type="text" name="skills">
                         <button type="button" class="remove-field">Remove</button>
                     </div>
-                </div><button type="button" class="add-field">Add field</button>
+                </div><button type="button" class="add-field">Add More Skills</button>
             </div>
             <script src="assets/js/add_inputs.js"></script>
+            <!-- ///////////////////////////////// -->
+            <!-- ///////////////////////////////// -->
+            <!-- ///////////////////////////////// -->
             <!--ROB STOP LOOKING -->
+            <!-- ///////////////////////////////// -->
+            <!-- ///////////////////////////////// -->
+            <!-- ///////////////////////////////// -->
         </div>
 
         <div class="row">
