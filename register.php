@@ -1,19 +1,16 @@
 <?php include ( 'includes/header.php'); ?>
-<?php require_once('db/db.php'); ?>
+<?php require_once( 'db/db.php'); ?>
 
-<?php if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
-  if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
-    ?><form name="registered" action="signature.php" method="POST">
-<input type="hidden" name="email" value="">
+<?php if(isset($_COOKIE[ 'onsite']) && validate_onsite($_COOKIE[ 'onsite'])) { if(isset($_REQUEST[ 'email']) && validate_volunteer_email($_REQUEST[ 'email'])) { ?>
+<form name="registered" action="signature.php" method="POST">
+    <input type="hidden" name="email" value="">
 </form>
 <script type="text/javascript">
-    window.onload = function() { 
-      document.registered.submit();
+    window.onload = function() {
+        document.registered.submit();
     }
 </script>
-<?php } else { $submit_url = "capture-register.php"; }
- } else { $submit_url = "capture-register.php"; }
-?>
+<?php } else { $submit_url="capture-register.php" ; } } else { $submit_url="capture-register.php" ; } ?>
 
 
 <div class="row interior-header">
@@ -49,7 +46,7 @@
     <div class="row">
         <div class="four cols">
             <label for="email">Email</label>
-            <input class="full-width" type="email" placeholder="" name="email"<?php if(isset($_REQUEST['email'])) print("value='".$_REQUEST['email']."'"); ?>>
+            <input class="full-width" type="email" placeholder="" name="email" <?php if(isset($_REQUEST[ 'email'])) print( "value='".$_REQUEST[ 'email']. "'"); ?>>
         </div>
         <div class="three cols">
             <label for="phone">Phone</label>
@@ -141,23 +138,34 @@
             <input type="text" class="full-width" name="postalcode">
         </div>
     </div>
+    <script src="assets/js/add_inputs.js"></script>
+
     <div class="row">
         <div class="twelve cols">
             <label for="skills">Please List Any Home Repair Skills</label>
-            <input type="text" name="skills">(hopefully add plus here)
+            
+            <div class="multi-field-wrapper">
+                <div class="multi-fields">
+                    <div class="multi-field">
+                        <input type="text" name="stuff[]">
+                        <button type="button" class="remove-field">Remove</button>
+                    </div>
+                </div>
+                <button type="button" class="add-field">Add field</button>
+            </div>
+            
         </div>
-    </div>
 
-    <div class="row">
-        <div class="twelve cols">
-            <label for="future_interest">Are you interested in receiving information about future volunteer opportunities?</label>
-            <input type="checkbox"><span class="label-body">&nbsp;Yes</span>
-            <span style="padding-left: 20px;"><input type="checkbox"><span class="label-body">&nbsp;No</span></span>
+        <div class="row">
+            <div class="twelve cols">
+                <label for="future_interest">Are you interested in receiving information about future volunteer opportunities?</label>
+                <input type="checkbox"><span class="label-body">&nbsp;Yes</span>
+                <span style="padding-left: 20px;"><input type="checkbox"><span class="label-body">&nbsp;No</span></span>
 
+            </div>
         </div>
-    </div>
 
-    <input type="submit" value="Submit">
+        <input type="submit" value="Submit">
 
 </form>
 
