@@ -11,7 +11,7 @@
 </div>
 <div class="clear"></div>
 
-<form>
+<form action="validate.php" method="POST">
     <div class="row">
         <div class="six cols">
             <label for="lastname">First Name</label>
