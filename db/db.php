@@ -85,6 +85,24 @@ function add_form_responses($volunteer_id, $responses) {
 	//function to store waiver form responses for a given volunteer.
 	//this will erase previous responses
 	$db_link = setup_db();
+
+	if(!$volunteer_id)
+		return;
+	
+	$query = "DELETE FROM `form_response` WHERE `volunteer_id` = {$volunteer_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	foreach($responses as $response) {
+		
+		$value = mysqli_real_escape_string($db_link, $response['value']);
+		
+		$query = <<<EOS
+INSERT INTO `form_response`
+(volunteer_id, element_id, value, date_added, time_added)
+VALUES
+({$volunteer_id}, {$response['element_id']}, '{$value}', CURRENT_DATE(), CURRENT_TIME())
+EOS;
+	}
 }
 
 ?>

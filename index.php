@@ -1,7 +1,6 @@
 <?php include ('includes/header.php'); ?>
 
 <script type="text/javascript">
-
 function getEmail() {
 vex.dialog.prompt({
   message: 'Please enter your email address:',
