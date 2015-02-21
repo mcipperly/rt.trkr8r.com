@@ -10,14 +10,40 @@
 <form>
     <div class="row">
         <div class="six cols">
-            <label for="lastname">Last Name</label>
-            <input class="full-width" type="text" placeholder="" name="lastname">
-        </div>
-        <div class="six cols">
-            <label for="firstname">First Name</label>
+            <label for="lastname">First Name</label>
             <input class="full-width" type="text" placeholder="" name="firstname">
         </div>
+        <div class="four cols">
+            <label for="firstname">Last Name</label>
+            <input class="full-width" type="text" placeholder="" name="lastname">
+        </div>
+
+        <div class="two cols">
+            <label for="age">Age</label>
+            <input class="full-width" type="text" placeholder="" name="age">
+        </div>
+
     </div>
+
+    <div class="row">
+        <div class="four cols">
+            <label for="email">Email</label>
+            <input class="full-width" type="email" placeholder="" name="email">
+        </div>
+        <div class="four cols">
+            <label for="phone">Phone</label>
+            <input class="full-width" type="text" placeholder="" name="phone">
+        </div>
+        <div class="four cols">
+            <label for="company">Affiliation or Company</label>
+            <input class="full-width" type="text" placeholder="" name="company">
+        </div>
+        
+
+
+    </div>
+
+
 
     <div class="row">
         <div class="twelve cols">
@@ -88,7 +114,7 @@
             </div>
             <div class="three cols">
                 <label for="postalcode">Zip</label>
-                <input type="text"  class="full-width" name="postalcode">
+                <input type="text" class="full-width" name="postalcode">
             </div>
         </div>
 
