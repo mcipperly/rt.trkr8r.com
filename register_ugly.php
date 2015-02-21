@@ -107,7 +107,7 @@ EOS;
 		case "checkbox":
 			$html = <<<EOS
         <div class="{$cols} cols">
-            <label for="{$element['name']}" style="display:inline">{$element['label']}</label>&nbsp;
+            <label for="{$element['name']}" style="display:inline">{$element['label']}</label>
 			<input type="{$element['type']}" name="{$element['name']} value="1" />
         </div>
 EOS;
@@ -188,13 +188,21 @@ EOS;
 		print($html);
 	}
 
-	if($key == sizeof($elements)) {
+	if($key + 1 == sizeof($elements)) {
 		$html = <<<EOS
     <input type="submit" value="Submit">
 
 </form>
 EOS;
 		print($html);
+	}
+}
+
+foreach($elements as $element) {
+	if($element['description']) {
+		$html = <<<EOS
+<p class="sml"><sup>*</sup><em>If you are under 18 years of age you must also complete a Parental Permission Form</em></p>
+EOS;
 	}
 }
 
@@ -344,10 +352,9 @@ EOS;
     <input type="submit" value="Submit">
 
 </form>
+
+<p class="sml"><sup>*</sup><em>If you are under 18 years of age you must also complete a Parental Permission Form</em></p>
 -->
 
-<p class="sml"><sup>*</sup><em>If you are under 18 years of age you must also complete a Parental Permission Form</em>
-</p>
-
-
 <?php include ( 'includes/footer.php'); ?>
+); ?>
