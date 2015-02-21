@@ -7,7 +7,7 @@
 <div class="row center welcome">
     <div class="twelve cols">
         <a href="#">
-            <button>Registration</button>
+            <button>Register</button>
         </a>
     </div>
 </div>
