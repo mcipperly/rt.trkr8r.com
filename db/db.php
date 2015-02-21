@@ -202,4 +202,32 @@ EOS;
 	return TRUE;
 }
 
+function record_volunteer_time($volunteer_id, $start_time, $end_time, $service_date = null) {
+	//function to record the start and end times for a volunteer
+	//defaulting to the current date
+	
+	if(!($volunteer_id && $start_time && $end_time))
+		return FALSE;
+	
+	$service_date = ($service_date) ? $service_date : date("Y-m-d");
+	
+	$start_time = mysqli_real_escape_string($db_link, $start_time);
+	$end_time = mysqli_real_escape_string($db_link, $end_time);
+	$service_date = mysqli_real_escape_string($db_link, $service_date);
+
+	$query = "DELETE FROM `volunteer_time` WHERE `service_date` = '{$service_date}' AND `volunteer_id` = {$volunteer_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	$query = <<<EOS
+INSERT INTO `volunteer_time`
+(`volunteer_id`, `service_date`, `start_time`, `end_time`)
+VALUES
+({$volunteer_id}, '{$service_date}', '{$start_time}', '{$end_time}')
+EOS;
+	
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
 ?>

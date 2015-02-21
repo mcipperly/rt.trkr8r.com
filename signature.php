@@ -27,12 +27,13 @@
 <h2>Media Release</h2>
 <p class="justify">Text</p>
 
+<h2>Your Signature</h2>
+<p>By signing below, you confirm that your details listed above are accurate. You also accept our Waiver of Liability and Media Release terms. </p>
 <div id="signature-pad" class="signature-pad-box">
 		<div class="signature-pad-body">
 			<canvas></canvas>
 		</div>
 		<div class="signature-pad-footer">
-			<div class="description">Please Sign</div>
 			<form name="signature-pad" action="capture-signature.php" method="POST">
 				<button class="button clear" data-action="clear">Clear</button>
 				<input type="hidden" id="signature-b64" name="signature-b64" value=""></input>

@@ -13,7 +13,14 @@
 </script>
 <?php } else { $submit_url = "signature.php"; }
  } else { $submit_url = "preregister.php"; }
-?>
+
+if(isset($_REQUEST['email'])) { ?>
+<script type="text/javascript">
+  var emailInput = document.getElementById('email');
+  emailInput.value = '<?php htmlspecialchars($_REQUEST['email']); ?>';
+</script>
+
+<?php } ?>
 
 
 <div class="row interior-header">
@@ -49,7 +56,7 @@
     <div class="row">
         <div class="four cols">
             <label for="email">Email</label>
-            <input class="full-width" type="email" placeholder="" name="email">
+            <input class="full-width" type="email" placeholder="" name="email" id="email">
         </div>
         <div class="three cols">
             <label for="phone">Phone</label>
