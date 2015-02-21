@@ -253,7 +253,7 @@ EOS;
     <div class="row">
         <div class="twelve cols">
             <label for="skills">Please List Any Home Repair Skills</label>
-            <input type="text" name="skills">(hopefully add plus here)
+			<input type="text" name="skills">(hopefully add plus here)
         </div>
     </div>
 
