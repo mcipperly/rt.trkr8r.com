@@ -1,7 +1,9 @@
 <?php include ( 'includes/header.php'); ?>
 <?php require_once('db/db.php'); ?>
 
-<?php if(isset($_COOKIE['onsite']) && (validate_onsite($_COOKIE['onsite']) 
+<?php if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
+  if(isset($_REQUEST['email']) && validate_volunteer_email($email))
+
 
 <div class="row interior-header">
     <div class="eight cols">
