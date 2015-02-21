@@ -3,8 +3,9 @@
 <div class="interior-header">
     <img src="assets/imgs/rt-logo_small.png" class="left">
 </div>
+<div class="clear"></div>
 
-<h1 class="center">Register</h1>
+<h1>Register</h1>
 
 <form>
   <div class="row">
