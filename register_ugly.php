@@ -46,8 +46,48 @@ EOS;
 		print($html);
 	}
 
+	switch($element['cols'])
+	{
+		case 1:
+			$cols = "one";
+			break;
+		case 2:
+			$cols = "two";
+			break;
+		case 3:
+			$cols = "three";
+			break;
+		case 4:
+			$cols = "four";
+			break;
+		case 5:
+			$cols = "five";
+			break;
+		case 6:
+			$cols = "six";
+			break;
+		case 7:
+			$cols = "seven";
+			break;
+		case 8:
+			$cols = "eight";
+			break;
+		case 9:
+			$cols = "nine";
+			break;
+		case 10:
+			$cols = "ten";
+			break;
+		case 11:
+			$cols = "eleven";
+			break;
+		case 12:
+			$cols = "twelve";
+			break;
+	}
+	
 	$html = <<<EOS
-        <div class="{$element['cols']} cols">
+        <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}</label>
             <input class="full-width" type="{$element['type']}" placeholder="" name="{$element['name']}">
         </div>

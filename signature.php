@@ -36,9 +36,9 @@
     </div>
 <div class="signature-pad-footer">
     <button data-action="clear">Clear</button>
-    <form name="signature-pad" action="capture-signature.php" method="POST">
+    <button data-action="save">Save</button>
+    <form name="signaturepad" action="capture-signature.php" method="POST">
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
-        <input type="submit" class="button save" value="save" data-action="save"></input>
     </form>
 </div>
 </div>
@@ -73,6 +73,7 @@ saveButton.addEventListener("click", function (event) {
     } else {
         var siginput = document.getElementById('signature-b64');
         siginput.setAttribute('value', signaturePad.toDataURL());
+        document.signaturepad.submit();
     }
 });
 
