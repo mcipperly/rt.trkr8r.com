@@ -6,9 +6,7 @@ vex.dialog.prompt({
   message: 'Please enter your email address:',
   placeholder: 'Email Address',
   callback: function(value) {
-    var emin = document.getElementById('email');
-    emin.setAttribute('value', value);
-    document.register.submit();
+    $.post("register.php", { email: value });
   }
 });
 }
@@ -21,10 +19,7 @@ vex.dialog.prompt({
 <div class="row center welcome">
     <div class="twelve cols">
         <a href="#">
-            <form name="register" action="/register.php" method="POST">
-                <button onclick="getEmail()">Register</button>
-                <input type="hidden" name="email" id="email" value="">
-            </form>
+            <button onclick="getEmail()">Register</button>
         </a>
     </div>
 </div>

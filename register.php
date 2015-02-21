@@ -44,7 +44,7 @@
 
     <div class="row">
         <div class="nine cols">
-            <label for="address1">Home Address</label>
+            <label for="address1">Address</label>
             <input class="full-width" type="text" placeholder="" name="address1">
         </div>
             <div class="three cols">
@@ -53,6 +53,7 @@
             <input class="full-width" type="text" placeholder="" name="address2">
         </div>
         </div>
+    
         <div class="row">
             <div class="seven cols">
                 <label for="ciry">City</label>
@@ -119,8 +120,26 @@
                 <input type="text" class="full-width" name="postalcode">
             </div>
         </div>
-
+    <div class="row">
+    <div class="twelve cols">
+        <label for="skills">Please List Any Home Repair Skills</label>
+        <input type="text" name="skills"> (hopefully add plus here)
+        </div>
     </div>
+    
+        <div class="row">
+    <div class="twelve cols">
+        <label for="future_interest">Are you interested in receiving information about future volunteer opportunities?</label>
+        <input type="checkbox">
+    <span class="label-body">Yes</span>
+        
+        <input type="checkbox">
+    <span class="label-body">No</span>
+        
+        </div>
+    </div>
+
+    
 
 </form>
 
