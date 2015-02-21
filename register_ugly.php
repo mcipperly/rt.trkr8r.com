@@ -61,7 +61,7 @@ foreach($elements as $key => $element) {
     <div class="row">
         <div class="four cols">
             <label for="email">Email</label>
-            <input class="full-width" type="email" placeholder="" name="email"<?php if(isset($_REQUEST['email'])) { print("value='".htmlspecialchars($_REQUEST['email'])."'"); ?>>
+			<input class="full-width" type="email" placeholder="" name="email"<?php if(isset($_REQUEST['email'])) print("value='".$_REQUEST['email']."'"); ?>>
         </div>
         <div class="three cols">
             <label for="phone">Phone</label>
