@@ -138,7 +138,7 @@
             <input type="text" class="full-width" name="postalcode">
         </div>
     </div>
-    <script src="assets/js/add_inputs.js"></script>
+    
 
     <div class="row">
         <div class="twelve cols">
@@ -150,10 +150,9 @@
                         <input type="text" name="stuff[]">
                         <button type="button" class="remove-field">Remove</button>
                     </div>
-                </div>
-                <button type="button" class="add-field">Add field</button>
+                </div><button type="button" class="add-field">Add field</button>
             </div>
-            
+            <script src="assets/js/add_inputs.js"></script>
         </div>
 
         <div class="row">

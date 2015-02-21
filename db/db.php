@@ -79,7 +79,11 @@ VALUES
 ('{$email}', {$preregistered}, CURRENT_DATE(), CURRENT_TIME())
 EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-	return TRUE;
+
+	$query = "SELECT LAST_INSERT_ID()";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return _get_one($result);
 }
 
 function validate_volunteer_email($email) {
