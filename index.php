@@ -43,9 +43,9 @@ vex.dialog.prompt({
 <?php if(isset($_GET['thanks'])) {
   ?>
 <script type="text/javascript">
-var vexdiag = vex.dialog.alert('<?php if($_GET['thanks'] == 1) { ?>Thanks for registering for Rebuilding Together!');
+var vexdiag = vex.dialog.alert('<?php if($_GET['thanks'] == 1) { ?><div class="thanks">Thanks for registering for Rebuilding Together Pittsburgh!</div>');
 setTimeout(function() {
-   vex.close(vexdiag.data().vex.id); }, 3000);<?php } else { ?>Thanks for registering with Rebuilding Together! Please visit the registration table upon arrival at your event!');<?php } ?>
+   vex.close(vexdiag.data().vex.id); }, 3000);<?php } else { ?><div class="thanks">Thanks for registering with Rebuilding Together Pittsburgh! Please visit the registration table upon arrival at your event!</div>');<?php } ?>
 
 </script>  
 <?php } ?>
