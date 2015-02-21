@@ -34,15 +34,13 @@
     <div class="signature-pad-body">
         <canvas></canvas>
     </div>
-
-</div>
-
 <div class="signature-pad-footer">
     <form name="signature-pad" action="capture-signature.php" method="POST">
         <button class="button clear" data-action="clear">Clear</button>
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
         <input type="submit" class="button save" value="save" data-action="save"></input>
     </form>
+</div>
 </div>
 
 <script src="assets/js/signature_pad.js"></script>
