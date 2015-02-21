@@ -20,6 +20,7 @@
 $elements = get_form_elements();
 
 $col_count = 0;
+$asterisk = 0;
 foreach($elements as $key => $element) {
 	if($key == 0) {
 		$html = <<<EOS
@@ -86,9 +87,17 @@ EOS;
 			break;
 	}
 	
+	$asterisk_string = "";
+	if($element['description']) {
+		$asterisk++;
+	
+		for($i = 0; $i < sizeof($asterisk); $i++)
+			$asterisk_string .= "*";
+	}
+
 	$html = <<<EOS
         <div class="{$cols} cols">
-            <label for="{$element['name']}">{$element['label']}</label>
+            <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>
             <input class="full-width" type="{$element['type']}" placeholder="" name="{$element['name']}">
         </div>
 EOS;
