@@ -120,7 +120,6 @@ function get_volunteer_info($volunteer_id) {
 	return $volunteer;
 }
 
-
 function get_form_elements() {
 	// function to return all valid wavier form elements, in order
 	$db_link = setup_db();
@@ -136,7 +135,7 @@ function add_form_responses($volunteer_id, $responses) {
 	//this will erase previous responses
 	$db_link = setup_db();
 
-	if(!($volunteer_id && $responses))
+		if(!($volunteer_id && $responses))
 		return FALSE;
 	
 	$query = "DELETE FROM `form_response` WHERE `volunteer_id` = {$volunteer_id}";
