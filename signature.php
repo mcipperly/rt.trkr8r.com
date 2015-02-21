@@ -71,7 +71,7 @@ clearButton.addEventListener("click", function (event) {
 
 saveButton.addEventListener("click", function (event) {
     if (signaturePad.isEmpty()) {
-        alert("Signature is required!");
+        vex.dialog.alert('Please complete the signature field');
     } else {
         var siginput = document.getElementById('signature-b64');
         siginput.setAttribute('value', signaturePad.toDataURL());

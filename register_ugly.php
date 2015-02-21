@@ -91,7 +91,7 @@ EOS;
 	if($element['description']) {
 		$asterisk_count++;
 	
-		for($i = 0; $i < 2; $i++)
+		for($i = 0; $i < $asterisk_count; $i++)
 			$asterisk_string .= "*";
 	}
 
@@ -107,11 +107,14 @@ EOS;
 		case "checkbox":
 			$html = <<<EOS
         <div class="{$cols} cols">
-            <label for="{$element['name']">{$element['label']}</label>
+            <label for="{$element['name']}">{$element['label']}</label>
             <input type="{$element['type']}"><span class="label-body">&nbsp;Yes</span>
             <span style="padding-left: 20px;"><input type="checkbox"><span class="label-body">&nbsp;No</span></span>
         </div>
 EOS;
+			break;
+		default:
+			$html = "";
 			break;
 	}
 	
