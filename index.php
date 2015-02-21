@@ -23,10 +23,11 @@ vex.dialog.prompt({
   message: '<div style="color:#FF0000">Please enter a valid email address:</div>',
   placeholder: 'Email Address',
   callback: function(value) {
-    if(validateEmail(value)) {
-      window.location.assign("/register.php?email="+value);
-    } else {
-      invalidEmail(value);
+    if(value) { 
+      if (validateEmail(value)) {
+        window.location.assign("/register.php?email="+value);
+      } else { 
+        invalidEmail(value);
     }
   }
 });
