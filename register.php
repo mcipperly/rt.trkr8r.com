@@ -3,8 +3,8 @@
 
 <?php //if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
   if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
-    ?><form name="registered" action="capture-register.php" method="POST">
-<input type="hidden" name="email" value="">
+    ?><form name="registered" action="signature.php" method="POST">
+<input type="hidden" name="vid" value="<?php validate_volunteer_email($_REQUEST['email']); ?>">
 </form>
 <script type="text/javascript">
     window.onload = function() { 
