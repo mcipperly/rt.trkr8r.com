@@ -198,7 +198,7 @@ EOS;
 <p>By signing below, you confirm that your details listed above are accurate. You also accept our Waiver of Liability and Media Release terms.</p>
 <div class="row">
     <div class="six cols">
-        <p>Name: <?php print($volunteer_info['firstname']['value'] . ' ' . $volunteer_info['lastname']['value']); ?></p>
+        <p>Name: <?php print($volunteer_info['firstname'] . ' ' . $volunteer_info['lastname']); ?></p>
     </div>
     <div class="six cols">
         <p>Date: <?php print(date('F jS, Y')); ?></p>

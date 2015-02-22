@@ -26,53 +26,33 @@
 
 <div class="clear"></div>
 <form>
-    <div class="row">
-        <div class="eight cols">
-            <h2><b>Volunteer Name</b></h2>
-        </div>
-        <div class="four cols">
-            <h2><b>Hours</b></h2>
-        </div>
-    </div>
+    <h2 class="left"><b>Volunteer Name</b></h2>
+    <h2 class="right"><b>Hours</b></h2>
+    <div class="clear"></div>
     <br>
-    <div class="row">
-        <div class="eight cols log_vol-name">
-            Amy DePalma
-        </div>
-
-        <div class="four cols">
-            <input type="text" class="full-width" name="hours">
-        </div>
+    <div class="log_vol-name">
+        <span class="left">Amy DePalma</span>
+        <input type="text" class="right" name="hours">
     </div>
-<hr>
-    <div class="row">
-        <div class="eight cols log_vol-name">
-            Rob Collini
-        </div>
-
-        <div class="four cols">
-            <input type="text" class="full-width" name="hours">
-        </div>
+    <hr class="clear">
+    <div class="log_vol-name">
+        <span class="left">Robert Collini</span>
+        <input type="text" class="right" name="hours">
     </div>
-<hr>
-    <div class="row">
-        <div class="eight cols log_vol-name">
-            Matthew Cipperly
-        </div>
-
-        <div class="four cols">
-            <input type="text" class="full-width" name="hours">
-        </div>
+    <hr class="clear">
+    <div class="log_vol-name">
+        <span class="left">Matthew Cipperly</span>
+        <input type="text" class="right" name="hours">
     </div>
-<hr>
-    <div class="row">
-        <div class="eight cols log_vol-name">
-            First Last
-        </div>
-
-        <div class="four cols">
-            <input type="text" class="full-width" name="hours">
-        </div>
+    <hr class="clear">
+    <div class="log_vol-name">
+        <span class="left">First Last</span>
+        <input type="text" class="right" name="hours">
+    </div>
+    <hr class="clear">
+    <div class="log_vol-name">
+        <span class="left">Joe Bob</span>
+        <input type="text" class="right" name="hours">
     </div>
 
     <input type="submit" value="Log Hours" class="right">
