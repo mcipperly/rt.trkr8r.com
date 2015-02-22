@@ -28,48 +28,49 @@
 <form>
     <div class="row">
         <div class="eight cols">
-            <h2>Name</h2>
+            <h2><b>Volunteer Name</b></h2>
         </div>
-        <div class="four cols center">
-            <h2>Hours</h2>
+        <div class="four cols">
+            <h2><b>Hours</b></h2>
         </div>
     </div>
+    <hr>
     <div class="row">
         <div class="eight cols">
-            <b>Amy DePalma</b>
+            Amy DePalma
         </div>
 
-        <div class="four cols center">
+        <div class="four cols">
             <input type="text" class="full-width" name="hours">
         </div>
     </div>
-
+<hr>
     <div class="row">
         <div class="eight cols">
-            <b>Rob Collini</b>
+            Rob Collini
         </div>
 
-        <div class="four cols center">
+        <div class="four cols">
             <input type="text" class="full-width" name="hours">
         </div>
     </div>
-
+<hr>
     <div class="row">
         <div class="eight cols">
-            <b>Matthew Cipperly</b>
+            Matthew Cipperly
         </div>
 
-        <div class="four cols center">
+        <div class="four cols">
             <input type="text" class="full-width" name="hours">
         </div>
     </div>
-
+<hr>
     <div class="row">
         <div class="eight cols">
-            <b>First Last</b>
+            First Last
         </div>
 
-        <div class="four cols center">
+        <div class="four cols">
             <input type="text" class="full-width" name="hours">
         </div>
     </div>
