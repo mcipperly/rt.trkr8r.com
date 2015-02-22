@@ -114,7 +114,7 @@ EOS;
 	$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}</label>
-            <span class="full-width" name="{$element['name']}">{$value}</span>
+			<span class="full-width" name="{$element['name']}">{$value}</span>
 		</div>
 EOS;
 	

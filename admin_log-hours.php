@@ -25,6 +25,8 @@
 
 
 <div class="clear"></div>
+<h4><a href="admin.php">&laquo; Back to Admin Page</a></h4>
+<br>
 <form>
     <h2 class="left"><b>Volunteer Name</b></h2>
     <h2 class="right"><b>Hours</b></h2>
@@ -32,30 +34,31 @@
     <br>
     <div class="log_vol-name">
         <span class="left">Amy DePalma</span>
-        <input type="text" class="right" name="hours">
+        <input type="text" class="right" name="hours" size="1">
     </div>
     <hr class="clear">
     <div class="log_vol-name">
         <span class="left">Robert Collini</span>
-        <input type="text" class="right" name="hours">
+        <input type="text" class="right" name="hours" size="1">
     </div>
     <hr class="clear">
     <div class="log_vol-name">
         <span class="left">Matthew Cipperly</span>
-        <input type="text" class="right" name="hours">
+        <input type="text" class="right" name="hours" size="1">
     </div>
     <hr class="clear">
     <div class="log_vol-name">
         <span class="left">First Last</span>
-        <input type="text" class="right" name="hours">
+        <input type="text" class="right" name="hours" size="1">
     </div>
     <hr class="clear">
     <div class="log_vol-name">
         <span class="left">Joe Bob</span>
-        <input type="text" class="right" name="hours">
+        <input type="text" class="right" name="hours" size="1">
     </div>
-
+    <div class="clear"></div>
     <input type="submit" value="Log Hours" class="right">
+    <div class="clear"></div>
 </form>
 
 <?php include ('includes/footer.php'); ?>
