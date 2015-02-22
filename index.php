@@ -44,7 +44,7 @@ vex.dialog.prompt({
 <script type="text/javascript">
 var vexdiag = vex.dialog.alert('<?php if($_GET['thanks'] == 1) { ?>Thanks for registering for Rebuilding Together Pittsburgh!');
 setTimeout(function() {
-   vex.close(vexdiag.data().vex.id); }, 3000);<?php } elseif($_GET['thanks'] == 2) { ?>Thanks for registering with Rebuilding Together Pittsburgh! Please visit the registration table upon arrival at your event!');<?php } else { ?>We've already captured your information - if you need to make changes, you'll have a chance at the volunteer event. Thank you!');<?php } ?>
+   vex.close(vexdiag.data().vex.id); }, 3000);<?php } elseif($_GET['thanks'] == 2) { ?>Thanks for registering with Rebuilding Together Pittsburgh! Please visit the registration table upon arrival at your event!');<?php } else { ?>We\'ve already pre-registered you for Rebuilding Together Pittsburgh - please check back while at the event to make any modificatiosn to your profile. Thank you!');<?php } ?>
 </script>  
 <?php } ?>
 
