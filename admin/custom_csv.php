@@ -25,59 +25,68 @@
 <div class="clear"></div>
 <h4><a href="/admin/">&laquo; Back to Admin Page</a></h4>
 
-<h2>Select Details</h2>
+<h2>Select Which Details Include in the .CSV File</h2>
 
-<form class="sml">
+<form style="margin-top:15px">
     <div class="row">
-        <div class="three cols">
+        <div class="four cols">
         <input type="checkbox"> First Name
         </div>
-        <div class="three cols">
+        <div class="four cols">
         <input type="checkbox"> Last Name
         </div>
-        <div class="three cols">
-        <input type="checkbox"> Email
-        </div>
-        <div class="three cols">
-        <input type="checkbox"> Phone
+        <div class="four cols">
+        <input type="checkbox"> Age
         </div>
     </div>
     
     <div class="row">
-        <div class="three cols">
-        <input type="checkbox"> Age
+        <div class="four cols">
+        <input type="checkbox"> Phone
         </div>
-        <div class="three cols">
-        <input type="checkbox"> Affiliation or Company
+        <div class="four cols">
+        <input type="checkbox"> Email
         </div>
-        <div class="three cols">
-        <input type="checkbox"> Skills
-        </div>
-        <div class="three cols">
+        <div class="four cols">
         <input type="checkbox"> Future Interest
         </div>
     </div>
     
     <div class="row">
-        <div class="two cols">
+        <div class="four cols">
         <input type="checkbox"> Address
         </div>
-        <div class="two cols">
+        <div class="four cols">
         <input type="checkbox"> Apt/Suite/Floor
         </div>
-        <div class="two cols">
+        <div class="four cols">
         <input type="checkbox"> City
         </div>
-        <div class="two cols">
+    </div>
+    
+    
+    <div class="row">
+        <div class="four cols">
         <input type="checkbox"> State
         </div>
-        <div class="two cols">
+        <div class="four cols">
         <input type="checkbox"> ZIP
         </div>
-        <div class="two cols">
+        <div class="four cols">
+        <input type="checkbox"> Affiliation or Company
         </div>
     </div>
-        
+    
+    <div class="row">
+        <div class="four cols">
+        <input type="checkbox"> Skills
+        </div>
+        <div class="four cols">
+        </div>
+        <div class="four cols">
+        </div>
+    </div>
+    <input type="submit" value="Export">
 </form>
 
 <?php include ('../includes/footer.php'); ?>

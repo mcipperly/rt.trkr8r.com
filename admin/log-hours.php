@@ -34,7 +34,7 @@ $html = <<<EOS
   <script>
   $(function() {
     $( "#datepicker" ).datepicker({
-      showOn: "button",
+      showOn: "both",
       buttonImage: "../assets/imgs/cal-icon.png",
       buttonImageOnly: true,
       buttonText: "Select date"
@@ -68,6 +68,15 @@ EOS;
 		print($html);
 	}
 	
+	$html = <<<EOS
+    <div class="log_vol-name">
+        <span class="left">{$volunteer['firstname']} {$volunteer['lastname']}</span>
+        <input type="text" class="right" name="duration_{$volunteer['volunteer_id']}" size="1">
+    </div>
+    <hr class="clear">
+EOS;
+	print($html);
+
 	if($key + 1 == sizeof($volunteers)) {
 		$html = <<<EOS
     <input type="submit" value="Log Hours" class="right">
