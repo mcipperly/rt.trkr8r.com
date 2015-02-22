@@ -1,21 +1,30 @@
-<?php include ('includes/header.php'); ?>
+<?php include ( 'includes/header.php'); 
+require_once('db/db.php');
+$form_elements = get_form_elements();
+$form_responses = get_form_responses($_GET['vid']);
+?>
 
-<div class="interior-header">
-        <h1 class="left">Confirmation</h1>
+<div class="row interior-header">
+    <div class="eight cols">
+        <h1>Confirmation</h1>
+    </div>
+
+    <div class="four cols">
         <img src="assets/imgs/rt-logo_small.png" class="right">
-    <div class="clear"></div>
+    </div>
 </div>
-
 <div class="clear"></div>
 <div class="details">
     <h3>Details</h3>
     <div class="row">
-        <div class="six cols">
-            <p>Details here!</p>
+    
+    <?php foreach($form_elements as $element) {
+      foreach($form_responses as $response) {
+        if($response['name'] == $element['name']) {
+?>    <div class="six cols">
+            <p><?php print($element['label'] . ": " . $response['value']); ?></p>
         </div>
-        <div class="six cols">
-            <p>Details here!</p>
-        </div>
+    <?php } } } ?>
 
     </div>
 
@@ -37,6 +46,8 @@
     <button data-action="clear">Clear</button>
     <button data-action="save">Save</button>
     <form name="signaturepad" action="capture-signature.php" method="POST">
+        <input type="hidden" name="firstname" value="firstname"></input>
+        <input type="hidden" name="lastname" value="lastname"></input>
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
     </form>
 </div>
@@ -49,34 +60,27 @@ var wrapper = document.getElementById("signature-pad"),
     saveButton = wrapper.querySelector("[data-action=save]"),
     canvas = wrapper.querySelector("canvas"),
     signaturePad;
-
 function resizeCanvas() {
     var ratio =  window.devicePixelRatio || 1;
     canvas.width = canvas.offsetWidth * ratio;
     canvas.height = canvas.offsetHeight * ratio;
     canvas.getContext("2d").scale(ratio, ratio);
 }
-
 window.onresize = resizeCanvas;
 resizeCanvas();
-
 signaturePad = new SignaturePad(canvas);
-
 clearButton.addEventListener("click", function (event) {
     signaturePad.clear();
 });
-
 saveButton.addEventListener("click", function (event) {
     if (signaturePad.isEmpty()) {
-        alert("Signature is required!");
+        vex.dialog.alert('Please complete the signature field');
     } else {
         var siginput = document.getElementById('signature-b64');
         siginput.setAttribute('value', signaturePad.toDataURL());
         document.signaturepad.submit();
     }
 });
-
-
 </script>
 
-<?php include ('includes/footer.php'); ?>
+<?php include ( 'includes/footer.php'); ?>
