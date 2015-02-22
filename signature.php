@@ -29,8 +29,6 @@ $volunteer_info = get_volunteer_info($_GET['vid']);
 
     </div>
 
-<?php print_r($volunteer_info); ?>
-
     <h3>Waiver of Liability</h3>
     <p class="justify">In consideration of the opportunity afforded me to assist on a voluntary basis with Rebuilding Together Pittsburgh, a project in which the homes of disadvantaged persons will be repaired by volunteers, and in light of the aims and purposes of the community service provided by Rebuilding Together Pittsburgh in organizing this project from which any liability may or could accrue against Rebuilding Together Pittsburgh, or any of their respective officers and directors collectively or individually or any project homeowners. Without limiting the generality of the foregoing, I agree that this waiver and release shall include any rights, claims, or causes of action resulting from personal injury to me or damage to my property sustained in connection with any activities in a Rebuilding Together Pittsburgh event or project.</p>
 
@@ -49,8 +47,8 @@ $volunteer_info = get_volunteer_info($_GET['vid']);
     <button data-action="clear">Clear</button>
     <button data-action="save">Save</button>
     <form name="signaturepad" action="capture-signature.php" method="POST">
-        <input type="hidden" name="firstname" value="firstname"></input>
-        <input type="hidden" name="lastname" value="lastname"></input>
+        <input type="hidden" name="firstname" value="<?php print($volunteer_info['firstname']['value']); ?>"></input>
+        <input type="hidden" name="lastname" value="<?php print($volunteer_info['lastname']['value']); ?>"></input>
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
     </form>
 </div>
