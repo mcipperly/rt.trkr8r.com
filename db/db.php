@@ -148,11 +148,11 @@ function get_volunteer_info($volunteer_id) {
 
 	$query = "SELECT `value` FROM `form_response` WHERE element_id = 1 AND volunteer_id = {$volunteer_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-	$volunteer['firstname'] = _get_row($result);
+	$volunteer['firstname'] = _get_one($result);
 	
 	$query = "SELECT `value` FROM `form_response` WHERE element_id = 2 AND volunteer_id = {$volunteer_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-	$volunteer['lastname'] = _get_row($result);
+	$volunteer['lastname'] = _get_one($result);
 
 	return $volunteer;
 }

@@ -34,7 +34,7 @@
             <h2><b>Hours</b></h2>
         </div>
     </div>
-    <div class="row"></div>
+    <br>
     <div class="row">
         <div class="eight cols log_vol-name">
             Amy DePalma
@@ -75,7 +75,7 @@
         </div>
     </div>
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Log Hours" class="right">
 </form>
 
 <?php include ('includes/footer.php'); ?>

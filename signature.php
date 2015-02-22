@@ -1,7 +1,7 @@
 <?php 
 include('includes/header.php'); 
 require_once('db/db.php');
-if(!isset($_COOKIE['onprem']) || !validate_user($_COOKIE['onprem'])) {
+if(!isset($_COOKIE['onsite']) || !validate_user($_COOKIE['onsite'])) {
   Header("HTTP/1.1 302 Moved Temporarily");
   Header("Location: /index.php?thanks=2");
 } 
