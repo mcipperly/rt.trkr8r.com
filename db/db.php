@@ -243,6 +243,25 @@ EOS;
 	return TRUE;
 }
 
+function get_volunteers_of_day($service_date = null) {
+	//function to grab all volunteers with a signature for a given day (today by default)
+	$db_link = setup_db();
+	
+	$service_date = ($service_date) ? $service_date : date("Y-m-d");
+	
+	$service_date = mysqli_real_escape_string($db_link, $service_date);
+
+	$query = "SELECT `volunteer_id` FROM `volunteer_signature` WHERE `signature_date` = '{$service_date}'";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$volunteer_ids = _get_col($result);
+	
+	foreach($volunteer_ids as $volunteer_id) {
+		$volunteers[] = get_volunteer_info($volunteer_id);
+	}
+	
+	return $volunteers;
+}
+
 function record_volunteer_time($volunteer_id, $duration, $service_date = null) {
 	//function to record the start and end times for a volunteer
 	//defaulting to the current date

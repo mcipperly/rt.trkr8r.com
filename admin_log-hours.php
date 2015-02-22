@@ -26,8 +26,8 @@
 
 <div class="clear"></div>
 <h4><a href="admin.php">&laquo; Back to Admin Page</a></h4>
-<br>
-<form>
+
+<form style="margin-top:30px">
     <h2 class="left"><b>Volunteer Name</b></h2>
     <h2 class="right"><b>Hours</b></h2>
     <div class="clear"></div>

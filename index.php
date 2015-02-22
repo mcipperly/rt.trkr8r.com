@@ -9,6 +9,7 @@ function getEmail() {
 vex.dialog.prompt({
   message: 'Please enter your email address:',
   placeholder: 'Email Address',
+  input: '<input name="vex" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value="" required>',
   callback: function(value) {
     if(value) {
       if(validateEmail(value)) {
@@ -24,6 +25,7 @@ function invalidEmail(email) {
 vex.dialog.prompt({
   message: '<div style="color:#FF0000">Please enter a valid email address:</div>',
   placeholder: 'Email Address',
+  input: '<input name="vex" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value="" required>',
   callback: function(value) {
     if(value) { 
       if (validateEmail(value)) {
