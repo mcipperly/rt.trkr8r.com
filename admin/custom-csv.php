@@ -60,10 +60,10 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
         <input type="checkbox" id="checkmaster" onClick="toggleAll()"> Check All
         </div>
         <div class="four cols">
-        <input type="checkbox" name="preset_id" value="2"> For MailChimp
+        <input type="checkbox" id="mcbox" name="preset_id" value="2" onclick="toggleOther(this,'mailbox')"> For MailChimp
         </div>
         <div class="four cols">
-        <input type="checkbox" name="preset_id" value="3"> For Mailing
+        <input type="checkbox" id="mailbox" name="preset_id" value="3" onclick="toggleOther(this,'mcbox')"> For Mailing
         </div>
     </div>
     <h3 style="margin:10px 0 6px 0;font-weight:600; text-transform: uppercase">Custom Selection</h3>
@@ -138,5 +138,10 @@ function toggleAll() {
       }
   }
 }
+function uncheckOther(master,other) {
+  var oth = document.getElementById(other);
+  other.checked = "unchecked";
+}
+
 </script>
 <?php include ('../includes/footer.php'); ?>
