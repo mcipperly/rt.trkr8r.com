@@ -43,17 +43,34 @@ include('validate.php');?>
 </div>
 
 <div class="row center">
-    <div class="six cols">
+    <div class="four cols">
         <a href="users.php">
             <button class="full-width">User Administration</button>
         </a>
     </div>
-    <div class="six cols">
+    <div class="four cols">
         <a href="print-waivers.php">
             <button class="full-width">Print Signed Waivers</button>
         </a>
     </div>
+    <div class="four cols">
+        <a href="#">
+            <button class="full-width" onclick="onsiteMode()">On-site Mode</button>
+        </a>
+    </div>
 </div>
-
+<script type="text/javascript">
+function onsiteMode() {
+    var xhra = new XMLHttpRequest();
+    xhra.onreadystatechange=function() {
+      if(xhra.readyState==4 && xhra.status==200) {
+        document.location = "/";
+      }
+    }
+    xhra.open('POST','/admin_login.php',true);
+    xhra.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhra.send('mode=onsite');
+}
+</script>
 
 <?php include ('../includes/footer.php'); ?>
