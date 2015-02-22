@@ -40,6 +40,9 @@ function create_user($email, $password) {
 	// function to create user credentials
 	$db_link = setup_db();
 	
+	if(!($email && $password))
+		return FALSE;
+	
 	$email = mysqli_real_escape_string($db_link, $email);
 	$password = mysqli_real_escape_string($db_link, $password);
 	
@@ -47,13 +50,11 @@ function create_user($email, $password) {
 INSERT INTO `user`
 (`email`, `password`, `last_updated`)
 VALUES
-()
-SELECT * FROM `user`
-WHERE `email` LIKE '{$email}')
-AND `password` LIKE MD5('{$password}')
+('{$email}', MD5('{$password}'), NOW())
 EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link)); 
-	
+
+	return TRUE;
 }
 
 function process_login($email, $password) {
