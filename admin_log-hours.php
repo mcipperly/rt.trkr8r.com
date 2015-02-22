@@ -27,9 +27,10 @@
 <div class="clear"></div>
 <h4><a href="admin.php">&laquo; Back to Admin Page</a></h4>
 
+<h2>Today's Volunteers <span>Choose different date icon</span></h2>
 <form style="margin-top:30px">
-    <h2 class="left"><b>Volunteer Name</b></h2>
-    <h2 class="right"><b>Hours</b></h2>
+    <h3 class="left"><b>Volunteer Name</b></h3>
+    <h3 class="right"><b>Hours</b></h3>
     <div class="clear"></div>
     <br>
     <div class="log_vol-name">
