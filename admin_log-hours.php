@@ -27,7 +27,7 @@
   $(function() {
     $( "#datepicker" ).datepicker({
       showOn: "button",
-      buttonImage: "images/calendar.gif",
+      buttonImage: "assets/imgs/cal-icon.png",
       buttonImageOnly: true,
       buttonText: "Select date"
     });
