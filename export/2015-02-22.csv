@@ -1,6 +1,6 @@
-firstname,lastname,age,phone,email,future_interest,address1,address2,city,state,postalcode,company,skills
-Test_2,Man_2,42,5135135135,garbage2@what.com,,"2206 Milligan Pike",,Cincinnati,OH,45218,NOPE,"stuff_b; more_b; things_b"
-Matt,Cipperly,28,4124324543,mc+8@tinyatom.net,,"19 Hot Metal Street","5th Floor",Pittsburgh,PA,15203,NA,cheesemaking
-Amy,D,27,7249531747,Amydepalma@gmail.com,,dsf,5465,5465,PA,54655,tooth,555
-Testguy,Userguy,89,9101010101010,test@user.com,1,"50000 Testguy Userman Something",,Dunno,AK,98545,Unknown,"fixing; broken; stuff"
-New,Guy,56,4373848585869,newguy@email.com,1,"22 hot",,Atlanta,GA,45445,Nope,Baseball
+firstname,firstname,lastname,lastname,email,email,future_interest,future_interest
+Test_2,Test_2,Man_2,Man_2,garbage2@what.com,garbage2@what.com,,
+Matt,Matt,Cipperly,Cipperly,mc+8@tinyatom.net,mc+8@tinyatom.net,,
+Amy,Amy,D,D,Amydepalma@gmail.com,Amydepalma@gmail.com,,
+Testguy,Testguy,Userguy,Userguy,test@user.com,test@user.com,1,1
+New,New,Guy,Guy,newguy@email.com,newguy@email.com,1,1
