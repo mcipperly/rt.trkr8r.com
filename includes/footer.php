@@ -8,10 +8,14 @@ vex.dialog.open({
       return console.log('Cancelled');
     }
     var xhr = new XMLHttpRequest();
-    xhr.open('POST','admin_login.php',true);
+    xhr.open('POST','admin_login.php',false);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhr.send('user='+data.user+'&pass='+data.pass);
-
+    if (xhr.responseText==1) {
+      onsiteModeModal();
+    } else {
+      adminLoginFail();
+    }
   }
 });
 }

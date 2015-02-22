@@ -113,6 +113,10 @@ EOS;
 
 	if($key + 1 == sizeof($elements)) {
 		$html = <<<EOS
+        <a href="register.php?edit=1&email={$volunteer_info['email']}">
+            <button class="">Make Changes</button>
+        </a>
+
     <h3>Waiver of Liability</h3>
     <p class="justify">In consideration of the opportunity afforded me to assist on a voluntary basis with Rebuilding Together Pittsburgh, a project in which the homes of disadvantaged persons will be repaired by volunteers, and in light of the aims and purposes of the community service provided by Rebuilding Together Pittsburgh in organizing this project from which any liability may or could accrue against Rebuilding Together Pittsburgh, or any of their respective officers and directors collectively or individually or any project homeowners. Without limiting the generality of the foregoing, I agree that this waiver and release shall include any rights, claims, or causes of action resulting from personal injury to me or damage to my property sustained in connection with any activities in a Rebuilding Together Pittsburgh event or project.</p>
 

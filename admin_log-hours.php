@@ -1,12 +1,9 @@
 <?php include ('includes/header.php'); ?>
 
 <div class="interior-header">
-    <div class="twelve cols">
-        <h1 class="left">Admin<br class="visible-phone" style="padding-right: 15px;"><span>Log Volunteer Hours</span></h1>
-  <img src="assets/imgs/rt-logo_small.png" class="right">
-
-    </div>
-            <div class="clear"></div>
+    <h1 class="left">Log Volunteer Hours</h1>
+    <img src="assets/imgs/rt-logo_small.png" class="right">
+    <div class="clear"></div>
 </div>
 
 <div class="clear"></div>

@@ -3,7 +3,7 @@ require_once('db/db.php');
  
 // if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
 	$volunteer_id = validate_volunteer_email($_REQUEST['email']);
-  if(isset($_REQUEST['email']) && $volunteer_id) {
+  if(isset($_REQUEST['email']) && $volunteer_id && !$_REQUEST['edit']) {
     Header("HTTP/1.1 302 Moved Temporarily");
     Header("Location: signature.php?vid=" . $volunteer_id);
 //  } 
