@@ -15,17 +15,14 @@ $form_elements = get_form_elements();
 <div class="clear"></div>
 <div class="details">
     <h3>Details</h3>
-    <?php foreach($_POST as $name => $value) {
-      print($name . $value);
-    } 
-    print_r($form_elements);?>
     <div class="row">
-        <div class="six cols">
-            <p>Details here!</p>
+    <?php foreach($form_elements as $element) {
+      print_r($element);
+      if(isset($_POST[$element['name']])) {
+?>        <div class="six cols">
+            <p><?php print($element['name'] . ": " . $_POST[$element['name']]); ?></p>
         </div>
-        <div class="six cols">
-            <p>Details here!</p>
-        </div>
+    <?php } } ?>
 
     </div>
 
