@@ -1,10 +1,10 @@
-<?php include ('includes/header.php'); ?>
+<?php include ('../includes/header.php'); ?>
 
 <div class="row interior-header">
 
     <div class="visible-phone">
         <div class="four cols sml-logo">
-            <img src="assets/imgs/rt-logo.png">
+            <img src="../assets/imgs/rt-logo.png">
         </div>
 
         <div class="eight cols">
@@ -18,7 +18,7 @@
         </div>
 
         <div class="four cols">
-            <img src="assets/imgs/rt-logo_small.png" class="right">
+            <img src="../assets/imgs/rt-logo_small.png" class="right">
         </div>
     </div>
 </div>
@@ -27,7 +27,7 @@
   $(function() {
     $( "#datepicker" ).datepicker({
       showOn: "button",
-      buttonImage: "assets/imgs/cal-icon.png",
+      buttonImage: "../assets/imgs/cal-icon.png",
       buttonImageOnly: true,
       buttonText: "Select date"
     });
@@ -40,7 +40,7 @@
 <div class="clear"></div>
 <h4><a href="admin.php">&laquo; Back to Admin Page</a></h4>
 
-<h2>Choose Date of Volunteering to Log Hours For</h2>
+<h2>Choose Service Date</h2>
 <input type="text" id="datepicker">
 
 <form style="margin-top:30px">
@@ -77,4 +77,4 @@
     <div class="clear"></div>
 </form>
 
-<?php include ('includes/footer.php'); ?>
+<?php include ('../includes/footer.php'); ?>

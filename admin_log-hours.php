@@ -40,8 +40,8 @@
 <div class="clear"></div>
 <h4><a href="admin.php">&laquo; Back to Admin Page</a></h4>
 
-<h2>Choose Date of Volunteering to Log Hours For</h2>
-<input type="text" id="datepicker">
+<h2>Choose Service Date</h2>
+<input type="text" id="datepicker" name="service_date">
 
 <form style="margin-top:30px">
     <h3 class="left"><b>Volunteer Name</b></h3>
