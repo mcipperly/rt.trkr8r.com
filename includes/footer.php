@@ -63,13 +63,21 @@ vex.dialog.open({
       vex.dialog.buttons.NO
   ],
   callback: function(data) {
-    if (data=='onsite') {
-      document.location = "/";
-    } else if (data=='adminpage') { 
-      document.location = "/admin/";
-    } else {
-      return;
+    var xhra = new XMLHttpRequest();
+    xhra.onreadystatechange=function() {
+      if(xhra.readyState==4 && xhra.status==200) {
+        if (data=='onsite') {
+          document.location = "/";
+        } else if (data=='adminpage') { 
+          document.location = "/admin/";
+        } else {
+          return;
+        }
+      }
     }
+    xhra.open('POST','/admin_login.php',true);
+    xhra.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhra.send('mode='+data);
   }
 });
 }
@@ -78,7 +86,7 @@ vex.dialog.open({
         <footer>
           <div class="row">
                 <div class="twelve cols center">
-                    <p>&copy;Rebuilding Together Pittsburgh 2015&nbsp;&nbsp;/&nbsp;&nbsp; <a href="<?php if(isset($_SESSION['user'])) { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>"><?php if(isset($_SESSION['user'])) { ?>Logged In: <?php print($_SESSION['user']); } else { ?>Staff Login<?php } ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:vjohnson@rtpittsburgh.org">Contact Us With Any Questions</a>
+                    <p>&copy;Rebuilding Together Pittsburgh 2015&nbsp;&nbsp;/&nbsp;&nbsp; <a href="<?php if(isset($_SESSION['user']) && isset($_SESSION['mode']) && $_SESSION['mode'] == 'admin') { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>"><?php if(isset($_SESSION['user'])) { ?>Logged In: <?php print($_SESSION['user']); } else { ?>Staff Login<?php } ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:vjohnson@rtpittsburgh.org">Contact Us With Any Questions</a>
                     </p>
                 </div>
         </footer>
