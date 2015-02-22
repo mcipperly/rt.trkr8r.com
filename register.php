@@ -298,6 +298,23 @@ EOS;
   ?>
   
  </script>
+<script type="text/javascript">
+function validateInputs() {
+  var inputs = document.getElementsByTagName('input');
+  var pd;
+  for (index=0;index < inputs.length; ++index) {
+    pd = pd+inputs[index].name+"="+inputs[index].value+"&";
+  }
+  
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange=function() {
+    if (xhr.readyState==4 && xhr.status==200) {
+      return console.log('success');
+    }
+  }
+  xhr.open('POST','/validate-register.php',true);
+  xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xhr.send($pd);
 <?php } ?>
 
 <?php include ( 'includes/footer.php'); ?>
