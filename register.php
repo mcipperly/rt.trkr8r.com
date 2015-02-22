@@ -1,7 +1,7 @@
 <?php require_once('db/db.php'); ?>
 <?php 
 // if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
-  if(validate_volunteer_email($_REQUEST['email'])) {
+  if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
     Header("HTTP/1.1 302 Moved Temporarily");
     Header("Location: signature.php?vid=" . validate_volunteer_email($_REQUEST['email']));
 //  } 
@@ -235,9 +235,11 @@ EOS;
 }
 
 ?>
+<?php if(isset($_REQUEST['email'])) { ?>
 <script type="text/javascript">
   var emailForm = document.getElementsByName('email');
   emailForm[0].value = "<?php print(htmlentities($_REQUEST['email'])); ?>";
 </script>
+<?php } ?>
 
 <?php include ( 'includes/footer.php'); ?>

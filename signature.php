@@ -7,7 +7,7 @@ $volunteer_info = get_volunteer_info($_GET['vid']);
 <?php
 
 $elements = get_form_elements();
-$responses = ger_form_responses($_GET['vid']);
+$responses = get_form_responses($_GET['vid']);
 
 $col_count = 0;
 foreach($elements as $key => $element) {
