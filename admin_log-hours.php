@@ -1,7 +1,7 @@
 <?php include ('includes/header.php'); ?>
 
 <div class="interior-header">
-    <h1 class="left">Admin</h1>
+    <h1 class="left">Admin<span>Log Volunteer Hours</span></h1>
     <img src="assets/imgs/rt-logo_small.png" class="right">
     <div class="clear"></div>
 </div>
@@ -19,7 +19,7 @@
         </a>
     </div>
     <div class="four cols">
-        <a href="admin_log-hours.php">
+        <a href="#">
             <button>Log Volunteer Hours</button>
         </a>
     </div>
