@@ -49,10 +49,22 @@ vex.dialog.open({
 });
 }
 function onsiteModeModal() {
-vex.dialog.buttons.YES.text = 'Admin Page';
-vex.dialog.buttons.NO.text = 'Onsite Mode';
 vex.dialog.open({
   message: 'Login successful - select destination:',
+  buttons: [
+      $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-primary', text: 'Checkout', click: function($vexContent, event) {
+          $vexContent.data().vex.value = 'checkout';
+          vex.close($vexContent.data().vex.id);
+      }}),
+      $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-continue-shopping', text: 'Continue shopping', click: function($vexContent, event) {
+          $vexContent.data().vex.value = 'continue-shopping';
+          vex.close($vexContent.data().vex.id);
+      }}),
+      $.extend({}, vex.dialog.buttons.NO, { text: 'View cart', click: function($vexContent, event) {
+          $vexContent.data().vex.value = 'view-cart';
+          vex.close($vexContent.data().vex.id);
+      }})
+  ],
   callback: function(data) {
     if (data === false) {
       document.location = "/";

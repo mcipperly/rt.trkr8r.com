@@ -24,10 +24,27 @@ $asterisk_count = 0;
 foreach($elements as $key => $element) {
 	if($key == 0) {
 		$html = <<<EOS
-<div class="interior-header">
-        <h1 class="left">Register</h1>
-        <img src="assets/imgs/rt-logo_small.png" class="right">
-    <div class="clear"></div>
+<div class="row interior-header">
+
+    <div class="visible-phone">
+        <div class="four cols sml-logo">
+            <img src="assets/imgs/rt-logo.png">
+        </div>
+
+        <div class="eight cols">
+            <h1>Register</h1>
+        </div>
+    </div>
+
+    <div class="hidden-phone">
+        <div class="eight cols">
+            <h1 class="left">Register</h1>
+        </div>
+        
+        <div class="four cols">
+            <img src="assets/imgs/rt-logo_small.png" class="right">
+        </div>
+    </div>
 </div>
 <div class="clear"></div>
 
@@ -119,9 +136,9 @@ EOS;
 EOS;
 				$plural_html_b = "[]";
 				$plural_html_c = <<<EOS
-                        <button type="button" class="remove-field">Remove</button>
+                        <button type="button" class="remove-field no-min">Remove</button>
                     </div>
-                </div><button type="button" id="add" class="add-field">Add More Skills</button>
+                </div><button type="button" id="add" class="add-field no-min">Add More Skills</button>
             </div>
             <script src="assets/js/add_inputs.js"></script>
 EOS;
@@ -270,7 +287,7 @@ EOS;
   stateElement.selected = 'selected';
   
   var addButton = document.getElementById('add');
-  for (i = 0; i < <?php sizeof($skills_array); ?>; i++) {
+  for (i = 0; i < <?php (int) sizeof($skills_array); ?>; i++) {
 	  addButton.click();
   }
   
