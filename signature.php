@@ -38,7 +38,14 @@ $volunteer_info = get_volunteer_info($_GET['vid']);
 
 <h2>Your Signature</h2>
 <p>By signing below, you confirm that your details listed above are accurate. You also accept our Waiver of Liability and Media Release terms.</p>
-
+<div class="row">
+    <div class="six cols">
+        <p>Name: <?php print($volunteer_info['firstname']['value'] . ' ' . $volunteer_info['lastname']['value']); ?></p>
+    </div>
+    <div class="six cols">
+        <p>Date: <?php print(date('F jS, Y')); ?></p>
+    </div>
+</div>
 <div id="signature-pad" class="signature-pad-box">
     <div class="signature-pad-body">
         <canvas></canvas>
