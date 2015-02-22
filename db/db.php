@@ -57,6 +57,17 @@ EOS;
 	return TRUE;
 }
 
+function validate_user($email) {
+	// function to validate existence of user credentials
+	$db_link = setup_db();
+	
+	$email = mysqli_real_escape_string($db_link, $email);
+	
+	$query = "SELECT COUNT(1) FROM `user` WHERE `email` LIKE '{$email}'";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link)); 
+	return _get_one($result);
+}
+
 function process_login($email, $password) {
 	// function to validate user credentials, and if successful add them to PHP Session
 	$db_link = setup_db();
@@ -232,18 +243,16 @@ EOS;
 	return TRUE;
 }
 
-function record_volunteer_time($volunteer_id, $start_time, $end_time, $service_date = null) {
+function record_volunteer_time($volunteer_id, $duration, $service_date = null) {
 	//function to record the start and end times for a volunteer
 	//defaulting to the current date
 	$db_link = setup_db();
 	
-	if(!($volunteer_id && $start_time && $end_time))
+	if(!($volunteer_id && $duration))
 		return FALSE;
 	
 	$service_date = ($service_date) ? $service_date : date("Y-m-d");
 	
-	$start_time = mysqli_real_escape_string($db_link, $start_time);
-	$end_time = mysqli_real_escape_string($db_link, $end_time);
 	$service_date = mysqli_real_escape_string($db_link, $service_date);
 
 	$query = "DELETE FROM `volunteer_time` WHERE `service_date` = '{$service_date}' AND `volunteer_id` = {$volunteer_id}";
@@ -251,9 +260,9 @@ function record_volunteer_time($volunteer_id, $start_time, $end_time, $service_d
 	
 	$query = <<<EOS
 INSERT INTO `volunteer_time`
-(`volunteer_id`, `service_date`, `start_time`, `end_time`)
+(`volunteer_id`, `service_date`, `duration`)
 VALUES
-({$volunteer_id}, '{$service_date}', '{$start_time}', '{$end_time}')
+({$volunteer_id}, '{$service_date}', {$duration})
 EOS;
 	
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));

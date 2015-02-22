@@ -1,5 +1,10 @@
-<?php include ('includes/header.php'); 
+<?php 
+include('includes/header.php'); 
 require_once('db/db.php');
+if(!isset($_COOKIE['onprem']) || !validate_user($_COOKIE['onprem'])) {
+  Header("HTTP/1.1 302 Moved Temporarily");
+  Header("Location: /index.php?thanks=2");
+} 
 $form_responses = get_form_responses($_GET['vid']);
 $volunteer_info = get_volunteer_info($_GET['vid']);
 ?>

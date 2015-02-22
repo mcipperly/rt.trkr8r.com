@@ -34,9 +34,9 @@
             <h2><b>Hours</b></h2>
         </div>
     </div>
-    <hr>
+    <div class="row"></div>
     <div class="row">
-        <div class="eight cols">
+        <div class="eight cols log_vol-name">
             Amy DePalma
         </div>
 
@@ -46,7 +46,7 @@
     </div>
 <hr>
     <div class="row">
-        <div class="eight cols">
+        <div class="eight cols log_vol-name">
             Rob Collini
         </div>
 
@@ -56,7 +56,7 @@
     </div>
 <hr>
     <div class="row">
-        <div class="eight cols">
+        <div class="eight cols log_vol-name">
             Matthew Cipperly
         </div>
 
@@ -66,7 +66,7 @@
     </div>
 <hr>
     <div class="row">
-        <div class="eight cols">
+        <div class="eight cols log_vol-name">
             First Last
         </div>
 
