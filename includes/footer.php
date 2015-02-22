@@ -19,6 +19,26 @@ vex.dialog.open({
   }
 });
 }
+function adminLoginFail() {
+vex.dialog.open({
+  message: '<div style="color:#FF0000">Authentication Failed, please try again:</div>',
+  input: '<div class=\"vex-custom-input-wrapper\">\n<input name=\"user\" type=\"text\"></div><div class=\"vex-custom-input-wrapper\"><input name=\"pass\" type=\"password\"></div>',
+  callback: function(data) {
+    if (data === false) {
+      return console.log('Cancelled');
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','admin_login.php',false);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send('user='+data.user+'&pass='+data.pass);
+    if (xhr.responseText==1) {
+      onsiteModeModal();
+    } else {
+      adminLoginFail();
+    }
+  }
+});
+}
 </script>
         <footer>
           <div class="row">

@@ -264,7 +264,7 @@ EOS;
   var emailForm = document.getElementsByName('email');
   emailForm[0].value = "<?php print(htmlentities($_REQUEST['email'])); ?>";
 
-  var stateElement = document.getElementByID("<?php print(htmlentities($state_id)) ?>");
+  var stateElement = document.getElementById('<?php print(htmlentities($state_id)) ?>');
   stateElement.selected = 'selected';
  </script>
 <?php } ?>

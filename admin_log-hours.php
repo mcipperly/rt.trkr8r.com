@@ -1,10 +1,16 @@
 <?php include ('includes/header.php'); ?>
 
-<div class="interior-header">
-    <h1 class="left">Log Volunteer Hours</h1>
-    <img src="assets/imgs/rt-logo_small.png" class="right">
-    <div class="clear"></div>
+<div class="row interior-header">
+    
+  <div class="four cols sml-logo">
+    <img src="assets/imgs/rt-logo.png">
+  </div>
+  
+    <div class="eight cols">
+        <h1>Admin <span>Log Volunteer Hours</span></h1>
+  </div>
 </div>
+
 
 <div class="clear"></div>
 <div class="row center">
