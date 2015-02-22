@@ -6,23 +6,7 @@
     Header("Location: signature.php?vid=" . validate_volunteer_email($_REQUEST['email']));
 //  } 
 } ?>
-<?php include ( 'includes/header.php'); ?>
-
-<?php //if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
-  if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
-    ?><form name="registered" action="signature.php" method="POST">
-<input type="hidden" name="vid" value="<?php validate_volunteer_email($_REQUEST['email']); ?>">
-</form>
-<script type="text/javascript">
-    window.onload = function() { 
-      document.registered.submit();
-    }
-</script>
-<?php } else { $submit_url = "capture-register.php"; }
-// } else { $submit_url = "preregister.php"; }
-?>
-
-<?php
+<?php include ( 'includes/header.php'); 
 
 $elements = get_form_elements();
 
@@ -38,7 +22,7 @@ foreach($elements as $key => $element) {
 </div>
 <div class="clear"></div>
 
-<form action="{$submit_url}" method="POST">
+<form action="capture-register.php" method="POST">
 EOS;
 		print($html);
 	}
