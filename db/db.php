@@ -1,7 +1,8 @@
 <?php
 
+
 function setup_db() {
-	include('db-config.php');
+	require('db-config.php');
 	$db_link = mysqli_connect($db_host,$db_user,$db_pass,$db_name) or die(mysqli_error($link));
 
 	return $db_link;
@@ -191,7 +192,7 @@ function add_signature($volunteer_id, $file_name) {
 	//function to store volunteer signature file info
 	$db_link = setup_db();
 
-	if(!($volunteer_id && $file_name && file_exists(SIG_DIR . $file_name)))
+	if(!($volunteer_id && $file_name && file_exists("/usr/local/www/sub/rt.trkr8r.com/signatures/" . $file_name)))
 		return FALSE;
 	
 	$file_name = mysqli_real_escape_string($db_link, $file_name);
