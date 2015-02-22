@@ -1,17 +1,13 @@
 <?php
 include ('../includes/header.php');
 require_once('../db/db.php');
-echo "<PRE>"; print_r($_REQUEST); echo "</PRE>";
 
 $readable_service_date = ($_REQUEST['service_date']) ? $_REQUEST['service_date'] : date("m/d/Y");
 $service_date = date("Y-m-d", strtotime($readable_service_date));
 
 $volunteers = get_volunteers_of_day($service_date);
 
-
-foreach($volunteers as $key => $volunteer) {
-	if($key == 0) {
-		$html = <<<EOS
+$html = <<<EOS
 <div class="row interior-header">
 
     <div class="visible-phone">
@@ -57,12 +53,26 @@ foreach($volunteers as $key => $volunteer) {
 	<input type="text" id="datepicker" name="service_date" value="{$readable_service_date}"/>
 	<input type="submit" value="OK" />
 </form>
+EOS;
+print($html);
 
+foreach($volunteers as $key => $volunteer) {
+	if($key == 0) {
+		$html = <<<EOS
 <form style="margin-top:30px">
     <h3 class="left"><b>Volunteer Name</b></h3>
     <h3 class="right"><b>Hours</b></h3>
     <div class="clear"></div>
     <br />
+EOS;
+		print($html);
+	}
+	
+	if($key + 1 == sizeof($volunteers)) {
+		$html = <<<EOS
+    <input type="submit" value="Log Hours" class="right">
+    <div class="clear"></div>
+</form>
 EOS;
 		print($html);
 	}
