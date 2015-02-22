@@ -363,7 +363,6 @@ function export_csv($element_ids, $service_date) {
 			$value = str_replace(",", "", $value);
 			$line_array[] = $value;
 		}
-echo "<PRE>"; print_r($line_array); echo "</PRE>";
 		fputcsv($fp, $line_array);
 	}
 	
