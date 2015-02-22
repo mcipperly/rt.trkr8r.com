@@ -1,6 +1,7 @@
 <?php include ( 'includes/header.php'); 
 require_once('db/db.php');
 $form_elements = get_form_elements();
+$form_responses = get_form_responses($_GET['vid']);
 ?>
 
 <div class="row interior-header">
@@ -16,13 +17,16 @@ $form_elements = get_form_elements();
 <div class="details">
     <h3>Details</h3>
     <div class="row">
+    
     <?php foreach($form_elements as $element) {
-      print_r($element);
-      if(isset($_POST[$element['name']])) {
+      foreach($form_responses as $response) {
+        print_r($response);
+        print($element['name']);
+        if(isset($response[$element['name']])) {
 ?>        <div class="six cols">
-            <p><?php print($element['name'] . ": " . $_POST[$element['name']]); ?></p>
+            <p><?php print($element['name'] . ": " . $response[$element['name']]); ?></p>
         </div>
-    <?php } } ?>
+    <?php } } } ?>
 
     </div>
 
