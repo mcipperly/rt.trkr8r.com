@@ -138,9 +138,11 @@ function toggleAll() {
       }
   }
 }
-function uncheckOther(master,other) {
+function toggleOther(master,other) {
   var oth = document.getElementById(other);
-  other.checked = "unchecked";
+  if(master.checked) {
+    oth.checked = false;
+  }
 }
 
 </script>
