@@ -150,16 +150,34 @@ EOS;
 	}
 }
 
-?>
 
+if($_REQUEST['view']) {
+	$signature_info = get_volunteer_signature($_GET['vid']);
+	$signature_date = date("F js, Y", strtotime($signature_info['signature_date']));
+	$html = <<<EOS
+<h2>Signature On File</h2>
+<div class="row">
+    <div class="six cols">
+        <p>Name: {$volunteer_info['firstname']} {$volunteer_info['lastname']}</p>
+    </div>
+    <div class="six cols">
+        <p>Date: {$signature_date}</p>
+    </div>
+</div>
+EOS;
+	print($html);
+}
+else {
+	$signature_date = date("F js, Y");
+	$html = <<<EOS
 <h2>Your Signature</h2>
 <p>By signing below, you confirm that your details listed above are accurate. You also accept our Waiver of Liability and Media Release terms.</p>
 <div class="row">
     <div class="six cols">
-        <p>Name: <?php print($volunteer_info['firstname'] . ' ' . $volunteer_info['lastname']); ?></p>
+        <p>Name: {$volunteer_info['firstname']} {$volunteer_info['lastname']}</p>
     </div>
     <div class="six cols">
-        <p>Date: <?php print(date('F jS, Y')); ?></p>
+        <p>Date: {$signature_date}</p>
     </div>
 </div>
 <div id="signature-pad" class="signature-pad-box">
@@ -170,9 +188,9 @@ EOS;
     <button data-action="clear" class="no-min">Clear</button>
     <button data-action="save" class="no-min">Save</button>
     <form name="signaturepad" action="capture-signature.php" method="POST">
-        <input type="hidden" name="firstname" value="<?php print($volunteer_info['firstname']['value']); ?>"></input>
-        <input type="hidden" name="lastname" value="<?php print($volunteer_info['lastname']['value']); ?>"></input>
-        <input type="hidden" name="vid" value="<?php print($_GET['vid']); ?>"></input>
+        <input type="hidden" name="firstname" value="{$volunteer_info['firstname']}"></input>
+        <input type="hidden" name="lastname" value="{$volunteer_info['lastname']}"></input>
+        <input type="hidden" name="vid" value="{$_GET['vid']}"></input>
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
     </form>
 </div>
@@ -207,5 +225,11 @@ saveButton.addEventListener("click", function (event) {
     }
 });
 </script>
+EOS;
+
+}
+
+?>
+
 
 <?php include ('includes/footer.php'); ?>

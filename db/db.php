@@ -273,7 +273,7 @@ function get_volunteer_signature($volunteer_id) {
 	if(!$volunteer_id)
 		return FALSE;
 
-	$query = "SELECT * FROM `volunteer_signature` WHERE `volunteer_id` = {$volunteer_id} ORDER BY service_date DESC LIMIT 0, 1";
+	$query = "SELECT * FROM `volunteer_signature` WHERE `volunteer_id` = {$volunteer_id} ORDER BY `signature_date` DESC LIMIT 0, 1";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	return _get_row($result);
 }

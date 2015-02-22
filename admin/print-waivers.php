@@ -1,6 +1,7 @@
 <?php
 include ('../includes/header.php');
 require_once('../db/db.php');
+include('validate.php');
 
 if($_REQUEST['email']) {
 	$volunteer_id = validate_volunteer_email($_REQUEST['email']);

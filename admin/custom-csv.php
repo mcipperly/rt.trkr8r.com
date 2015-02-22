@@ -1,4 +1,6 @@
-<?php include ('../includes/header.php'); ?>
+<?php include ('../includes/header.php'); 
+include('validate.php');
+?>
 
 <div class="row interior-header">
 
