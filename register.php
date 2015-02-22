@@ -242,5 +242,9 @@ EOS;
 }
 
 ?>
+<script type="text/javascript">
+  var emailForm = document.getElementsByName('email');
+  emailForm[0].value = "<?php print(htmlentities($_REQUEST['email'])); ?>";
+</script>
 
 <?php include ( 'includes/footer.php'); ?>
