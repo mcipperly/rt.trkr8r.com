@@ -13,7 +13,7 @@ $responses = array();
 
 foreach($_POST as $name => $response) {
   if(is_array($response)) {
-    $responses[$name] = implode(', ', $response);
+    $responses[$name] = implode('; ', $response);
   } else {
     $responses[$name] = $response;
   }

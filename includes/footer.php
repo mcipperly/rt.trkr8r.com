@@ -47,6 +47,18 @@ vex.dialog.open({
   }
 });
 }
+function onsiteModeModal() {
+vex.dialog.open({
+  message: 'Login successful - select destination:',
+  input: '<div class=\"vex-custom-input-wrapper\"><button href=\"admin.php\">Admin</button></div>',
+  callback: function(data) {
+    if (data === false) {
+      return console.log('Cancelled');
+    }
+  }
+});
+}
+  
 </script>
         <footer>
           <div class="row">

@@ -8,7 +8,7 @@
         </div>
 
         <div class="eight cols">
-            <h1>Admin <span>Log Volunteer Hours</span></h1>
+            <h1>Admin <br><span>Log Volunteer Hours</span></h1>
         </div>
     </div>
 
