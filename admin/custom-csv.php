@@ -12,6 +12,15 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
 		$preset_id = 0;
 	
 	$element_ids = ($preset_id) ? get_export_preset($preset_id) : $_REQUEST['element_ids'];
+
+	if($_REQUEST['service_date'])
+		$service_date = $_REQUEST['service_date']
+	elseif($_REQUEST['today'])
+		$service_date = date("Y-m-d");
+	else
+		$service_date = date("Y-m-d");
+	
+	$file_name = export_csv($element_ids, $service_date);
 }
 
 ?>

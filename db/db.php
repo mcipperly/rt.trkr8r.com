@@ -340,4 +340,8 @@ function get_export_preset($preset_id) {
 	return _get_col($result);
 }
 
+function export_csv($element_ids, $service_date) {
+	
+}
+
 ?>
