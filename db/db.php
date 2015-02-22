@@ -266,18 +266,14 @@ EOS;
 	return TRUE;
 }
 
-function get_volunteer_signature($volunteer_id, $service_date = null) {
-	//function to grab signature data for a volunteer for a given day (today by default)
+function get_volunteer_signature($volunteer_id) {
+	//function to grab most recent signature data for a volunteer
 	$db_link = setup_db();
 	
 	if(!$volunteer_id)
 		return FALSE;
 
-	$service_date = ($service_date) ? $service_date : date("Y-m-d");
-	
-	$service_date = mysqli_real_escape_string($db_link, $service_date);
-
-	$query = "SELECT * FROM `volunteer_signature` WHERE `volunteer_id` = {$volunteer_id} AND `signature_date` = '{$service_date}'";
+	$query = "SELECT * FROM `volunteer_signature` WHERE `volunteer_id` = {$volunteer_id} ORDER BY service_date DESC LIMIT 0, 1";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	return _get_row($result);
 }

@@ -1,5 +1,7 @@
 <?php
 include ('../includes/header.php');
+include('validate.php');
+
 require_once('../db/db.php');
 
 $readable_service_date = ($_REQUEST['service_date']) ? $_REQUEST['service_date'] : date("m/d/Y");

@@ -1,6 +1,7 @@
 <?php
 include ('../includes/header.php');
 require_once('../db/db.php');
+include('validate.php');
 session_start();
 
 foreach($_POST as $key => $value) {
