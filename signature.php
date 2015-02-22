@@ -1,4 +1,4 @@
-<?php include ( 'includes/header.php'); 
+<?php include ('includes/header.php'); 
 require_once('db/db.php');
 $form_responses = get_form_responses($_GET['vid']);
 $volunteer_info = get_volunteer_info($_GET['vid']);
@@ -19,12 +19,25 @@ foreach($elements as $key => $element) {
 	if($key == 0) {
 		$html = <<<EOS
 <div class="row interior-header">
-    <div class="eight cols">
-        <h1>Confirmation</h1>
+
+    <div class="visible-phone">
+        <div class="four cols sml-logo">
+            <img src="assets/imgs/rt-logo.png">
+        </div>
+
+        <div class="eight cols">
+            <h1>Confirmation</h1>
+        </div>
     </div>
 
-    <div class="four cols">
-        <img src="assets/imgs/rt-logo_small.png" class="right">
+    <div class="hidden-phone">
+        <div class="eight cols">
+            <h1 class="left">Confirmation</h1>
+        </div>
+        
+        <div class="four cols">
+            <img src="assets/imgs/rt-logo_small.png" class="right">
+        </div>
     </div>
 </div>
 <div class="clear"></div>
@@ -114,7 +127,7 @@ EOS;
 	if($key + 1 == sizeof($elements)) {
 		$html = <<<EOS
         <a href="register.php?edit=1&email={$volunteer_info['email']}">
-            <button class="">Make Changes</button>
+            <button class="no-min">Make Changes</button>
         </a>
 
     <h3>Waiver of Liability</h3>
@@ -132,12 +145,25 @@ EOS;
 
 <!--
 <div class="row interior-header">
-    <div class="eight cols">
-        <h1>Confirmation</h1>
+
+    <div class="visible-phone">
+        <div class="four cols sml-logo">
+            <img src="assets/imgs/rt-logo.png">
+        </div>
+
+        <div class="eight cols">
+            <h1>Confirmation</h1>
+        </div>
     </div>
 
-    <div class="four cols">
-        <img src="assets/imgs/rt-logo_small.png" class="right">
+    <div class="hidden-phone">
+        <div class="eight cols">
+            <h1 class="left">Confirmation</h1>
+        </div>
+        
+        <div class="four cols">
+            <img src="assets/imgs/rt-logo_small.png" class="right">
+        </div>
     </div>
 </div>
 <div class="clear"></div>
@@ -178,8 +204,8 @@ EOS;
         <canvas></canvas>
     </div>
 <div class="signature-pad-footer">
-    <button data-action="clear">Clear</button>
-    <button data-action="save">Save</button>
+    <button data-action="clear" class="no-min">Clear</button>
+    <button data-action="save" class="no-min">Save</button>
     <form name="signaturepad" action="capture-signature.php" method="POST">
         <input type="hidden" name="firstname" value="<?php print($volunteer_info['firstname']['value']); ?>"></input>
         <input type="hidden" name="lastname" value="<?php print($volunteer_info['lastname']['value']); ?>"></input>
@@ -219,4 +245,4 @@ saveButton.addEventListener("click", function (event) {
 });
 </script>
 
-<?php include ( 'includes/footer.php'); ?>
+<?php include ('includes/footer.php'); ?>
