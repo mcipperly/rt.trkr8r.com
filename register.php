@@ -116,7 +116,7 @@ EOS;
 	else
 		$this_response = array();
 	
-	if($element['type'] == "checkbox")
+	if($element['type'] == "checkbox" && $this_response)
 		$value = ($this_response['value']) ? "Yes" : "No";
 	else
 		$value = $this_response['value'];
@@ -161,7 +161,7 @@ EOS;
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}" style="display:inline">{$element['label']}</label>
-			<input type="{$element['type']}" name="{$element['name']} value="1" {$required_html} {$checked_html} />
+			<input type="{$element['type']}" name="{$element['name']}" value="1" {$required_html} {$checked_html} />
         </div>
 EOS;
 			break;

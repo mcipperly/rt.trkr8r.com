@@ -9,6 +9,10 @@ foreach($_POST as $key => $value) {
   }
 }
 
+if(isset($_POST['email']) && isset($_POST['password'])) {
+  user_add($_POST['email'], $_POST['password'], 0);
+}
+
 $users = get_users();
 
 $html = <<<EOS
