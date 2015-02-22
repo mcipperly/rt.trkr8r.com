@@ -86,7 +86,7 @@ vex.dialog.open({
         <footer>
           <div class="row">
                 <div class="twelve cols center">
-                    <p>&copy;Rebuilding Together Pittsburgh 2015&nbsp;&nbsp;/&nbsp;&nbsp; <a href="<?php if(isset($_SESSION['user']) && isset($_SESSION['mode']) && $_SESSION['mode'] == 'admin') { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>"><?php if(isset($_SESSION['user'])) { if(isset($_SESSION['mode'])) { if($_SESSION['mode'] == "onsite") { print('Onsite Mode: '); } else { print('Logged In: '); } } print($_SESSION['user']); } else { ?>Staff Login<?php } ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:vjohnson@rtpittsburgh.org">Contact Us With Any Questions</a>
+                    <p>&copy;Rebuilding Together Pittsburgh 2015&nbsp;&nbsp;/&nbsp;&nbsp;<a href="<?php if(isset($_SESSION['user']) && isset($_SESSION['mode']) && $_SESSION['mode'] == 'adminpage') { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>"><?php if(isset($_SESSION['user'])) { if(isset($_SESSION['mode'])) { if($_SESSION['mode'] == "onsite") { print('Onsite Mode: '); } else { print('Logged In: '); } } print($_SESSION['user']); } else { ?>Staff Login<?php } ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:vjohnson@rtpittsburgh.org">Contact Us With Any Questions</a>
                     </p>
                 </div>
         </footer>

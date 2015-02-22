@@ -43,19 +43,14 @@
 </div>
 
 <div class="row center">
-    <div class="four cols">
+    <div class="six cols">
         <a href="users.php">
-            <button class="full-width">Admin Accounts</button>
+            <button class="full-width">User Administration</button>
         </a>
     </div>
-    <div class="four cols">
+    <div class="six cols">
         <a href="print-waivers.php">
             <button class="full-width">Print Signed Waivers</button>
-        </a>
-    </div>
-    <div class="four cols">
-        <a href="#">
-            <button class="full-width">Button</button>
         </a>
     </div>
 </div>
