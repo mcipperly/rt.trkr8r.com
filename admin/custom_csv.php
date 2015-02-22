@@ -30,6 +30,18 @@
 <form style="margin-top:15px">
     <div class="row">
         <div class="four cols">
+        <input type="checkbox"> Check All
+        </div>
+        <div class="four cols">
+        <input type="checkbox"> For MailChimp
+        </div>
+        <div class="four cols">
+        <input type="checkbox"> For Mailing
+        </div>
+    </div>
+    <h3 styl"margin:10px 0 3px 0;">Custom Selection</h3>
+    <div class="row">
+        <div class="four cols">
         <input type="checkbox"> First Name
         </div>
         <div class="four cols">

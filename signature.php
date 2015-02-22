@@ -148,52 +148,6 @@ EOS;
 
 ?>
 
-<!--
-<div class="row interior-header">
-
-    <div class="visible-phone">
-        <div class="four cols sml-logo">
-            <img src="assets/imgs/rt-logo.png">
-        </div>
-
-        <div class="eight cols">
-            <h1>Confirmation</h1>
-        </div>
-    </div>
-
-    <div class="hidden-phone">
-        <div class="eight cols">
-            <h1 class="left">Confirmation</h1>
-        </div>
-        
-        <div class="four cols">
-            <img src="assets/imgs/rt-logo_small.png" class="right">
-        </div>
-    </div>
-</div>
-<div class="clear"></div>
-<div class="details">
-    <h3>Details</h3>
-    <div class="row">
-
-    <?php print_r($form_responses); foreach($form_elements as $element) {
-      foreach($form_responses as $response) {
-        if($response['name'] == $element['name']) {
-?>    <div class="six cols">
-            <p><?php print($element['label'] . ": " . $response['value']); ?></p>
-        </div>
-    <?php } } } ?>
-
-    </div>
-
-    <h3>Waiver of Liability</h3>
-    <p class="justify">In consideration of the opportunity afforded me to assist on a voluntary basis with Rebuilding Together Pittsburgh, a project in which the homes of disadvantaged persons will be repaired by volunteers, and in light of the aims and purposes of the community service provided by Rebuilding Together Pittsburgh in organizing this project from which any liability may or could accrue against Rebuilding Together Pittsburgh, or any of their respective officers and directors collectively or individually or any project homeowners. Without limiting the generality of the foregoing, I agree that this waiver and release shall include any rights, claims, or causes of action resulting from personal injury to me or damage to my property sustained in connection with any activities in a Rebuilding Together Pittsburgh event or project.</p>
-
-    <h3>Media Release</h3>
-    <p class="justify">I understand that photographs and/or videotapes may be taken of me during workday. I hereby assign and authorize Rebuilding Together Pittsburgh to use these photographs and/or videotapes for publicity purposes. I, therefore, release and discharge all parties associated with Rebuilding Together Pittsburgh, its agents, servants, and employees from any liability, which may arise now or in the future or develop from such activity as described.</p>
-</div>
--->
-
 <h2>Your Signature</h2>
 <p>By signing below, you confirm that your details listed above are accurate. You also accept our Waiver of Liability and Media Release terms.</p>
 <div class="row">
