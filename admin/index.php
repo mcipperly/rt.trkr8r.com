@@ -26,7 +26,7 @@ include('validate.php');?>
 <div class="clear"></div>
 <div class="row center">
     <div class="four cols">
-        <a href="#">
+        <a href="custom-csv.php?today=1">
             <button class="full-width">Export Today's .CSV</button>
         </a>
     </div>
