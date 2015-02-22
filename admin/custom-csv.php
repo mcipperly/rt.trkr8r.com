@@ -10,6 +10,8 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
 		$preset_id = 1;
 	else
 		$preset_id = 0;
+	
+	$element_ids = ($preset_id) ? get_export_preset($preset_id) : $_REQUEST['element_ids'];
 }
 
 ?>
