@@ -21,6 +21,7 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
 		$service_date = date("Y-m-d");
 	
 	$file_name = export_csv($element_ids, $service_date);
+	Header("Location: ../export/{$file_name}");
 }
 
 ?>
