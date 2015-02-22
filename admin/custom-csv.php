@@ -60,10 +60,10 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
         <input type="checkbox" id="checkmaster" onClick="toggleAll()"> Check All
         </div>
         <div class="four cols">
-        <input type="checkbox"> For MailChimp
+        <input type="checkbox" name="preset_id" value="2"> For MailChimp
         </div>
         <div class="four cols">
-        <input type="checkbox"> For Mailing
+        <input type="checkbox" name="preset_id" value="3"> For Mailing
         </div>
     </div>
     <h3 style="margin:10px 0 6px 0;font-weight:600; text-transform: uppercase">Custom Selection</h3>
