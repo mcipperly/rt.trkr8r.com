@@ -6,6 +6,11 @@ $volunteer_info = get_volunteer_info($_GET['vid']);
 
 <?php
 
+function get_response($response) {
+	global $search_element_id;
+	return ($response['element_id'] == $element_id);
+}
+
 $elements = get_form_elements();
 $responses = get_form_responses($_GET['vid']);
 
@@ -76,88 +81,23 @@ EOS;
 			break;
 	}
 	
-	switch($element['type']) {
-		case "text":
-			$html = <<<EOS
+	$search_element_id = $element['element_id'];
+	$responses = array_filter($responses, 'get_response');
+	if($responses)
+		$this_response = $responses[0];
+	else
+		$this_response = array();
+	
+	if($element['type'] == "checkbox")
+		$value = ($this_response['value']) ? "Yes" : "No";
+	else
+		$value = $this_response['value'];
+	$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}</label>
-            <span class="full-width" name="{$element['name']}"></span>
+            <span class="full-width" name="{$element['name']}">{$this_response['value']}</span>
 		</div>
 EOS;
-			break;
-		case "checkbox":
-			
-			$html = <<<EOS
-        <div class="{$cols} cols">
-            <label for="{$element['name']}" style="display:inline">{$element['label']}</label>
-			<input type="{$element['type']}" name="{$element['name']} value="1" {$required_html}/>
-        </div>
-EOS;
-			break;
-		case "select":
-			$html = <<<EOS
-        <div class="{$cols} cols">
-            <label for="{$element['name']}">{$element['label']}</label>
-            <select class="full-width" name="{$element['name']}">
-                <option value="PA">PA</option>
-                <option value="AL">AL</option>
-                <option value="AK">AK</option>
-                <option value="AZ">AZ</option>
-                <option value="AR">AR</option>
-                <option value="CA">CA</option>
-                <option value="CO">CO</option>
-                <option value="CT">CT</option>
-                <option value="DE">DE</option>
-                <option value="DC">DC</option>
-                <option value="FL">FL</option>
-                <option value="GA">GA</option>
-                <option value="HI">HI</option>
-                <option value="ID">ID</option>
-                <option value="IL">IL</option>
-                <option value="IN">IN</option>
-                <option value="IA">IA</option>
-                <option value="KS">KS</option>
-                <option value="KY">KY</option>
-                <option value="LA">LA</option>
-                <option value="ME">ME</option>
-                <option value="MD">MD</option>
-                <option value="MA">MA</option>
-                <option value="MI">MI</option>
-                <option value="MN">MN</option>
-                <option value="MS">MS</option>
-                <option value="MO">MO</option>
-                <option value="MT">MT</option>
-                <option value="NE">NE</option>
-                <option value="NV">NV</option>
-                <option value="NH">NH</option>
-                <option value="NJ">NJ</option>
-                <option value="NM">NM</option>
-                <option value="NY">NY</option>
-                <option value="NC">NC</option>
-                <option value="ND">ND</option>
-                <option value="OH">OH</option>
-                <option value="OK">OK</option>
-                <option value="OR">OR</option>
-                <option value="RI">RI</option>
-                <option value="SC">SC</option>
-                <option value="SD">SD</option>
-                <option value="TN">TN</option>
-                <option value="TX">TX</option>
-                <option value="UT">UT</option>
-                <option value="VT">VT</option>
-                <option value="VA">VA</option>
-                <option value="WA">WA</option>
-                <option value="WV">WV</option>
-                <option value="WI">WI</option>
-                <option value="WY">WY</option>
-            </select>
-        </div>
-EOS;
-			break;
-		default:
-			$html = "";
-			break;
-	}
 	
 	print($html);
 	
@@ -172,9 +112,12 @@ EOS;
 
 	if($key + 1 == sizeof($elements)) {
 		$html = <<<EOS
-    <input type="submit" value="Submit">
+    <h3>Waiver of Liability</h3>
+    <p class="justify">In consideration of the opportunity afforded me to assist on a voluntary basis with Rebuilding Together Pittsburgh, a project in which the homes of disadvantaged persons will be repaired by volunteers, and in light of the aims and purposes of the community service provided by Rebuilding Together Pittsburgh in organizing this project from which any liability may or could accrue against Rebuilding Together Pittsburgh, or any of their respective officers and directors collectively or individually or any project homeowners. Without limiting the generality of the foregoing, I agree that this waiver and release shall include any rights, claims, or causes of action resulting from personal injury to me or damage to my property sustained in connection with any activities in a Rebuilding Together Pittsburgh event or project.</p>
 
-</form>
+    <h3>Media Release</h3>
+    <p class="justify">I understand that photographs and/or videotapes may be taken of me during workday. I hereby assign and authorize Rebuilding Together Pittsburgh to use these photographs and/or videotapes for publicity purposes. I, therefore, release and discharge all parties associated with Rebuilding Together Pittsburgh, its agents, servants, and employees from any liability, which may arise now or in the future or develop from such activity as described.</p>
+</div>
 EOS;
 		print($html);
 	}
@@ -182,6 +125,7 @@ EOS;
 
 ?>
 
+<!--
 <div class="row interior-header">
     <div class="eight cols">
         <h1>Confirmation</h1>
@@ -212,6 +156,7 @@ EOS;
     <h3>Media Release</h3>
     <p class="justify">I understand that photographs and/or videotapes may be taken of me during workday. I hereby assign and authorize Rebuilding Together Pittsburgh to use these photographs and/or videotapes for publicity purposes. I, therefore, release and discharge all parties associated with Rebuilding Together Pittsburgh, its agents, servants, and employees from any liability, which may arise now or in the future or develop from such activity as described.</p>
 </div>
+-->
 
 <h2>Your Signature</h2>
 <p>By signing below, you confirm that your details listed above are accurate. You also accept our Waiver of Liability and Media Release terms.</p>
