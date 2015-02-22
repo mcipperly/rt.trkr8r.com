@@ -91,6 +91,19 @@ EOS;
 			$asterisk_string .= "*";
 	}
 
+	$search_element_id = $element['element_id'];
+	$filtered_responses = array_filter($responses, 'get_response');
+
+	if($filtered_responses && !$element['plural'])
+		$this_response = array_shift($filtered_responses);
+	else
+		$this_response = array();
+	
+	if($element['type'] == "checkbox")
+		$value = ($this_response['value']) ? "Yes" : "No";
+	else
+		$value = $this_response['value'];
+	
 	$required_html = ($element['required']) ? " required" : "";
 	
 	switch($element['type']) {
@@ -119,75 +132,77 @@ EOS;
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>
 {$plural_html_a}
-            <input class="{$class_html}" type="{$element['type']}" placeholder="" name="{$element['name']}{$plural_html_b}"{$required_html}>
+            <input class="{$class_html}" type="{$element['type']}" placeholder="" name="{$element['name']}{$plural_html_b}"{$required_html} value="{$value}" />
 {$plural_html_c}
 			</div>
 EOS;
 			break;
 		case "checkbox":
+			$checked_html = ($value == "Yes") ? "checked" : ""; 
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}" style="display:inline">{$element['label']}</label>
-			<input type="{$element['type']}" name="{$element['name']} value="1" {$required_html} checked />
+			<input type="{$element['type']}" name="{$element['name']} value="1" {$required_html} {$checked_html} />
         </div>
 EOS;
 			break;
 		case "select":
+			$state_id = $value;
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}</label>
             <select class="full-width" name="{$element['name']}">
-                <option value="PA">PA</option>
-                <option value="AL">AL</option>
-                <option value="AK">AK</option>
-                <option value="AZ">AZ</option>
-                <option value="AR">AR</option>
-                <option value="CA">CA</option>
-                <option value="CO">CO</option>
-                <option value="CT">CT</option>
-                <option value="DE">DE</option>
-                <option value="DC">DC</option>
-                <option value="FL">FL</option>
-                <option value="GA">GA</option>
-                <option value="HI">HI</option>
-                <option value="ID">ID</option>
-                <option value="IL">IL</option>
-                <option value="IN">IN</option>
-                <option value="IA">IA</option>
-                <option value="KS">KS</option>
-                <option value="KY">KY</option>
-                <option value="LA">LA</option>
-                <option value="ME">ME</option>
-                <option value="MD">MD</option>
-                <option value="MA">MA</option>
-                <option value="MI">MI</option>
-                <option value="MN">MN</option>
-                <option value="MS">MS</option>
-                <option value="MO">MO</option>
-                <option value="MT">MT</option>
-                <option value="NE">NE</option>
-                <option value="NV">NV</option>
-                <option value="NH">NH</option>
-                <option value="NJ">NJ</option>
-                <option value="NM">NM</option>
-                <option value="NY">NY</option>
-                <option value="NC">NC</option>
-                <option value="ND">ND</option>
-                <option value="OH">OH</option>
-                <option value="OK">OK</option>
-                <option value="OR">OR</option>
-                <option value="RI">RI</option>
-                <option value="SC">SC</option>
-                <option value="SD">SD</option>
-                <option value="TN">TN</option>
-                <option value="TX">TX</option>
-                <option value="UT">UT</option>
-                <option value="VT">VT</option>
-                <option value="VA">VA</option>
-                <option value="WA">WA</option>
-                <option value="WV">WV</option>
-                <option value="WI">WI</option>
-                <option value="WY">WY</option>
+                <option value="PA" id="PA">PA</option>
+                <option value="AL" id="AL">AL</option>
+                <option value="AK" id="AK">AK</option>
+                <option value="AZ" id="AZ">AZ</option>
+                <option value="AR" id="AR">AR</option>
+                <option value="CA" id="CA">CA</option>
+                <option value="CO" id="CO">CO</option>
+                <option value="CT" id="CT">CT</option>
+                <option value="DE" id="DE">DE</option>
+                <option value="DC" id="DC">DC</option>
+                <option value="FL" id="FL">FL</option>
+                <option value="GA" id="GA">GA</option>
+                <option value="HI" id="HI">HI</option>
+                <option value="ID" id="ID">ID</option>
+                <option value="IL" id="IL">IL</option>
+                <option value="IN" id="IN">IN</option>
+                <option value="IA" id="IA">IA</option>
+                <option value="KS" id="KS">KS</option>
+                <option value="KY" id="KY">KY</option>
+                <option value="LA" id="LA">LA</option>
+                <option value="ME" id="ME">ME</option>
+                <option value="MD" id="MD">MD</option>
+                <option value="MA" id="MA">MA</option>
+                <option value="MI" id="MI">MI</option>
+                <option value="MN" id="MN">MN</option>
+                <option value="MS" id="MS">MS</option>
+                <option value="MO" id="MO">MO</option>
+                <option value="MT" id="MT">MT</option>
+                <option value="NE" id="NE">NE</option>
+                <option value="NV" id="NV">NV</option>
+                <option value="NH" id="NH">NH</option>
+                <option value="NJ" id="NJ">NJ</option>
+                <option value="NM" id="NM">NM</option>
+                <option value="NY" id="NY">NY</option>
+                <option value="NC" id="NC">NC</option>
+                <option value="ND" id="ND">ND</option>
+                <option value="OH" id="OH">OH</option>
+                <option value="OK" id="OK">OK</option>
+                <option value="OR" id="OR">OR</option>
+                <option value="RI" id="RI">RI</option>
+                <option value="SC" id="SC">SC</option>
+                <option value="SD" id="SD">SD</option>
+                <option value="TN" id="TN">TN</option>
+                <option value="TX" id="TX">TX</option>
+                <option value="UT" id="UT">UT</option>
+                <option value="VT" id="VT">VT</option>
+                <option value="VA" id="VA">VA</option>
+                <option value="WA" id="WA">WA</option>
+                <option value="WV" id="WV">WV</option>
+                <option value="WI" id="WI">WI</option>
+                <option value="WY" id="WY">WY</option>
             </select>
         </div>
 EOS;
@@ -248,7 +263,10 @@ EOS;
 <script type="text/javascript">
   var emailForm = document.getElementsByName('email');
   emailForm[0].value = "<?php print(htmlentities($_REQUEST['email'])); ?>";
-</script>
+
+  var stateElement = document.getElementByID("<?php print(htmlentities($state_id)) ?>");
+  stateElement.selected = 'selected';
+ </script>
 <?php } ?>
 
 <?php include ( 'includes/footer.php'); ?>
