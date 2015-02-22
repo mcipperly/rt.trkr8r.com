@@ -33,9 +33,9 @@ $html = <<<EOS
 
 <h2>Create New User</h2>
 <form method="POST">
-	<p>Email: </p><input type="email" id="email" name="email" value=""/>
-        <p>Password: </p><input type="password" id="password" name="password" value=""/>
-	<input type="submit" value="OK" />
+	<p>Email: <input type="email" id="email" name="email" value=""/>
+        Password: <input type="password" id="password" name="password" value=""/>
+	<input type="submit" value="OK" /></p>
 </form>
 EOS;
 print($html);
@@ -43,7 +43,7 @@ print($html);
 foreach($users as $key => $user) {
 	if($key == 0) {
 		$html = <<<EOS
-<form style="margin-top:30px">
+<form method="POST" style="margin-top:30px">
     <h3 class="left"><b>User</b></h3>
     <h3 class="right"><b>Remove</b></h3>
     <div class="clear"></div>

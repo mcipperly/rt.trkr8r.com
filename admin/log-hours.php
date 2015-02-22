@@ -64,7 +64,7 @@ print($html);
 foreach($volunteers as $key => $volunteer) {
 	if($key == 0) {
 		$html = <<<EOS
-<form style="margin-top:30px">
+<form style="margin-top:30px" method="POST">
 	<input type="hidden" name="record" value="1" />
 	<input type="hidden" name="service_date" value="1" />
     <h3 class="left"><b>Volunteer Name</b></h3>
