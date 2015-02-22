@@ -1,30 +1,21 @@
-<?php include ( 'includes/header.php'); 
-require_once('db/db.php');
-$form_elements = get_form_elements();
-$form_responses = get_form_responses($_GET['vid']);
-?>
+<?php include ('includes/header.php'); ?>
 
-<div class="row interior-header">
-    <div class="eight cols">
-        <h1>Confirmation</h1>
-    </div>
-
-    <div class="four cols">
+<div class="interior-header">
+        <h1 class="left">Confirmation</h1>
         <img src="assets/imgs/rt-logo_small.png" class="right">
-    </div>
+    <div class="clear"></div>
 </div>
+
 <div class="clear"></div>
 <div class="details">
     <h3>Details</h3>
     <div class="row">
-    
-    <?php foreach($form_elements as $element) {
-      foreach($form_responses as $response) {
-        if($response['name'] == $element['name']) {
-?>    <div class="six cols">
-            <p><?php print($element['label'] . ": " . $response['value']); ?></p>
+        <div class="six cols">
+            <p>Details here!</p>
         </div>
-    <?php } } } ?>
+        <div class="six cols">
+            <p>Details here!</p>
+        </div>
 
     </div>
 
@@ -46,8 +37,6 @@ $form_responses = get_form_responses($_GET['vid']);
     <button data-action="clear">Clear</button>
     <button data-action="save">Save</button>
     <form name="signaturepad" action="capture-signature.php" method="POST">
-        <input type="hidden" name="firstname" value="firstname"></input>
-        <input type="hidden" name="lastname" value="lastname"></input>
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
     </form>
 </div>
@@ -79,7 +68,7 @@ clearButton.addEventListener("click", function (event) {
 
 saveButton.addEventListener("click", function (event) {
     if (signaturePad.isEmpty()) {
-        vex.dialog.alert('Please complete the signature field');
+        alert("Signature is required!");
     } else {
         var siginput = document.getElementById('signature-b64');
         siginput.setAttribute('value', signaturePad.toDataURL());
@@ -90,4 +79,4 @@ saveButton.addEventListener("click", function (event) {
 
 </script>
 
-<?php include ( 'includes/footer.php'); ?>
+<?php include ('includes/footer.php'); ?>
