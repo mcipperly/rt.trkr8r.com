@@ -128,7 +128,7 @@ EOS;
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}" style="display:inline">{$element['label']}</label>
-			<input type="{$element['type']}" name="{$element['name']} value="1" />
+			<input type="{$element['type']}" name="{$element['name']} value="1" checked {$required_html}/>
         </div>
 EOS;
 			break;
@@ -137,6 +137,7 @@ EOS;
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}</label>
             <select class="full-width" name="{$element['name']}">
+                <option value="PA">PA</option>
                 <option value="AL">AL</option>
                 <option value="AK">AK</option>
                 <option value="AZ">AZ</option>
@@ -175,7 +176,6 @@ EOS;
                 <option value="OH">OH</option>
                 <option value="OK">OK</option>
                 <option value="OR">OR</option>
-                <option value="PA">PA</option>
                 <option value="RI">RI</option>
                 <option value="SC">SC</option>
                 <option value="SD">SD</option>
