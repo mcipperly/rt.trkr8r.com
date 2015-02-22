@@ -53,7 +53,7 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
 
 <h2>Select Which Details Include in the .CSV File</h2>
 
-<form style="margin-top:15px">
+<form method="GET" style="margin-top:15px">
     <div class="row">
         <div class="four cols">
         <input type="checkbox"> Check All
@@ -68,56 +68,56 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
     <h3 style="margin:10px 0 6px 0;font-weight:600; text-transform: uppercase">Custom Selection</h3>
     <div class="row">
         <div class="four cols">
-        <input type="checkbox"> First Name
+        <input type="checkbox" name="firstname"> First Name
         </div>
         <div class="four cols">
-        <input type="checkbox"> Last Name
+        <input type="checkbox" name="lastname"> Last Name
         </div>
         <div class="four cols">
-        <input type="checkbox"> Age
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="four cols">
-        <input type="checkbox"> Phone
-        </div>
-        <div class="four cols">
-        <input type="checkbox"> Email
-        </div>
-        <div class="four cols">
-        <input type="checkbox"> Future Interest
+        <input type="checkbox" name="age"> Age
         </div>
     </div>
     
     <div class="row">
         <div class="four cols">
-        <input type="checkbox"> Address
+        <input type="checkbox" name="phone"> Phone
         </div>
         <div class="four cols">
-        <input type="checkbox"> Apt/Suite/Floor
+        <input type="checkbox" name="email"> Email
         </div>
         <div class="four cols">
-        <input type="checkbox"> City
+        <input type="checkbox" name="future_interest"> Future Interest
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="four cols">
+        <input type="checkbox" name="address1"> Address
+        </div>
+        <div class="four cols">
+        <input type="checkbox" name="address2"> Apt/Suite/Floor
+        </div>
+        <div class="four cols">
+        <input type="checkbox" name="city"> City
         </div>
     </div>
     
     
     <div class="row">
         <div class="four cols">
-        <input type="checkbox"> State
+        <input type="checkbox" name="state"> State
         </div>
         <div class="four cols">
-        <input type="checkbox"> ZIP
+        <input type="checkbox" name="postalcode"> ZIP
         </div>
         <div class="four cols">
-        <input type="checkbox"> Affiliation or Company
+        <input type="checkbox" name="company"> Affiliation or Company
         </div>
     </div>
     
     <div class="row">
         <div class="four cols">
-        <input type="checkbox"> Skills
+        <input type="checkbox" name="skills"> Skills
         </div>
         <div class="four cols">
         </div>
