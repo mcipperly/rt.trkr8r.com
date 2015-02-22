@@ -3,6 +3,15 @@ include ('../includes/header.php');
 include('validate.php');
 require_once('../db/db.php');
 
+if($_REQUEST['today'] || $_REQUEST['export']) {
+	if($_REQUEST['preset_id'])
+		$preset_id = $_REQUEST['preset_id'];
+	elseif($_REQUEST['today'])
+		$preset_id = 1;
+	else
+		$preset_id = 0;
+}
+
 ?>
 
 <div class="row interior-header">
