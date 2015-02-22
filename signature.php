@@ -18,8 +18,8 @@ $volunteer_info = get_volunteer_info($_GET['vid']);
 <div class="details">
     <h3>Details</h3>
     <div class="row">
-    
-    <?php foreach($form_elements as $element) {
+
+    <?php print_r($form_responses); foreach($form_elements as $element) {
       foreach($form_responses as $response) {
         if($response['name'] == $element['name']) {
 ?>    <div class="six cols">
@@ -56,6 +56,7 @@ $volunteer_info = get_volunteer_info($_GET['vid']);
     <form name="signaturepad" action="capture-signature.php" method="POST">
         <input type="hidden" name="firstname" value="<?php print($volunteer_info['firstname']['value']); ?>"></input>
         <input type="hidden" name="lastname" value="<?php print($volunteer_info['lastname']['value']); ?>"></input>
+        <input type="hidden" name="vid" value="<?php print($_GET['vid']); ?>"></input>
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
     </form>
 </div>
