@@ -23,11 +23,26 @@
     </div>
 </div>
 
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker({
+      showOn: "button",
+      buttonImage: "images/calendar.gif",
+      buttonImageOnly: true,
+      buttonText: "Select date"
+    });
+  });
+  </script>
 
+ 
+ 
+    
 <div class="clear"></div>
 <h4><a href="admin.php">&laquo; Back to Admin Page</a></h4>
 
-<h2>Volunteer Date</h2>
+<h2>Choose Date of Volunteering to Log Hours For</h2>
+<input type="text" id="datepicker">
+
 <form style="margin-top:30px">
     <h3 class="left"><b>Volunteer Name</b></h3>
     <h3 class="right"><b>Hours</b></h3>
