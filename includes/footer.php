@@ -48,9 +48,10 @@ vex.dialog.open({
 });
 }
 function onsiteModeModal() {
+vex.dialog.buttons.YES.text = 'Admin Page';
+vex.dialog.buttons.NO.text = 'Onsite Mode';
 vex.dialog.open({
   message: 'Login successful - select destination:',
-  input: '<div class=\"vex-custom-input-wrapper\"><button href=\"admin.php\">Admin</button></div>',
   callback: function(data) {
     if (data === false) {
       return console.log('Cancelled');

@@ -109,6 +109,8 @@ EOS;
 	switch($element['type']) {
 		case "text":
 			if($element['plural']) {
+				$skills_array = explode("; ", $value);
+				$value = "";
 				$class_html = "";
 				$plural_html_a = <<<EOS
             <div class="multi-field-wrapper">
