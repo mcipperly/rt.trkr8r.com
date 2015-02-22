@@ -108,7 +108,7 @@ EOS;
 				$plural_html_c = <<<EOS
                         <button type="button" class="remove-field">Remove</button>
                     </div>
-                </div><button type="button" class="add-field">Add field</button>
+                </div><button type="button" class="add-field">Add More Skills</button>
             </div>
             <script src="assets/js/add_inputs.js"></script>
 EOS;

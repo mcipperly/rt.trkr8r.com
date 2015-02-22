@@ -22,9 +22,9 @@ foreach($_POST as $name => $response) {
 add_form_responses($volunteer_id, $responses);
 
 Header("HTTP/1.1 302 Moved Temporarily");
-if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) { 
+//if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) { 
   Header("Location: signature.php?vid=" . $volunteer_id); 
-} else {
-  Header("Location: index.php?thanks=2");
-}
+//} else {
+//  Header("Location: index.php?thanks=2");
+//}
 ?>

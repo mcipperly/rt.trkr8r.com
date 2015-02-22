@@ -1,6 +1,7 @@
-<?php include ( 'includes/header.php'); ?>
+<?php include ( 'includes/header.php'); 
 require_once('db/db.php');
-
+$form_elements = get_form_elements();
+?>
 
 <div class="row interior-header">
     <div class="eight cols">
@@ -14,6 +15,10 @@ require_once('db/db.php');
 <div class="clear"></div>
 <div class="details">
     <h3>Details</h3>
+    <?php foreach($_POST as $name => $value) {
+      print($name . $value);
+    } 
+    print_r($form_elements);?>
     <div class="row">
         <div class="six cols">
             <p>Details here!</p>
