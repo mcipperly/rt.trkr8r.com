@@ -1,16 +1,23 @@
 <?php
 include ('../includes/header.php');
 require_once('../db/db.php');
+start_session();
 
 foreach($_POST as $key => $value) {
   if(substr($key, 0, 7) == "remove_") {
     $val_arr = explode('_', $key);
-    user_remove($val_arr[1]);
+    if($val_arr[1] != validate_user($_SESSION['user'])) {
+      delete_user($val_arr[1]);
+    } else {
+      ?><script type="text/javascript">
+        vex.dialog.alert('Unable to delete yourself!');
+        </script><?php
+    }
   }
 }
 
 if(isset($_POST['email']) && isset($_POST['password'])) {
-  user_add($_POST['email'], $_POST['password'], 0);
+  create_user($_POST['email'], $_POST['password'], 0);
 }
 
 $users = get_users();

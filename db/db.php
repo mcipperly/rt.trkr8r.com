@@ -57,6 +57,19 @@ EOS;
 	return TRUE;
 }
 
+function delete_user($user_id) {
+	// function to delete user credentials
+	$db_link = setup_db();
+	
+	if(!$user_id)
+		return FALSE;
+	
+	$query = "DELETE FROM `user` WHERE `user_id` = {$user_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link)); 
+
+	return TRUE;
+}
+
 function get_users() {
 	//function to return all existing users
 	$db_link = setup_db();
