@@ -20,11 +20,9 @@ $form_responses = get_form_responses($_GET['vid']);
     
     <?php foreach($form_elements as $element) {
       foreach($form_responses as $response) {
-        print_r($response);
-        print($element['name']);
-        if(isset($response[$element['name']])) {
+        if($response['name'] == $element['name']) {
 ?>        <div class="six cols">
-            <p><?php print($element['name'] . ": " . $response[$element['name']]); ?></p>
+            <p><?php print($element['label'] . ": " . $response['value']); ?></p>
         </div>
     <?php } } } ?>
 
