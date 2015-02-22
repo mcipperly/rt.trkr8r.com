@@ -341,7 +341,21 @@ function get_export_preset($preset_id) {
 }
 
 function export_csv($element_ids, $service_date) {
+	//function to build a csv string, storing in appropriately named file
+	$db_link = setup_db();
 	
+	$fp = fopen("/usr/local/www/sub/rt.trkr8r.com/export/{$service_date}.csv", "w");
+	
+	foreach($element_ids as $element_id) {
+		$query = "SELECT `name` FROM `form_element` WHERE `element_id` = {$element_id}";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		$header_array[] = _get_one($result);
+	}
+	fputcsv($fp, $header_array);
+	
+	fclose($fp);
+	
+	return "{$service_date}.csv"
 }
 
 ?>
