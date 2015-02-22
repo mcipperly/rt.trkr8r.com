@@ -169,6 +169,7 @@ if($_REQUEST['view']) {
 		<img src="signatures/{$signature_info['file_name']}" />
 	</div>
 </div>
+<button onclick="window.print();" class="no-min">Print</button>
 EOS;
 	print($html);
 }
