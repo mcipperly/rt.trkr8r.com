@@ -1,14 +1,11 @@
 <?php include ('includes/header.php'); ?>
 
-<div class="row interior-header">
-    <div class="eight cols">
-        <h1>Admin</h1>
-    </div>
-
-    <div class="four cols">
+<div class="interior-header">
+        <h1 class="left">Admin</h1>
         <img src="assets/imgs/rt-logo_small.png" class="right">
-    </div>
+    <div class="clear"></div>
 </div>
+
 <div class="clear"></div>
 export
 log peoples hours

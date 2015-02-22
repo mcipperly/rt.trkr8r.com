@@ -3,7 +3,7 @@
 
 <?php if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
   if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
-    ?><form name="registered" action="capture-register.php" method="POST">
+    ?><form name="registered" action="signature.php" method="POST">
 <input type="hidden" name="email" value="">
 </form>
 <script type="text/javascript">
@@ -11,8 +11,8 @@
       document.registered.submit();
     }
 </script>
-<?php } else { $submit_url = "capture-register.php"; }
- } else { $submit_url = "capture-register.php"; }
+<?php } else { $submit_url = "signature.php"; }
+ } else { $submit_url = "preregister.php"; }
 ?>
 
 <?php
@@ -24,14 +24,10 @@ $asterisk_count = 0;
 foreach($elements as $key => $element) {
 	if($key == 0) {
 		$html = <<<EOS
-<div class="row interior-header">
-    <div class="eight cols">
-        <h1>Register</h1>
-    </div>
-
-    <div class="four cols">
+<div class="interior-header">
+        <h1 class="left">Register</h1>
         <img src="assets/imgs/rt-logo_small.png" class="right">
-    </div>
+    <div class="clear"></div>
 </div>
 <div class="clear"></div>
 
