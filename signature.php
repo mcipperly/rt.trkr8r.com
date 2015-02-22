@@ -21,7 +21,7 @@ $form_responses = get_form_responses($_GET['vid']);
     <?php foreach($form_elements as $element) {
       foreach($form_responses as $response) {
         if($response['name'] == $element['name']) {
-?>        <div class="six cols">
+?>    <div class="six cols">
             <p><?php print($element['label'] . ": " . $response['value']); ?></p>
         </div>
     <?php } } } ?>
