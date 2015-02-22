@@ -10,7 +10,7 @@ if($_REQUEST['record']) {
 		if(substr_count($name, "duration")) {
 			$name_array = implode("_", $name);
 			$volunteer_id = $name_array[1];
-			record_service_date($volunteer_id, $value, $service_date);
+			record_volunteer_time($volunteer_id, $value, $service_date);
 		}
 	}
 }

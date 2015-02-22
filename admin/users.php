@@ -2,6 +2,8 @@
 include ('../includes/header.php');
 require_once('../db/db.php');
 
+$users = get_users();
+
 $html = <<<EOS
 <div class="row interior-header">
 
@@ -29,10 +31,10 @@ $html = <<<EOS
 <div class="clear"></div>
 <h4><a href="index.php">&laquo; Back to Admin Page</a></h4>
 
-<h2>Choose Service Date</h2>
+<h2>Create New User</h2>
 <form method="POST">
-	<input type="email" id="email" name="email" value=""/>
-        <input type="password" id="password" name="password" value=""/>
+	<p>Email: </p><input type="email" id="email" name="email" value=""/>
+        <p>Password: </p><input type="password" id="password" name="password" value=""/>
 	<input type="submit" value="OK" />
 </form>
 EOS;
@@ -53,7 +55,7 @@ EOS;
 	$html = <<<EOS
     <div class="log_vol-name">
         <span class="left">{$user['email']}</span>
-        <input type="checkbox" class="right" name="remove_{$volunteer['volunteer_id']}" size="1">
+        <input type="checkbox" class="right" name="remove_{$user['user_id']}" size="1">
     </div>
     <hr class="clear">
 EOS;
@@ -70,5 +72,3 @@ EOS;
 }
 
 include ('../includes/footer.php');
-
-?>

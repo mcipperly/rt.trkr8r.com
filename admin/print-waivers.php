@@ -28,15 +28,13 @@
 <h2>Email Look Up</h2>
 <form style="margin-top:15px">
     <div class="row">
-        
         <div class="nine cols">
-        <input type="email" placeholder="email@email.com">
+        <input type="email" class="full-width">
         </div>
    
         <div class="three cols">
-        <input type="submit" value="Search">
-        </div>
-        
+        <input type="submit" value="Search" class="full-width no-min">
+        </div> 
     </div>
 </form>
 
