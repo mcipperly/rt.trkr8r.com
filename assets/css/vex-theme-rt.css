@@ -186,12 +186,17 @@
           -o-animation: none;
           -webkit-backface-visibility: hidden; } }
     .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-primary {
+      margin-left: 12px;
+       }
+    .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-primary;last-of-type {
+      margin-left: 0;
        }
     .vex.vex-theme-plain .vex-dialog-button.vex-dialog-button-secondary {
       background: #e0e0e0;
       color: #777; 
     border: none;
     margin-left: 12px;}
+
 
 .vex-loading-spinner.vex-theme-plain {
   height: 2.5em;

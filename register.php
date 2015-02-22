@@ -286,13 +286,14 @@ EOS;
   var stateElement = document.getElementById('<?php print(htmlentities($state_id)) ?>');
   stateElement.selected = 'selected';
   
-  document.getElementsByName('skills[]')[0].value = "<?php echo $skills_array[0]; $skills_index++; ?>";
-  
   var addButton = document.getElementById('add');
-  for (i = 1; i < <?php echo sizeof($skills_array); ?>; i++) {
-	  addButton.click();
-	  document.getElementsByName('skills[]')[i].value = "<?php echo $skills_array[$skills_index]; $skills_index++; ?>";
-  }
+  <?php
+	for($i = 0; $i < sizeof($skills_array); $i++) {
+		if($i != 0)
+			echo "addButton.click();\n";
+		echo "document.getElementsByName('skills[]')[{$i}].value='{$skills_array[$i]}';\n";
+	}
+  ?>
   
  </script>
 <?php } ?>

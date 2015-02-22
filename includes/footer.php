@@ -56,7 +56,7 @@ vex.dialog.open({
           $vexContent.data().vex.value = 'adminpage';
           vex.close($vexContent.data().vex.id);
       }}),
-      $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-secondary', text: 'On-site Mode', click: function($vexContent, event) {
+      $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-primary', text: 'On-site Mode', click: function($vexContent, event) {
           $vexContent.data().vex.value = 'onsite';
           vex.close($vexContent.data().vex.id);
       }}),
