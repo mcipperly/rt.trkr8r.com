@@ -54,6 +54,7 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
 <h2>Select Which Details Include in the .CSV File</h2>
 
 <form method="GET" style="margin-top:15px">
+    <input type="hidden" name="export" value="true"></input>
     <div class="row">
         <div class="four cols">
         <input type="checkbox"> Check All
