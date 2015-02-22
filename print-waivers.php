@@ -1,6 +1,6 @@
 <?php
 include ('../includes/header.php');
-echo "<PRE>"; print_r($_REQUEST); echo "</PRE>";
+
 if($_REQUEST['email']) {
 	$volunteer_id = validate_volunteer_email($_REQUEST['email']);
 	if($volunteer_id)
@@ -40,7 +40,7 @@ if($_REQUEST['email']) {
 <form style="margin-top:15px" method="POST">
     <div class="row">
         <div class="nine cols">
-        <input type="email" class="full-width" name="email">
+        <input type="email" class="full-width">
         </div>
    
         <div class="three cols">

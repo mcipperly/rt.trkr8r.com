@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,700,600,800,400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="/assets/css/rt-theme.css" type="text/css">
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
 
     <!--[if lt IE 9]>
             <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
