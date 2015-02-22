@@ -2,11 +2,6 @@
 include ('../includes/header.php');
 require_once('../db/db.php');
 
-$readable_service_date = ($_REQUEST['service_date']) ? $_REQUEST['service_date'] : date("m/d/Y");
-$service_date = date("Y-m-d", strtotime($readable_service_date));
-
-$volunteers = get_volunteers_of_day($service_date);
-
 $html = <<<EOS
 <div class="row interior-header">
 
@@ -31,37 +26,24 @@ $html = <<<EOS
     </div>
 </div>
 
-  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker({
-      showOn: "both",
-      buttonImage: "../assets/imgs/cal-icon.png",
-      buttonImageOnly: true,
-      buttonText: "Select date"
-    });
-  });
-  </script>
-
- 
- 
-    
 <div class="clear"></div>
 <h4><a href="index.php">&laquo; Back to Admin Page</a></h4>
 
 <h2>Choose Service Date</h2>
 <form method="POST">
-	<input type="text" id="datepicker" name="service_date" value="{$readable_service_date}"/>
+	<input type="email" id="email" name="email" value=""/>
+        <input type="password" id="password" name="password" value=""/>
 	<input type="submit" value="OK" />
 </form>
 EOS;
 print($html);
 
-foreach($volunteers as $key => $volunteer) {
+foreach($users as $key => $user) {
 	if($key == 0) {
 		$html = <<<EOS
 <form style="margin-top:30px">
-    <h3 class="left"><b>Volunteer Name</b></h3>
-    <h3 class="right"><b>Hours</b></h3>
+    <h3 class="left"><b>User</b></h3>
+    <h3 class="right"><b>Remove</b></h3>
     <div class="clear"></div>
     <br />
 EOS;
@@ -70,7 +52,7 @@ EOS;
 	
 	$html = <<<EOS
     <div class="log_vol-name">
-        <span class="left">{$volunteer['firstname']} {$volunteer['lastname']}</span>
+        <span class="left">{$user['email']}</span>
         <input type="text" class="right" name="duration_{$volunteer['volunteer_id']}" size="1">
     </div>
     <hr class="clear">

@@ -33,12 +33,7 @@ $html = <<<EOS
 
   <script>
   $(function() {
-    $( "#datepicker" ).datepicker({
-      showOn: "both",
-      buttonImage: "../assets/imgs/cal-icon.png",
-      buttonImageOnly: true,
-      buttonText: "Select date"
-    });
+    $( "#datepicker" ).datepicker();
   });
   </script>
 
@@ -61,6 +56,7 @@ foreach($volunteers as $key => $volunteer) {
 		$html = <<<EOS
 <form style="margin-top:30px">
 	<input type="hidden" name="record" value="1" />
+	<input type="hidden" name="service_date" value="1" />
     <h3 class="left"><b>Volunteer Name</b></h3>
     <h3 class="right"><b>Hours</b></h3>
     <div class="clear"></div>
