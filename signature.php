@@ -233,7 +233,7 @@ saveButton.addEventListener("click", function (event) {
 });
 </script>
 EOS;
-
+	print($html);
 }
 
 ?>

@@ -328,4 +328,16 @@ EOS;
 	return TRUE;
 }
 
+function get_export_preset($preset_id) {
+	//function to return the pre-set list of fields for a CSV export
+	$db_link = setup_db();
+	
+	if(!$preset_id)
+		return FALSE;
+	
+	$query = "SELECT `element_id` FROM `preset_element` WHERE `preset_id` = {$preset_id} ORDER BY `ord`"; 
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	return _get_col($result);
+}
+
 ?>
