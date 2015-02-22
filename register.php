@@ -1,14 +1,18 @@
-<?php require_once('db/db.php'); ?>
-<?php 
+<?php
+require_once('db/db.php'); 
+ 
 // if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
-  if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
+	$volunteer_id = validate_volunteer_email($_REQUEST['email']);
+  if(isset($_REQUEST['email']) && $volunteer_id) {
     Header("HTTP/1.1 302 Moved Temporarily");
-    Header("Location: signature.php?vid=" . validate_volunteer_email($_REQUEST['email']));
+    Header("Location: signature.php?vid=" . $volunteer_id);
 //  } 
-} ?>
-<?php include ( 'includes/header.php'); 
+} 
+include ( 'includes/header.php'); 
 
 $elements = get_form_elements();
+if($volunteer_id)
+	$responses = get_form_responses($volunteer_id);
 
 $col_count = 0;
 $asterisk_count = 0;

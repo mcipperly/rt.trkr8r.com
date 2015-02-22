@@ -35,6 +35,16 @@ vex.dialog.prompt({
   }
 });
 }
+function adminLogin() {
+vex.dialog.open({
+  message: 'Please Log in:'
+  input: '<div class=\"vex-custom-input-wrapper\">\n<input name=\"user\" type=\"text\"></div><div class=\"vex-custom-input-wrapper\"><input name=\"pass\" type=\"password\"></div>
+  callback: function(data) {
+    if (data === false) {
+      return console.log('Cancelled');
+    }
+  }
+});
 </script>
 
 <?php if(isset($_GET['thanks'])) {
