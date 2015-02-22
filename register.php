@@ -3,7 +3,7 @@
 
 <?php //if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
   if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
-    ?><form name="registered" action="signature.php" method="POST">
+    ?><form name="registered" action="capture-register.php" method="POST">
 <input type="hidden" name="email" value="">
 </form>
 <script type="text/javascript">
@@ -11,7 +11,7 @@
       document.registered.submit();
     }
 </script>
-<?php } else { $submit_url = "signature.php"; }
+<?php } else { $submit_url = "capture-register.php"; }
 // } else { $submit_url = "preregister.php"; }
 ?>
 
@@ -92,7 +92,7 @@ EOS;
 	}
 
 	$required_html = ($element['required']) ? " required" : "";
-
+	
 	switch($element['type']) {
 		case "text":
 			if($element['plural']) {
@@ -128,7 +128,7 @@ EOS;
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}" style="display:inline">{$element['label']}</label>
-			<input type="{$element['type']}" name="{$element['name']} value="1" checked {$required_html}/>
+			<input type="{$element['type']}" name="{$element['name']} value="1" {$required_html}/>
         </div>
 EOS;
 			break;
