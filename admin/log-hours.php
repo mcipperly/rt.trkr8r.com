@@ -60,6 +60,7 @@ foreach($volunteers as $key => $volunteer) {
 	if($key == 0) {
 		$html = <<<EOS
 <form style="margin-top:30px">
+	<input type="hidden" name="record" value="1" />
     <h3 class="left"><b>Volunteer Name</b></h3>
     <h3 class="right"><b>Hours</b></h3>
     <div class="clear"></div>
@@ -71,7 +72,7 @@ EOS;
 	$html = <<<EOS
     <div class="log_vol-name">
         <span class="left">{$volunteer['firstname']} {$volunteer['lastname']}</span>
-        <input type="text" class="right" name="duration_{$volunteer['volunteer_id']}" size="1">
+        <input type="text" class="right" name="duration_{$volunteer['volunteer_id']}" size="1" value="{$volunteer['duration']}">
     </div>
     <hr class="clear">
 EOS;

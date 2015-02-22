@@ -39,7 +39,7 @@
         <input type="checkbox"> For Mailing
         </div>
     </div>
-    <h3 styl"margin:10px 0 3px 0;">Custom Selection</h3>
+    <h3 style="margin:10px 0 6px 0;font-weight:600; text-transform: uppercase">Custom Selection</h3>
     <div class="row">
         <div class="four cols">
         <input type="checkbox"> First Name

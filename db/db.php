@@ -256,7 +256,11 @@ function get_volunteers_of_day($service_date = null) {
 	$volunteer_ids = _get_col($result);
 	
 	foreach($volunteer_ids as $volunteer_id) {
-		$volunteers[] = get_volunteer_info($volunteer_id);
+		$volunteer = get_volunteer_info($volunteer_id);
+		$query = "SELECT `duration` FROM `volunteer_time` WHERE `service_date` = '{$service_date}' AND volunteer_id = {$volunteer_id}";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		$volunteer['duration'] = _get_one($result);
+		$volunteers[] = $volunteer;
 	}
 	
 	return $volunteers;
