@@ -8,14 +8,18 @@ vex.dialog.open({
       return console.log('Cancelled');
     }
     var xhr = new XMLHttpRequest();
-    xhr.open('POST','admin_login.php',false);
+    xhr.onreadystatechange=function() {
+      if (xhr.readyState==4 && xhr.status==200) {
+        if (xhr.responseText==1) {
+          onsiteModeModal();
+        } else {
+          adminLoginFail();
+        }
+      }
+    }
+    xhr.open('POST','admin_login.php',true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhr.send('user='+data.user+'&pass='+data.pass);
-    if (xhr.responseText==1) {
-      onsiteModeModal();
-    } else {
-      adminLoginFail();
-    }
   }
 });
 }
@@ -28,14 +32,18 @@ vex.dialog.open({
       return console.log('Cancelled');
     }
     var xhr = new XMLHttpRequest();
-    xhr.open('POST','admin_login.php',false);
+    xhr.onreadystatechange=function() {
+      if (xhr.readyState==4 && xhr.status==200) {
+        if (xhr.responseText==1) {
+          onsiteModeModal();
+        } else {
+          adminLoginFail();
+        }
+      }
+    }
+    xhr.open('POST','admin_login.php',true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhr.send('user='+data.user+'&pass='+data.pass);
-    if (xhr.responseText==1) {
-      onsiteModeModal();
-    } else {
-      adminLoginFail();
-    }
   }
 });
 }

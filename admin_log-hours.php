@@ -1,14 +1,14 @@
 <?php include ('includes/header.php'); ?>
 
 <div class="row interior-header">
+    <div class="eight cols">
+        <h1>Admin <span>Log Volunteer Hours</span></h1>
+  </div>
     
   <div class="four cols sml-logo">
     <img src="assets/imgs/rt-logo.png">
   </div>
   
-    <div class="eight cols">
-        <h1>Admin <span>Log Volunteer Hours</span></h1>
-  </div>
 </div>
 
 
