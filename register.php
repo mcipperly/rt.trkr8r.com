@@ -10,6 +10,11 @@ require_once('db/db.php');
 } 
 include ( 'includes/header.php'); 
 
+function get_response($response) {
+	global $search_element_id;
+	return ($response['element_id'] == $search_element_id);
+}
+
 $elements = get_form_elements();
 if($volunteer_id)
 	$responses = get_form_responses($volunteer_id);
