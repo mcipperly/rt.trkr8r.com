@@ -177,7 +177,7 @@ function get_form_responses($volunteer_id) {
 		return FALSE;
 	
 	$query = <<<EOS
-SELECT `response_id`, `name`, `value`
+SELECT `response_id`, `element_id`, `name`, `value`
 FROM `form_response`
 JOIN `form_element` USING (element_id)
 WHERE `volunteer_id` = {$volunteer_id}
