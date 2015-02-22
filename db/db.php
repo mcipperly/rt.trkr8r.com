@@ -213,6 +213,7 @@ EOS;
 function record_volunteer_time($volunteer_id, $start_time, $end_time, $service_date = null) {
 	//function to record the start and end times for a volunteer
 	//defaulting to the current date
+	$db_link = setup_db();
 	
 	if(!($volunteer_id && $start_time && $end_time))
 		return FALSE;
