@@ -157,7 +157,7 @@ EOS;
 EOS;
 			break;
 		case "checkbox":
-			$checked_html = ($value == "Yes") ? "checked" : ""; 
+			$checked_html = ($value == "Yes" || !isset($value)) ? "checked" : ""; 
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}" style="display:inline">{$element['label']}</label>

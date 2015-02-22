@@ -2,12 +2,15 @@
 include ('../includes/header.php');
 require_once('../db/db.php');
 
-$users = get_users();
-
 foreach($_POST as $key => $value) {
   if(substr($key, 0, 7) == "remove_") {
-    $val_arr = explode('_', $value)
-    user_remove(
+    $val_arr = explode('_', $key);
+    user_remove($val_arr[1]);
+  }
+}
+
+$users = get_users();
+
 $html = <<<EOS
 <div class="row interior-header">
 
