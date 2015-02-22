@@ -8,12 +8,11 @@ $volunteer_info = get_volunteer_info($_GET['vid']);
 
 function get_response($response) {
 	global $search_element_id;
-	return ($response['element_id'] == $element_id);
+	return ($response['element_id'] == $search_element_id);
 }
 
 $elements = get_form_elements();
 $responses = get_form_responses($_GET['vid']);
-echo"<PRE>"; print_r($responses); echo "</PRE>";
 
 $col_count = 0;
 foreach($elements as $key => $element) {
@@ -84,8 +83,9 @@ EOS;
 	
 	$search_element_id = $element['element_id'];
 	$filtered_responses = array_filter($responses, 'get_response');
+
 	if($filtered_responses)
-		$this_response = $responses[0];
+		$this_response = array_shift($filtered_responses);
 	else
 		$this_response = array();
 	
