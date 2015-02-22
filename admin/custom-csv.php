@@ -69,56 +69,56 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
     <h3 style="margin:10px 0 6px 0;font-weight:600; text-transform: uppercase">Custom Selection</h3>
     <div class="row">
         <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="firstname"> First Name
+        <input type="checkbox" name="element_ids[]" value="1"> First Name
         </div>
         <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="lastname"> Last Name
+        <input type="checkbox" name="element_ids[]" value="2"> Last Name
         </div>
         <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="age"> Age
-        </div>
-    </div>
-    
-    <div class="row">
-        <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="phone"> Phone
-        </div>
-        <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="email"> Email
-        </div>
-        <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="future_interest"> Future Interest
+        <input type="checkbox" name="element_ids[]" value="3"> Age
         </div>
     </div>
     
     <div class="row">
         <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="address1"> Address
+        <input type="checkbox" name="element_ids[]" value="10"> Phone
         </div>
         <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="address2"> Apt/Suite/Floor
+        <input type="checkbox" name="element_ids[]" value="11"> Email
         </div>
         <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="city"> City
+        <input type="checkbox" name="element_ids[]" value="13"> Future Interest
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="four cols">
+        <input type="checkbox" name="element_ids[]" value="5"> Address
+        </div>
+        <div class="four cols">
+        <input type="checkbox" name="element_ids[]" value="6"> Apt/Suite/Floor
+        </div>
+        <div class="four cols">
+        <input type="checkbox" name="element_ids[]" value="7"> City
         </div>
     </div>
     
     
     <div class="row">
         <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="state"> State
+        <input type="checkbox" name="element_ids[]" value="8"> State
         </div>
         <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="postalcode"> ZIP
+        <input type="checkbox" name="element_ids[]" value="9"> ZIP
         </div>
         <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="company"> Affiliation or Company
+        <input type="checkbox" name="element_ids[]" value="4"> Affiliation or Company
         </div>
     </div>
     
     <div class="row">
         <div class="four cols">
-        <input type="checkbox" name="element_ids[]" value="skills"> Skills
+        <input type="checkbox" name="element_ids[]" value="12"> Skills
         </div>
         <div class="four cols">
         </div>
