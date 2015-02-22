@@ -10,4 +10,11 @@ foreach($elements as $element) {
   }
 }
 
+foreach($req_elements as $name => $label) {
+  if(!isset($_POST[$name])) {
+    print($label);
+    exit(0);
+  }
+}
+
 ?>
