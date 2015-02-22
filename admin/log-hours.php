@@ -1,4 +1,10 @@
-<?php include ('../includes/header.php'); ?>
+<?php include ('../includes/header.php');
+
+$service_date = ($_REQUEST['date']) ? $_REQUEST['date'] : date("Y-m-d");
+
+
+
+?>
 
 <div class="row interior-header">
 
@@ -38,7 +44,7 @@
  
     
 <div class="clear"></div>
-<h4><a href="admin.php">&laquo; Back to Admin Page</a></h4>
+<h4><a href="index.php">&laquo; Back to Admin Page</a></h4>
 
 <h2>Choose Service Date</h2>
 <input type="text" id="datepicker">
