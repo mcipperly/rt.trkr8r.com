@@ -1,15 +1,13 @@
 <?php
 include ('../includes/header.php');
-echo "<PRE>"; print_r($_REQUEST); echo "</PRE>";
+require_once('../db/db.php');
+
 if($_REQUEST['email']) {
 	$volunteer_id = validate_volunteer_email($_REQUEST['email']);
 	if($volunteer_id)
-		Header("Location: signature.php?view=1&vid={$volunteer_id}");
+		Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
 }
-
 ?>
-
-
 
 <div class="row interior-header">
 
