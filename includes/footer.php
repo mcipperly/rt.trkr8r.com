@@ -54,7 +54,9 @@ vex.dialog.open({
   message: 'Login successful - select destination:',
   callback: function(data) {
     if (data === false) {
-      return console.log('Cancelled');
+      document.location = "/";
+    } else {
+      document.location = "admin.php";
     }
   }
 });
@@ -64,7 +66,7 @@ vex.dialog.open({
         <footer>
           <div class="row">
                 <div class="twelve cols center">
-                    <p>&copy;Rebuilding Together Pittsburgh 2015.&nbsp;&nbsp;/&nbsp;&nbsp; <a href="javascript:adminLogin()">Staff Login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:vjohnson@rtpittsburgh.org">Contact Us With Any Questions</a>
+                    <p>&copy;Rebuilding Together Pittsburgh 2015.&nbsp;&nbsp;/&nbsp;&nbsp; <a href="<?php if(isset($_SESSION['user'])) { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>">Staff Login</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:vjohnson@rtpittsburgh.org">Contact Us With Any Questions</a>
                     </p>
                 </div>
         </footer>
