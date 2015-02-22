@@ -1,5 +1,12 @@
-<?php include ( 'includes/header.php'); ?>
 <?php require_once('db/db.php'); ?>
+<?php 
+// if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
+  if(validate_volunteer_email($_REQUEST['email'])) {
+    Header("HTTP/1.1 302 Moved Temporarily");
+    Header("Location: signature.php?vid=" . validate_volunteer_email($_REQUEST['email']));
+//  } 
+} ?>
+<?php include ( 'includes/header.php'); ?>
 
 <?php //if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
   if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
