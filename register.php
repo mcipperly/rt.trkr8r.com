@@ -1,9 +1,9 @@
 <?php include ( 'includes/header.php'); ?>
 <?php require_once('db/db.php'); ?>
 
-<?php //if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
+<?php if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
   if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
-    ?><form name="registered" action="capture-register.php" method="POST">
+    ?><form name="registered" action="signature.php" method="POST">
 <input type="hidden" name="email" value="">
 </form>
 <script type="text/javascript">
@@ -11,8 +11,8 @@
       document.registered.submit();
     }
 </script>
-<?php } else { $submit_url = "capture-register.php"; }
-// } else { $submit_url = "preregister.php"; }
+<?php } else { $submit_url = "signature.php"; }
+ } else { $submit_url = "preregister.php"; }
 ?>
 
 <?php
@@ -91,6 +91,8 @@ EOS;
 			$asterisk_string .= "*";
 	}
 
+	$required_html = ($element['required']) ? " required" : "";
+
 	switch($element['type']) {
 		case "text":
 			if($element['plural']) {
@@ -117,7 +119,7 @@ EOS;
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>
 {$plural_html_a}
-            <input class="{$class_html}" type="{$element['type']}" placeholder="" name="{$element['name']}{$plural_html_b}">
+            <input class="{$class_html}" type="{$element['type']}" placeholder="" name="{$element['name']}{$plural_html_b}"{$required_html}>
 {$plural_html_c}
 			</div>
 EOS;
