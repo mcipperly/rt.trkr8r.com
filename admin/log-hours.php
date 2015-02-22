@@ -5,6 +5,16 @@ require_once('../db/db.php');
 $readable_service_date = ($_REQUEST['service_date']) ? $_REQUEST['service_date'] : date("m/d/Y");
 $service_date = date("Y-m-d", strtotime($readable_service_date));
 
+if($_REQUEST['record']) {
+	foreach($_REQUEST as $name => $value) {
+		if(substr_count($name, "duration")) {
+			$name_array = implode("_", $name);
+			$volunteer_id = $name_array[1];
+			record_service_date($volunteer_id, $value, $service_date);
+		}
+	}
+}
+
 $volunteers = get_volunteers_of_day($service_date);
 
 $html = <<<EOS

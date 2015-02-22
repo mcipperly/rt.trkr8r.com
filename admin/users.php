@@ -53,15 +53,15 @@ EOS;
 	$html = <<<EOS
     <div class="log_vol-name">
         <span class="left">{$user['email']}</span>
-        <input type="text" class="right" name="duration_{$volunteer['volunteer_id']}" size="1">
+        <input type="checkbox" class="right" name="remove_{$volunteer['volunteer_id']}" size="1">
     </div>
     <hr class="clear">
 EOS;
 	print($html);
 
-	if($key + 1 == sizeof($volunteers)) {
+	if($key + 1 == sizeof($users)) {
 		$html = <<<EOS
-    <input type="submit" value="Log Hours" class="right">
+    <input type="submit" value="Apply" class="right">
     <div class="clear"></div>
 </form>
 EOS;

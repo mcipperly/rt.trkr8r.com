@@ -57,6 +57,16 @@ EOS;
 	return TRUE;
 }
 
+function get_users() {
+	//function to return all existing users
+	$db_link = setup_db();
+	
+	$query = "SELECT `user_id`, `email`, `permission_level` FROM `user`";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link)); 
+
+	return _get_all($result);
+}
+
 function validate_user($email) {
 	// function to validate existence of user credentials
 	$db_link = setup_db();

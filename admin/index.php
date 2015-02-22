@@ -31,7 +31,7 @@
         </a>
     </div>
     <div class="four cols">
-        <a href="custom_csv.php">
+        <a href="custom-csv.php">
             <button class="full-width">Export Custom .CSV</button>
         </a>
     </div>
@@ -49,7 +49,7 @@
         </a>
     </div>
     <div class="four cols">
-        <a href="#">
+        <a href="print-waivers.php">
             <button class="full-width">Print Signed Waivers</button>
         </a>
     </div>
