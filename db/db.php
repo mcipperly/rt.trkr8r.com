@@ -191,7 +191,7 @@ function add_signature($volunteer_id, $file_name) {
 	//function to store volunteer signature file info
 	$db_link = setup_db();
 
-	if(!($volunteer_id && $file_name && file_exists("sigs/{$file_name}")))
+	if(!($volunteer_id && $file_name && file_exists(SIG_DIR . $file_name)))
 		return FALSE;
 	
 	$file_name = mysqli_real_escape_string($db_link, $file_name);
