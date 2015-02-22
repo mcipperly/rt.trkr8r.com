@@ -1,6 +1,6 @@
-firstname,firstname,lastname,lastname,email,email,future_interest,future_interest
-Test_2,Test_2,Man_2,Man_2,garbage2@what.com,garbage2@what.com,,
-Matt,Matt,Cipperly,Cipperly,mc+8@tinyatom.net,mc+8@tinyatom.net,,
-Amy,Amy,D,D,Amydepalma@gmail.com,Amydepalma@gmail.com,,
-Testguy,Testguy,Userguy,Userguy,test@user.com,test@user.com,1,1
-New,New,Guy,Guy,newguy@email.com,newguy@email.com,1,1
+firstname,lastname,email,future_interest
+Test_2,Man_2,garbage2@what.com,
+Matt,Cipperly,mc+8@tinyatom.net,
+Amy,D,Amydepalma@gmail.com,
+Testguy,Userguy,test@user.com,1
+New,Guy,newguy@email.com,1
