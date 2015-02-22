@@ -153,7 +153,7 @@ EOS;
 
 if($_REQUEST['view']) {
 	$signature_info = get_volunteer_signature($_GET['vid']);
-	$signature_date = date("F js, Y", strtotime($signature_info['signature_date']));
+	$signature_date = date("F jS, Y", strtotime($signature_info['signature_date']));
 	$html = <<<EOS
 <h2>Signature On File</h2>
 <div class="row">
@@ -164,11 +164,16 @@ if($_REQUEST['view']) {
         <p>Date: {$signature_date}</p>
     </div>
 </div>
+<div class="row">
+	<div class="twelve cols">
+		<img src="signatures/{$signature_info['file_name']}" />
+	</div>
+</div>
 EOS;
 	print($html);
 }
 else {
-	$signature_date = date("F js, Y");
+	$signature_date = date("F jS, Y");
 	$html = <<<EOS
 <h2>Your Signature</h2>
 <p>By signing below, you confirm that your details listed above are accurate. You also accept our Waiver of Liability and Media Release terms.</p>
