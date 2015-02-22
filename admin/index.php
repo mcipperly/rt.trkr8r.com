@@ -31,8 +31,8 @@
         </a>
     </div>
     <div class="four cols">
-        <a href="#">
-            <button class="full-width">Advanced .CSV Export</button>
+        <a href="customized_csv.php">
+            <button class="full-width">Export Custom .CSV</button>
         </a>
     </div>
     <div class="four cols">

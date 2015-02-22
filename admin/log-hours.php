@@ -1,12 +1,13 @@
 <?php
 include ('../includes/header.php');
-require_once('db/db.php');
+require_once('../db/db.php');
+echo "<PRE>"; print_r($_REQUEST); echo "</PRE>";
 
-$service_date = ($_REQUEST['service_date']) ? $_REQUEST['service_date'] : date("Y-m-d");
+$readable_service_date = ($_REQUEST['service_date']) ? $_REQUEST['service_date'] : date("m/d/Y");
+$service_date = date("Y-m-d", strtotime($readable_service_date));
 
 $volunteers = get_volunteers_of_day($service_date);
 
-echo "<PRE>"; print_r($service_date); echo "</PRE>";
 
 foreach($volunteers as $key => $volunteer) {
 	if($key == 0) {
@@ -53,7 +54,8 @@ foreach($volunteers as $key => $volunteer) {
 
 <h2>Choose Service Date</h2>
 <form method="POST">
-	<input type="text" id="datepicker" name="service_date" />
+	<input type="text" id="datepicker" name="service_date" value="{$readable_service_date}"/>
+	<input type="submit" value="OK" />
 </form>
 
 <form style="margin-top:30px">

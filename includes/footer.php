@@ -18,7 +18,7 @@ vex.dialog.open({
         }
       }
     }
-    xhr.open('POST','admin_login.php',true);
+    xhr.open('POST','/admin_login.php',true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhr.send('user='+data.user+'&pass='+data.pass);
   }
@@ -42,7 +42,7 @@ vex.dialog.open({
         }
       }
     }
-    xhr.open('POST','admin_login.php',true);
+    xhr.open('POST','/admin_login.php',true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhr.send('user='+data.user+'&pass='+data.pass);
   }
@@ -66,7 +66,7 @@ vex.dialog.open({
     if (data=='onsite') {
       document.location = "/";
     } else if (data=='adminpage') { 
-      document.location = "admin.php";
+      document.location = "/admin/";
     } else {
       return;
     }
