@@ -7,6 +7,11 @@ vex.dialog.open({
     if (data === false) {
       return console.log('Cancelled');
     }
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','admin_login.php',true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send('user='+data.user+'&pass='+data.pass);
+
   }
 });
 }
