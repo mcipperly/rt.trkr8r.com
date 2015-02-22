@@ -45,7 +45,7 @@ function process_login($username, $password) {
 	
 	$query = <<<EOS
 SELECT * FROM `user`
-WHERE (`username` LIKE '{$username}' OR `email_address` LIKE '{$username}')
+WHERE `email` LIKE '{$username}')
 AND `password` LIKE MD5('{$password}')
 EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link)); 
