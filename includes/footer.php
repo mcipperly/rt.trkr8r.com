@@ -52,24 +52,23 @@ function onsiteModeModal() {
 vex.dialog.open({
   message: 'Login successful - select destination:',
   buttons: [
-      $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-primary', text: 'Checkout', click: function($vexContent, event) {
-          $vexContent.data().vex.value = 'checkout';
+      $.extend({}, vex.dialog.buttons.YES, { className: 'vex-dialog-button-primary', text: 'Admin Page', click: function($vexContent, event) {
+          $vexContent.data().vex.value = 'adminpage';
           vex.close($vexContent.data().vex.id);
       }}),
-      $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-continue-shopping', text: 'Continue shopping', click: function($vexContent, event) {
-          $vexContent.data().vex.value = 'continue-shopping';
+      $.extend({}, vex.dialog.buttons.YES, { className: 'vex-dialog-button-primary', text: 'On-site Mode', click: function($vexContent, event) {
+          $vexContent.data().vex.value = 'onsite';
           vex.close($vexContent.data().vex.id);
       }}),
-      $.extend({}, vex.dialog.buttons.NO, { text: 'View cart', click: function($vexContent, event) {
-          $vexContent.data().vex.value = 'view-cart';
-          vex.close($vexContent.data().vex.id);
-      }})
+      vex.dialog.buttons.NO
   ],
   callback: function(data) {
-    if (data === false) {
+    if (data=='onsite') {
       document.location = "/";
-    } else {
+    } else if (data=='adminpage') { 
       document.location = "admin.php";
+    } else {
+      return;
     }
   }
 });

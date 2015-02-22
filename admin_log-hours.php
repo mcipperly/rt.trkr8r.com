@@ -16,7 +16,7 @@
         <div class="eight cols">
             <h1 class="left">Admin <span>Log Volunteer Hours</span></h1>
         </div>
-        
+
         <div class="four cols">
             <img src="assets/imgs/rt-logo_small.png" class="right">
         </div>
@@ -25,24 +25,56 @@
 
 
 <div class="clear"></div>
-<div class="row center">
-    <div class="four cols">
-        <a href="#">
-            <button>Export Today's .CSV</button>
-        </a>
+<form>
+    <div class="row">
+        <div class="eight cols">
+            <h2>Name</h2>
+        </div>
+        <div class="four cols center">
+            <h2>Hours</h2>
+        </div>
     </div>
-    <div class="four cols">
-        <a href="#">
-            <button>Advanced .CSV Export</button>
-        </a>
-    </div>
-    <div class="four cols">
-        <a href="#">
-            <button>Log Volunteer Hours</button>
-        </a>
+    <div class="row">
+        <div class="eight cols">
+            <b>Amy DePalma</b>
+        </div>
+
+        <div class="four cols center">
+            <input type="text" class="full-width" name="hours">
+        </div>
     </div>
 
-</div>
+    <div class="row">
+        <div class="eight cols">
+            <b>Rob Collini</b>
+        </div>
 
+        <div class="four cols center">
+            <input type="text" class="full-width" name="hours">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="eight cols">
+            <b>Matthew Cipperly</b>
+        </div>
+
+        <div class="four cols center">
+            <input type="text" class="full-width" name="hours">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="eight cols">
+            <b>First Last</b>
+        </div>
+
+        <div class="four cols center">
+            <input type="text" class="full-width" name="hours">
+        </div>
+    </div>
+
+    <input type="submit" value="Submit">
+</form>
 
 <?php include ('includes/footer.php'); ?>

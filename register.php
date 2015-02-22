@@ -287,7 +287,7 @@ EOS;
   stateElement.selected = 'selected';
   
   var addButton = document.getElementById('add');
-  for (i = 0; i < <?php (int) sizeof($skills_array); ?>; i++) {
+  for (i = 1; i < <?php echo sizeof($skills_array); ?>; i++) {
 	  addButton.click();
   }
   
