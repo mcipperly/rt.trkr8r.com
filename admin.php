@@ -33,7 +33,7 @@
     </div>
     <div class="four cols">
         <a href="#">
-            <button class="full-width">Button</button>
+            <button class="full-width">Print Signed Waivers</button>
         </a>
     </div>
     <div class="four cols">
