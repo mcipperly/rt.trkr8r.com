@@ -1,7 +1,7 @@
 <?php include ( 'includes/header.php'); ?>
 <?php require_once('db/db.php'); ?>
 
-<?php if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
+<?php //if(isset($_COOKIE['onsite']) && validate_onsite($_COOKIE['onsite'])) {
   if(isset($_REQUEST['email']) && validate_volunteer_email($_REQUEST['email'])) {
     ?><form name="registered" action="signature.php" method="POST">
 <input type="hidden" name="email" value="">
@@ -12,7 +12,7 @@
     }
 </script>
 <?php } else { $submit_url = "signature.php"; }
- } else { $submit_url = "preregister.php"; }
+// } else { $submit_url = "preregister.php"; }
 ?>
 
 <?php
