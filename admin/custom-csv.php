@@ -57,7 +57,7 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
     <input type="hidden" name="export" value="true"></input>
     <div class="row">
         <div class="four cols">
-        <input type="checkbox" onClick="toggleAll()"> Check All
+        <input type="checkbox" id="checkmaster" onClick="toggleAll()"> Check All
         </div>
         <div class="four cols">
         <input type="checkbox"> For MailChimp
@@ -130,10 +130,11 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
 <script type="text/javascript">
 function toggleAll() {
   var x = document.getElementsByName('element_ids[]');
+  var cm = document.getElementById('checkmaster');
   var i;
   for (i = 0; i < x.length; i++) {
       if (x[i].type == "checkbox") {
-          x[i].checked = master.checked;
+          x[i].checked = cm.checked;
       }
   }
 }
