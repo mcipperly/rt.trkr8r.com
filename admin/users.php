@@ -1,7 +1,7 @@
 <?php
 include ('../includes/header.php');
 require_once('../db/db.php');
-start_session();
+session_start();
 
 foreach($_POST as $key => $value) {
   if(substr($key, 0, 7) == "remove_") {
@@ -51,7 +51,7 @@ $html = <<<EOS
 
 <h2>Create New User</h2>
 <form method="POST">
-	<p>Email: <input type="email" id="email" name="email" value=""/>
+	<p>Email: <input type="text" id="email" name="email" value=""/>
         Password: <input type="password" id="password" name="password" value=""/>
 	<input type="submit" value="OK" /></p>
 </form>

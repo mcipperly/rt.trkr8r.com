@@ -44,8 +44,8 @@
 
 <div class="row center">
     <div class="four cols">
-        <a href="#">
-            <button class="full-width">Add Admin Accounts</button>
+        <a href="users.php">
+            <button class="full-width">Admin Accounts</button>
         </a>
     </div>
     <div class="four cols">
