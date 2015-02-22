@@ -26,7 +26,7 @@
   <script>
   $(function() {
     $( "#datepicker" ).datepicker({
-      showOn: "both",
+      showOn: "button",
       buttonImage: "assets/imgs/cal-icon.png",
       buttonImageOnly: true,
       buttonText: "Select date"
