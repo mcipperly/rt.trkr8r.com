@@ -33,7 +33,7 @@
         </div>
    
         <div class="three cols">
-        <input type="submit" value="Search" class="full-width no-min" style="margin-top: -3px;">
+        <input type="submit" value="Search" class="full-width no-min" style="margin-top: -5px;">
         </div> 
     </div>
 </form>

@@ -8,8 +8,9 @@ $service_date = date("Y-m-d", strtotime($readable_service_date));
 if($_REQUEST['record']) {
 	foreach($_REQUEST as $name => $value) {
 		if(substr_count($name, "duration")) {
-			$name_array = implode("_", $name);
+			$name_array = explode("_", $name);
 			$volunteer_id = $name_array[1];
+	echo "<PRE>"; print_r($name_array); echo "</PRE>";
 			record_volunteer_time($volunteer_id, $value, $service_date);
 		}
 	}
@@ -66,7 +67,7 @@ foreach($volunteers as $key => $volunteer) {
 		$html = <<<EOS
 <form style="margin-top:30px" method="POST">
 	<input type="hidden" name="record" value="1" />
-	<input type="hidden" name="service_date" value="1" />
+	<input type="hidden" name="service_date" value="{$service_date}" />
     <h3 class="left"><b>Volunteer Name</b></h3>
     <h3 class="right"><b>Hours</b></h3>
     <div class="clear"></div>
@@ -78,7 +79,7 @@ EOS;
 	$html = <<<EOS
     <div class="log_vol-name">
         <span class="left">{$volunteer['firstname']} {$volunteer['lastname']}</span>
-        <input type="text" class="right" name="duration_{$volunteer['volunteer_id']}" size="1" value="{$volunteer['duration']}">
+        <input type="text" class="right" name="duration_{$volunteer['volunteer_id']}" size="3" value="{$volunteer['duration']}">
     </div>
     <hr class="clear">
 EOS;

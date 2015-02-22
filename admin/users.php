@@ -4,6 +4,10 @@ require_once('../db/db.php');
 
 $users = get_users();
 
+foreach($_POST as $key => $value) {
+  if(substr($key, 0, 7) == "remove_") {
+    $val_arr = explode('_', $value)
+    user_remove(
 $html = <<<EOS
 <div class="row interior-header">
 
