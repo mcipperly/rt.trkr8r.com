@@ -20,6 +20,7 @@ function get_response($response) {
 $elements = get_form_elements();
 $responses = get_form_responses($_GET['vid']);
 
+//Commit this, son
 $col_count = 0;
 foreach($elements as $key => $element) {
 	if($key == 0) {
