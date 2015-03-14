@@ -1,5 +1,4 @@
-<?php include ('includes/header.php'); 
-session_start(); ?>
+<?php include ('includes/header.php'); ?>
 
 <script type="text/javascript">
 function validateEmail(email) { 
