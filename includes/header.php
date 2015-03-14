@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<?php session_start(); ?><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-<?php session_start(); ?>
 <head>
     <title>Rebuilding Together Pittsburgh | Volunteer Registration</title>
 
