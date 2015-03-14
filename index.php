@@ -1,4 +1,5 @@
-<?php include ('includes/header.php'); ?>
+<?php include ('includes/header.php'); 
+session_start(); ?>
 
 <script type="text/javascript">
 function validateEmail(email) { 
@@ -55,7 +56,7 @@ setTimeout(function() {
 <div class="row center welcome">
     <div class="twelve cols">
         <a href="#">
-            <button onclick="getEmail()">Register</button>
+            <button onclick="getEmail()"><?php if(isset($_SESSION['mode'])) { print('Check In'); } else { print('Pre-register'); } ?></button>
         </a>
     </div>
 </div>
