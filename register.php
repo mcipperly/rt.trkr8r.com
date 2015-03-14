@@ -1,6 +1,6 @@
 <?php
 require_once('db/db.php'); 
-session_start(); 
+
 $volunteer_id = validate_volunteer_email($_REQUEST['email']);
 if(isset($_REQUEST['email']) && $volunteer_id && !$_REQUEST['edit'] && isset($_SESSION['mode'])) {
   Header("HTTP/1.1 302 Moved Temporarily");

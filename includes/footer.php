@@ -1,4 +1,3 @@
-<?php session_start(); ?>
 <script type="text/javascript">
 function adminLogin() {
 vex.dialog.open({

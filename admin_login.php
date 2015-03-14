@@ -3,7 +3,6 @@
 Header("Content-type: text/plain");
 
 require_once('db/db.php');
-session_start();
 
 if(isset($_POST['user']) && isset($_POST['pass'])) {
   if(process_login($_POST['user'], $_POST['pass'])) {

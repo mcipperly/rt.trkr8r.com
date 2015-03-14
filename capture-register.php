@@ -20,7 +20,7 @@ foreach($_POST as $name => $response) {
 }
 
 add_form_responses($volunteer_id, $responses);
-session_start();
+
 Header("HTTP/1.1 302 Moved Temporarily");
 if(isset($_SESSION['mode'])) { 
   Header("Location: signature.php?vid=" . $volunteer_id); 

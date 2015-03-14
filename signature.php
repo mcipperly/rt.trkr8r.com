@@ -1,7 +1,7 @@
 <?php 
 include('includes/header.php'); 
 require_once('db/db.php');
-session_start();
+
 if(!isset($_SESSION['mode'])) {
   Header("HTTP/1.1 302 Moved Temporarily");
   Header("Location: /index.php?thanks=2");
