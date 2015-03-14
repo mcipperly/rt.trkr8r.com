@@ -8,19 +8,17 @@ if(!isset($_SESSION['mode'])) {
 } 
 $form_responses = get_form_responses($_GET['vid']);
 $volunteer_info = get_volunteer_info($_GET['vid']);
-?>
-
-<?php
 
 function get_response($response) {
 	global $search_element_id;
 	return ($response['element_id'] == $search_element_id);
 }
 
-$elements = get_form_elements();
+$form_id = 1; //Hard-coded for now, until ability to choose forms is available
+
+$elements = get_form_elements($form_id);
 $responses = get_form_responses($_GET['vid']);
 
-//Commit this, son
 $col_count = 0;
 foreach($elements as $key => $element) {
 	if($key == 0) {

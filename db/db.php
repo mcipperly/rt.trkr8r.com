@@ -179,11 +179,14 @@ function get_volunteer_info($volunteer_id) {
 	return $volunteer;
 }
 
-function get_form_elements() {
-	// function to return all valid wavier form elements, in order
+function get_form_elements($form_id) {
+	// function to return all valid given form elements, in order
 	$db_link = setup_db();
 	
-	$query = "SELECT * FROM `element` ORDER BY `ord` ASC";
+	if(!$form_id)
+		return FALSE;
+	
+	$query = "SELECT * FROM `element` JOIN `form_element` USING (element_id) WHERE `form_id` = {$form_id} ORDER BY `ord` ASC";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	return _get_all($result);
