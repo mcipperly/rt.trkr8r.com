@@ -168,11 +168,11 @@ function get_volunteer_info($volunteer_id) {
 
 	$volunteer = _get_row($result);
 
-	$query = "SELECT `value` FROM `form_response` WHERE element_id = 1 AND volunteer_id = {$volunteer_id}";
+	$query = "SELECT `value` FROM `form_response` WHERE fe_id = 1 AND volunteer_id = {$volunteer_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	$volunteer['firstname'] = _get_one($result);
 	
-	$query = "SELECT `value` FROM `form_response` WHERE element_id = 2 AND volunteer_id = {$volunteer_id}";
+	$query = "SELECT `value` FROM `form_response` WHERE fe_id = 2 AND volunteer_id = {$volunteer_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	$volunteer['lastname'] = _get_one($result);
 
@@ -192,30 +192,30 @@ function get_form_elements($form_id) {
 	return _get_all($result);
 }
 
-function add_form_responses($volunteer_id, $responses) {
+function add_form_responses($volunteer_id, $form_id, $responses) {
 	//function to store waiver form responses for a given volunteer.
 	//this will erase previous responses
 	$db_link = setup_db();
 
-		if(!($volunteer_id && $responses))
+		if(!($volunteer_id && $form_id && $responses))
 		return FALSE;
 	
-	$query = "DELETE FROM `form_response` WHERE `volunteer_id` = {$volunteer_id}";
+	$query = "DELETE FROM `form_response` JOIN `form_element` USING (fe_id) WHERE `volunteer_id` = {$volunteer_id} AND `form_id` = {$form_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
 	foreach($responses as $name => $value) {
 		$name = mysqli_real_escape_string($db_link, $name);
 		$value = mysqli_real_escape_string($db_link, $value);
 		
-		$query = "SELECT `element_id` FROM `element` WHERE `name` LIKE '{$name}'";
+		$query = "SELECT `fe_id` FROM `element` JOIN `form_element` USING (fe_id) WHERE `name` LIKE '{$name}' AND `form_id` = {$form_id}";
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-		$element_id = _get_one($result);
+		$fe_id = _get_one($result);
 		
 		$query = <<<EOS
 INSERT INTO `form_response`
-(volunteer_id, element_id, value, date_added, time_added)
+(volunteer_id, fe_id, value, date_added, time_added)
 VALUES
-({$volunteer_id}, {$element_id}, '{$value}', CURRENT_DATE(), CURRENT_TIME())
+({$volunteer_id}, {$fe_id}, '{$value}', CURRENT_DATE(), CURRENT_TIME())
 EOS;
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	}
@@ -226,18 +226,20 @@ EOS;
 	return TRUE;
 }
 
-function get_form_responses($volunteer_id) {
-	//function to fetch waiver form responses for a given volunteer.
+function get_form_responses($volunteer_id, $form_id) {
+	//function to fetch given form responses for a given volunteer.
 	$db_link = setup_db();
 
-	if(!$volunteer_id)
+	if(!($volunteer_id && $form_id))
 		return FALSE;
 	
 	$query = <<<EOS
 SELECT `response_id`, `element_id`, `name`, `value`
 FROM `form_response`
+JOIN `form_element` USING (fe_id)
 JOIN `element` USING (element_id)
 WHERE `volunteer_id` = {$volunteer_id}
+AND `form_id` = {$form_id}
 ORDER BY `ord`
 EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));

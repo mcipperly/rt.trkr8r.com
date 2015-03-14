@@ -19,7 +19,9 @@ foreach($_POST as $name => $response) {
   }
 }
 
-add_form_responses($volunteer_id, $responses);
+$form_id = 1; //Hard-coded for now, until ability to choose forms is available
+
+add_form_responses($volunteer_id, $form_id, $responses);
 
 Header("HTTP/1.1 302 Moved Temporarily");
 if(isset($_SESSION['mode'])) { 
