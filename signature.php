@@ -17,7 +17,7 @@ function get_response($response) {
 $form_id = 1; //Hard-coded for now, until ability to choose forms is available
 
 $elements = get_form_elements($form_id);
-$responses = get_form_responses($_GET['vid']);
+$responses = get_form_responses($_GET['vid'], $form_id);
 
 $col_count = 0;
 foreach($elements as $key => $element) {

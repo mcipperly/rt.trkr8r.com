@@ -200,14 +200,15 @@ function add_form_responses($volunteer_id, $form_id, $responses) {
 		if(!($volunteer_id && $form_id && $responses))
 		return FALSE;
 	
-	$query = "DELETE FROM `form_response` JOIN `form_element` USING (fe_id) WHERE `volunteer_id` = {$volunteer_id} AND `form_id` = {$form_id}";
+	$query = "DELETE `form_response` FROM `form_response` JOIN `form_element` USING (fe_id) WHERE `volunteer_id` = {$volunteer_id} AND `form_id` = {$form_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
 	foreach($responses as $name => $value) {
 		$name = mysqli_real_escape_string($db_link, $name);
 		$value = mysqli_real_escape_string($db_link, $value);
 		
-		$query = "SELECT `fe_id` FROM `element` JOIN `form_element` USING (fe_id) WHERE `name` LIKE '{$name}' AND `form_id` = {$form_id}";
+		$query = "SELECT `form_element`.`fe_id` FROM `element` JOIN `form_element` USING (element_id) WHERE `name` LIKE '{$name}' AND `form_id` = {$form_id}";
+
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 		$fe_id = _get_one($result);
 		
@@ -242,6 +243,7 @@ WHERE `volunteer_id` = {$volunteer_id}
 AND `form_id` = {$form_id}
 ORDER BY `ord`
 EOS;
+
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	return _get_all($result);
