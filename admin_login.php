@@ -1,4 +1,5 @@
 <?php 
+session_start();
 
 Header("Content-type: text/plain");
 
