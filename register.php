@@ -1,4 +1,5 @@
 <?php
+include('includes/header.php'); 
 require_once('db/db.php'); 
 
 $volunteer_id = validate_volunteer_email($_REQUEST['email']);
@@ -10,14 +11,15 @@ if(isset($_REQUEST['email']) && $volunteer_id && !$_REQUEST['edit'] && isset($_S
   Header("Location: index.php?thanks=3");
 }
 
-include ('includes/header.php'); 
 
 function get_response($response) {
 	global $search_element_id;
 	return ($response['element_id'] == $search_element_id);
 }
 
-$elements = get_form_elements();
+$form_id = 1; //Hard-coded for now, until ability to choose forms is available
+
+$elements = get_form_elements($form_id);
 if($volunteer_id)
 	$responses = get_form_responses($volunteer_id);
 

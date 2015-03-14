@@ -1,7 +1,9 @@
 <?php
 include('db/db.php');
 
-$elements = get_form_elements();
+$form_id = 1; //Hard-coded for now, until ability to choose forms is available
+
+$elements = get_form_elements($form_id);
 $req_elements = array();
 
 foreach($elements as $element) {
