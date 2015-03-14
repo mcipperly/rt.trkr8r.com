@@ -1,6 +1,5 @@
 <?php
 
-
 function setup_db() {
 	require('db-config.php');
 	$db_link = mysqli_connect($db_host,$db_user,$db_pass,$db_name) or die(mysqli_error($link));
@@ -184,7 +183,7 @@ function get_form_elements() {
 	// function to return all valid wavier form elements, in order
 	$db_link = setup_db();
 	
-	$query = "SELECT * FROM `form_element` ORDER BY `ord` ASC";
+	$query = "SELECT * FROM `element` ORDER BY `ord` ASC";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	return _get_all($result);
@@ -205,7 +204,7 @@ function add_form_responses($volunteer_id, $responses) {
 		$name = mysqli_real_escape_string($db_link, $name);
 		$value = mysqli_real_escape_string($db_link, $value);
 		
-		$query = "SELECT `element_id` FROM `form_element` WHERE `name` LIKE '{$name}'";
+		$query = "SELECT `element_id` FROM `element` WHERE `name` LIKE '{$name}'";
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 		$element_id = _get_one($result);
 		
@@ -234,7 +233,7 @@ function get_form_responses($volunteer_id) {
 	$query = <<<EOS
 SELECT `response_id`, `element_id`, `name`, `value`
 FROM `form_response`
-JOIN `form_element` USING (element_id)
+JOIN `element` USING (element_id)
 WHERE `volunteer_id` = {$volunteer_id}
 ORDER BY `ord`
 EOS;
@@ -346,7 +345,7 @@ function export_csv($element_ids, $service_date) {
 	$fp = fopen("/usr/local/www/sub/rt.trkr8r.com/export/{$service_date}.csv", "w");
 	
 	foreach($element_ids as $element_id) {
-		$query = "SELECT `name` FROM `form_element` WHERE `element_id` = {$element_id}";
+		$query = "SELECT `name` FROM `element` WHERE `element_id` = {$element_id}";
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 		$header_array[] = _get_one($result);
 	}
