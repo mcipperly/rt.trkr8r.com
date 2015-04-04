@@ -19,13 +19,13 @@ function get_response($response) {
 
 $form_id = 1; //Hard-coded for now, until ability to choose forms is available
 
-$elements = get_form_elements($form_id);
+$form = get_form($form_id);
 if($volunteer_id)
 	$responses = get_form_responses($volunteer_id);
 
 $col_count = 0;
 $asterisk_count = 0;
-foreach($elements as $key => $element) {
+foreach($form['elements'] as $key => $element) {
 	if($key == 0) {
 		$html = <<<EOS
 <div class="row interior-header">
@@ -247,7 +247,7 @@ EOS;
 		print($html);
 	}
 
-	if($key + 1 == sizeof($elements)) {
+	if($key + 1 == sizeof($form['elements'])) {
 		$html = <<<EOS
 <div class="g-recaptcha" data-sitekey="6Lfk0AQTAAAAANW4KIOuZsfwsY-cd0CrZKPf3dem"></div>
     <input type="submit" value="Submit">
@@ -268,7 +268,7 @@ EOS;
 
 
 $asterisk_count = 0;
-foreach($elements as $element) {
+foreach($form['elements'] as $element) {
 	if($element['description']) {
 		$asterisk_count++;
 		$asterisk_string = "";

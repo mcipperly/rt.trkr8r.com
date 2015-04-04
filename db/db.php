@@ -160,7 +160,7 @@ function get_volunteer_info($volunteer_id) {
 	//function to return vital volunteer info (name, email address)
 	$db_link = setup_db();
 
-	if(!$volunteer_id )
+	if(!$volunteer_id)
 		return FALSE;
 
 	$query = "SELECT `volunteer_id`, `email` FROM `volunteer` WHERE `volunteer_id` = {$volunteer_id}";
@@ -177,6 +177,103 @@ function get_volunteer_info($volunteer_id) {
 	$volunteer['lastname'] = _get_one($result);
 
 	return $volunteer;
+}
+
+function create_form($name, $title = "", $signature = 0) {
+	//function to create a new, blank form
+	$db_link = setup_db();
+
+	if(!$name)
+		return FALSE;
+	
+	$name = mysqli_real_escape_string($db_link, $name);
+	$title = ($title) ? mysqli_real_escape_string($db_link, $title) : $name;
+	$signature = (int) mysqli_real_escape_string($db_link, $signature);
+	
+	$query = "INSERT INTO `form` (`name`, `title`, `signature`) VALUES ('{$name}', '{$title}', {$signature})";
+	$mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
+function update_form($form_id, $name, $title = "", $signature = 0, $active = 0) {
+	//function to update basic form data
+	$db_link = setup_db();
+
+	if(!($form_id && $name))
+		return FALSE;
+	
+	$form_id = (int) mysqli_real_escape_string($db_link, $form_id);
+	$name = mysqli_real_escape_string($db_link, $name);
+	$title = ($title) ? mysqli_real_escape_string($db_link, $title) : $name;
+	$signature = (int) mysqli_real_escape_string($db_link, $signature);
+	$active = (int) mysqli_real_escape_string($db_link, $active);
+
+	$query = <<<EOS
+UPDATE `form`
+SET `name` = '{$name}', `title` = '{$title}', `signature` = {$signature}, `valid` = {$active}
+WHERE `form_id` = {$form_id}
+EOS;
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
+function delete_form($form_id) {
+	//function to delete a form
+	$db_link = setup_db();
+
+	if(!$form_id)
+		return FALSE;
+	
+	//don't delete a form that contains entered responses
+	$query = "SELECT COUNT(1) FROM `form_response` JOIN `form_element` USING (`fe_id`) WHERE `form_id` = {$form_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	if(_get_one($result))
+		return FALSE;
+	
+	//delete all form elements associated with the form
+	$query = "DELETE FROM `form_element` WHERE `form_id` = {$form_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
+	$query = "DELETE FROM `form` WHERE `form_id` = {$form_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
+function get_forms() {
+	//function to return all forms in existence
+	$db_link = setup_db();
+
+	$query = "SELECT `form_id` FROM `form`";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$form_ids = _get_col($result);
+	
+	$forms = array();
+	foreach($form_ids as $form_id)
+		$forms[] = get_form($form_id);
+	
+	return $forms;
+}
+
+function get_form($form_id) {
+	// function to return basic info and elements of given form
+	$db_link = setup_db();
+	
+	if(!$form_id)
+		return FALSE;
+
+	$query = "SELECT * FROM `form` WHERE `form_id` = {$form_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$form = _get_row($result);
+	
+	if(!$form)
+		return array();
+	
+	$form['elements'] = get_form_elements($form_id);
+	
+	return $form;
 }
 
 function get_form_elements($form_id) {

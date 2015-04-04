@@ -15,12 +15,12 @@ function get_response($response) {
 }
 
 $form_id = 1; //Hard-coded for now, until ability to choose forms is available
+$form = get_form($form_id);
 
-$elements = get_form_elements($form_id);
 $responses = get_form_responses($_GET['vid'], $form_id);
 
 $col_count = 0;
-foreach($elements as $key => $element) {
+foreach($form['elements'] as $key => $element) {
 	if($key == 0) {
 		$html = <<<EOS
 <div class="row interior-header">
@@ -129,7 +129,7 @@ EOS;
 		print($html);
 	}
 
-	if($key + 1 == sizeof($elements)) {
+	if($key + 1 == sizeof($form['elements'])) {
 		if($_REQUEST['view'])
 			$html = "<br />";
 		else
