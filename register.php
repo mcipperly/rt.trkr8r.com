@@ -51,6 +51,7 @@ foreach($elements as $key => $element) {
     </div>
 </div>
 <div class="clear"></div>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 <form action="capture-register.php" method="POST">
 EOS;
@@ -248,6 +249,7 @@ EOS;
 
 	if($key + 1 == sizeof($elements)) {
 		$html = <<<EOS
+<div class="g-recaptcha" data-sitekey="6Lfk0AQTAAAAANW4KIOuZsfwsY-cd0CrZKPf3dem"></div>
     <input type="submit" value="Submit">
 
 </form>
