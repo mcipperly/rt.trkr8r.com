@@ -203,12 +203,9 @@ function update_form($form_id, $name, $title = "", $signature = 0, $active = 0) 
 	if(!($form_id && $name))
 		return FALSE;
 	
-	$form_id = (int) mysqli_real_escape_string($db_link, $form_id);
 	$name = mysqli_real_escape_string($db_link, $name);
 	$title = ($title) ? mysqli_real_escape_string($db_link, $title) : $name;
-	$signature = (int) mysqli_real_escape_string($db_link, $signature);
-	$active = (int) mysqli_real_escape_string($db_link, $active);
-
+	
 	$query = <<<EOS
 UPDATE `form`
 SET `name` = '{$name}', `title` = '{$title}', `signature` = {$signature}, `valid` = {$active}
@@ -237,6 +234,73 @@ function delete_form($form_id) {
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	$query = "DELETE FROM `form` WHERE `form_id` = {$form_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
+function add_element($label, $description, $type, $cols, $plural) {
+	//function to add a new entry to the list available elements
+	$db_link = setup_db();
+	
+	if(!($label && $type))
+		return FALSE;
+	
+	$label = mysqli_real_escape_string($db_link, $label);
+	$cols = ($cols) ? (int) $cols : 12;
+	$plural = ($plural) ? (int) $plural : 0;
+
+	$name = str_replace(" ", "_", $label);
+	$name = substr($name, 0, 50);
+	
+	$query = <<<EOS
+INSERT INTO `element`
+(`name`, `label`, `description`, `type`, `cols`, `plural`)
+VALUES
+('{$name}', '{$label}', '{$description}', '{$type}', {$cols}, {$plural})
+EOS;
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
+function update_element($element_id, $name, $label, $description, $type, $cols, $plural) {
+	//function to update info about a form element
+	$db_link = setup_db();
+	
+	if(!($element_id && $name && $label && $type))
+		return FALSE;
+	
+	$name = mysqli_real_escape_string($db_link, $name);
+	$label = mysqli_real_escape_string($db_link, $label);
+	$cols = ($cols) ? (int) $cols : 12;
+	$plural = ($plural) ? (int) $plural : 0;
+	
+	$query = <<<EOS
+UPDATE `element`
+SET `name` = '{$name}', `label` = '{$label}', `description` = '{$description}',
+`type`, = '{$type}', `cols` = {$cols}, `plural` = {$plural}
+WHERE `element_id` = {$element_id}
+EOS;
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
+function delete_element($element_id) {
+	//function to delete a form element
+	$db_link = setup_db();
+	
+	if(!$element_id)
+		return FALSE;
+	
+	//don't delete an element currently used in a form
+	$query = "SELECT COUNT(1) FROM `form_element` WHERE `element_id` = {$element_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	if(_get_one($sql))
+		return FALSE;
+	
+	$query = "DELETE FROM `element` WHERE `element_id` = {$element_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
 	return TRUE;
