@@ -249,11 +249,11 @@ EOS;
 
 	if($key + 1 == sizeof($form['elements'])) {
 		$html = <<<EOS
-<div class="g-recaptcha" data-sitekey="6Lfk0AQTAAAAANW4KIOuZsfwsY-cd0CrZKPf3dem"></div>
     <input type="submit" value="Submit">
 
 </form>
 EOS;
+    if(!isset($_SESSION['mode'])) { ?><div class="g-recaptcha" data-sitekey="6Lfk0AQTAAAAANW4KIOuZsfwsY-cd0CrZKPf3dem"></div><?php } 
 		print($html);
 	}
 }
