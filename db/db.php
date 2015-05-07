@@ -352,9 +352,10 @@ function get_form_elements($form_id) {
 
 	$elements = _get_all($result);
 
+//echo "<PRE>"; print_r($elements); echo "</PRE>"; exit;
 	foreach($elements as &$element) {
 		if($element['type'] == "select") {
-			$query = "SELECT * FROM select_element WHERE valid = 1 AND element_id = {$element['element_id']} ORDER BY text";
+			$query = "SELECT * FROM select_element WHERE active = 1 AND element_id = {$element['element_id']} ORDER BY text";
 			$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 			$element['select_elements'] = _get_all($result);
 		}

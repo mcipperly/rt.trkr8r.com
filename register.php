@@ -181,6 +181,7 @@ EOS;
 				$selected_html = ($option['se_id'] == $se_id) ? "selected" : "";
 				$html .= <<<EOS
 			<option value="{$option['se_id']}" {$selected_html}>{$option['text']}</option>
+EOS;
 			}
 			$html .= <<<EOS
             </select>
