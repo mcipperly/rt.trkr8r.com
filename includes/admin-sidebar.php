@@ -9,8 +9,8 @@
         Rebuilding Together Pgh</h1>
     <nav class="right hidden-phone">
         <ul>
-            <li><a href="#"><span class="fa fa-power-off"></span>&nbsp;&nbsp;Logout</a></li>
-            <li><a href="#"><span class="fa fa-toggle-off"></span>&nbsp;&nbsp;Activate On-Site Mode</a></li>
+            <li><a href="/admin/logout.php"><span class="fa fa-power-off"></span>&nbsp;&nbsp;Logout</a></li>
+            <li><a href="/admin/onsite.php"><span class="fa fa-toggle-off"></span>&nbsp;&nbsp;Activate On-Site Mode</a></li>
         </ul>
     </nav>
 </div>
@@ -28,7 +28,7 @@
             <li><a href="/admin/log-hours.php"><span class="fa fa-book"></span>&nbsp;&nbsp;Manage Hours</a></li>
             <li><a href="/admin/users.php"><span class="fa fa-group"></span>&nbsp;&nbsp;Manage Users</a></li>
             <li><a href="#api"><span class="fa fa-paint-brush"></span>&nbsp;&nbsp;Customize Theme</a></li>
-            <li><a href="#api"><span class="fa fa-toggle-off"></span>&nbsp;&nbsp;Activate On-Site Mode</a></li>
+            <li><a href="/admin/onsite.php"><span class="fa fa-toggle-off"></span>&nbsp;&nbsp;Activate On-Site Mode</a></li>
             <li><a href="/admin/logout.php"><span class="fa fa-power-off"></span>&nbsp;&nbsp;Logout</a></li>
         </ul>
     </nav>
