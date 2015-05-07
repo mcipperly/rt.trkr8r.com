@@ -2469,6 +2469,9 @@ label > .label-body {
 /*----------------------------------------------------
 	LISTS
 -----------------------------------------------------*/
+ol.list-group, ul.list-group {
+  padding: 0 0 0 25px; }
+
 /*----------------------------------------------------
 	UTILITIES
 -----------------------------------------------------*/
@@ -3212,7 +3215,7 @@ body.admin-body {
         .admin-header-bar nav ul li a:hover {
           background: rgba(255, 255, 255, 0.2); }
 
-@media (min-width: 771px) {
+@media (min-width: 851px) {
   #admin-wrap {
     left: 0; }
 
@@ -3227,7 +3230,7 @@ body.admin-body {
 
   #admin-wrap.active .toggle-menu {
     left: 0; } }
-@media (max-width: 770px) {
+@media (max-width: 850px) {
   body.admin-body {
     padding-left: 0;
     overflow: hidden; }
