@@ -12,7 +12,7 @@ include ('../includes/admin-sidebar.php');
 <div class="row">
     <div class="four cols callout">
         <p class="number">2,500</p>
-        <p class="text"><span class="fa fa-user"></span>&nbsp;&nbsp;Volunteers in the Last Month</p>
+        <p class="text"><span class="fa fa-user"></span>&nbsp;&nbsp;Volunteers in the 30 Days</p>
     </div>
 
     <div class="four cols callout">
@@ -28,7 +28,7 @@ include ('../includes/admin-sidebar.php');
 </div>
     
 <div class="row">
-    <div class="six cols">
+    <div class="six cols callout">
     <h2>Five Most Active Volunteers</h2>
         <ol class="list-group">
             <li>Volunteer NameHere</li>
@@ -39,7 +39,7 @@ include ('../includes/admin-sidebar.php');
         </ol>
     </div>   
     
-    <div class="six cols">
+    <div class="six cols callout">
     <h2>Five Most Active Affiliations</h2>
         <ol class="list-group">
             <li>Affiliation NameHere</li>
@@ -52,7 +52,7 @@ include ('../includes/admin-sidebar.php');
 </div>  
     
 <div class="row">
-    <div class="six cols">
+    <div class="six cols callout">
     <h2>Active Events</h2>
         <ul class="list-group">
             <li>Event NameHere</li>
@@ -63,7 +63,7 @@ include ('../includes/admin-sidebar.php');
         </ul>
     </div>   
     
-    <div class="six cols">
+    <div class="six cols callout">
     <h2>Active Forms</h2>
         <ul class="list-group">
             <li>Form NameHere</li>
