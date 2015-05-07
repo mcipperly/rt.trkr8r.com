@@ -30,11 +30,11 @@ input[type="button"] {
     color: #fff !important;
     cursor: pointer;
     box-sizing: border-box;
-    border: solid 1px $primary-color;
+    border: solid 1px $green;
     background: $drk-green;
-    background: -webkit-gradient(linear, left top, left bottom, from($primary-color), to($drk-green));
-    background: -moz-linear-gradient(top, $primary-color, $drk-green);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$primary-color', endColorstr='$drk-green');
+    background: -webkit-gradient(linear, left top, left bottom, from($green), to($drk-green));
+    background: -moz-linear-gradient(top, $green, $drk-green);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$green', endColorstr='$drk-green');
 }
 .button:hover,
 button:hover,
@@ -48,9 +48,9 @@ input[type="reset"]:focus,
 input[type="button"]:focus {
     text-decoration: none;
     color: #fff;
-    background: -webkit-gradient(linear, left top, left bottom, from($drk-green), to($primary-color));
-    background: -moz-linear-gradient(top, $drk-green, $primary-color);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$drk-green', endColorstr='$primary-color');
+    background: -webkit-gradient(linear, left top, left bottom, from($drk-green), to($green));
+    background: -moz-linear-gradient(top, $drk-green, $green);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$drk-green', endColorstr='$green');
 }
 .button:active,
 button:focus,
@@ -60,9 +60,9 @@ input[type="button"]:active {
     position: relative;
     top: 1px;
     color: #fff;
-    background: -webkit-gradient(linear, left top, left bottom, from($drk-green), to($primary-color));
-    background: -moz-linear-gradient(top, $drk-green, $primary-color);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$drk-green', endColorstr='$primary-color');
+    background: -webkit-gradient(linear, left top, left bottom, from($drk-green), to($green));
+    background: -moz-linear-gradient(top, $drk-green, $green);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$drk-green', endColorstr='$green');
 }
 /*----------------------------------------------------
 	Form Inputs
