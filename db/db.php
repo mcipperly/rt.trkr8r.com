@@ -350,7 +350,18 @@ function get_form_elements($form_id) {
 	$query = "SELECT * FROM `element` JOIN `form_element` USING (element_id) WHERE `form_id` = {$form_id} ORDER BY `ord` ASC";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
-	return _get_all($result);
+	$elements = _get_all($result);
+
+	foreach($elements as &$element) {
+		if($element['type'] == "select") {
+			$query = "SELECT * FROM select_element WHERE valid = 1 AND element_id = {$element['element_id']} ORDER BY text";
+			$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+			$element['select_elements'] = _get_all($result);
+		}
+	}
+	unset($element);
+
+	return $elements;
 }
 
 function add_form_responses($volunteer_id, $form_id, $responses) {

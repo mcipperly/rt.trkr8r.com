@@ -171,62 +171,18 @@ EOS;
 EOS;
 			break;
 		case "select":
-			$state_id = $value;
+			$se_id = $value;
 			$html = <<<EOS
-        <div class="{$cols} cols">
-            <label for="{$element['name']}">{$element['label']}</label>
-            <select class="full-width" name="{$element['name']}">
-                <option value="PA" id="PA">PA</option>
-                <option value="AL" id="AL">AL</option>
-                <option value="AK" id="AK">AK</option>
-                <option value="AZ" id="AZ">AZ</option>
-                <option value="AR" id="AR">AR</option>
-                <option value="CA" id="CA">CA</option>
-                <option value="CO" id="CO">CO</option>
-                <option value="CT" id="CT">CT</option>
-                <option value="DE" id="DE">DE</option>
-                <option value="DC" id="DC">DC</option>
-                <option value="FL" id="FL">FL</option>
-                <option value="GA" id="GA">GA</option>
-                <option value="HI" id="HI">HI</option>
-                <option value="ID" id="ID">ID</option>
-                <option value="IL" id="IL">IL</option>
-                <option value="IN" id="IN">IN</option>
-                <option value="IA" id="IA">IA</option>
-                <option value="KS" id="KS">KS</option>
-                <option value="KY" id="KY">KY</option>
-                <option value="LA" id="LA">LA</option>
-                <option value="ME" id="ME">ME</option>
-                <option value="MD" id="MD">MD</option>
-                <option value="MA" id="MA">MA</option>
-                <option value="MI" id="MI">MI</option>
-                <option value="MN" id="MN">MN</option>
-                <option value="MS" id="MS">MS</option>
-                <option value="MO" id="MO">MO</option>
-                <option value="MT" id="MT">MT</option>
-                <option value="NE" id="NE">NE</option>
-                <option value="NV" id="NV">NV</option>
-                <option value="NH" id="NH">NH</option>
-                <option value="NJ" id="NJ">NJ</option>
-                <option value="NM" id="NM">NM</option>
-                <option value="NY" id="NY">NY</option>
-                <option value="NC" id="NC">NC</option>
-                <option value="ND" id="ND">ND</option>
-                <option value="OH" id="OH">OH</option>
-                <option value="OK" id="OK">OK</option>
-                <option value="OR" id="OR">OR</option>
-                <option value="RI" id="RI">RI</option>
-                <option value="SC" id="SC">SC</option>
-                <option value="SD" id="SD">SD</option>
-                <option value="TN" id="TN">TN</option>
-                <option value="TX" id="TX">TX</option>
-                <option value="UT" id="UT">UT</option>
-                <option value="VT" id="VT">VT</option>
-                <option value="VA" id="VA">VA</option>
-                <option value="WA" id="WA">WA</option>
-                <option value="WV" id="WV">WV</option>
-                <option value="WI" id="WI">WI</option>
-                <option value="WY" id="WY">WY</option>
+	<div class="{$cols} cols">
+		<label for="{$element['name']}">{$element['label']}</label>
+		<select class="full-width" name="{$element['name']}">
+EOS;
+			foreach($element['select_elements'] as $option) {
+				$selected_html = ($option['se_id'] == $se_id) ? "selected" : "";
+				$html .= <<<EOS
+			<option value="{$option['se_id']}" {$selected_html}>{$option['text']}</option>
+			}
+			$html .= <<<EOS
             </select>
         </div>
 EOS;
@@ -289,9 +245,6 @@ EOS;
   var emailForm = document.getElementsByName('email');
   emailForm[0].value = "<?php print(htmlentities($_REQUEST['email'])); ?>";
 
-  var stateElement = document.getElementById('<?php print(htmlentities($state_id)) ?>');
-  stateElement.selected = 'selected';
-  
   var addButton = document.getElementById('add');
   <?php
 	for($i = 0; $i < sizeof($skills_array); $i++) {
