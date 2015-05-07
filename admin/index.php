@@ -31,7 +31,7 @@ include ('../includes/admin-sidebar.php');
     <div class="six cols">
     <h2>Active Events</h2>
         <ul class="list-group">
-            <li>Item</li>
+            <li>Item Test</li>
             <li>Item</li>
             <li>Item</li>
             <li>Item</li>
