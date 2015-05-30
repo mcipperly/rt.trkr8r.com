@@ -385,13 +385,15 @@ function add_form_responses($volunteer_id, $form_id, $responses) {
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 		$fe_id = _get_one($result);
 		
-		$query = <<<EOS
+		if($fe_id) {
+			$query = <<<EOS
 INSERT INTO `form_response`
 (volunteer_id, fe_id, value, date_added, time_added)
 VALUES
 ({$volunteer_id}, {$fe_id}, '{$value}', CURRENT_DATE(), CURRENT_TIME())
 EOS;
-		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+			$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		}
 	}
 	
 	$query = "UPDATE `volunteer` SET `status_id` = 2 WHERE `status_id` < 2 AND `volunteer_id` = {$volunteer_id}";
@@ -408,7 +410,7 @@ function get_form_responses($volunteer_id, $form_id) {
 		return FALSE;
 	
 	$query = <<<EOS
-SELECT `response_id`, `element_id`, `name`, `value`
+SELECT `response_id`, `element_id`, `name`, `value`, `element`.`type`
 FROM `form_response`
 JOIN `form_element` USING (fe_id)
 JOIN `element` USING (element_id)
@@ -418,8 +420,31 @@ ORDER BY `ord`
 EOS;
 
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$responses = _get_all($result);
 
-	return _get_all($result);
+	//Some responses require additional formatting (e.g. select-type results)
+	foreach($responses as &$response) {
+		switch($response['type']) {
+			case "select":
+				$query = "SELECT `text` FROM `select_element` WHERE `element_id` = {$response['element_id']} AND `se_id` = {$response['value']}";
+				$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+				$value = _get_one($result);
+				break;
+			case "company":
+				$query = "SELECT `name` FROM `company` WHERE `company_id` = {$response['value']}";
+				$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+				$value = _get_one($result);
+				break;
+			default:
+				$value = $response['value'];
+				break;
+		}
+		
+		$response['value'] = $value;
+	}
+	unset($response);
+	
+	return $responses;
 }
 
 function add_signature($volunteer_id, $file_name) {

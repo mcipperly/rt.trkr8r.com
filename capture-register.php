@@ -1,9 +1,9 @@
 <?php
 require_once('db/db.php');
-print($_POST['email']);
+//print($_POST['email']);
 $volunteer_id = validate_volunteer_email($_POST['email']);
 
-print($volunteer_id);
+//print($volunteer_id);
 
 if(!$volunteer_id) {
 	$volunteer_id = create_volunteer($_POST['email']);
