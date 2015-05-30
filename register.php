@@ -17,6 +17,8 @@ function get_response($response) {
 	return ($response['element_id'] == $search_element_id);
 }
 
+$companies = get_companies();
+
 $form_id = 1; //Hard-coded for now, until ability to choose forms is available
 
 $form = get_form($form_id);
@@ -184,8 +186,26 @@ EOS;
 EOS;
 			}
 			$html .= <<<EOS
-            </select>
-        </div>
+        </select>
+    </div>
+EOS;
+			break;
+		case "company":
+			$company_id = $value;
+			$html = <<<EOS
+	<div class="{$cols} cols">
+		<label for="{$element['name']}">{$element['label']}</label>
+		<select class="full-width" name="{$element['name']}">
+EOS;
+			foreach($companies as $company) {
+				$selected_html = ($company['company_id'] == $company_id) ? "selected" : "";
+				$html .= <<<EOS
+			<option value="{$company['company_id']}" {$selected_html}>{$company['name']}</option>
+EOS;
+			}
+			$html .= <<<EOS
+        </select>
+    </div>
 EOS;
 			break;
 		default:

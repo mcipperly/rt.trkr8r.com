@@ -340,6 +340,16 @@ function get_form($form_id) {
 	return $form;
 }
 
+function get_companies() {
+	// function to return all active company affiliations
+	$db_link = setup_db();
+	
+	$query = "SELECT * FROM `company` WHERE `active` = 1 ORDER BY `name`";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return _get_all($result);
+}
+
 function get_form_elements($form_id) {
 	// function to return all valid given form elements, in order
 	$db_link = setup_db();
@@ -352,7 +362,6 @@ function get_form_elements($form_id) {
 
 	$elements = _get_all($result);
 
-//echo "<PRE>"; print_r($elements); echo "</PRE>"; exit;
 	foreach($elements as &$element) {
 		if($element['type'] == "select") {
 			$query = "SELECT * FROM select_element WHERE active = 1 AND element_id = {$element['element_id']} ORDER BY text";
