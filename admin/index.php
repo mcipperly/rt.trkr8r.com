@@ -12,7 +12,7 @@ include ('../includes/admin-sidebar.php');
 <div class="row">
     <div class="four cols callout">
         <p class="number">2,500</p>
-        <p class="text"><span class="fa fa-user"></span>&nbsp;&nbsp;Volunteers in the 30 Days</p>
+        <p class="text"><span class="fa fa-user"></span>&nbsp;&nbsp;Volunteers in the Last 30 Days</p>
     </div>
 
     <div class="four cols callout">
