@@ -6,30 +6,76 @@ include ('../includes/admin-sidebar.php');
 
 <div class="container">
 <div class="admin-content-wrapper">
-
-<h1>Dashboard</h1>
-    
+<h1 class="admin-page-title">Dashboard</h1>
 <div class="row">
     <div class="four cols callout">
-        <p class="number">2,500</p>
-        <p class="text"><span class="fa fa-user"></span>&nbsp;&nbsp;Volunteers in the Last 30 Days</p>
+        <h2 class="callout-title">This Month's Volunteers</h2>
+        <p class="text"><span class="fa fa-user left"></span><span class="right">2,500</span></p>
     </div>
 
     <div class="four cols callout">
-        <p class="number">2,500</p>
-        <p class="text"><span class="fa fa-user"></span>&nbsp;&nbsp;Volunteers in the Last Year</p>
+        <h2 class="callout-title">Volunteers to Date</h2>
+        <p class="text"><span class="fa fa-users left"></span><span class="right">2,500</span></p>
     </div>  
     
     <div class="four cols callout">
-        <p class="number">2,500</p>
-        <p class="text"><span class="fa fa-clock-o"></span>&nbsp;&nbsp;Volunteer Hours to Date</p>
+        <h2 class="callout-title">Logged Hours to Date</h2>
+        <p class="text"><span class="fa fa-clock-o left"></span><span class="right">2,500</span></p>
     </div> 
     <div class="clear"></div>
 </div>
+
+<div class="row">
+ <div class="twelve cols callout">
+    <h2 class="callout-title">Your Events and Forms</h2>
+    <div class="row">
+    <div class="three cols">
+    <h3>Upcoming Events</h3>
+        <ul class="list-group">
+            <li>Event NameHere</li>
+            <li>Event NameHere</li>
+            <li>Event NameHere</li>
+            <li>Event NameHere</li>
+            <li>Event NameHere</li>
+        </ul>
+     </div>
+    <div class="three cols">
+    <h3>Past Events</h3>
+        <ul class="list-group">
+            <li>Form NameHere</li>
+            <li>Form NameHere</li>
+            <li>Form NameHere</li>
+            <li>Form NameHere</li>
+            <li>Form NameHere</li>
+        </ul>
+     </div>
+        <div class="three cols">
+    <h3>Active Forms</h3>
+        <ul class="list-group">
+            <li>Event NameHere</li>
+            <li>Event NameHere</li>
+            <li>Event NameHere</li>
+            <li>Event NameHere</li>
+            <li>Event NameHere</li>
+        </ul>
+     </div>
+    <div class="three cols">
+    <h3>Inactive Forms</h3>
+        <ul class="list-group">
+            <li>Form NameHere</li>
+            <li>Form NameHere</li>
+            <li>Form NameHere</li>
+            <li>Form NameHere</li>
+            <li>Form NameHere</li>
+        </ul>
+     </div>
+    </div>
+    </div>    
+</div>   
     
 <div class="row">
     <div class="six cols callout">
-    <h2>Five Most Active Volunteers</h2>
+    <h2 class="callout-title">Five Most Active Volunteers</h2>
         <ol class="list-group">
             <li>Volunteer NameHere</li>
             <li>Volunteer NameHere</li>
@@ -40,7 +86,7 @@ include ('../includes/admin-sidebar.php');
     </div>   
     
     <div class="six cols callout">
-    <h2>Five Most Active Affiliations</h2>
+    <h2 class="callout-title">Five Most Active Affiliations</h2>
         <ol class="list-group">
             <li>Affiliation NameHere</li>
             <li>Affiliation NameHere</li>
@@ -51,29 +97,6 @@ include ('../includes/admin-sidebar.php');
     </div>    
 </div>  
     
-<div class="row">
-    <div class="six cols callout">
-    <h2>Active Events</h2>
-        <ul class="list-group">
-            <li>Event NameHere</li>
-            <li>Event NameHere</li>
-            <li>Event NameHere</li>
-            <li>Event NameHere</li>
-            <li>Event NameHere</li>
-        </ul>
-    </div>   
-    
-    <div class="six cols callout">
-    <h2>Active Forms</h2>
-        <ul class="list-group">
-            <li>Form NameHere</li>
-            <li>Form NameHere</li>
-            <li>Form NameHere</li>
-            <li>Form NameHere</li>
-            <li>Form NameHere</li>
-        </ul>
-    </div>    
-</div>   
 
     </div>
 
