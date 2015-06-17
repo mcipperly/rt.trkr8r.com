@@ -11,7 +11,7 @@ html {
 body {
     font: 1.7rem/2.5rem $primary-font;
     /* currently ems cause chrome bug misinterpreting rems on body element */
-	background: $lt-green;
+	background: $bkg-color;
     padding-top: 30px;
 }
 
@@ -28,7 +28,7 @@ a img {
 
 a {
 	text-decoration: none !important;
-	color: $drk-green;
+	color: $primary-color;
 	outline: none;
 }
 
