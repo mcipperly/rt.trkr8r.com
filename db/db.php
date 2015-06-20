@@ -433,6 +433,9 @@ EOS;
 
 	//Some responses require additional formatting (e.g. select-type results)
 	foreach($responses as &$response) {
+		if(!$response['value'])
+			continue;
+		
 		switch($response['type']) {
 			case "select":
 				$query = "SELECT `text` FROM `select_element` WHERE `element_id` = {$response['element_id']} AND `se_id` = {$response['value']}";

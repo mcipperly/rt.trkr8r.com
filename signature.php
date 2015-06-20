@@ -6,7 +6,7 @@ if(!isset($_SESSION['mode'])) {
   Header("HTTP/1.1 302 Moved Temporarily");
   Header("Location: /index.php?thanks=2");
 } 
-$form_responses = get_form_responses($_GET['vid']);
+
 $volunteer_info = get_volunteer_info($_GET['vid']);
 
 function get_response($response) {
