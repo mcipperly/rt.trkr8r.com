@@ -1,7 +1,7 @@
 <?php
-include ('../includes/header.php');
+include ('../includes/admin-header.php'); 
 include('validate.php');
-
+include ('../includes/admin-sidebar.php'); 
 require_once('../db/db.php');
 
 $readable_service_date = ($_REQUEST['service_date']) ? $_REQUEST['service_date'] : date("m/d/Y");
@@ -20,57 +20,50 @@ if($_REQUEST['record']) {
 $volunteers = get_volunteers_of_day($service_date);
 
 $html = <<<EOS
-<div class="row interior-header">
+<div class="container">
+<div class="admin-content-wrapper">
+<h1 class="admin-page-title"><span class="fa fa-book"></span>&nbsp;Manage Hours</h1>
+<div class="row">
+    <div class="twelve cols callout">
+        <h2 class="callout-title">Choose Management Method</h2>
+            <div class="row">
+                <div class="five cols">
+                    <h3>By Service Date</h3>
+                        <script>
+                        $(function() {
+                        $( "#datepicker" ).datepicker();
+                        });
+                        </script>
 
-    <div class="visible-phone">
-        <div class="four cols sml-logo">
-            <img src="../assets/imgs/rt-logo.png">
-        </div>
+                    <form method="POST">
+                        <input class="u-full-width" type="text" id="datepicker" name="service_date" value="{$readable_service_date}"/>
+                        <input type="submit" value="OK" />
+                    </form>
+                </div>
+                
+                <div class="seven cols">
+                    <h3>By Volunteer Name</h3>
 
-        <div class="eight cols">
-            <h1>Admin <br><span>Log Volunteer Hours</span></h1>
-        </div>
-    </div>
+                    <form method="POST">
+                        <input class="u-full-width" type="text" id="firstname" name="firstname" value="First" />
+                        <br><input class="u-full-width" type="text" id="lastname" name="lastname" value="Last" />
+                        <input type="submit" value="OK" />
+                    </form>
+                </div>
+            </div>
 
-    <div class="hidden-phone">
-        <div class="eight cols">
-            <h1 class="left">Admin <span>Log Volunteer Hours</span></h1>
-        </div>
-
-        <div class="four cols">
-            <img src="../assets/imgs/rt-logo_small.png" class="right">
-        </div>
-    </div>
-</div>
-
-  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker();
-  });
-  </script>
-
- 
- 
-    
-<div class="clear"></div>
-<h4><a href="index.php">&laquo; Back to Admin Page</a></h4>
-
-<h2>Choose Service Date</h2>
-<form method="POST">
-	<input type="text" id="datepicker" name="service_date" value="{$readable_service_date}"/>
-	<input type="submit" value="OK" />
-</form>
 EOS;
 print($html);
+
 
 foreach($volunteers as $key => $volunteer) {
 	if($key == 0) {
 		$html = <<<EOS
-<form style="margin-top:30px" method="POST">
+<form method="POST">
 	<input type="hidden" name="record" value="1" />
 	<input type="hidden" name="service_date" value="{$service_date}" />
-    <h3 class="left"><b>Volunteer Name</b></h3>
-    <h3 class="right"><b>Hours</b></h3>
+    <h3 class="left">Volunteer Name</h3>
+    <h3 class="right">Hours</h3>
     <div class="clear"></div>
     <br />
 EOS;
@@ -91,6 +84,8 @@ EOS;
     <input type="submit" value="Log Hours" class="right">
     <div class="clear"></div>
 </form>
+</div>
+</div>
 EOS;
 		print($html);
 	}

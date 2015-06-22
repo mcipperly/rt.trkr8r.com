@@ -6,7 +6,7 @@ include ('../includes/admin-sidebar.php');
 
 <div class="container">
 <div class="admin-content-wrapper">
-<h1 class="admin-page-title">Dashboard</h1>
+<h1 class="admin-page-title"><span class="fa fa-home"></span>&nbsp;Dashboard</h1>
 <div class="row">
     <div class="four cols callout">
         <h2 class="callout-title">This Month's Volunteers</h2>
