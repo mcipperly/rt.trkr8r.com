@@ -2779,7 +2779,7 @@ body.admin-body {
 @media (max-width: 850px) {
   body.admin-body {
     padding-left: 0;
-    overflow: hidden; }
+    overflow-x: hidden; }
 
   #admin-wrap.active {
     position: relative;
