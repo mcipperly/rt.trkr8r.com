@@ -7,7 +7,14 @@
 .full-width { width: 100%; box-sizing: border-box; }
 .max-full-width { max-width: 100%; box-sizing: border-box; }
 .center { margin: 0 auto; text-align: center; }
-.clear { clear: both; }
+.clear { 
+    content: "";
+    display: table;
+    clear: both; 
+}
+.inactive, .inactive a, .inactive:hover {
+    color: #B5B5B5 !important;
+}
 
 /* Self Clearing */
 .container:after, .row:after, .u-cf {

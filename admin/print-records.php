@@ -1,5 +1,6 @@
 <?php
-include ('../includes/header.php');
+include ('../includes/admin-header.php'); 
+include ('../includes/admin-sidebar.php'); 
 require_once('../db/db.php');
 include('validate.php');
 
@@ -10,42 +11,44 @@ if($_REQUEST['email']) {
 }
 ?>
 
-<div class="row interior-header">
+<div class="container">
+<div class="admin-content-wrapper">
+<h1 class="admin-page-title"><span class="fa fa-print"></span>&nbsp;Print Records</h1>
+<div class="row">
+    <div class="twelve cols callout">
+        <h2 class="callout-title">Records Lookup</h2>
+        
+        <h3>Lookup by Name</h3>
+        <form method="POST">
+            <div class="row">
+                <div class="five cols">
+                <input type="text" class="full-width" name="firstname" value="First">
+                </div>
+                
+                <div class="five cols">
+                <input type="text" class="full-width" name="lastname" value="Last">
+                </div>
 
-    <div class="visible-phone">
-        <div class="four cols sml-logo">
-            <img src="../assets/imgs/rt-logo.png">
-        </div>
+                <div class="two cols">
+                <input type="submit" value="Search" class="full-width no-min">
+                </div> 
+            </div>
+        </form>
+        
+        <h3>Lookup by Email</h3>
+        <form method="POST">
+            <div class="row">
+                <div class="ten cols">
+                <input type="email" class="full-width" name="email">
+                </div>
 
-        <div class="eight cols">
-            <h1>Admin <br><span>Print Signed Waivers</span></h1>
-        </div>
+                <div class="two cols">
+                <input type="submit" value="Search" class="full-width no-min">
+                </div> 
+            </div>
+        </form>
+    </div>
     </div>
 
-    <div class="hidden-phone">
-        <div class="eight cols">
-            <h1 class="left">Admin <span>Print Signed Waivers</span></h1>
-        </div>
-
-        <div class="four cols">
-            <img src="../assets/imgs/rt-logo_small.png" class="right">
-        </div>
-    </div>
-</div>
-<div class="clear"></div>
-<h4><a href="/admin/">&laquo; Back to Admin Page</a></h4>
-
-<h2>Email Look Up</h2>
-<form style="margin-top:15px" method="POST">
-    <div class="row">
-        <div class="nine cols">
-        <input type="email" class="full-width" name="email">
-        </div>
-   
-        <div class="three cols">
-        <input type="submit" value="Search" class="full-width no-min" style="margin-top: -5px;">
-        </div> 
-    </div>
-</form>
 
 <?php include ('../includes/footer.php'); ?>

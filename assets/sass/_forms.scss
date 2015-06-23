@@ -46,9 +46,9 @@ input[type="reset"]:focus,
 input[type="button"]:focus {
     text-decoration: none; 
     color: #fff;
-    background: -webkit-gradient(linear, left top, left bottom, from($drk-green), to($primary-color));
-    background: -moz-linear-gradient(top, $drk-green, $primary-color);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$drk-green', endColorstr='$primary-color');
+    background: -webkit-gradient(linear, left top, left bottom, from($primary-color), to($secondary-color));
+    background: -moz-linear-gradient(top, $primary-color, $secondary-color);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$primary-color', endColorstr='$secondary-color');
 }
 .button:active,
 button:focus,
@@ -58,9 +58,9 @@ input[type="button"]:active {
     position: relative;
     top: 1px;
     color: #fff;
-    background: -webkit-gradient(linear, left top, left bottom, from($drk-green), to($primary-color));
-    background: -moz-linear-gradient(top, $drk-green, $primary-color);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$drk-green', endColorstr='$primary-color');
+    background: -webkit-gradient(linear, left top, left bottom, from($secondary-color), to($secondary-color));
+    background: -moz-linear-gradient(top, $secondary-color, $secondary-color);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$secondary-color', endColorstr='$secondary-color');
 }
 /*----------------------------------------------------
 	Form Inputs
@@ -133,4 +133,8 @@ label > .label-body {
     display: inline-block;
     margin-left: .5rem;
     font-weight: normal;
+}
+
+form:last-of-type {
+    margin-bottom:0;
 }
