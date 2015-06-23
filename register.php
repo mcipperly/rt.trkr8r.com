@@ -22,8 +22,11 @@ $companies = get_companies();
 $form_id = 1; //Hard-coded for now, until ability to choose forms is available
 
 $form = get_form($form_id);
-if($volunteer_id)
-	$responses = get_form_responses($volunteer_id);
+
+// 2015-06-23 mcipperly - update to use form_id on get_form_responses, only let us pull info is mode is set
+if(isset($_SESSION['mode']) && $volunteer_id) {
+        $responses = get_form_responses($volunteer_id, $form_id);
+}
 
 $col_count = 0;
 $asterisk_count = 0;
