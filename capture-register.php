@@ -1,6 +1,6 @@
 <?php
 require_once('db/db.php');
-//print($_POST['email']);
+session_start();
 $volunteer_id = validate_volunteer_email($_POST['email']);
 
 //print($volunteer_id);
