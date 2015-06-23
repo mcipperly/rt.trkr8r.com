@@ -8,8 +8,6 @@ include ('../includes/admin-sidebar.php');
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-gear"></span>&nbsp;Manage Forms</h1>
 
-
-    
 <!--Active and Inactive Forms -->
 <div class="row">
  <div class="six cols callout">
