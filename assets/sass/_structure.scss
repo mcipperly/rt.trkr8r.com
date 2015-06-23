@@ -3,13 +3,13 @@
 -----------------------------------------------------*/
 
 .logo {
-    border-bottom: 1px solid $mid-green;
+    border-bottom: 1px solid $secondary-color;
     padding-bottom: 44px;
     margin-bottom: 35px
 }
 
 .interior-header {
-    border-bottom: 1px solid $mid-green;
+    border-bottom: 1px solid $secondary-color;
     padding-bottom: 25px;
     margin-bottom: 35px;
         
@@ -32,14 +32,22 @@
     }
 }
 
+/* For the Manage Hours Page */
 .log_vol-name {
     height: 38px;
+    padding: 6px 10px;
+    background-color: #ECECEC;
     
     span {
         padding-top: 5px
     }
+    
+    &:nth-of-type(even) {
+        background-color: #F2F2F2;
+    }
 }
 
+/* Checking/Pregreistration Page */
 .welcome button {
     font-size: 3.7rem !important;
     padding: 10px 60px 10px
@@ -83,6 +91,6 @@
 }
 
 footer {
-    color: $drk-green;
+    color: $primary-color;
     margin-top: 45px
 }

@@ -2,6 +2,46 @@
 	LISTS
 -----------------------------------------------------*/
 
-ol.list-group, ul.list-group {
-    padding: 0 0 0 25px;
+ul.list-group.edit-links, ol.list-group.edit-links {
+    margin: -5px 0 0 0;
+    
+    li {
+        padding: 0 !important;  
+        
+        a {
+            padding: 4px 7px;
+            margin: 0 0 0 -7px;
+            color: #000000;
+            display: block;
+
+            &:hover {
+                background: #F2F2F2 url(../imgs/wrench-icon.png) no-repeat 97% 50%;
+            }
+        }
+        
+        &:last-of-type {
+            padding-bottom: 0;
+        }
+    }
 }
+
+ul.list-group, ol.list-group {
+        margin: 0;
+        padding: 0 0 0 25px;
+        
+        li {
+            padding: 0 0 7px 0 !important;             
+            
+            &:last-of-type {
+                padding-bottom: 0;
+            }
+            
+        }
+}
+    
+
+ul.list-group {
+    list-style-type: none;
+    padding: 0;
+}
+

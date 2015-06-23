@@ -26,31 +26,39 @@ $html = <<<EOS
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Choose Management Method</h2>
+            <h3>By Service Date</h3>
+                <script>
+                $(function() {
+                $( "#datepicker" ).datepicker();
+                });
+                </script>
+
+            <form method="POST">
             <div class="row">
-                <div class="five cols">
-                    <h3>By Service Date</h3>
-                        <script>
-                        $(function() {
-                        $( "#datepicker" ).datepicker();
-                        });
-                        </script>
-
-                    <form method="POST">
-                        <input class="u-full-width" type="text" id="datepicker" name="service_date" value="{$readable_service_date}"/>
-                        <input type="submit" value="OK" />
-                    </form>
+                <div class="ten cols">
+                <input class="full-width" type="text" id="datepicker" name="service_date" value="{$readable_service_date}"/>
                 </div>
-                
-                <div class="seven cols">
-                    <h3>By Volunteer Name</h3>
-
-                    <form method="POST">
-                        <input class="u-full-width" type="text" id="firstname" name="firstname" value="First" />
-                        <br><input class="u-full-width" type="text" id="lastname" name="lastname" value="Last" />
-                        <input type="submit" value="OK" />
-                    </form>
+                <div class="two cols">
+                <input type="submit" value="Go" class="full-width no-min">
                 </div>
             </div>
+            </form>
+
+            <h3>By Name</h3>
+
+            <form method="POST">
+            <div class="row">
+                <div class="five cols">
+                <input class="full-width" type="text" id="firstname" name="firstname" value="First" />
+                </div>
+                <div class="five cols">
+                <input class="full-width" type="text" id="lastname" name="lastname" value="Last" />
+                </div>
+                <div class="two cols">
+                <input type="submit" value="Go" class="full-width no-min">
+                </div>
+            </div>    
+            </form>
 
 EOS;
 print($html);
@@ -59,13 +67,14 @@ print($html);
 foreach($volunteers as $key => $volunteer) {
 	if($key == 0) {
 		$html = <<<EOS
+        <div class="clear"></div>
+        <h3>Today's Volunteers</h3>
 <form method="POST">
 	<input type="hidden" name="record" value="1" />
 	<input type="hidden" name="service_date" value="{$service_date}" />
-    <h3 class="left">Volunteer Name</h3>
-    <h3 class="right">Hours</h3>
+    <h4 class="left">Volunteer Name</h4>
+    <h4 class="right" style="padding-right:10px">Hours</h4>
     <div class="clear"></div>
-    <br />
 EOS;
 		print($html);
 	}
@@ -75,7 +84,8 @@ EOS;
         <span class="left">{$volunteer['firstname']} {$volunteer['lastname']}</span>
         <input type="text" class="right" name="duration_{$volunteer['volunteer_id']}" size="3" value="{$volunteer['duration']}">
     </div>
-    <hr class="clear">
+    <br class="clear">
+
 EOS;
 	print($html);
 
