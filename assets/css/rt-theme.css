@@ -2477,6 +2477,18 @@ input[type="checkbox"],
 input[type="radio"] {
   display: inline; }
 
+input[type=checkbox].big:not(old),
+input[type=radio].big:not(old) {
+  margin: 0;
+  padding: 0;
+  height: 22px;
+  width: 22px; }
+
+input[type=checkbox].big:not(old) + label,
+input[type=radio].big:not(old) + label {
+  display: block;
+  margin: -31px 0 0 23px; }
+
 label > .label-body {
   display: inline-block;
   margin-left: .5rem;
@@ -2542,6 +2554,9 @@ ul.list-group {
 
 .inactive, .inactive a, .inactive:hover {
   color: #B5B5B5 !important; }
+
+.inline {
+  display: inline !important; }
 
 /* Self Clearing */
 .container:after, .row:after, .u-cf {

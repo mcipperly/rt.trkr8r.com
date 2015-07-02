@@ -15,6 +15,9 @@
 .inactive, .inactive a, .inactive:hover {
     color: #B5B5B5 !important;
 }
+.inline {
+    display: inline !important;
+}
 
 /* Self Clearing */
 .container:after, .row:after, .u-cf {
