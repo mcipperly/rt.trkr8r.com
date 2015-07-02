@@ -129,6 +129,21 @@ input[type="checkbox"],
 input[type="radio"] {
     display: inline;
 }
+
+    input[type=checkbox].big:not(old),
+    input[type=radio].big:not(old){
+        margin: 0;
+        padding: 0;
+        height: 22px;
+        width: 22px;
+    }
+
+    input[type=checkbox].big:not(old) + label,
+    input[type=radio].big:not(old) + label{
+        display: block;
+        margin: -31px 0 0 23px;
+    }
+
 label > .label-body {
     display: inline-block;
     margin-left: .5rem;

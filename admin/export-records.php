@@ -32,36 +32,63 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
 <h1 class="admin-page-title"><span class="fa fa-file-excel-o"></span>&nbsp;Export Records</h1>
 
 <div class="row">
+    <div class="twelve cols callout">
+        <h2 class="callout-title">Choose Primary Filter</h2>
+
+            <form>
+            <div class="row">
+                <div class="six cols">
+                    <input type="radio" name="primary_filter" value="by_date" class="big"><label>&nbsp;&nbsp;By Date Range</label>
+                </div>
+                
+                <div class="six cols">
+                    <input type="radio" name="primary_filter" value="by_event" class="big"><label>&nbsp;&nbsp;By Event</label>
+                </div>
+            </div>
+            </form>
+    </div>
+</div>
+<!-- DONT SHOW THIS BOX UNTIL A PRIMARY FILTER IS CHOSEN, THEN DISPLAY WITH THE CORRESPONDING FILTER OPTION.
+ALWAYS DISPLAY THE QUICK AND CUSTOM EXPORTS -->
+<div class="row">
  <div class="twelve cols callout">
-    <h2 class="callout-title">Create Custom .CSV File</h2>
-    
-     <h3>Date Range</h3>
+    <h2 class="callout-title">Create .CSV File</h2>
+    <!-- DISPLAYS IF THE PRIMARY FILTER CHOSEN IS BY DATE -->
         <script>
             $(function() {
             $( "#datepicker" ).datepicker();
             });
         </script>
-
+        <h3>Select Date Range</h3>
         <form method="POST">
         <div class="row">
-            <div class="four cols">
+            <div class="five cols">
                 <input class="full-width" type="text" id="datepicker" name="service_date" value="{$readable_service_date}"/>
             </div>
             
-            <div class="one cols">
+            <div class="two cols">
                 <p style="text-align: center;">to</p>            
             </div>
             
-            <div class="four cols">
+            <div class="five cols">
                 <input class="full-width" type="text" id="datepicker" name="service_date" value="{$readable_service_date}"/>
             </div>
             
-            <div class="three cols">
-                <input type="submit" value="Go" class="full-width no-min">
-            </div>
         </div>
         </form>
      
+        <!-- DISPLAYS IF THE PRIMARY FILTER CHOSEN IS BY EVENT -->
+        <h3>Select Event</h3>
+        <form method="POST">
+            <select class="full-width">
+              <option value="event_recent">Most Recent Event Name Here</option>
+              <option value="event_1">Event 1</option>
+              <option value="event_2">Event 2</option>
+              <option value="event_3">Event 3</option>
+            </select>
+        </form>
+        
+     <!-- FROM HERE DOWN, THESE DISPLAY WITH EITHER PRIMARY FILTER -->
         <h3>Quick Export</h3>
         <form method="GET">
             <input type="hidden" name="export" value="true"></input>
@@ -132,8 +159,10 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
                 <input type="checkbox" name="element_ids[]" value="12">&nbsp;Skills
                 </div>
                 <div class="four cols">
+                    <input type="checkbox" name="element_ids[]" value="13">&nbsp;Hours
                 </div>
                 <div class="four cols">
+                    <input type="checkbox" name="element_ids[]" value="14">&nbsp;Event
                 </div>
             </div>
      <br>
@@ -158,5 +187,6 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
         }
 
         </script>
-
+    </div>
+    </div>
 <?php include ('../includes/footer.php'); ?>
