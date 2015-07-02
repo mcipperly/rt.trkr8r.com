@@ -33,7 +33,7 @@ if($_REQUEST['today'] || $_REQUEST['export']) {
 
 <div class="row">
     <div class="twelve cols callout">
-        <h2 class="callout-title">Choose Primary Filter</h2>
+        <h2 class="callout-title">Choose Filter Method</h2>
 
             <form>
             <div class="row">
