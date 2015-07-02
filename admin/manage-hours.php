@@ -7,12 +7,20 @@ require_once('../db/db.php');
 $readable_service_date = ($_REQUEST['service_date']) ? $_REQUEST['service_date'] : date("m/d/Y");
 $service_date = date("Y-m-d", strtotime($readable_service_date));
 
+$companies = get_companies();
+
 if($_REQUEST['record']) {
 	foreach($_REQUEST as $name => $value) {
 		if(substr_count($name, "duration")) {
 			$name_array = explode("_", $name);
 			$volunteer_id = $name_array[1];
 			record_volunteer_time($volunteer_id, $value, $service_date);
+		}
+		
+		if(substr_count($name, "company_id")) {
+			$name_array = explode("_", $name);
+			$volunteer_id = $name_array[2];
+			record_volunteer_company($volunteer_id, $value);
 		}
 	}
 }
@@ -73,6 +81,7 @@ foreach($volunteers as $key => $volunteer) {
 	<input type="hidden" name="record" value="1" />
 	<input type="hidden" name="service_date" value="{$service_date}" />
     <h4 class="left">Volunteer Name</h4>
+    <h4 class="center">Affiliation</h4>
     <h4 class="right" style="padding-right:10px">Hours</h4>
     <div class="clear"></div>
 EOS;
@@ -82,6 +91,33 @@ EOS;
 	$html = <<<EOS
     <div class="log_vol-name">
         <span class="left">{$volunteer['firstname']} {$volunteer['lastname']}</span>
+EOS;
+	print($html);
+	
+	foreach($companies as $comp_key => $company) {
+		if($comp_key == 0) {
+			$html = <<<EOS
+		<select name="company_id_{$volunteer['volunteer_id']}" class="">
+EOS;
+			print($html);
+		}
+		
+		$selected_html = ($company['company_id'] == $volunteer['company_id']) ? "selected" : "";
+		
+		$html = <<<EOS
+			<option label="{$company['name']}" value="{$company['company_id']}" {$selected_html}>{$company['name']}</option>
+EOS;
+		print($html);
+		
+		if($comp_key + 1 == sizeof($companies)) {
+			$html = <<<EOS
+		</select>
+EOS;
+		print($html);
+		}
+	}
+	
+	$html = <<<EOS
         <input type="text" class="right" name="duration_{$volunteer['volunteer_id']}" size="3" value="{$volunteer['duration']}">
     </div>
     <br class="clear">

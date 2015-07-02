@@ -163,7 +163,7 @@ function get_volunteer_info($volunteer_id) {
 	if(!$volunteer_id)
 		return FALSE;
 
-	$query = "SELECT `volunteer_id`, `email` FROM `volunteer` WHERE `volunteer_id` = {$volunteer_id}";
+	$query = "SELECT * FROM `volunteer` WHERE `volunteer_id` = {$volunteer_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	$volunteer = _get_row($result);
@@ -175,6 +175,12 @@ function get_volunteer_info($volunteer_id) {
 	$query = "SELECT `value` FROM `form_response` WHERE fe_id = 2 AND volunteer_id = {$volunteer_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	$volunteer['lastname'] = _get_one($result);
+	
+	if($volunteer['company_id']) {
+		$query = "SELECT * FROM company WHERE company_id = {$volunteer['company_id']}";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		$volunteer['company'] = _get_row($result);
+	}
 
 	return $volunteer;
 }
@@ -347,7 +353,10 @@ function get_companies() {
 	$query = "SELECT * FROM `company` WHERE `active` = 1 ORDER BY `name`";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
-	return _get_all($result);
+	$companies = _get_all($result);
+	$no_company[] = array("company_id" => 0, "name" => "--");
+	
+	return array_merge($no_company, $companies);
 }
 
 function get_form_elements($form_id) {
@@ -366,7 +375,9 @@ function get_form_elements($form_id) {
 		if($element['type'] == "select") {
 			$query = "SELECT * FROM select_element WHERE active = 1 AND element_id = {$element['element_id']} ORDER BY text";
 			$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-			$element['select_elements'] = _get_all($result);
+			$select_elements = _get_all($result);
+			$none_selected[] = array("se_id" => 0, "text" => "--");
+			$element['select_elements'] = array_merge($none_selected, $select_elements);
 		}
 	}
 	unset($element);
@@ -442,11 +453,6 @@ EOS;
 				$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 				$value = _get_one($result);
 				break;
-			case "company":
-				$query = "SELECT `name` FROM `company` WHERE `company_id` = {$response['value']}";
-				$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-				$value = _get_one($result);
-				break;
 			default:
 				$value = $response['value'];
 				break;
@@ -494,6 +500,24 @@ function get_volunteer_signature($volunteer_id) {
 	return _get_row($result);
 }
 
+function volunteer_name_cmp($a, $b) {
+	//function used to sort volunteers by lastname, firstname
+	$a['lastname'] = strtoupper($a['lastname']);
+	$a['firstname'] = strtoupper($a['firstname']);
+	$b['lastname'] = strtoupper($b['lastname']);
+	$b['firstname'] = strtoupper($b['firstname']);
+	
+	if(strcmp($a['lastname'], $b['lastname']) == 0) {
+		if(strcmp($a['firstname'], $b['firstname']) == 0) {
+			return ($a['volunteer_id'] < $b['volunteer_id']);
+		}
+		else
+			return strcmp($a['firstname'], $b['firstname']);
+	}
+	else
+		return strcmp($a['lastname'], $b['lastname']);
+}
+
 function get_volunteers_of_day($service_date = null) {
 	//function to grab all volunteers with a signature for a given day (today by default)
 	$db_link = setup_db();
@@ -513,6 +537,8 @@ function get_volunteers_of_day($service_date = null) {
 		$volunteer['duration'] = _get_one($result);
 		$volunteers[] = $volunteer;
 	}
+	
+	usort($volunteers, "volunteer_name_cmp");
 	
 	return $volunteers;
 }
@@ -539,6 +565,19 @@ VALUES
 ({$volunteer_id}, '{$service_date}', {$duration})
 EOS;
 	
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
+function record_volunteer_company($volunteer_id, $company_id = 0) {
+	//function to record the volunteer's company/affiliation
+	$db_link = setup_db();
+	
+	if(!$volunteer_id)
+		return FALSE;
+	
+	$query = "UPDATE `volunteer` SET `company_id` = {$company_id} WHERE `volunteer_id` = {$volunteer_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
 	return TRUE;
