@@ -376,8 +376,12 @@ function get_form_elements($form_id) {
 			$query = "SELECT * FROM select_element WHERE active = 1 AND element_id = {$element['element_id']} ORDER BY text";
 			$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 			$select_elements = _get_all($result);
-			$none_selected[] = array("se_id" => 0, "text" => "--");
+			if(!$element['plural'])
+				$none_selected[] = array("se_id" => 0, "text" => "--");
+			else
+				$none_selected = array();
 			$element['select_elements'] = array_merge($none_selected, $select_elements);
+			unset($none_selected);
 		}
 	}
 	unset($element);
@@ -390,12 +394,12 @@ function add_form_responses($volunteer_id, $form_id, $responses) {
 	//this will erase previous responses
 	$db_link = setup_db();
 
-		if(!($volunteer_id && $form_id && $responses))
+	if(!($volunteer_id && $form_id && $responses))
 		return FALSE;
 	
 	$query = "DELETE `form_response` FROM `form_response` JOIN `form_element` USING (fe_id) WHERE `volunteer_id` = {$volunteer_id} AND `form_id` = {$form_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-	
+
 	foreach($responses as $name => $value) {
 		$name = mysqli_real_escape_string($db_link, $name);
 		$value = mysqli_real_escape_string($db_link, $value);
@@ -430,7 +434,7 @@ function get_form_responses($volunteer_id, $form_id) {
 		return FALSE;
 	
 	$query = <<<EOS
-SELECT `response_id`, `element_id`, `name`, `value`, `element`.`type`
+SELECT `response_id`, `element_id`, `name`, `value`, `element`.`type`, `plural`
 FROM `form_response`
 JOIN `form_element` USING (fe_id)
 JOIN `element` USING (element_id)
@@ -449,9 +453,19 @@ EOS;
 		
 		switch($response['type']) {
 			case "select":
-				$query = "SELECT `text` FROM `select_element` WHERE `element_id` = {$response['element_id']} AND `se_id` = {$response['value']}";
-				$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-				$value = _get_one($result);
+				if($response['plural']) {
+					$se_id_array = explode("; ", $response['value']);
+					$se_id_list = implode(", ", $se_id_array);
+					$query = "SELECT `text` FROM `select_element` WHERE `element_id` = {$response['element_id']} AND `se_id` IN ({$se_id_list})";
+					$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+					$value_array = _get_col($result);
+					$value = implode("; ", $value_array);
+				}
+				else {
+					$query = "SELECT `text` FROM `select_element` WHERE `element_id` = {$response['element_id']} AND `se_id` = {$response['value']}";
+					$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+					$value = _get_one($result);
+				}
 				break;
 			default:
 				$value = $response['value'];

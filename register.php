@@ -135,34 +135,10 @@ EOS;
 	
 	switch($element['type']) {
 		case "text":
-			if($element['plural']) {
-				$skills_array = explode("; ", $value);
-				$value = "";
-				$class_html = "";
-				$plural_html_a = <<<EOS
-            <div class="multi-field-wrapper">
-                <div class="multi-fields">
-                    <div class="multi-field">
-EOS;
-				$plural_html_b = "[]";
-				$plural_html_c = <<<EOS
-                        <button type="button" class="remove-field no-min">Remove</button>
-                    </div>
-                </div><button type="button" id="add" class="add-field no-min">Add More Skills</button>
-            </div>
-            <script src="assets/js/add_inputs.js"></script>
-EOS;
-			}
-			else {
-				$class_html = "full-width";
-				$plural_html_a = $plural_html_b = $plural_html_c = "";
-			}
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>
-{$plural_html_a}
-            <input class="{$class_html}" type="{$element['type']}" placeholder="" name="{$element['name']}{$plural_html_b}"{$required_html} value="{$value}" />
-{$plural_html_c}
+            <input class="full-width" type="{$element['type']}" placeholder="" name="{$element['name']}"{$required_html} value="{$value}" />
 			</div>
 EOS;
 			break;
@@ -177,33 +153,19 @@ EOS;
 			break;
 		case "select":
 			$se_id = $value;
+			$select_size = sizeof($element['select_elements']);
+			$multi_html_a = ($element['plural']) ? "[]" : "";
+			$multi_html_b = ($element['plural']) ? "multiple size='{$select_size}'" : "";
+
 			$html = <<<EOS
 	<div class="{$cols} cols">
 		<label for="{$element['name']}">{$element['label']}</label>
-		<select class="full-width" name="{$element['name']}">
+		<select class="full-width" name="{$element['name']}{$multi_html_a}" {$multi_html_b}>
 EOS;
 			foreach($element['select_elements'] as $option) {
 				$selected_html = ($option['se_id'] == $se_id) ? "selected" : "";
 				$html .= <<<EOS
 			<option value="{$option['se_id']}" {$selected_html}>{$option['text']}</option>
-EOS;
-			}
-			$html .= <<<EOS
-        </select>
-    </div>
-EOS;
-			break;
-		case "company":
-			$company_id = $value;
-			$html = <<<EOS
-	<div class="{$cols} cols">
-		<label for="{$element['name']}">{$element['label']}</label>
-		<select class="full-width" name="{$element['name']}">
-EOS;
-			foreach($companies as $company) {
-				$selected_html = ($company['company_id'] == $company_id) ? "selected" : "";
-				$html .= <<<EOS
-			<option value="{$company['company_id']}" {$selected_html}>{$company['name']}</option>
 EOS;
 			}
 			$html .= <<<EOS
@@ -268,16 +230,6 @@ EOS;
 <script type="text/javascript">
   var emailForm = document.getElementsByName('email');
   emailForm[0].value = "<?php print(htmlentities($_REQUEST['email'])); ?>";
-
-  var addButton = document.getElementById('add');
-  <?php
-	for($i = 0; $i < sizeof($skills_array); $i++) {
-		if($i != 0)
-			echo "addButton.click();\n";
-		echo "document.getElementsByName('skills[]')[{$i}].value='{$skills_array[$i]}';\n";
-	}
-  ?>
-  
  </script>
 <?php } ?>
 
