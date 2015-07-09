@@ -139,9 +139,6 @@ EOS;
 
 	if($key + 1 == sizeof($volunteers)) {
 		$html = <<<EOS
-<<<<<<< HEAD
-    <br><input type="submit" value="Log Hours" class="right">
-=======
     <input type="submit" value="Log Hours" class="right">
     <br class="clear">
     <div class="log_vol-name">
@@ -175,7 +172,6 @@ EOS;
     </div>
     <br class="clear">
     <input type="submit" value="Log Hours For All" onclick="document.getElementById('use_all').value=1;return true;" class="right">
->>>>>>> origin/master
     <div class="clear"></div>
 </form>
 </div>
