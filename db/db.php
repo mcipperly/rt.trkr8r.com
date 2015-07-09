@@ -558,7 +558,7 @@ function get_volunteers_of_day($service_date = null) {
 }
 
 function record_volunteer_time($volunteer_id, $duration, $service_date = null) {
-	//function to record the start and end times for a volunteer
+	//function to record the hours worked for a volunteer
 	//defaulting to the current date
 	$db_link = setup_db();
 	
@@ -593,6 +593,38 @@ function record_volunteer_company($volunteer_id, $company_id = 0) {
 	
 	$query = "UPDATE `volunteer` SET `company_id` = {$company_id} WHERE `volunteer_id` = {$volunteer_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
+function record_all_volunteer_time($duration, $service_date) {
+	//function to record the hours worked for all volunteers of a given date
+	$db_link = setup_db();
+	
+	if(!($duration && $service_date))
+		return FALSE;
+	
+	$volunteers = get_volunteers_of_day($service_date);
+	
+	foreach($volunteers as $volunteer) {
+		record_volunteer_time($volunteer['volunteer_id'], $duration, $service_date);
+	}
+	
+	return TRUE;
+}
+
+function record_all_volunteer_company($company_id, $service_date) {
+	//function to record all volunteers' company/affiliation of a given service date
+	$db_link = setup_db();
+
+	if(!($company_id && $service_date))
+		return FALSE;
+	
+	$volunteers = get_volunteers_of_day($service_date);
+	
+	foreach($volunteers as $volunteer) {
+		record_volunteer_company($volunteer['volunteer_id'], $company_id);
+	}
 	
 	return TRUE;
 }
