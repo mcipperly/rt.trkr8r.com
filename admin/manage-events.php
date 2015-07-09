@@ -7,9 +7,7 @@ include ('../includes/admin-sidebar.php');
 <div class="container">
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-calendar"></span>&nbsp;Manage Events</h1>
-
-
-    
+ 
 <!--Active and Inactive Events -->
 <div class="row">
  <div class="six cols callout">

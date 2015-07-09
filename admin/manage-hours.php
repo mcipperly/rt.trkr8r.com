@@ -127,9 +127,10 @@ EOS;
 
 	if($key + 1 == sizeof($volunteers)) {
 		$html = <<<EOS
-    <input type="submit" value="Log Hours" class="right">
+    <br><input type="submit" value="Log Hours" class="right">
     <div class="clear"></div>
 </form>
+</div>
 </div>
 </div>
 EOS;

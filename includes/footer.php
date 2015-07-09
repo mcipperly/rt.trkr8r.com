@@ -3,7 +3,7 @@
 function adminLogin() {
 vex.dialog.open({
   message: 'Please Log in:',
-  input: '<div class=\"vex-custom-input-wrapper\">\n<input name=\"user\" type=\"text\"></div><div class=\"vex-custom-input-wrapper\"><input name=\"pass\" type=\"password\"></div>',
+  input: '<div class=\"vex-custom-input-wrapper\">\n<input name=\"user\" type=\"text\" placeholder=\"Username\" autocomplete=\"off\"></div><div class=\"vex-custom-input-wrapper\"><input name=\"pass\" type=\"password\" placeholder=\"Password\" autocomplete=\"off\"></div>',
   callback: function(data) {
     if (data === false) {
       return console.log('Cancelled');

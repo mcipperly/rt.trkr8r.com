@@ -1,5 +1,6 @@
 <?php
-include ('../includes/header.php');
+include ('../includes/admin-header.php'); 
+include ('../includes/admin-sidebar.php'); 
 require_once('../db/db.php');
 include('validate.php');
 
@@ -23,49 +24,45 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 $users = get_users();
 
 $html = <<<EOS
-<div class="row interior-header">
 
-    <div class="visible-phone">
-        <div class="four cols sml-logo">
-            <img src="../assets/imgs/rt-logo.png">
-        </div>
-
-        <div class="eight cols">
-            <h1>Admin <br><span>User Administration</span></h1>
+<div class="container">
+<div class="admin-content-wrapper">
+<h1 class="admin-page-title"><span class="fa fa-group"></span>&nbsp;Manage Users</h1>
+    <div class="row">
+        <div class="twelve cols callout">
+            <h2 class="callout-title">Create New User</h2>
+                <form method="POST">
+                    <div class="row">
+                        <div class="five cols">
+                            <input autocomplete="off" type="text" class="full-width" id="username" name="username" value="" placeholder="Username">
+                        </div>
+                        
+                        <div class="five cols">
+                            <input autocomplete="off" type="password" class="full-width" id="password" name="password" value="" placeholder="Password">
+                        </div>
+                        
+                        <div class="two cols">
+                            <input type="submit" value="Create" class="full-width no-min">
+                        </div>
+                    </div>
+                </form>
         </div>
     </div>
 
-    <div class="hidden-phone">
-        <div class="eight cols">
-            <h1 class="left">Admin <span>User Administration</span></h1>
-        </div>
-
-        <div class="four cols">
-            <img src="../assets/imgs/rt-logo_small.png" class="right">
-        </div>
-    </div>
-</div>
-
-<div class="clear"></div>
-<h4><a href="index.php">&laquo; Back to Admin Page</a></h4>
-
-<h2>Create New User</h2>
-<form method="POST">
-	<p>Email: <input type="text" id="email" name="email" value=""/>
-        Password: <input type="password" id="password" name="password" value=""/>
-	<input type="submit" value="OK" /></p>
-</form>
 EOS;
 print($html);
 
 foreach($users as $key => $user) {
 	if($key == 0) {
 		$html = <<<EOS
-<form method="POST" style="margin-top:30px">
-    <h3 class="left"><b>User</b></h3>
-    <h3 class="right"><b>Remove</b></h3>
-    <div class="clear"></div>
-    <br />
+    <div class="row">
+        <div class="twelve cols callout">
+            <h2 class="callout-title">Current Users</h2>
+
+            <form method="POST">
+                <h4 class="left"><b>User</b></h4>
+                <h4 class="right"><b>Remove</b></h4>
+                <div class="clear"></div>
 EOS;
 		print($html);
 	}
@@ -73,7 +70,7 @@ EOS;
 	$html = <<<EOS
     <div class="log_vol-name">
         <span class="left">{$user['email']}</span>
-        <input type="checkbox" class="right" name="remove_{$user['user_id']}" size="1">
+        <input type="checkbox" class="right big" name="remove_{$user['user_id']}" size="1">
     </div>
     <hr class="clear">
 EOS;
@@ -84,6 +81,8 @@ EOS;
     <input type="submit" value="Apply" class="right">
     <div class="clear"></div>
 </form>
+</div>
+</div>
 EOS;
 		print($html);
 	}

@@ -37,9 +37,9 @@
     height: 38px;
     padding: 6px 10px;
     background-color: #ECECEC;
-    
-    span {
-        padding-top: 5px
+     
+    span, input[type=checkbox] {
+        @include vertical-align;
     }
     
     &:nth-of-type(even) {
