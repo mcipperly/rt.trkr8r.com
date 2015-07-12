@@ -1,5 +1,7 @@
 _working
-*.png
+signatures/*.png
 pma
 vex
 prepros.cfg
+*.psd
+*.ai
