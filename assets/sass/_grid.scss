@@ -23,6 +23,14 @@
     box-sizing: border-box; 
 }
 
+/* Self Clearing */
+.container:after, .row:after, .u-cf {
+    content: "";
+    display: table;
+    clear: both; 
+}
+
+
 /* For devices larger than 400px */
 @media (min-width: 400px) {
     .container {

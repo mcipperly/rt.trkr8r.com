@@ -32,21 +32,6 @@
     }
 }
 
-/* For the Manage Hours Page */
-.log_vol-name {
-    height: 38px;
-    padding: 6px 10px;
-    background-color: #ECECEC;
-     
-    span, input[type=checkbox] {
-        @include vertical-align;
-    }
-    
-    &:nth-of-type(even) {
-        background-color: #F2F2F2;
-    }
-}
-
 /* Checking/Pregreistration Page */
 .welcome button {
     font-size: 3.7rem !important;
@@ -91,6 +76,5 @@
 }
 
 footer {
-    color: $primary-color;
     margin-top: 45px
 }

@@ -10,17 +10,17 @@ include ('../includes/admin-sidebar.php');
 <div class="row">
     <div class="four cols callout">
         <h2 class="callout-title">This Month's Volunteers</h2>
-        <p class="text"><span class="fa fa-user left"></span><span class="right">2,500</span></p>
+        <p class="text"><span class="fa fa-user left dash"></span><span class="right">2,500</span></p>
     </div>
 
     <div class="four cols callout">
         <h2 class="callout-title">Volunteers to Date</h2>
-        <p class="text"><span class="fa fa-users left"></span><span class="right">2,500</span></p>
+        <p class="text"><span class="fa fa-users left dash "></span><span class="right">2,500</span></p>
     </div>  
     
     <div class="four cols callout">
         <h2 class="callout-title">Logged Hours to Date</h2>
-        <p class="text"><span class="fa fa-clock-o left"></span><span class="right">2,500</span></p>
+        <p class="text"><span class="fa fa-clock-o dash left"></span><span class="right">2,500</span></p>
     </div> 
     <div class="clear"></div>
 </div>

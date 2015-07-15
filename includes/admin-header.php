@@ -26,7 +26,6 @@
     <script>vex.defaultOptions.className = 'vex-theme-plain';</script>
     <link rel="stylesheet" href="/assets/css/vex.css" type="text/css">
     <link rel="stylesheet" href="/assets/css/vex-theme-rt.css" type="text/css">
-
 </head>
 
 <body class="admin-body">
