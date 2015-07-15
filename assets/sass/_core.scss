@@ -13,6 +13,7 @@ body {
     /* currently ems cause chrome bug misinterpreting rems on body element */
 	background: $bkg-color;
     padding-top: 30px;
+    color: #222;
 }
 
 img {
@@ -33,7 +34,7 @@ a {
 }
 
 a:hover {
-	color: #071F08;
+	color: $secondary-color;
 }
 
 hr {

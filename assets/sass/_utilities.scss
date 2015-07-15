@@ -19,13 +19,6 @@
     display: inline !important;
 }
 
-/* Self Clearing */
-.container:after, .row:after, .u-cf {
-    content: "";
-    display: table;
-    clear: both; 
-}
-
 /* Responsive Utilities */
 /* Hide from screenreaders and browsers - Credit: HTML5 Boilerplate */
 .hidden {

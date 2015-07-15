@@ -1,6 +1,8 @@
 /*----------------------------------------------------
-	ADMIN PAGE
+	ADMIN SECTION
 -----------------------------------------------------*/
+
+/* Overall */
 #admin-wrap,
 .admin-sidebar,
 .toggle-menu {
@@ -289,9 +291,94 @@ body.admin-body {
         line-height: 6rem;
     }
     
-    span.fa {
+    span.fa.dash {
         color: $secondary-color;
         font-size: 5.5rem;
         font-weight: normal;
     }
 }
+
+
+/* Manage Events Page */
+
+.add-event {
+    display: inline-block;
+    float: right;
+    font-size: 1.7rem;
+    color: #fff;
+    
+    
+    &:hover {
+        color: rgba(255,255,255, .7);
+    }
+    
+    &:after {
+        content: "";
+        display: table;
+        clear: both; 
+    }
+}
+
+a.event-box {
+    display: block;
+    padding: 11px;
+    color: #222;
+    background-image: url(../imgs/wrench-icon.png);
+    background-repeat: no-repeat;
+    background-position: right 12px top 12px;
+    margin-bottom: 15px !important;
+    
+
+    h3 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+        text-transform: none;
+    }
+    
+    h4 {
+        font-size: 1.4rem;
+        color: #222;
+    }
+    
+    p.desc {
+        margin-bottom: 0;
+        font-size: 75%;
+        line-height: 1.7;
+    }
+    
+    &:hover {
+        opacity: .85;
+    }
+    
+    &.bkg-less-opaque {
+        background-color: rgba($secondary-color,.6);
+    }
+    
+    &.bkg-more-opaque {
+        background-color: rgba($secondary-color,.3);
+    }
+}   
+
+/* For the Hours Table */
+.log_vol-name {
+    height: 38px;
+    padding: 6px 10px;
+    background-color: #ECECEC;
+     
+    span, input[type=checkbox], button {
+        @include vertical-align;
+    }
+    
+    &:nth-of-type(even) {
+        background-color: #F2F2F2;
+    }
+}
+
+    
+    
+    
+    
+    
+    
+    
