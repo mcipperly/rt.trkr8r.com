@@ -97,35 +97,45 @@ include ('../includes/admin-sidebar.php');
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Completed Events</h2> 
-                <div class="row log_vol-name">
-                    <div class="three cols">Event</div>
-                    <div class="two cols">Date</div>
-                    <div class="three cols">Volunteers</div>
-                    <div class="two cols">Hours</div>
-                    <div class="two cols"></div>
-                </div>
-                <div class="row log_vol-name">
-                    <div class="three cols">Event Name</div>
-                    <div class="two cols">00/00/00</div>
-                    <div class="three cols">1000</div>
-                    <div class="two cols">1000</div>
-                    <div class="two cols"><button>Reopen</button></div>
-                </div>
-                <div class="row log_vol-name">
-                    <div class="three cols">Event Name</div>
-                    <div class="two cols">00/00/00</div>
-                    <div class="three cols">1000</div>
-                    <div class="two cols">1000</div>
-                    <div class="two cols"><button>Reopen</button></div>
-                </div>
-                <div class="row log_vol-name">
-                    <div class="three cols">Event Name</div>
-                    <div class="two cols">00/00/00</div>
-                    <div class="three cols">1000</div>
-                    <div class="two cols">1000</div>
-                    <div class="two cols"><button>Reopen</button></div>
-                </div>
-        
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Vols.</th>
+                        <th>Hours</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td data-label="Event">Event Name</td>
+                        <td data-label="Date">00/00/00</td>
+                        <td data-label="Volunteers">1,000</td>
+                        <td data-label="Hours">100,000</td>
+                        <td data-label="Edit"><a href="#"><button>Reopen</button></a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td data-label="Event">Event Name</td>
+                        <td data-label="Date">00/00/00</td>
+                        <td data-label="Volunteers">1,000</td>
+                        <td data-label="Hours">100,000</td>
+                        <td data-label="Edit"><a href="#"><button>Reopen</button></a></td>
+                    </tr>
+                    
+                    <tr>
+                        <td data-label="Event">Event Name</td>
+                        <td data-label="Date">00/00/00</td>
+                        <td data-label="Volunteers">1,000</td>
+                        <td data-label="Hours">100,000</td>
+                        <td data-label="Edit"><a href="#"><button>Reopen</button></a></td>
+                    </tr>
+                </tbody>
+            </table>
+           
     </div>   
 </div>  
 
