@@ -2888,6 +2888,90 @@ footer {
   margin-top: 45px;
 }
 
+/*Responsive/* Standard Tables */
+table {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table tr {
+  border-bottom: 5px solid #fff;
+  padding: 5px;
+  background-color: #ECECEC;
+}
+
+table tr:nth-of-type(odd) {
+  background-color: #F2F2F2;
+}
+
+table tr td a button {
+  margin-bottom: 1%;
+}
+
+table th, table td {
+  padding: 10px;
+  text-align: center;
+}
+
+table th {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media screen and (max-width: 850px) {
+  table {
+    border: 0;
+  }
+  table thead {
+    display: none;
+  }
+  table tr {
+    margin-bottom: 10px;
+    display: block;
+    border-bottom: 2px solid #ddd;
+  }
+  table td {
+    display: block;
+    text-align: right;
+    border-bottom: 1px dotted #ccc;
+  }
+  table td:last-child {
+    border-bottom: 0;
+  }
+  table td:before {
+    content: attr(data-label);
+    float: left;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  table td a button {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Extras for Manage Users Table */
+table.manage-users-table .manage-users-table--user {
+  text-align: left;
+}
+
+table.manage-users-table .manage-users-table--remove {
+  text-align: right;
+}
+
+table.manage-users-table + input[type="submit"] {
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 850px) {
+  table.manage-users-table .manage-users-table--user,
+  table.manage-users-table .manage-users-table--user-break {
+    text-align: right;
+  }
+}
+
 /*----------------------------------------------------
 	TYPOGRAPHY
 -----------------------------------------------------*/
@@ -3624,23 +3708,4 @@ a.event-box.bkg-less-opaque {
 
 a.event-box.bkg-more-opaque {
   background-color: rgba(143, 204, 96, 0.3);
-}
-
-/* For the Hours Table */
-.log_vol-name {
-  height: 38px;
-  padding: 6px 10px;
-  background-color: #ECECEC;
-}
-
-.log_vol-name span, .log_vol-name input[type=checkbox], .log_vol-name button {
-  position: relative;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-.log_vol-name:nth-of-type(even) {
-  background-color: #F2F2F2;
 }

@@ -1,0 +1,100 @@
+/*Responsive/* Standard Tables */
+table {
+    width: 100%;
+    margin:0;
+    padding:0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    
+        tr {
+            border-bottom: 5px solid #fff;
+            padding: 5px;
+            background-color: #ECECEC;
+            
+            &:nth-of-type(odd) {
+                background-color: #F2F2F2;
+            }
+            
+            td {
+                a button {
+                    margin-bottom: 1%;
+                }
+            }
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+}
+
+@media screen and (max-width: $break-phone) {
+
+    table {
+        border: 0;
+        
+        thead {
+            display: none;
+        }
+
+        tr {
+            margin-bottom: 10px;
+            display: block;
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            display: block;
+            text-align: right;
+            border-bottom: 1px dotted #ccc;
+        
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            &:before {
+                content: attr(data-label);
+                float: left;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+            
+            a button {
+                margin-bottom: 0!important;
+            }
+        }
+    }
+}
+
+/* Extras for Manage Users Table */
+
+table.manage-users-table {
+    .manage-users-table--user {
+        text-align: left;
+    }
+    
+    .manage-users-table--remove {
+        text-align: right;
+    }      
+}
+
+table.manage-users-table + input[type="submit"] {
+    margin-top: 10px;
+}
+
+
+@media screen and (max-width: $break-phone) {
+
+    table.manage-users-table {
+        .manage-users-table--user, 
+        .manage-users-table--user-break {
+            text-align: right;
+        }
+    }
+
+}

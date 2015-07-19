@@ -60,26 +60,33 @@ foreach($users as $key => $user) {
             <h2 class="callout-title">Current Users</h2>
 
             <form method="POST">
-                <h4 class="left"><b>User</b></h4>
-                <h4 class="right"><b>Remove</b></h4>
-                <div class="clear"></div>
+                <table class="manage-users-table">
+                    <thead>
+                        <tr>
+                            <th class="manage-users-table--user">User</th>
+                            <th class="manage-users-table--remove">Remove</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
 EOS;
 		print($html);
 	}
 	
 	$html = <<<EOS
-    <div class="log_vol-name">
-        <span class="left">{$user['email']}</span>
-        <input type="checkbox" class="right big" name="remove_{$user['user_id']}" size="1">
-    </div>
-    <hr class="clear">
+                    <tr>
+                        <td data-label="User" class="manage-users-table--user"><span class="manage-users-table--user-break">{$user['email']}</span></td>
+                        <td data-label="Remove" class="manage-users-table--remove"><input type="checkbox" class="big" name="remove_{$user['user_id']}" size="1"></td>
+                    </tr>
 EOS;
 	print($html);
 
 	if($key + 1 == sizeof($users)) {
 		$html = <<<EOS
-    <input type="submit" value="Apply" class="right">
-    <div class="clear"></div>
+    
+                    </tbody>
+                    </table>
+                    <input type="submit" value="Remove Selected Users" class="right">
 </form>
 </div>
 </div>
