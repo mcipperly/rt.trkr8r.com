@@ -153,3 +153,7 @@ label > .label-body {
 form:last-of-type {
     margin-bottom:0;
 }
+
+input[type="submit"]:last-child {
+  margin-bottom: 0;
+}
