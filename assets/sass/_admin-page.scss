@@ -111,6 +111,17 @@ body.admin-body {
         font-weight: 200;
         letter-spacing: .025rem;
         color: #696969;
+        
+        a {
+            color: #696969;
+            border-bottom: 1px solid #696969;
+            font-weight: 600;
+            
+            &:hover {
+                border-bottom: 1px solid #000;
+                color: #000;
+            }
+        }
     }
     
     h3 {
@@ -261,8 +272,15 @@ body.admin-body {
             }
         }   
     }  
-
 }
+
+@media (max-width: $break-small) {
+    .flexbox {
+      display: block !important;
+    }
+      
+}
+
 
 
 .callout {
@@ -319,6 +337,27 @@ body.admin-body {
     }
 }
 
+.flexbox {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+
+    .cols {
+        flex: 1;
+        margin-bottom: 15px !important;
+        
+            
+        &.bkg-less-opaque {
+            background-color: rgba($secondary-color,.6);
+        }
+
+        &.bkg-more-opaque {
+            background-color: rgba($secondary-color,.3);
+        }
+    }
+}
+
 a.event-box {
     display: block;
     padding: 11px;
@@ -326,7 +365,6 @@ a.event-box {
     background-image: url(../imgs/wrench-icon.png);
     background-repeat: no-repeat;
     background-position: right 12px top 12px;
-    margin-bottom: 15px !important;
     
 
     h3 {
@@ -334,6 +372,7 @@ a.event-box {
         font-weight: 700;
         margin-bottom: 6px;
         text-transform: none;
+        padding-right: 12px;
     }
     
     h4 {
@@ -350,16 +389,4 @@ a.event-box {
     &:hover {
         opacity: .85;
     }
-    
-    &.bkg-less-opaque {
-        background-color: rgba($secondary-color,.6);
-    }
-    
-    &.bkg-more-opaque {
-        background-color: rgba($secondary-color,.3);
-    }
-}   
-    
-    
-    
-    
+}      

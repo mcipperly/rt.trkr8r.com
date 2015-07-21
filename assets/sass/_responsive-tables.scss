@@ -83,7 +83,8 @@ table.manage-users-table {
     }      
 }
 
-table.manage-users-table + input[type="submit"] {
+table + input[type="submit"],
+table + div {
     margin-top: 10px;
 }
 

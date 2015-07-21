@@ -97,7 +97,7 @@ ALWAYS DISPLAY THE QUICK AND CUSTOM EXPORTS -->
                 <input type="checkbox" id="checkmaster" onClick="toggleAll()">&nbsp;Export All Fields
                 </div>
                 <div class="four cols">
-                <input type="checkbox" id="mcbox" name="preset_id" value="2" onclick="toggleOther(this,'mailbox')">&nbsp;Export for eNewsletter
+                <input type="checkbox" id="mcbox" name="preset_id" value="2" onclick="toggleOther(this,'mailbox')">&nbsp;Export for eNewsletters
                 </div>
                 <div class="four cols">
                 <input type="checkbox" id="mailbox" name="preset_id" value="3" onclick="toggleOther(this,'mcbox')">&nbsp;Export For Mailers
