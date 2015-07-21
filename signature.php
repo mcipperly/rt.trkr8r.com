@@ -9,6 +9,11 @@ if(!isset($_SESSION['mode'])) {
 
 $volunteer_info = get_volunteer_info($_GET['vid']);
 
+$search['date'] = date("Y-m-d");
+$todays_events = get_events($search);
+
+$event = $todays_events[0];
+
 function get_response($response) {
 	global $search_element_id;
 	return ($response['element_id'] == $search_element_id);
@@ -152,7 +157,7 @@ EOS;
 
 
 if($_REQUEST['view']) {
-	$signature_info = get_volunteer_signature($_GET['vid']);
+	$signature_info = get_volunteer_signature($_GET['vid'], $event['event_id']);
 	$signature_date = date("F jS, Y", strtotime($signature_info['signature_date']));
 	$html = <<<EOS
 <h2>Signature On File</h2>
@@ -161,12 +166,12 @@ if($_REQUEST['view']) {
         <p>Name: {$volunteer_info['firstname']} {$volunteer_info['lastname']}</p>
     </div>
     <div class="six cols">
-        <p>Date: {$signature_date}</p>
+        <p>Date: {$event['date']}</p>
     </div>
 </div>
 <div class="row">
 	<div class="twelve cols">
-		<img src="signatures/{$signature_info['file_name']}" />
+		<img src="signatures/{$signature_info['signature_file_name']}" />
 	</div>
 </div>
 <button onclick="window.print();" class="no-min">Print</button>
@@ -197,6 +202,7 @@ else {
         <input type="hidden" name="firstname" value="{$volunteer_info['firstname']}"></input>
         <input type="hidden" name="lastname" value="{$volunteer_info['lastname']}"></input>
         <input type="hidden" name="vid" value="{$_GET['vid']}"></input>
+		<input type="hidden" name="event_id" value="{$event['event_id']}"></input>
         <input type="hidden" id="signature-b64" name="signature-b64" value=""></input>
     </form>
 </div>

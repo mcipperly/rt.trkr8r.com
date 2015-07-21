@@ -479,20 +479,20 @@ EOS;
 	return $responses;
 }
 
-function add_signature($volunteer_id, $file_name) {
+function add_signature($volunteer_id, $event_id, $file_name) {
 	//function to store volunteer signature file info
 	$db_link = setup_db();
 
-	if(!($volunteer_id && $file_name && file_exists("/usr/local/www/sub/rt.trkr8r.com/signatures/" . $file_name)))
+	if(!($volunteer_id && $event_id && $file_name && file_exists("/usr/local/www/sub/rt.trkr8r.com/signatures/" . $file_name)))
 		return FALSE;
 	
 	$file_name = mysqli_real_escape_string($db_link, $file_name);
 	
 	$query = <<<EOS
-INSERT INTO `volunteer_signature`
-(`volunteer_id`, `signature_date`, `file_name`)
+INSERT INTO `volunteer_event`
+(`volunteer_id`, `event_id`, `signature_file_name`)
 VALUES
-({$volunteer_id}, CURRENT_DATE(), '{$file_name}')
+({$volunteer_id}, {$event_id}, '{$file_name}')
 EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
@@ -502,14 +502,14 @@ EOS;
 	return TRUE;
 }
 
-function get_volunteer_signature($volunteer_id) {
-	//function to grab most recent signature data for a volunteer
+function get_volunteer_signature($volunteer_id, $event_id) {
+	//function to grab signature data for a given volunteer and event
 	$db_link = setup_db();
 	
-	if(!$volunteer_id)
+	if(!($volunteer_id && $event_id))
 		return FALSE;
 
-	$query = "SELECT * FROM `volunteer_signature` WHERE `volunteer_id` = {$volunteer_id} ORDER BY `signature_date` DESC LIMIT 0, 1";
+	$query = "SELECT * FROM `volunteer_event` WHERE `volunteer_id` = {$volunteer_id} AND `event_id` = {$event_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	return _get_row($result);
 }
@@ -532,6 +532,7 @@ function volunteer_name_cmp($a, $b) {
 		return strcmp($a['lastname'], $b['lastname']);
 }
 
+/*
 function get_volunteers_of_day($service_date = null) {
 	//function to grab all volunteers with a signature for a given day (today by default)
 	$db_link = setup_db();
@@ -556,29 +557,17 @@ function get_volunteers_of_day($service_date = null) {
 	
 	return $volunteers;
 }
+*/
 
-function record_volunteer_time($volunteer_id, $duration, $service_date = null) {
+function record_volunteer_time($volunteer_id, $event_id, $duration) {
 	//function to record the hours worked for a volunteer
 	//defaulting to the current date
 	$db_link = setup_db();
 	
-	if(!($volunteer_id && $duration))
+	if(!($volunteer_id && $event_id && $duration))
 		return FALSE;
 	
-	$service_date = ($service_date) ? $service_date : date("Y-m-d");
-	
-	$service_date = mysqli_real_escape_string($db_link, $service_date);
-
-	$query = "DELETE FROM `volunteer_time` WHERE `service_date` = '{$service_date}' AND `volunteer_id` = {$volunteer_id}";
-	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-	
-	$query = <<<EOS
-INSERT INTO `volunteer_time`
-(`volunteer_id`, `service_date`, `duration`)
-VALUES
-({$volunteer_id}, '{$service_date}', {$duration})
-EOS;
-	
+	$query = "UPDATE `volunteer_event` SET `duration` = {$duration} WHERE `volunteer_id` = {$volunteer_id} AND `event_id` = {$event_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
 	return TRUE;
@@ -597,32 +586,32 @@ function record_volunteer_company($volunteer_id, $company_id = 0) {
 	return TRUE;
 }
 
-function record_all_volunteer_time($duration, $service_date) {
-	//function to record the hours worked for all volunteers of a given date
+function record_all_volunteer_time($event_id, $duration) {
+	//function to record the hours worked for all volunteers of a given event
 	$db_link = setup_db();
 	
-	if(!($duration && $service_date))
+	if(!($event_id && $duration))
 		return FALSE;
 	
-	$volunteers = get_volunteers_of_day($service_date);
+	$event = get_event($event_id);
 	
-	foreach($volunteers as $volunteer) {
-		record_volunteer_time($volunteer['volunteer_id'], $duration, $service_date);
+	foreach($event['volunteers'] as $volunteer) {
+		record_volunteer_time($volunteer['volunteer_id'], $event_id, $duration);
 	}
 	
 	return TRUE;
 }
 
-function record_all_volunteer_company($company_id, $service_date) {
-	//function to record all volunteers' company/affiliation of a given service date
+function record_all_volunteer_company($event_id, $company_id) {
+	//function to record all volunteers' company/affiliation of a given event
 	$db_link = setup_db();
 
-	if(!($company_id && $service_date))
+	if(!($event_id && $company_id))
 		return FALSE;
 	
-	$volunteers = get_volunteers_of_day($service_date);
+	$event = get_event($event_id);
 	
-	foreach($volunteers as $volunteer) {
+	foreach($event['volunteers'] as $volunteer) {
 		record_volunteer_company($volunteer['volunteer_id'], $company_id);
 	}
 	
@@ -670,6 +659,96 @@ function export_csv($element_ids, $service_date) {
 	fclose($fp);
 	
 	return "{$service_date}.csv";
+}
+
+function get_events($search = null) {
+	//function to grab all events, filtered by supplied search criteria
+	$db_link = setup_db();
+
+	$query = "SELECT `event_id` FROM `event` WHERE 1\n";
+	
+	if($search['status_id'])
+		$query .= "AND `status_id` = {$search['status_id']}\n";
+	
+	if($search['date'])
+		$search['start_date'] = $search['end_date'] = $search['date'];
+	
+	if($search['start_date'] && $search['end_date'])
+		$query .= "AND `date` BETWEEN '{$search['start_date']}' AND '{$search['end_date']}'\n";
+	
+	$query .= "ORDER BY `date`, `event_id`";
+	
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$event_ids = _get_col($result);
+	
+	$events = array();
+	foreach($event_ids as $event_id) {
+		$events[] = get_event($event_id);
+	}
+	
+	return $events;
+}
+
+function get_event($event_id) {
+	//function to grab all relevant info for a given event
+	$db_link = setup_db();
+	
+	if(!$event_id)
+		return FALSE;
+	
+	$query = "SELECT * FROM `event` WHERE `event_id` = {$event_id}";
+
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$event = _get_row($result);
+	
+	$query = "SELECT * FROM `volunteer_event` WHERE `event_id` = {$event_id}";
+	
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$event['volunteers'] = _get_all($result);
+	
+	foreach($event['volunteers'] as &$volunteer) {
+		$volunteer_info = get_volunteer_info($volunteer['volunteer_id']);
+		$volunteer = array_merge($volunteer, $volunteer_info);
+	}
+	unset($volunteer);
+
+	usort($event['volunteers'], "volunteer_name_cmp");	
+
+	return $event;
+}
+
+function create_event($date, $note, $location) {
+	//function to create a new event
+	$db_link = setup_db();
+	
+	if(!($date && $location))
+		return FALSE;
+	
+	$date = mysqli_real_escape_string($db_link, $date);
+	$note = mysqli_real_escape_string($db_link, $note);
+	$location = mysqli_real_escape_string($db_link, $location);
+	
+	$query = "INSERT INTO `event` (`date`, `note`, `location`) VALUES ('{$date}', '{$note}', '{$location}')";
+	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
+	return TRUE;
+}
+
+function update_event($event_id, $date, $note, $location) {
+	//function to update an existing event
+	$db_link = setup_db();
+	
+	if(!($event_id && $date && $location))
+		return FALSE;
+	
+	$date = mysqli_real_escape_string($db_link, $date);
+	$note = mysqli_real_escape_string($db_link, $note);
+	$location = mysqli_real_escape_string($db_link, $location);
+	
+	$query = "UPDATE `event` SET `date` = '{$date}', `note` = {$note}, `location` = {$location} WHERE `event_id` n = {$event_id}";
+	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
+	return TRUE;
 }
 
 ?>
