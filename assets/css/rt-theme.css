@@ -2625,7 +2625,7 @@ hr {
 /* Spacing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 button,
-.button {
+.btn {
   margin-bottom: 1rem;
 }
 
@@ -3048,11 +3048,9 @@ footer {
 }
 
 /*----------------------------------------------------
-	FORM STYLING
+	BUTTON STYLING
 -----------------------------------------------------*/
-/* Buttons
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-.button,
+.btn,
 button,
 input[type="submit"],
 input[type="reset"],
@@ -3063,60 +3061,227 @@ input[type="button"] {
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  font: 1.7rem "Open Sans", Verdana, Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  padding: 7px 10px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
-  border-top-left-radius: 0.5em;
-  border-top-right-radius: 0.5em;
-  border-bottom-left-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  border-bottom-left-radius: 0.5em;
-  border-top-left-radius: 0.5em;
-  border-bottom-right-radius: 0.5em;
-  border-top-right-radius: 0.5em;
-  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  color: #fff !important;
+  font: 1.5rem "Open Sans", Verdana, Helvetica, Arial, sans-serif;
+  text-transform: capitalize;
+  padding: 8px 12px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  color: #fff;
   cursor: pointer;
   box-sizing: border-box;
-  border: solid 1px #4a851d;
-  background-image: -webkit-linear-gradient(#4a851d 0, #8fcc60 100%, transparent 50%);
-  background-image: linear-gradient(to   , #8fcc60 100%, transparent 50%);
+  border: 0;
+  border-bottom: 2px solid #335b14;
+  background-color: #4a851d;
 }
 
-.button:hover,
+.btn:hover,
 button:hover,
 input[type="submit"]:hover,
 input[type="reset"]:hover,
 input[type="button"]:hover,
-.button:focus,
+.btn:focus,
 button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-  text-decoration: none;
-  color: #fff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#4a851d), to(#8fcc60));
-  background: -moz-linear-gradient(top, #4a851d, #8fcc60);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$primary-color', endColorstr='$secondary-color');
+  background-color: #417419;
+  border-color: black;
 }
 
-.button:active,
-button:focus,
+.btn:active,
+button:active,
 input[type="submit"]:active,
 input[type="reset"]:active,
 input[type="button"]:active {
-  position: relative;
-  top: 1px;
+  -webkit-box-shadow: inset 0px 0px 49px -8px rgba(0, 0, 0, 0.61);
+  -moz-box-shadow: inset 0px 0px 49px -8px rgba(0, 0, 0, 0.61);
+  box-shadow: inset 0px 0px 49px -8px rgba(0, 0, 0, 0.61);
+}
+
+body.admin-body .btn,
+body.admin-body button,
+body.admin-body input[type="submit"],
+body.admin-body input[type="reset"],
+body.admin-body input[type="button"] {
   color: #fff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#8fcc60), to(#8fcc60));
-  background: -moz-linear-gradient(top, #8fcc60, #8fcc60);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$secondary-color', endColorstr='$secondary-color');
+  background-color: #868686;
+  border-color: #3a3a3a;
+  text-shadow: none;
+}
+
+body.admin-body .btn.btn-open,
+body.admin-body button.btn-open,
+body.admin-body input[type="submit"].btn-open,
+body.admin-body input[type="reset"].btn-open,
+body.admin-body input[type="button"].btn-open {
+  color: #fff;
+  background-color: #36a97a;
+  border-color: #236f50;
+}
+
+body.admin-body .btn.btn-open-outline,
+body.admin-body button.btn-open-outline,
+body.admin-body input[type="submit"].btn-open-outline,
+body.admin-body input[type="reset"].btn-open-outline,
+body.admin-body input[type="button"].btn-open-outline {
+  color: #36a97a !important;
+  text-shadow: none;
+  background-color: #fff;
+  border: 2px solid #36a97a;
+  padding: 6px 12px 8px 12px;
+}
+
+body.admin-body .btn.btn-closed,
+body.admin-body button.btn-closed,
+body.admin-body input[type="submit"].btn-closed,
+body.admin-body input[type="reset"].btn-closed,
+body.admin-body input[type="button"].btn-closed {
+  color: #fff;
+  background-color: #e0645c;
+  border-color: #c93026;
+}
+
+body.admin-body .btn.btn-closed-outline,
+body.admin-body button.btn-closed-outline,
+body.admin-body input[type="submit"].btn-closed-outline,
+body.admin-body input[type="reset"].btn-closed-outline,
+body.admin-body input[type="button"].btn-closed-outline {
+  color: #e0645c;
+  text-shadow: none;
+  background-color: #fff;
+  border: 2px solid #e0645c;
+  padding: 6px 12px 8px 12px;
+}
+
+body.admin-body .btn:hover,
+body.admin-body button:hover,
+body.admin-body input[type="submit"]:hover,
+body.admin-body input[type="reset"]:hover,
+body.admin-body input[type="button"]:hover,
+body.admin-body .btn:focus,
+body.admin-body button:focus,
+body.admin-body input[type="submit"]:focus,
+body.admin-body input[type="reset"]:focus,
+body.admin-body input[type="button"]:focus {
+  background-color: #676767;
+  border-color: #070707;
+}
+
+body.admin-body .btn:hover.btn-open:hover,
+body.admin-body .btn:hover.btn-open:focus,
+body.admin-body button:hover.btn-open:hover,
+body.admin-body button:hover.btn-open:focus,
+body.admin-body input[type="submit"]:hover.btn-open:hover,
+body.admin-body input[type="submit"]:hover.btn-open:focus,
+body.admin-body input[type="reset"]:hover.btn-open:hover,
+body.admin-body input[type="reset"]:hover.btn-open:focus,
+body.admin-body input[type="button"]:hover.btn-open:hover,
+body.admin-body input[type="button"]:hover.btn-open:focus,
+body.admin-body .btn:focus.btn-open:hover,
+body.admin-body .btn:focus.btn-open:focus,
+body.admin-body button:focus.btn-open:hover,
+body.admin-body button:focus.btn-open:focus,
+body.admin-body input[type="submit"]:focus.btn-open:hover,
+body.admin-body input[type="submit"]:focus.btn-open:focus,
+body.admin-body input[type="reset"]:focus.btn-open:hover,
+body.admin-body input[type="reset"]:focus.btn-open:focus,
+body.admin-body input[type="button"]:focus.btn-open:hover,
+body.admin-body input[type="button"]:focus.btn-open:focus {
+  background-color: #277b59;
+  border-color: black;
+}
+
+body.admin-body .btn:hover.btn-open-outline:hover,
+body.admin-body .btn:hover.btn-open-outline:focus,
+body.admin-body button:hover.btn-open-outline:hover,
+body.admin-body button:hover.btn-open-outline:focus,
+body.admin-body input[type="submit"]:hover.btn-open-outline:hover,
+body.admin-body input[type="submit"]:hover.btn-open-outline:focus,
+body.admin-body input[type="reset"]:hover.btn-open-outline:hover,
+body.admin-body input[type="reset"]:hover.btn-open-outline:focus,
+body.admin-body input[type="button"]:hover.btn-open-outline:hover,
+body.admin-body input[type="button"]:hover.btn-open-outline:focus,
+body.admin-body .btn:focus.btn-open-outline:hover,
+body.admin-body .btn:focus.btn-open-outline:focus,
+body.admin-body button:focus.btn-open-outline:hover,
+body.admin-body button:focus.btn-open-outline:focus,
+body.admin-body input[type="submit"]:focus.btn-open-outline:hover,
+body.admin-body input[type="submit"]:focus.btn-open-outline:focus,
+body.admin-body input[type="reset"]:focus.btn-open-outline:hover,
+body.admin-body input[type="reset"]:focus.btn-open-outline:focus,
+body.admin-body input[type="button"]:focus.btn-open-outline:hover,
+body.admin-body input[type="button"]:focus.btn-open-outline:focus {
+  color: #fff !important;
+  background-color: #36a97a;
+  border-color: #36a97a;
+}
+
+body.admin-body .btn:hover.btn-closed:hover,
+body.admin-body .btn:hover.btn-closed:focus,
+body.admin-body button:hover.btn-closed:hover,
+body.admin-body button:hover.btn-closed:focus,
+body.admin-body input[type="submit"]:hover.btn-closed:hover,
+body.admin-body input[type="submit"]:hover.btn-closed:focus,
+body.admin-body input[type="reset"]:hover.btn-closed:hover,
+body.admin-body input[type="reset"]:hover.btn-closed:focus,
+body.admin-body input[type="button"]:hover.btn-closed:hover,
+body.admin-body input[type="button"]:hover.btn-closed:focus,
+body.admin-body .btn:focus.btn-closed:hover,
+body.admin-body .btn:focus.btn-closed:focus,
+body.admin-body button:focus.btn-closed:hover,
+body.admin-body button:focus.btn-closed:focus,
+body.admin-body input[type="submit"]:focus.btn-closed:hover,
+body.admin-body input[type="submit"]:focus.btn-closed:focus,
+body.admin-body input[type="reset"]:focus.btn-closed:hover,
+body.admin-body input[type="reset"]:focus.btn-closed:focus,
+body.admin-body input[type="button"]:focus.btn-closed:hover,
+body.admin-body input[type="button"]:focus.btn-closed:focus {
+  background-color: #d83b31;
+  border-color: #330c0a;
+}
+
+body.admin-body .btn:hover.btn-closed-outline:hover,
+body.admin-body .btn:hover.btn-closed-outline:focus,
+body.admin-body button:hover.btn-closed-outline:hover,
+body.admin-body button:hover.btn-closed-outline:focus,
+body.admin-body input[type="submit"]:hover.btn-closed-outline:hover,
+body.admin-body input[type="submit"]:hover.btn-closed-outline:focus,
+body.admin-body input[type="reset"]:hover.btn-closed-outline:hover,
+body.admin-body input[type="reset"]:hover.btn-closed-outline:focus,
+body.admin-body input[type="button"]:hover.btn-closed-outline:hover,
+body.admin-body input[type="button"]:hover.btn-closed-outline:focus,
+body.admin-body .btn:focus.btn-closed-outline:hover,
+body.admin-body .btn:focus.btn-closed-outline:focus,
+body.admin-body button:focus.btn-closed-outline:hover,
+body.admin-body button:focus.btn-closed-outline:focus,
+body.admin-body input[type="submit"]:focus.btn-closed-outline:hover,
+body.admin-body input[type="submit"]:focus.btn-closed-outline:focus,
+body.admin-body input[type="reset"]:focus.btn-closed-outline:hover,
+body.admin-body input[type="reset"]:focus.btn-closed-outline:focus,
+body.admin-body input[type="button"]:focus.btn-closed-outline:hover,
+body.admin-body input[type="button"]:focus.btn-closed-outline:focus {
+  color: #fff;
+  background-color: #e0645c;
+  border-color: #e0645c;
+}
+
+body.admin-body .btn:active,
+body.admin-body button:active,
+body.admin-body input[type="submit"]:active,
+body.admin-body input[type="reset"]:active,
+body.admin-body input[type="button"]:active {
+  -webkit-box-shadow: inset 0px 0px 49px -8px rgba(0, 0, 0, 0.61);
+  -moz-box-shadow: inset 0px 0px 49px -8px rgba(0, 0, 0, 0.61);
+  box-shadow: inset 0px 0px 49px -8px rgba(0, 0, 0, 0.61);
+}
+
+input[type="submit"]:last-child {
+  margin-bottom: 0;
 }
 
 /*----------------------------------------------------
+	FORM STYLING
+-----------------------------------------------------*/
+/*
 	Form Inputs
 -----------------------------------------------------*/
 input[type="email"],
@@ -3209,10 +3374,6 @@ label > .label-body {
 }
 
 form:last-of-type {
-  margin-bottom: 0;
-}
-
-input[type="submit"]:last-child {
   margin-bottom: 0;
 }
 

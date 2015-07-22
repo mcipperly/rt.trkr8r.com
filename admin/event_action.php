@@ -28,6 +28,26 @@ include ('../includes/admin-sidebar.php');
 
 <div class="row">
     <div class="twelve cols callout">
+        <h2 class="callout-title">Manage</h2>
+            
+        <div class="row">
+            <div class="eight cols">
+                <h3>Status</h3>
+                <a href="#"><button class="btn-open">Event is Open</button></a> <a href="#"><button class="btn-closed-outline">Mark as Complete</button></a>
+                <p><small><em>Marking this event as complete will add it to the Completed Events page. You will
+    no longer be able to make additional changes unless you reopen the event.</em></small></p>
+            </div>
+            
+            <div class="four cols">
+                <h3>Quick Export</h3>
+                <a href="#"><button>All Fields</button></a> <a href="#"><button>Mailing Fields</button></a> <a href="#"><button>eNewsletter Fields</button></a>
+            </div>            
+        </div>   
+    </div>  
+</div>
+    
+<div class="row">
+    <div class="twelve cols callout">
         <h2 class="callout-title">Volunteers</h2>
             
         <div class="row">
