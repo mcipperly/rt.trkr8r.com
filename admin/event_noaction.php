@@ -29,7 +29,7 @@ include ('../includes/admin-sidebar.php');
         <div class="row">
             <div class="eight cols">
                 <h3>Status</h3>
-                <a href="#"><button>Open</button></a> <a href="#"><button>Mark as Complete</button></a>
+                <a href="#"><button class="btn btn-open">Event is Open</button></a> <a href="#"><button class="btn btn-closed-outline">Mark as Complete</button></a>
                 <p><small><em>Marking this event as complete will add it to the Completed Events page. You will
     no longer be able to make additional changes unless you reopen the event.</em></small></p>
             </div>
@@ -53,5 +53,9 @@ manage their affiliations and hours.</p>
     </div>  
 </div>
     
+<div>
+    <div class="left"><a href="manage-events.php"><span class="fa fa-calendar"></span> Back to Manage Events</a></div>
+    <div class="clear"></div>
+</div>  
     
 <?php include ('../includes/footer.php'); ?>
