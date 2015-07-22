@@ -1,0 +1,149 @@
+/*----------------------------------------------------
+	BUTTON STYLING
+-----------------------------------------------------*/
+
+.btn,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+    font-weight: 600 !important;
+    display: inline-block;
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 1.5rem $primary-font;
+    text-transform: capitalize;
+    padding: 8px 12px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    color: #fff;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 0;
+    border-bottom: 2px solid darken($primary-color, 10%); 
+    background-color: $primary-color;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.btn:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus {
+	background-color: darken($primary-color, 4%);
+	border-color: darken($primary-color, 55%);
+}
+
+.btn:active,
+button:active,
+input[type="submit"]:active,
+input[type="reset"]:active,
+input[type="button"]:active {
+    -webkit-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
+    -moz-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
+    box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
+}
+
+body.admin-body {
+    
+    .btn, 
+    button,
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"] {
+
+        color: #fff;
+        background-color: #868686;
+        border-color: darken(#868686, 30%);
+        text-shadow: none;
+        
+        &.btn-open {
+            color: #fff;
+            background-color: #36a97a;
+            border-color: darken(#36a97a, 15%);
+        }
+
+        &.btn-open-outline {
+            color: #36a97a !important;
+            text-shadow: none;
+            background-color: #fff;
+            border: 2px solid #36a97a;
+            padding: 6px 12px 8px 12px;
+        }
+
+        &.btn-closed {
+            color: #fff;
+            background-color: #e0645c;
+            border-color: darken(#e0645c, 15%);
+        }
+
+        &.btn-closed-outline {
+            color: #e0645c;
+            text-shadow: none;
+            background-color: #fff;
+            border: 2px solid #e0645c;
+            padding: 6px 12px 8px 12px;
+        }
+    }
+    
+    .btn:hover,
+    button:hover,
+    input[type="submit"]:hover,
+    input[type="reset"]:hover,
+    input[type="button"]:hover,
+    .btn:focus,
+    button:focus,
+    input[type="submit"]:focus,
+    input[type="reset"]:focus,
+    input[type="button"]:focus {
+             
+        background-color: darken(#868686, 12%);
+        border-color: darken(#868686, 50%);
+        
+        &.btn-open:hover,
+        &.btn-open:focus {
+            background-color: darken(#36a97a, 12%);
+            border-color: darken(#36a97a, 50%);
+        }
+
+        &.btn-open-outline:hover,
+        &.btn-open-outline:focus {
+            color: #fff !important;
+            background-color: #36a97a;
+            border-color: #36a97a;
+        }
+
+        &.btn-closed:hover,
+        &.btn-closed:focus {
+            background-color: darken(#e0645c, 10%);
+            border-color: darken(#e0645c, 50%);
+        }
+
+        &.btn-closed-outline:hover,
+        &.btn-closed-outline:focus {
+            color: #fff;
+            background-color: #e0645c;
+            border-color: #e0645c;
+        }
+    }
+    
+    .btn:active,
+    button:active,
+    input[type="submit"]:active,
+    input[type="reset"]:active,
+    input[type="button"]:active {
+        -webkit-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
+        -moz-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
+        box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
+    }
+
+}
+
+input[type="submit"]:last-child {
+  margin-bottom: 0;
+}
