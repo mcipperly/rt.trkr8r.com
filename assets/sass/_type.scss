@@ -69,6 +69,7 @@ footer {
     color: $primary-color;
 }
 
-.sml {
-    font-size: 1.2rem
+.sml, small {
+    font-size: 1.2rem;
+    line-height: 1rem;
 }

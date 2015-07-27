@@ -19,6 +19,7 @@
     display: inline !important;
 }
 
+
 /* Responsive Utilities */
 /* Hide from screenreaders and browsers - Credit: HTML5 Boilerplate */
 .hidden {
@@ -47,11 +48,15 @@
 
 /*  Phones only */
 @media (max-width: 770px) {
-  /*  Hide everything else */
-  .hidden-desktop    { display: inherit !important; }
-  .visible-desktop   { display: none !important; }
-  /*  Show */
-  .visible-phone     { display: inline !important; } /* Use inherit to restore previous behavior */
-  /*  Hide */
-  .hidden-phone      { display: none !important; }
+    /*  Hide everything else */
+    .hidden-desktop    { display: inherit !important; }
+    .visible-desktop   { display: none !important; }
+    /*  Show */
+    .visible-phone     { display: inline !important; } /* Use inherit to restore previous behavior */
+    /*  Hide */
+    .hidden-phone      { display: none !important; }
+
+    .phone-space-top {
+        margin-top: 18px !important;
+    }
 }

@@ -1,4 +1,4 @@
-/*Responsive/* Standard Tables */
+/* Responsive Standard Tables */
 table {
     width: 100%;
     margin:0;
@@ -98,4 +98,39 @@ table + div {
         }
     }
 
+}
+
+/* Extra for Print Icon Column */
+
+.print_details {
+    background-color: #fff;
+    
+    a {
+        color: #515151;
+        
+        &:hover {
+            opacity: 0.5;
+            }
+        }
+    }
+
+@media screen and (max-width: $break-phone) {
+    
+.print_details {
+    background-color: transparent;
+    
+    a {
+        color: #515151;
+        
+        &:hover {
+            opacity: 0.5;
+            }
+        }
+    }
+}
+
+table {
+    input, textarea, select, fieldset {
+        margin-bottom: 0; 
+    }
 }
