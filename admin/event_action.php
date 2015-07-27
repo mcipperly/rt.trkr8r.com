@@ -56,7 +56,7 @@ include ('../includes/admin-sidebar.php');
             <div class="row">
                 <div class="five cols">
                     <select class="full-width">
-                    <option value="Affiliation">Affiliation</option>
+                    <option value="Organization/Affiliation">Organization/Affiliation</option>
                       <option value="K&amp;L Gates">K&amp;L Gates</option>
                       <option value="American Eagle">American Eagle</option>
                       <option value="Davison">Davison</option>
@@ -79,7 +79,7 @@ include ('../includes/admin-sidebar.php');
                     <tr>
                         <td data-label="Print Details" class="print_details"><a href="#"><span class="fa fa-print fa-lg"></span></a></td>
                         <td data-label="Volunteer Name">Volunteer Name</td>
-                        <td data-label="Affiliation">
+                        <td data-label="Org/Affiliation">
                             <select>
                                 <option value="K&amp;L Gates">K&amp;L Gates</option>
                                 <option value="American Eagle">American Eagle</option>
@@ -93,7 +93,7 @@ include ('../includes/admin-sidebar.php');
                     <tr>
                         <td data-label="Print Details" class="print_details"><a href="#"><span class="fa fa-print fa-lg"></span></a></td>
                         <td data-label="Volunteer Name">Volunteer Name</td>
-                        <td data-label="Affiliation">
+                        <td data-label="Org/Affiliation">
                             <select>
                                 <option value="K&amp;L Gates">K&amp;L Gates</option>
                                 <option value="American Eagle">American Eagle</option>
@@ -106,7 +106,7 @@ include ('../includes/admin-sidebar.php');
                     <tr>
                         <td data-label="Print Details" class="print_details"><a href="#"><span class="fa fa-print fa-lg"></span></a></td>
                         <td data-label="Volunteer Name">Volunteer Name</td>
-                        <td data-label="Affiliation">
+                        <td data-label="Org/Affiliation">
                             <select>
                                 <option value="K&amp;L Gates">K&amp;L Gates</option>
                                 <option value="American Eagle">American Eagle</option>
@@ -119,7 +119,7 @@ include ('../includes/admin-sidebar.php');
                     <tr>
                         <td data-label="Print Details" class="print_details"><a href="#"><span class="fa fa-print fa-lg"></span></a></td>
                         <td data-label="Volunteer Name">Volunteer Name</td>
-                        <td data-label="Affiliation">
+                        <td data-label="Org/Affiliation">
                             <select>
                                 <option value="K&amp;L Gates">K&amp;L Gates</option>
                                 <option value="American Eagle">American Eagle</option>

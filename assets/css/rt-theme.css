@@ -3708,6 +3708,7 @@ body.admin-body h1.admin-page-title {
   font-weight: 200;
   letter-spacing: .025rem;
   color: #696969;
+  line-height: 1.7;
 }
 
 body.admin-body h1.admin-page-title a {

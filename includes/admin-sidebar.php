@@ -25,6 +25,7 @@
             <li><a href="/admin/manage-events.php"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Manage Events</a></li>
             <li><a href="/admin/export-records.php"><span class="fa fa-file-excel-o"></span>&nbsp;&nbsp;Export Records</a></li>
             <li><a href="/admin/print-records.php"><span class="fa fa-print"></span>&nbsp;&nbsp;Print Records</a></li>
+            <li><a href="/admin/manage-orgs.php"><span class="fa fa-th"></span>&nbsp;&nbsp;Manage Organizations</a></li>
             <li><a href="/admin/manage-users.php"><span class="fa fa-group"></span>&nbsp;&nbsp;Manage Users</a></li>
             <li><a href="#api"><span class="fa fa-paint-brush"></span>&nbsp;&nbsp;Customize Theme</a></li>
             <li><a href="/admin/onsite.php"><span class="fa fa-toggle-off"></span>&nbsp;&nbsp;Activate On-Site Mode</a></li>
