@@ -39,7 +39,7 @@ include ('../includes/admin-sidebar.php');
             </div>
             
             <div class="four cols">
-                <h3>Quick Export</h3>
+                <h3 class="phone-space-top">Quick Export</h3>
                 <a href="#"><button>All Fields</button></a> <a href="#"><button>Mailing Fields</button></a> <a href="#"><button>eNewsletter Fields</button></a>
             </div>            
         </div>   
@@ -55,15 +55,15 @@ include ('../includes/admin-sidebar.php');
             <form>
             <div class="row">
                 <div class="five cols">
-                <label>Affiliation</label>
-                    <select>
+                    <select class="full-width">
+                    <option value="Affiliation">Affiliation</option>
                       <option value="K&amp;L Gates">K&amp;L Gates</option>
                       <option value="American Eagle">American Eagle</option>
                       <option value="Davison">Davison</option>
                     </select>
                 </div>
                 <div class="five cols">
-                <label>Hours</label><input class="full-width" type="text" id="logged_hours" name="logged_hours" value="{$readable_logged_hours}"/>
+                <input type="text" class="full-width" id="logged_hours" name="logged_hours" value="" placeholder="Hours (example: 8.00)" />
                 </div>               
                 <div class="two cols">
                 <input type="submit" value="Apply" class="btn full-width no-min">
@@ -86,7 +86,7 @@ include ('../includes/admin-sidebar.php');
                                 <option value="Davison">Davison</option>
                             </select>
                         </td>
-                        <td data-label="Hours"><input type="text" id="logged_hours" name="logged_hours" value="{$readable_logged_hours}"/></td>
+                        <td data-label="Hours"><input type="text" id="logged_hours" name="logged_hours" value="8.00"/></td>
                     </tr>
                     
                     
@@ -100,7 +100,7 @@ include ('../includes/admin-sidebar.php');
                                 <option value="Davison">Davison</option>
                             </select>
                         </td>
-                        <td data-label="Hours"><input type="text" id="logged_hours" name="logged_hours" value="{$readable_logged_hours}"/></td>
+                        <td data-label="Hours"><input type="text" id="logged_hours" name="logged_hours" value="8.00"/></td>
                     </tr>
                     
                     <tr>
@@ -113,7 +113,7 @@ include ('../includes/admin-sidebar.php');
                                 <option value="Davison">Davison</option>
                             </select>
                         </td>
-                        <td data-label="Hours"><input type="text" id="logged_hours" name="logged_hours" value="{$readable_logged_hours}"/></td>
+                        <td data-label="Hours"><input type="text" id="logged_hours" name="logged_hours" value="8.00"/></td>
                     </tr>
 
                     <tr>
@@ -126,11 +126,11 @@ include ('../includes/admin-sidebar.php');
                                 <option value="Davison">Davison</option>
                             </select>
                         </td>
-                        <td data-label="Hours"><input type="text" id="logged_hours" name="logged_hours" value="{$readable_logged_hours}"/></td>
+                        <td data-label="Hours"><input type="text" id="logged_hours" name="logged_hours" value="8.00"/></td>
                     </tr>
                 </tbody>
             </table>
-                <input type="submit" class="btn right" value="Apply">
+                <input type="submit" class="btn right" value="Update Stats">
             </form>            
         </div>
         

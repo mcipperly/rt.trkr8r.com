@@ -35,7 +35,7 @@ include ('../includes/admin-sidebar.php');
             </div>
             
             <div class="four cols">
-                <h3>Quick Export</h3>
+                <h3 class="phone-space-top">Quick Export</h3>
                 <a href="#"><button>All Fields</button></a> <a href="#"><button>Mailing Fields</button></a> <a href="#"><button>eNewsletter Fields</button></a>
             </div>            
         </div>   
@@ -51,7 +51,7 @@ include ('../includes/admin-sidebar.php');
                 
                 <thead>
                     <tr>
-                        <th></th>
+                        <th class="print_details"></th>
                         <th>Volunteer Name</th>
                         <th>Affiliation</th>
                         <th>Hours</th>
