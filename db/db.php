@@ -346,11 +346,15 @@ function get_form($form_id) {
 	return $form;
 }
 
-function get_companies() {
+function get_companies($offset = 0, $count = 0) {
 	// function to return all active company affiliations
 	$db_link = setup_db();
 	
 	$query = "SELECT * FROM `company` WHERE `active` = 1 ORDER BY `name`";
+
+	if($count) {
+		$query .= " LIMIT {$offset}, {$count}";
+	}
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
 	$companies = _get_all($result);
@@ -676,7 +680,13 @@ function get_events($search = null) {
 	if($search['start_date'] && $search['end_date'])
 		$query .= "AND `date` BETWEEN '{$search['start_date']}' AND '{$search['end_date']}'\n";
 	
-	$query .= "ORDER BY `date`, `event_id`";
+	
+	$query .= "ORDER BY `date`, `event_id`"; 
+
+	if($search['count']) {
+		$search['offset'] = (int) $search['offset'];
+		$query .= "\nLIMIT {$search['offset']}, {$search['count']}";
+	}
 	
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	$event_ids = _get_col($result);
@@ -746,6 +756,26 @@ function update_event($event_id, $date, $note, $location) {
 	$location = mysqli_real_escape_string($db_link, $location);
 	
 	$query = "UPDATE `event` SET `date` = '{$date}', `note` = {$note}, `location` = {$location} WHERE `event_id` n = {$event_id}";
+	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
+	return TRUE;
+}
+
+function toggle_event_status($event_id) {
+	//Function to swap an event between "open" and "closed"
+	$db_link = setup_db();
+	
+	if(!$event_id)
+		return FALSE;
+	
+	$query = "SELECT `status_id` FROM `event` WHERE `event_id` = {$event_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	$status_id = _get_one($result);
+	
+	$new_status_id = ($status_id == 2) ? 1 : 2;
+	
+	$query = "UPDATE `event` SET `status_id` = {$new_status_id} WHERE `event_id` = {$event_id}";
 	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	return TRUE;
