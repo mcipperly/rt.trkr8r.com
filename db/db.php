@@ -346,7 +346,7 @@ function get_form($form_id) {
 	return $form;
 }
 
-function get_companies($offset = 0, $count = 0) {
+function get_organizations($offset = 0, $count = 0) {
 	// function to return all active company affiliations
 	$db_link = setup_db();
 	

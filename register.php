@@ -17,8 +17,6 @@ function get_response($response) {
 	return ($response['element_id'] == $search_element_id);
 }
 
-$companies = get_companies();
-
 $form_id = 1; //Hard-coded for now, until ability to choose forms is available
 
 $form = get_form($form_id);
