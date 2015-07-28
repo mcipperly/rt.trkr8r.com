@@ -135,7 +135,7 @@ EOS;
 		case "text":
 			$html = <<<EOS
         <div class="{$cols} cols">
-            <label for="{$element['name']}">{$element['label']}<sup class="sml">{$asterisk_string}</sup></label>
+            <label for="{$element['name']}">{$element['label']}<sup>{$asterisk_string}</sup></label>
             <input class="full-width" type="{$element['type']}" placeholder="" name="{$element['name']}"{$required_html} value="{$value}" />
 			</div>
 EOS;
@@ -217,7 +217,7 @@ foreach($form['elements'] as $element) {
 			$asterisk_string .= "*";
 		
 		$html = <<<EOS
-<p class="sml"><sup>{$asterisk_string}</sup><em>{$element['description']}</em></p>
+<small><sup>{$asterisk_string}</sup><em>{$element['description']}</em></small>
 EOS;
 		print($html);
 	}
