@@ -35,6 +35,11 @@ function _get_all($result) {
 	return $return_array;
 }
 
+function testing($text) {
+	echo "<PRE>"; print_r($text); echo "</PRE>";
+	exit;
+}
+
 function create_user($email, $password) {
 	// function to create user credentials
 	$db_link = setup_db();
@@ -361,6 +366,52 @@ function get_organizations($offset = 0, $count = 0) {
 	$no_company[] = array("company_id" => 0, "name" => "--");
 	
 	return array_merge($no_company, $companies);
+}
+
+function create_organization($name) {
+	//function to create a new organization
+
+	if(!$name)
+		return FALSE;
+	
+	$db_link = setup_db();
+	
+	$query = "INSERT INTO `company` (`name`, `active`, `date_added`) VALUES ('{$name}', 1, CURRENT_DATE())";
+	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
+function update_organization($company_id, $name) {
+	//function to update an organization's name
+	
+	if(!($company_id && $name))
+		return FALSE;
+	
+	$db_link = setup_db();
+	
+	$name = mysqli_real_escape_string($db_link, $name);
+	
+	$query = "UPDATE `company` SET `name` = '{$name}' WHERE `company_id` = {$company_id}";
+	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
+function invalidate_organization($company_id) {
+	//function to remove org from appearing in org list
+	//while preserving its data where it's already used
+	
+	if(!$company_id)
+		return FALSE;
+	
+	$db_link = setup_db();
+	
+	$query = "UPDATE `company` SET `active` = 0 WHERE `company_id` = {$company_id}";
+	
+	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
 }
 
 function get_form_elements($form_id) {

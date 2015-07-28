@@ -4,6 +4,23 @@ include ('../includes/admin-sidebar.php');
 require_once('../db/db.php');
 include('validate.php');
 
+foreach($_REQUEST as $key => $value) {
+	if(substr_count($key, "remove_")) {
+		$val_arr = explode('_', $key);
+		invalidate_organization($val_arr[1]);
+	}
+	
+	if(substr_count($key, "update_")) {
+		$val_arr = explode('_', $key);
+		update_organization($val_arr[1], $value);
+	}
+}
+
+
+if($_REQUEST['organization']) {
+	create_organization($_REQUEST['organization']);
+}
+
 $orgs = get_organizations();
 
 //do this to remove the "no company" entry at the start of the array
@@ -58,7 +75,7 @@ EOS;
 	$html = <<<EOS
                     <tr>
                         <td data-label="Organization" class="manage-users-table--user"><span class="manage-users-table--user-break">{$org['name']}</span></td>
-                        <td data-label="Remove" class="manage-users-table--remove"><input type="checkbox" class="big" name="remove_{$user['user_id']}" size="1"></td>
+                        <td data-label="Remove" class="manage-users-table--remove"><input type="checkbox" class="big" name="remove_{$org['company_id']}" size="1"></td>
                     </tr>
 EOS;
 	print($html);
