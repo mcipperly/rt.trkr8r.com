@@ -17,8 +17,8 @@ foreach($_POST as $key => $value) {
   }
 }
 
-if(isset($_POST['email']) && isset($_POST['password'])) {
-  create_user($_POST['email'], $_POST['password'], 0);
+if(isset($_POST['username']) && isset($_POST['password'])) {
+  create_user($_POST['username'], $_POST['password'], 0);
 }
 
 $users = get_users();

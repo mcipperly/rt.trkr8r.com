@@ -1,0 +1,26 @@
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+
+
+.#{$fa-css-prefix}-bars:before { content: $fa-var-bars; }
+.#{$fa-css-prefix}-power-off:before { content: $fa-var-power-off; }
+.#{$fa-css-prefix}-toggle-off:before { content: $fa-var-toggle-off; }
+.#{$fa-css-prefix}-toggle-on:before { content: $fa-var-toggle-on; }
+.#{$fa-css-prefix}-gear:before,
+.#{$fa-css-prefix}-cog:before { content: $fa-var-cog; }
+.#{$fa-css-prefix}-calendar:before { content: $fa-var-calendar; }
+.#{$fa-css-prefix}-print:before { content: $fa-var-print; }
+.#{$fa-css-prefix}-file-excel-o:before { content: $fa-var-file-excel-o; }
+.#{$fa-css-prefix}-th:before { content: $fa-var-th; }
+.#{$fa-css-prefix}-group:before,
+.#{$fa-css-prefix}-users:before { content: $fa-var-users; }
+.#{$fa-css-prefix}-user:before { content: $fa-var-user; }
+.#{$fa-css-prefix}-paint-brush:before { content: $fa-var-paint-brush; }
+.#{$fa-css-prefix}-arrow-circle-left:before { content: $fa-var-arrow-circle-left; }
+.#{$fa-css-prefix}-arrow-circle-right:before { content: $fa-var-arrow-circle-right; }
+.#{$fa-css-prefix}-angle-left:before { content: $fa-var-angle-left; }
+.#{$fa-css-prefix}-angle-right:before { content: $fa-var-angle-right; }
+.#{$fa-css-prefix}-home:before { content: $fa-var-home; }
+.#{$fa-css-prefix}-wrench:before { content: $fa-var-wrench; }
+.#{$fa-css-prefix}-clock-o:before { content: $fa-var-clock-o; }
+.#{$fa-css-prefix}-plus-circle:before { content: $fa-var-plus-circle; } 

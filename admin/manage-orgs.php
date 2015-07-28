@@ -4,24 +4,27 @@ include ('../includes/admin-sidebar.php');
 require_once('../db/db.php');
 include('validate.php');
 
-foreach($_POST as $key => $value) {
-  if(substr($key, 0, 7) == "remove_") {
-    $val_arr = explode('_', $key);
-    if($val_arr[1] != validate_user($_SESSION['user'])) {
-      delete_user($val_arr[1]);
-    } else {
-      ?><script type="text/javascript">
-        vex.dialog.alert('Unable to delete yourself!');
-        </script><?php
-    }
-  }
+foreach($_REQUEST as $key => $value) {
+	if(substr_count($key, "remove_")) {
+		$val_arr = explode('_', $key);
+		invalidate_organization($val_arr[1]);
+	}
+	
+	if(substr_count($key, "update_")) {
+		$val_arr = explode('_', $key);
+		update_organization($val_arr[1], $value);
+	}
 }
 
-if(isset($_POST['email']) && isset($_POST['password'])) {
-  create_user($_POST['email'], $_POST['password'], 0);
+
+if($_REQUEST['organization']) {
+	create_organization($_REQUEST['organization']);
 }
 
-$users = get_users();
+$orgs = get_organizations();
+
+//do this to remove the "no company" entry at the start of the array
+array_shift($orgs);
 
 $html = <<<EOS
 
@@ -48,7 +51,7 @@ $html = <<<EOS
 EOS;
 print($html);
 
-foreach($users as $key => $user) {
+foreach($orgs as $key => $org) {
 	if($key == 0) {
 		$html = <<<EOS
     <div class="row">
@@ -71,13 +74,13 @@ EOS;
 	
 	$html = <<<EOS
                     <tr>
-                        <td data-label="Organization" class="manage-users-table--user"><span class="manage-users-table--user-break">{$user['email']}</span></td>
-                        <td data-label="Remove" class="manage-users-table--remove"><input type="checkbox" class="big" name="remove_{$user['user_id']}" size="1"></td>
+                        <td data-label="Organization" class="manage-users-table--user"><span class="manage-users-table--user-break">{$org['name']}</span></td>
+                        <td data-label="Remove" class="manage-users-table--remove"><input type="checkbox" class="big" name="remove_{$org['company_id']}" size="1"></td>
                     </tr>
 EOS;
 	print($html);
 
-	if($key + 1 == sizeof($users)) {
+	if($key + 1 == sizeof($orgs)) {
 		$html = <<<EOS
     
                     </tbody>
