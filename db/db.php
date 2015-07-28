@@ -85,7 +85,7 @@ function validate_user($email) {
 	
 	$email = mysqli_real_escape_string($db_link, $email);
 	
-	$query = "SELECT COUNT(1) FROM `user` WHERE `email` LIKE '{$email}'";
+	$query = "SELECT `user_id` FROM `user` WHERE `email` LIKE '{$email}'";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link)); 
 	return _get_one($result);
 }
