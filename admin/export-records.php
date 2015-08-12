@@ -90,10 +90,10 @@ ALWAYS DISPLAY THE QUICK AND CUSTOM EXPORTS -->
         
      <!-- FROM HERE DOWN, THESE DISPLAY WITH EITHER PRIMARY FILTER -->
         <h3>Quick Export</h3>
-        <form method="GET">
-            <input type="hidden" name="export" value="true"></input>
+
             <div class="row">
-                <div class="four cols">
+                <!--
+<div class="four cols">
                 <input type="checkbox" id="checkmaster" onClick="toggleAll()">&nbsp;Export All Fields
                 </div>
                 <div class="four cols">
@@ -102,9 +102,13 @@ ALWAYS DISPLAY THE QUICK AND CUSTOM EXPORTS -->
                 <div class="four cols">
                 <input type="checkbox" id="mailbox" name="preset_id" value="3" onclick="toggleOther(this,'mcbox')">&nbsp;Export For Mailers
                 </div>
+            -->
+                <a href="#"><button>All Fields</button></a> <a href="#"><button>Mailing Fields</button></a> <a href="#"><button>eNewsletter Fields</button></a>
             </div>
      <br>
         <h3>Or Custom Export</h3>
+            <form method="GET">
+            <input type="hidden" name="export" value="true"></input>
             <div class="row">
                 <div class="four cols">
                 <input type="checkbox" name="element_ids[]" value="1">&nbsp;First Name
