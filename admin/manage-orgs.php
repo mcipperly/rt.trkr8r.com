@@ -59,11 +59,11 @@ foreach($orgs as $key => $org) {
             <h2 class="callout-title">Current Organizations</h2>
 
             <form method="POST">
-                <table class="manage-users-table">
+                <table class="manage-table">
                     <thead>
                         <tr>
-                            <th class="manage-users-table--user">Organization</th>
-                            <th class="manage-users-table--remove">Remove</th>
+                            <th class="manage-table--orgs">Organization</th>
+                            <th class="manage-table--remove">Remove</th>
                         </tr>
                     </thead>
 
@@ -74,8 +74,8 @@ EOS;
 	
 	$html = <<<EOS
                     <tr>
-                        <td data-label="Organization" class="manage-users-table--user"><span class="manage-users-table--user-break">{$org['name']}</span></td>
-                        <td data-label="Remove" class="manage-users-table--remove"><input type="checkbox" class="big" name="remove_{$org['company_id']}" size="1"></td>
+                        <td data-label="Organization" class="manage-table--orgs"><span class="manage-table--break">{$org['name']}</span></td>
+                        <td data-label="Remove" class="manage-table--remove"><input type="checkbox" class="big" name="remove_{$org['company_id']}" size="1"></td>
                     </tr>
 EOS;
 	print($html);
