@@ -60,11 +60,11 @@ foreach($users as $key => $user) {
             <h2 class="callout-title">Current Users</h2>
 
             <form method="POST">
-                <table class="manage-users-table">
+                <table class="manage-table">
                     <thead>
                         <tr>
-                            <th class="manage-users-table--user" style="text-transform: uppercase;">User</th>
-                            <th class="manage-users-table--remove">Remove</th>
+                            <th class="manage-table--user" style="text-transform: uppercase;">User</th>
+                            <th class="manage-table--remove">Remove</th>
                         </tr>
                     </thead>
 
@@ -75,8 +75,8 @@ EOS;
 	
 	$html = <<<EOS
                     <tr>
-                        <td data-label="User" class="manage-users-table--user"><span class="manage-users-table--user-break">{$user['email']}</span></td>
-                        <td data-label="Remove" class="manage-users-table--remove"><input type="checkbox" class="big" name="remove_{$user['user_id']}" size="1"></td>
+                        <td data-label="User" class="manage-table--user"><span class="manage-table--break">{$user['email']}</span></td>
+                        <td data-label="Remove" class="manage-table--remove"><input type="checkbox" class="big" name="remove_{$user['user_id']}" size="1"></td>
                     </tr>
 EOS;
 	print($html);
