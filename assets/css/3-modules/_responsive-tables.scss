@@ -76,6 +76,7 @@ table {
 table.manage-users-table {
     .manage-users-table--user {
         text-align: left;
+        text-transform: lowercase;
     }
     
     .manage-users-table--remove {

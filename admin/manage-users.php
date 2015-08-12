@@ -63,7 +63,7 @@ foreach($users as $key => $user) {
                 <table class="manage-users-table">
                     <thead>
                         <tr>
-                            <th class="manage-users-table--user">User</th>
+                            <th class="manage-users-table--user" style="text-transform: uppercase;">User</th>
                             <th class="manage-users-table--remove">Remove</th>
                         </tr>
                     </thead>
