@@ -1,0 +1,97 @@
+/*----------------------------------------------------
+	FORM STYLING
+-----------------------------------------------------*/
+/*
+	Form Inputs
+-----------------------------------------------------*/
+
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select {
+    height: 38px;
+    padding: 6px 10px;
+    background-color: #fff;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+}
+/* Removes awkward default styles on some inputs for iOS */
+
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+textarea {
+    min-height: 65px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border: 1px solid #33C3F0;
+    outline: 0;
+}
+label,
+legend {
+    display: block;
+    margin-bottom: .5rem;
+    font-weight: 600;
+}
+fieldset {
+    padding: 0;
+    border-width: 0;
+}
+input[type="checkbox"],
+input[type="radio"] {
+    display: inline;
+}
+
+    input[type=checkbox].big:not(old),
+    input[type=radio].big:not(old){
+        margin: 0;
+        padding: 0;
+        height: 22px;
+        width: 22px;
+    }
+
+    input[type=checkbox].big:not(old) + label,
+    input[type=radio].big:not(old) + label{
+        display: block;
+        margin: -31px 0 0 23px;
+    }
+
+label > .label-body {
+    display: inline-block;
+    margin-left: .5rem;
+    font-weight: normal;
+}
+
+form:last-of-type {
+    margin-bottom:0;
+}
+
+td[data-label="Hours"] {
+    text-align: right;
+}

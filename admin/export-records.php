@@ -158,6 +158,8 @@ EOS;
 ?>
      <br>
         <h3>Or Custom Export</h3>
+            <form method="GET">
+            <input type="hidden" name="export" value="true"></input>
             <div class="row">
                 <div class="four cols">
                 <input type="checkbox" name="element_ids[]" value="1">&nbsp;First Name

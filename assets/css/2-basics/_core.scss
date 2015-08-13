@@ -1,0 +1,66 @@
+/*----------------------------------------------------
+	CORE CSS
+-----------------------------------------------------*/
+
+html {
+    font-size: 62.5%; /* 1.5rem = 15px */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font: 1.7rem/2.5rem $primary-font;
+    /* currently ems cause chrome bug misinterpreting rems on body element */
+	background: $bkg-color;
+    padding-top: 30px;
+    color: #222;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	width: auto\9; /* ie8 */
+}
+
+a img {
+	border: none;
+	outline: none;
+}
+
+a {
+	text-decoration: none !important;
+	color: $primary-color;
+	outline: none;
+}
+
+a:hover {
+	color: $secondary-color;
+}
+
+hr {
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+}
+
+
+/* Spacing
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+button,
+.btn {
+  margin-bottom: 1rem; }
+input,
+textarea,
+select,
+fieldset {
+  margin-bottom: 1.5rem; }
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form {
+  margin-bottom: 2.5rem; }

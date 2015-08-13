@@ -71,14 +71,18 @@ table {
     }
 }
 
-/* Extras for Manage Users Table */
+/* Extras for Management Tables (Orgs and Users) */
 
-table.manage-users-table {
-    .manage-users-table--user {
+table.manage-table {
+    .manage-table--user, .manage-table--orgs {
         text-align: left;
     }
     
-    .manage-users-table--remove {
+    .manage-table--user {
+        text-transform: lowercase;
+    }
+    
+    .manage-table--remove {
         text-align: right;
     }      
 }
@@ -91,9 +95,10 @@ table + div {
 
 @media screen and (max-width: $break-phone) {
 
-    table.manage-users-table {
-        .manage-users-table--user, 
-        .manage-users-table--user-break {
+    table.manage-table {
+        .manage-table--user,
+        .manage-table--orgs,
+        .manage-table--break {
             text-align: right;
         }
     }
@@ -103,7 +108,7 @@ table + div {
 /* Extra for Print Icon Column */
 
 .print_details {
-    background-color: #fff;
+    background-color: #fff; 
     
     a {
         color: #515151;
@@ -113,7 +118,7 @@ table + div {
             }
         }
     }
-
+ 
 @media screen and (max-width: $break-phone) {
     
 .print_details {
