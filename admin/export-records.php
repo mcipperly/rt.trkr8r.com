@@ -103,7 +103,7 @@ ALWAYS DISPLAY THE QUICK AND CUSTOM EXPORTS -->
                 <input type="checkbox" id="mailbox" name="preset_id" value="3" onclick="toggleOther(this,'mcbox')">&nbsp;Export For Mailers
                 </div>
             -->
-                <a href="#"><button>All Fields</button></a> <a href="#"><button>Mailing Fields</button></a> <a href="#"><button>eNewsletter Fields</button></a>
+                <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>
             </div>
      <br>
         <h3>Or Custom Export</h3>

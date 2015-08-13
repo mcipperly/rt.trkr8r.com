@@ -98,7 +98,7 @@ $(function(){
               if ($key == 6) {
                 ?></div></div><div id="events_6"><div class="row flexbox"><?php
               }
-              ?><div class="four cols bkg-more-opaque">
+              ?><div class="four cols bkg-more-opaque"><div style="background-color: #fff; height:15px"></div>
                   <a href="event_noaction.php?id=<?php print($event['event_id']) ?>" class="event-box">
                     <h3><?php print($event['location']) ?></h3>
                     <h4><?php print($event['date']) ?></h4>
@@ -110,6 +110,7 @@ $(function(){
            </div>
          </div>
         </div>
+        <div style="background-color: #fff; height:15px"></div>
             <div class="slick-prev left"><a href="#"><span class="fa fa-arrow-circle-left"></span> Previous</a></div>
         <div class="slick-next right"><a href="javascript:getMoreEvents(lastEvent);">More <span class="fa fa-arrow-circle-right"></span></a></div>
 

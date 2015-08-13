@@ -57,7 +57,6 @@ foreach($orgs as $key => $org) {
     <div class="row">
         <div class="twelve cols callout">
             <h2 class="callout-title">Current Organizations</h2>
-
             <form method="POST">
                 <table class="manage-table">
                     <thead>
@@ -88,6 +87,7 @@ EOS;
                     <input type="submit" value="Remove Selected Organizations" class="right">
 </form>
 </div>
+<p><a href="org_detail.php">Sample Organization Detail Page</a></p>
 </div>
 EOS;
 		print($html);

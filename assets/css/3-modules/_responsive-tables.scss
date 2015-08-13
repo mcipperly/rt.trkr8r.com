@@ -33,6 +33,10 @@ table {
         }
 }
 
+table.right-input td[data-label="Hours"] {
+    text-align: right;
+}
+
 @media screen and (max-width: $break-phone) {
 
     table {
