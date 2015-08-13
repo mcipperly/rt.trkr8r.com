@@ -19,7 +19,7 @@ include ('../includes/admin-sidebar.php');
     </div>  
     
     <div class="four cols callout">
-        <h2 class="callout-title">Logged Hours to Date</h2>
+        <h2 class="callout-title">Hours to Date</h2>
         <p class="text"><span class="fa fa-clock-o dash left"></span><span class="right">2,500</span></p>
     </div> 
     <div class="clear"></div>

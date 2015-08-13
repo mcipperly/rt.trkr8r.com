@@ -36,7 +36,7 @@ include ('../includes/admin-sidebar.php');
             
             <div class="four cols">
                 <h3 class="phone-space-top">Quick Export</h3>
-                <a href="#"><button>All Fields</button></a> <a href="#"><button>Mailing Fields</button></a> <a href="#"><button>eNewsletter Fields</button></a>
+                <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>
             </div>            
         </div>   
     </div>  
