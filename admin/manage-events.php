@@ -17,52 +17,20 @@ $('.eventslide').slick({
     prevArrow: '.slick-prev',
     nextArrow: '.slick-next'
   });
-$('.aeventslide').slick({
-  infinite: false,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  centerPadding: '0px',
-  prevArrow: '.slick-prev-a',
-  nextArrow: '.slick-next-a'
-})
 });
-function getMoreEvents(lastEvent,qt) {
-  if(qt=="a") {
-    var openEventsDiv = document.getElementById("a_events_" + (lastEvent-3));
-    var startDate = new Date(new Date().setDate(new Date().getDate()-3650));
-    var endDate = new Date(new Date().setDate(new Date().getDate()-1));
-    var dateQuery = '&start_date='+startDate.toISOString().slice(0, 10)+'&end_date='+endDate.toISOString().slice(0, 10);
-    var numQuery = '&count=3';
-    var sliderId = '.aeventslide';
-    var colorClass = 'bkg-less-opaque';
-  } else {
-    var openEventsDiv = document.getElementById("events_" + (lastEvent-6));
-    var dateQuery = '';
-    var numQuery = '&count=6';
-    var sliderId = '.eventslide';
-    var colorClass = 'bkg-more-opaque';
-  }
-  $.getJSON("get-events.php?status_id=1"+dateQuery+numQuery+"&offset="+lastEvent, function(json){
+function getMoreEvents(lastEvent) {
+  var openEventsDiv = document.getElementById("events_" + (lastEvent-6));
+  $.getJSON("get-events.php?status_id=1&count=6&offset="+lastEvent, function(json){
     var html = '<div id="events_'+lastEvent+'"><div class="row flexbox">';
-    var iter = 0;
     $.each(json, function (key, val) {
       if(key==3) {
         html+= '</div><div class="row flexbox">';
       }
-      if(val.note.length>100) {
-        val.note = val.note.substring(0, 100)+" (cont.)";
-      }
-      html += '<div class="four cols '+colorClass+'"><a href="event_noaction.php?id='+val.event_id+'" class="event-box"><h3>'+val.location+'</h3><h4>'+val.date+'</h4><p class="desc">'+val.note+'</p></div>';
-      iter = key;
+      html += '<div class="four cols bkg-more-opaque"><a href="event_noaction.php?id='+val.event_id+'" class="event-box"><h3>'+val.location+'</h3><h4>'+val.date+'</h4><p class="desc">'+val.note+'</p></div>';
     });
-    iter++;
-    while(iter%3 != 0) {
-      html += '<div class="four cols"></div>';
-      iter++;
-    }
     html += '</div></div>';
     if(json.length!=0) {
-      $(sliderId).slick('slickAdd',html);
+      $('.eventslide').slick('slickAdd',html);
     }
   });
 }
@@ -70,10 +38,6 @@ $(function(){
   $('.slick-next').click( function(){
     lastEvent = typeof(lastEvent) == 'undefined' ? 12 : lastEvent + 6;
     getMoreEvents(lastEvent);
-  });
-  $('.slick-next-a').click( function(){
-    aLastEvent = typeof(aLastEvent) == 'undefined' ? 6 : aLastEvent + 3;
-    getMoreEvents(aLastEvent,"a");
   });
 });
 </script>
@@ -85,44 +49,34 @@ $(function(){
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Events Pending Completion</h2>
-        <div class="aeventslide">
-          <div id="events_0" class="flexbox">
 
-            <div class="row">
-              <?php
-              // get two panels worth of actionable events from the db
-              $start_date = date_create();
-              $end_date = date_create();
-              date_sub($start_date, date_interval_create_from_date_string('10 years'));
-              date_sub($end_date, date_interval_create_from_date_string('1 day'));
-              $a_events_opts = array(
-                status_id => 1,
-                count => 6,
-                start_date => date_format($start_date, "Y-m-d"),
-                end_date => date_format($end_date, "Y-m-d")
-              );
-              $a_events = get_events($a_events_opts);
-              foreach($a_events as $key => $event) {
-                if ($key == 3) {
-                  ?></div></div><div id="a_events_3"><div class="row flexbox"><?php
-                }
-                ?><div class="four cols bkg-less-opaque">
-                    <a href="event_noaction.php?id=<?php print($event['event_id']) ?>" class="event-box">
-                      <h3><?php print($event['location']) ?></h3>
-                      <h4><?php print($event['date']) ?></h4>
-                      <p class="desc"><?php print($event['note']) ?></p>
+            <div class="row flexbox">
+                <div class="four cols bkg-less-opaque">
+                    <a href="event_action.php" class="event-box">
+                    <h3>Open Event That Requires Action</h3>
+                    <h4>Date &bull; Location</h4>
+                    <p class="desc">Description lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin risus congue ipsum porta, at eleifend. </p>
                     </a>
-                  </div><?php
-              }
-               ?>
-             </div>
-           </div>
-          </div>
-              <div class="slick-prev-a left"><a href="#"><span class="fa fa-arrow-circle-left"></span> Previous</a></div>
-          <div class="slick-next-a right"><a href="javascript:getMoreEvents(lastEvent,a);">More <span class="fa fa-arrow-circle-right"></span></a></div>
+                </div>
+                <div class="four cols bkg-less-opaque">
+                    <a href="#" class="event-box">
+                    <h3>Event Name</h3>
+                    <h4>Date &bull; Location</h4>
+                    <p class="desc">Description lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin risus congue ipsum porta, at eleifend. </p>
+                    </a>
+                </div>
+                <div class="four cols bkg-less-opaque">
+                    <a href="#" class="event-box">
+                    <h3>Event Name</h3>
+                    <h4>Date &bull; Location</h4>
+                    <p class="desc">Description lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin risus congue ipsum porta, at eleifend. </p>
+                    </a>
+                </div>
+            </div>
 
     </div>
 </div>
+
 <div class="row">
     <div class="twelve cols callout" id="openevents">
         <h2 class="callout-title">Open Events <a href="#" class="add-event"><span class="fa fa-plus-circle"></span>&nbsp;Add New Event</a></h2>

@@ -673,23 +673,6 @@ function record_all_volunteer_company($event_id, $company_id) {
 	return TRUE;
 }
 
-function get_export_presets() {
-	//function to return all export presets
-	$db_link = setup_db();
-	
-	$query = "SELECT * FROM `export_preset` ORDER BY `ord`";
-	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-	
-	$presets = _get_all($result);
-	
-	foreach($presets as &$preset) {
-		$preset['fields'] = get_export_preset($preset['preset_id']);
-	}
-	unset($preset);
-	
-	return $presets;
-}
-
 function get_export_preset($preset_id) {
 	//function to return the pre-set list of fields for a CSV export
 	$db_link = setup_db();
@@ -702,77 +685,35 @@ function get_export_preset($preset_id) {
 	return _get_col($result);
 }
 
-function export_csv($element_ids, $search) {
+function export_csv($element_ids, $service_date) {
 	//function to build a csv string, storing in appropriately named file
 	$db_link = setup_db();
-	
-	$now = time();
-	$fp = fopen(getcwd() . "/../export/export_{$now}.csv", "w");
+	$fp = fopen("/usr/local/www/sub/rt.trkr8r.com/export/{$service_date}.csv", "w");
 	
 	foreach($element_ids as $element_id) {
 		$query = "SELECT `name` FROM `element` WHERE `element_id` = {$element_id}";
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-		$name = _get_one($result);
-		$name = str_replace(",", "", $name);
-		$header_array[] = $name;
+		$header_array[] = _get_one($result);
 	}
 	fputcsv($fp, $header_array);
 
-	$results = search_responses($element_ids, $search);
-
-	foreach($results as $line) {
-		foreach($line as &$value) {
+	$volunteers = get_volunteers_of_day($service_date);
+	
+	foreach($volunteers as $volunteer) {
+		$line_array = array();
+		foreach($element_ids as $element_id) {
+			$query = "SELECT `value` FROM `form_response` WHERE `volunteer_id` = {$volunteer['volunteer_id']} AND element_id = {$element_id}";
+			$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+			$value = _get_one($result);
 			$value = str_replace(",", "", $value);
+			$line_array[] = $value;
 		}
-		unset($value);
-		
-		fputcsv($fp, $line);
+		fputcsv($fp, $line_array);
 	}
 	
 	fclose($fp);
 	
-	return "export_{$now}.csv";
-}
-
-function search_responses($element_ids, $search) {
-	//return the search results for $element_ids given parameters $search
-	$db_link = setup_db();
-	
-	$search_results = array();
-	
-	if(!$element_ids)
-		return $search_results;
-	
-	foreach($element_ids as $element_id) {
-		$query = <<<EOS
-SELECT `volunteer_id`, `value`
-FROM `form_response`
-JOIN `form_element` USING (`fe_id`)
-JOIN `volunteer_event` USING (`volunteer_id`)
-JOIN `event` USING (`event_id`)
-WHERE `element_id` = {$element_id}
-
-EOS;
-	
-		if($search['date'])
-			$search['start_date'] = $search['end_date'] = $search['date'];
-	
-		if($search['start_date'] && $search['end_date'])
-			$query .= "AND `event`.`date` BETWEEN '{$search['start_date']}' AND '{$search['end_date']}'\n";
-	
-		if($search['event_id'])
-			$query .= "AND `event_id` = {$search['event_id']}\n";
-	
-		$query .= "ORDER BY `volunteer_id`";
-
-		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-		$element_results = _get_all($result);
-		foreach($element_results as $element_result) {
-			$search_results[$element_result['volunteer_id']][$element_id] = $element_result['value'];
-		}
-	}
-	
-	return $search_results;
+	return "{$service_date}.csv";
 }
 
 function get_events($search = null) {
@@ -790,15 +731,14 @@ function get_events($search = null) {
 	if($search['start_date'] && $search['end_date'])
 		$query .= "AND `date` BETWEEN '{$search['start_date']}' AND '{$search['end_date']}'\n";
 	
-	$sort_dir = ($search['sort_dir']) ? "DESC" : "ASC";
 	
-	$query .= "ORDER BY `date` {$sort_dir}, `event_id`"; 
+	$query .= "ORDER BY `date`, `event_id`"; 
 
 	if($search['count']) {
 		$search['offset'] = (int) $search['offset'];
 		$query .= "\nLIMIT {$search['offset']}, {$search['count']}";
 	}
-
+	
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	$event_ids = _get_col($result);
 	

@@ -1,6 +1,5 @@
 _working
 signatures/*.png
-export/*.csv
 pma
 vex
 prepros.cfg
