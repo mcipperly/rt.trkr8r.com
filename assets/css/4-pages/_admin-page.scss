@@ -345,7 +345,7 @@ body.admin-body {
 
     .cols {
         flex: 1;
-        
+        min-height: 120px;        
             
         &.bkg-less-opaque {
             background-color: rgba($secondary-color,.6);
