@@ -813,7 +813,7 @@ function get_events($search = null) {
 function get_event($event_id) {
 	//function to grab all relevant info for a given event
 	$db_link = setup_db();
-	
+
 	if(!$event_id)
 		return FALSE;
 	
@@ -821,6 +821,10 @@ function get_event($event_id) {
 
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	$event = _get_row($result);
+
+	$query = "SELECT `name` FROM `event_status` WHERE `status_id` = {$event['status_id']}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$event['status_name'] = _get_one($result);
 	
 	$query = "SELECT * FROM `volunteer_event` WHERE `event_id` = {$event_id}";
 	
