@@ -8,9 +8,17 @@ if($_REQUEST['toggle_status']) {
 	toggle_event_status($_REQUEST['id']);
 }
 
+if($_REQUEST['preset_id']) {
+	$element_ids = get_export_preset($_REQUEST['preset_id']);
 
+	$search['event_id'] = $_REQUEST['event_id'];
+	
+	$file_name = export_csv($element_ids, $search);
+	Header("Location: ../export/{$file_name}");
+}
+
+$presets = get_export_presets();
 $event = get_event($_REQUEST['id']);
-
 
 ?>
 
@@ -20,7 +28,7 @@ $event = get_event($_REQUEST['id']);
 			<span class="fa fa-calendar"></span>&nbsp;
 			<a href="manage-events.php">Manage Events</a>
 			<span class="fa fa-angle-right"></span>&nbsp;
-			This Event Is <?php print($event['status_name']); ?>
+			<?php print($event['location']); ?>
 		</h1>
 
 		<div class="row">
@@ -28,8 +36,8 @@ $event = get_event($_REQUEST['id']);
 				<h2 class="callout-title">Details <a href="#" class="add-event"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
 
 				<div class="row">
-					<h3>This Event Is <?php print($event['status_name']); ?></h3>
-					<h4><?php print(date("F j, Y", strtotime($event['date']))); ?> &bull; <?php print($event['location']); ?></h4>
+					<h3><?php print($event['location']); ?></h3>
+					<h4><?php print(date("F j, Y", strtotime($event['date']))); ?></h4>
 					<p><?php print($event['note']); ?></p>
 				</div>   
 			</div>  
@@ -71,7 +79,18 @@ print($html);
 
 					<div class="four cols">
 						<h3 class="phone-space-top">Quick Export</h3>
-						<a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>
+						<form method="POST">
+							<input type="hidden" name="event_id" value="<?php print($event['event_id']); ?>" />
+							<input type="hidden" id="preset_id" name="preset_id" value="" />
+<?php
+foreach($presets as $preset) {
+	$html = <<<EOS
+							<button onclick="document.getElementById('preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
+EOS;
+print($html);
+}
+?>
+						</form>
 					</div>            
 				</div>   
 			</div>  
