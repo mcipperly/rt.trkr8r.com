@@ -11,9 +11,7 @@ input[type="search"],
 input[type="text"],
 input[type="tel"],
 input[type="url"],
-input[type="password"],
-textarea,
-select {
+input[type="password"] {
     height: 38px;
     padding: 6px 10px;
     background-color: #fff;
@@ -23,6 +21,15 @@ select {
     box-sizing: border-box;
 }
 /* Removes awkward default styles on some inputs for iOS */
+
+textarea, select {
+    padding: 6px 10px;
+    background-color: #fff;
+    border: 1px solid #D1D1D1;
+    border-radius: 4px;
+    box-shadow: none;
+    box-sizing: border-box;
+}
 
 input[type="email"],
 input[type="number"],
@@ -36,11 +43,11 @@ textarea {
     -moz-appearance: none;
     appearance: none;
 }
-textarea {
+/* textarea {
     min-height: 65px;
     padding-top: 6px;
     padding-bottom: 6px;
-}
+} */
 input[type="email"]:focus,
 input[type="number"]:focus,
 input[type="search"]:focus,
@@ -90,4 +97,9 @@ label > .label-body {
 
 form:last-of-type {
     margin-bottom:0;
+}
+
+input[disabled] {
+    background-color: #F7F7F7;
+    border-color: #DEDEDE;
 }
