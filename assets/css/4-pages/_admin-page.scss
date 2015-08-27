@@ -274,13 +274,6 @@ body.admin-body {
     }  
 }
 
-@media (max-width: $break-small) {
-    .flexbox {
-      display: block !important;
-    }
-      
-}
-
 
 
 .callout {
@@ -357,7 +350,6 @@ body.admin-body {
   overflow: hidden;
 
     .cols {
-        flex: 1;
         min-height: 120px;        
             
         &.bkg-less-opaque {
@@ -369,6 +361,15 @@ body.admin-body {
         }
     }
 }
+
+
+@media (max-width: $break-small) {
+    .flexbox {
+      display: block !important;
+    }
+      
+}
+
 
 a.event-box {
     display: block;

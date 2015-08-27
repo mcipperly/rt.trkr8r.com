@@ -43,46 +43,58 @@ include ('../includes/admin-sidebar.php');
             <li><a href="#">Organization NameHere</a></li>
             <li><a href="#">Organization NameHere</a></li>
         </ol>
-    </div>    
+    </div>   
 </div>  
-    <div class="row">
- <div class="eight cols callout">
+
+<div class="row">
+ <div class="twelve cols callout">
     <h2 class="callout-title">Your Events</h2>
     <div class="row">
-        <div class="six cols">
-        <h3>Open</h3>
+        <div class="four cols">
+        <h3>Requires Action</h3>
             <ul class="list-group">
-                <li><a href="#">Event NameHere</a></li>
-                <li><a href="#">Event NameHere</a></li>
                 <li><a href="#">Event NameHere</a></li>
                 <li><a href="#">Event NameHere</a></li>
                 <li><a href="#">Event NameHere</a></li>
             </ul>
          </div>
-        <div class="six cols">
-        <h3>Completed</h3>
+        <div class="four cols">
+        <h3>Open</h3>
             <ul class="list-group">
                 <li><a href="#">Event NameHere</a></li>
                 <li><a href="#">Event NameHere</a></li>
+                <li><a href="#">Event NameHere</a></li>
+            </ul>
+         </div>
+        
+        <div class="four cols">
+        <h3>Completed</h3>
+            <ul class="list-group">
                 <li><a href="#">Event NameHere</a></li>
                 <li><a href="#">Event NameHere</a></li>
                 <li><a href="#">Event NameHere</a></li>
             </ul>
          </div>
     </div>
-    </div>    
-    
-    <div class="four cols callout">
-    <h2 class="callout-title">Quick Export</h2>
-    <h3>Today's Data</h3>
-     <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>   
-        <br><br>
-    <h3>Yesterday's Data</h3>
-    <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>
-    </div>    
-    
+    </div>     
 </div>   
 
+    <div class="row">
+    <div class="twelve cols callout">
+    <h2 class="callout-title">Quick Export</h2>
+    <div class="row">
+        <div class="six cols">
+            <h3>Today's Data</h3>
+             <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>   
+        </div>
+        <div class="six cols">
+            <h3>Yesterday's Data</h3>
+            <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>
+        </div>
+    </div>   
+</div>
+</div>
+    
     </div>
 
 <?php include ('../includes/footer.php'); ?>
