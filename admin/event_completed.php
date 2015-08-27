@@ -29,7 +29,7 @@ include ('../includes/admin-sidebar.php');
         <div class="row">
             <div class="eight cols">
                 <h3>Status</h3>
-                <a href="#"><button class="btn btn-closed">Event is Completed</button></a> <a href="#"><button class="btn btn-open-outline">Reopen Event</button></a>
+                <a href="#"><button class="btn btn-closed active-status">Event is Completed</button></a> <a href="#"><button class="btn btn-open-outline">Reopen Event</button></a>
                 <p><small><em>Marking this event as complete will add it to the Completed Events page. You will
     no longer be able to make additional changes unless you reopen the event.</em></small></p>
             </div>
