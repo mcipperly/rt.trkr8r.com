@@ -8,39 +8,28 @@ include ('../includes/admin-sidebar.php');
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-th"></span>&nbsp;<a href="manage-orgs.php">Manage Organizations</a> <span class="fa fa-angle-right"></span>&nbsp;Sample Organization Detail Page</h1>
     
-<div class="row">
-    <div class="twelve cols callout">
+<div class="row flexbox">
+    <div class="eight cols callout">
         <h2 class="callout-title">Details <a href="#" class="add-event"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
             
-        <div class="row">
             <h3>Organization Name</h3>
             <h4><strong>Contact Name:</strong> Contact Name &bull; <strong>Contact Details:</strong> Phone or Email</h4>
             <p>Description lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin risus congue ipsum porta, at eleifend. 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin risus congue ipsum porta, at eleifend. Dolor sit 
     amet, consectetur adipiscing elit. Ut sollicitudin risus congue ipsum porta.</p>
-        </div>   
-    </div>  
+    </div> 
+    
+    <div class="four cols callout">
+        <h2 class="callout-title">Stats</h2>
+        
+        <h3><strong>Volunteers: </strong> 2,500</h3>
+        <h3 style="margin-top:15px;margin-bottom:15px;padding-bottom:17px;padding-top:17px;border-bottom:1px dotted #A5A5A5;border-top:1px dotted #A5A5A5"><strong>Hours:</strong> 2,500</h3>
+        <h3><strong>Quick Export</strong></h3>
+        <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>
+    </div>    
+    
 </div>
-
-<div class="row flexbox">
-
-            <div class="three cols callout">
-                <h2 class="callout-title"><span class="fa fa-users"></span>&nbsp;Volunteers to Date</h2>
-                <p class="lrg-text">2,500</p>
-            </div>  
-
-
-            <div class="three cols callout">
-                <h2 class="callout-title"><span class="fa fa-clock-o"></span>&nbsp;Hours to Date</h2>
-                <p class="lrg-text">2,500</p>
-            </div> 
-
-            
-            <div class="six cols callout">
-                <h2 class="callout-title">Quick Export</h2>
-                <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>
-            </div>            
-</div>
+    
     
 <div class="row">
     <div class="twelve cols callout">
