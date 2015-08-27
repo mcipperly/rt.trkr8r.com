@@ -109,6 +109,14 @@ body.admin-body {
             background-color: darken(#36a97a, 12%);
             border-color: darken(#36a97a, 50%);
         }
+        
+        &.btn-open.active-status:hover,
+        &.btn-open.active-status:focus {
+            cursor: default;
+            color: #fff;
+            background-color: #36a97a;
+            border-color: darken(#36a97a, 15%);
+        }
 
         &.btn-open-outline:hover,
         &.btn-open-outline:focus {
@@ -129,6 +137,15 @@ body.admin-body {
             background-color: #e0645c;
             border-color: #e0645c;
         }
+        
+        &.btn-closed.active-status:hover,
+        &.btn-closed.active-status:focus {
+            cursor: default;
+            color: #fff;
+            background-color: #e0645c;
+            border-color: darken(#e0645c, 15%);
+        }
+
     }
     
     .btn:active,
