@@ -34,11 +34,49 @@ $event = get_event($_REQUEST['id']);
 		<div class="row">
 			<div class="twelve cols callout">
 				<h2 class="callout-title">Details <a href="#" class="add-event"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
+                   <script>
+                        $("a.add-event").click(function() {
+                          $(".event_title").replaceWith("<input type=\"text\" value=\"" + $(".event_title").text() + "\" class=\"full-width\">");
+                          $(".event_desc").replaceWith("<textarea rows=\"4\" class=\"full-width\">" + $(".event_desc").text() + "</textarea>");
+                          $(".event_date").replaceWith("<input readonly type=\"text\" id=\"event_display\" value=\"" + $(".event_date").text() + "\">&nbsp;<input style=\"display: none;\" class=\"full-width\" type=\"text\" id=\"edp\" name=\"edp\" value=\"\"/>");
+                          $('#edp').datepicker({
+                                showOn: "button",
+                                buttonImage: "../assets/imgs/cal-icon.png",
+                                buttonImageOnly: true,
+                                buttonText: "Date selector",
+                                showButtonPanel: true,
+                                altField: "#event_display",
+                                altFormat: "MM d, yy",
+                                dateFormat: "yy-mm-dd",
+                                showOtherMonths: true,
+                                selectOtherMonths: true,
+                                changeMonth: true,
+                                changeYear: true,
+                        });
+                          $(".add-event").replaceWith("<a href=\"#\" class=\"add-event save-event\"><span class=\"fa fa-floppy-o\"></span>&#x1F4BE;&nbsp;Save</a>");
+                          $("a.save-event").click(function() {
+                                var xhr = new XMLHttpRequest();
+                                xhr.onreadystatechange=function() {
+                                        if(xhr.readyState==4 && xhr.status==200) {
+                                        if (data=='success') {
+                                                        console.log('success');
+                                                } else {
+                                                        console.log('failure');
+                                                }
+                                        }
+                                }
+                                xhr.open('POST','.php',true);
+                                xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+                                xhr.send('test');
+                          });
+
+                });
+                    </script>
 
 				<div class="row">
-					<h3><?php print($event['location']); ?></h3>
-					<h4><?php print(date("F j, Y", strtotime($event['date']))); ?></h4>
-					<p><?php print($event['note']); ?></p>
+					<h3 class="event_title"><?php print($event['location']); ?></h3>
+					<h4 class="event_date"><?php print(date("F j, Y", strtotime($event['date']))); ?></h4>
+					<p class="event_desc"><?php print($event['note']); ?></p>
 				</div>   
 			</div>  
 		</div>
