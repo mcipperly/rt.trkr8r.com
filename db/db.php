@@ -363,7 +363,7 @@ function get_organizations($offset = 0, $count = 0) {
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
 	$companies = _get_all($result);
-	$no_company[] = array("company_id" => 0, "name" => "--");
+	$no_company[] = array("company_id" => 0, "name" => "No Affiliation");
 	
 	return array_merge($no_company, $companies);
 }
