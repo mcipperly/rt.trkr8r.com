@@ -53,7 +53,7 @@ $event = get_event($_REQUEST['id']);
                                 changeMonth: true,
                                 changeYear: true,
                         });
-                          $(".add-event").replaceWith("<a href=\"#\" class=\"add-event save-event\"><span class=\"fa fa-floppy-o\"></span>&#x1F4BE;&nbsp;Save</a>");
+                          $(".add-event").replaceWith("<a href=\"#\" class=\"add-event save-event\"><span class=\"fa fa-floppy-o\"></span>&nbsp;Save</a>");
                           $("a.save-event").click(function() {
                                 var xhr = new XMLHttpRequest();
                                 xhr.onreadystatechange=function() {
@@ -65,7 +65,7 @@ $event = get_event($_REQUEST['id']);
                                                 }
                                         }
                                 }
-                                xhr.open('POST','.php',true);
+                                xhr.open('POST','save-event.php',true);
                                 xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
                                 xhr.send('test');
                           });
