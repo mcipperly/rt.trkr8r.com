@@ -52,7 +52,7 @@ foreach($form['elements'] as $key => $element) {
 </div>
 <div class="clear"></div>
 <div class="details">
-    <h3>Details</h3>
+    <h2>Details</h2>
 EOS;
 		print($html);
 	}
@@ -140,14 +140,14 @@ EOS;
 		else
 			$html = <<<EOS
         <a href="register.php?edit=1&email={$volunteer_info['email']}">
-            <button class="no-min">Make Changes</button>
+            <button>Make Changes</button>
         </a>
 EOS;
 		$html .= <<<EOS
-    <h3>Waiver of Liability</h3>
+    <br><br><h2>Waiver of Liability</h2>
     <p class="justify">In consideration of the opportunity afforded me to assist on a voluntary basis with Rebuilding Together Pittsburgh, a project in which the homes of disadvantaged persons will be repaired by volunteers, and in light of the aims and purposes of the community service provided by Rebuilding Together Pittsburgh in organizing this project from which any liability may or could accrue against Rebuilding Together Pittsburgh, or any of their respective officers and directors collectively or individually or any project homeowners. Without limiting the generality of the foregoing, I agree that this waiver and release shall include any rights, claims, or causes of action resulting from personal injury to me or damage to my property sustained in connection with any activities in a Rebuilding Together Pittsburgh event or project.</p>
 
-    <h3>Media Release</h3>
+    <h2>Media Release</h2>
     <p class="justify">I understand that photographs and/or videotapes may be taken of me during workday. I hereby assign and authorize Rebuilding Together Pittsburgh to use these photographs and/or videotapes for publicity purposes. I, therefore, release and discharge all parties associated with Rebuilding Together Pittsburgh, its agents, servants, and employees from any liability, which may arise now or in the future or develop from such activity as described.</p>
 </div>
 EOS;
@@ -163,10 +163,10 @@ if($_REQUEST['view']) {
 <h2>Signature On File</h2>
 <div class="row">
     <div class="six cols">
-        <p>Name: {$volunteer_info['firstname']} {$volunteer_info['lastname']}</p>
+        <p><em>Name: {$volunteer_info['firstname']} {$volunteer_info['lastname']}</em></p>
     </div>
     <div class="six cols">
-        <p>Date: {$event['date']}</p>
+        <p><em>Date: {$event['date']}</em></p>
     </div>
 </div>
 <div class="row">
@@ -185,10 +185,10 @@ else {
 <p>By signing below, you confirm that your details listed above are accurate. You also accept our Waiver of Liability and Media Release terms.</p>
 <div class="row">
     <div class="six cols">
-        <p>Name: {$volunteer_info['firstname']} {$volunteer_info['lastname']}</p>
+        <p><em>Name: {$volunteer_info['firstname']} {$volunteer_info['lastname']}</em></p>
     </div>
     <div class="six cols">
-        <p>Date: {$signature_date}</p>
+        <p><em>Date: {$signature_date}</em></p>
     </div>
 </div>
 <div id="signature-pad" class="signature-pad-box">

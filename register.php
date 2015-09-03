@@ -217,7 +217,7 @@ foreach($form['elements'] as $element) {
 			$asterisk_string .= "*";
 		
 		$html = <<<EOS
-<small><sup>{$asterisk_string}</sup><em>{$element['description']}</em></small>
+<br><small><sup>{$asterisk_string}</sup><em>{$element['description']}</em></small>
 EOS;
 		print($html);
 	}
