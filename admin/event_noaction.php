@@ -91,7 +91,7 @@ $orgs = get_organizations();
                               }
                               xhr.open('POST', 'save-event.php', true);
                               xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                              xhr.send('event_id=<?php print($event['event_id ']); ?>&event_title=' + document.getElementById('new_event_title').value + '&event_desc=' + document.getElementById('new_event_desc').value + '&event_date=' + document.getElementById('edp').value);
+                              xhr.send('event_id=<?php print($event['event_id']); ?>&event_title=' + document.getElementById('new_event_title').value + '&event_desc=' + document.getElementById('new_event_desc').value + '&event_date=' + document.getElementById('edp').value);
                            });
 
                         }
