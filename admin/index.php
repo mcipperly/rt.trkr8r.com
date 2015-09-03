@@ -7,26 +7,35 @@ include ('../includes/admin-sidebar.php');
 <div class="container">
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-home"></span>&nbsp;Dashboard</h1>
+
 <div class="row flexbox">
-    <div class="four cols callout">
-        <h2 class="callout-title">This Month's Volunteers</h2>
+    <div class="six cols callout">
+        <h2 class="callout-title">This Month's Volunteers </h2>
         <p class="text"><span class="fa fa-user left dash"></span><span class="right stroke-text">2,500</span></p>
     </div>
 
-    <div class="four cols callout">
-        <h2 class="callout-title">Volunteers to Date</h2>
-        <p class="text"><span class="fa fa-users left dash "></span><span class="right stroke-text">2,500</span></p>
-    </div>  
     
-    <div class="four cols callout">
-        <h2 class="callout-title">Hours to Date</h2>
+    <div class="six cols callout">
+        <h2 class="callout-title">This Month's Hours</h2>
         <p class="text"><span class="fa fa-clock-o dash left"></span><span class="right stroke-text">2,500</span></p>
     </div> 
     <div class="clear"></div>
 </div>
 
+<div class="row flexbox">
+    <div class="six cols callout">
+        <h2 class="callout-title">Volunteers to Date</h2>
+        <p class="text"><span class="fa fa-users left dash "></span><span class="right stroke-text">2,500</span></p>
+    </div>  
     
-<div class="row">
+    <div class="six cols callout">
+        <h2 class="callout-title">Hours to Date</h2>
+        <p class="text"><span class="fa fa-clock-o dash left"></span><span class="right stroke-text">2,500</span></p>
+    </div> 
+    <div class="clear"></div>
+</div>
+    
+<div class="row flexbox">
     <div class="six cols callout">
     <h2 class="callout-title">Top Volunteers</h2>
         <ol class="list-group">
@@ -85,11 +94,11 @@ include ('../includes/admin-sidebar.php');
     <div class="row">
         <div class="six cols">
             <h3>Today's Data</h3>
-             <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>   
+             <a href="#"><button class="m-full-width">All Fields</button></a> <a href="#"><button class="m-full-width">Postal Fields</button></a> <a href="#"><button class="m-full-width">Email Fields</button></a>   
         </div>
         <div class="six cols">
             <h3>Yesterday's Data</h3>
-            <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>
+            <a href="#"><button class="m-full-width">All Fields</button></a> <a href="#"><button class="m-full-width">Postal Fields</button></a> <a href="#"><button class="m-full-width">Email Fields</button></a>
         </div>
     </div>   
 </div>

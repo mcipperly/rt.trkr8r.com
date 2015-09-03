@@ -84,7 +84,7 @@ EOS;
     
                     </tbody>
                     </table>
-                    <input type="submit" value="Remove Selected Organizations" class="right">
+                    <input type="submit" value="Remove Selected Organizations" class="right m-full-width">
 </form>
 </div>
 <p><a href="org_detail.php">Sample Organization Detail Page</a></p>
