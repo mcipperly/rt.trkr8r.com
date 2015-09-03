@@ -883,7 +883,7 @@ function update_event($event_id, $date, $note, $location) {
 	$note = mysqli_real_escape_string($db_link, $note);
 	$location = mysqli_real_escape_string($db_link, $location);
 	
-	$query = "UPDATE `event` SET `date` = '{$date}', `note` = {$note}, `location` = {$location} WHERE `event_id` n = {$event_id}";
+	$query = "UPDATE `event` SET `date` = '{$date}', `note` = '{$note}', `location` = '{$location}' WHERE `event_id` = {$event_id}";
 	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	return TRUE;

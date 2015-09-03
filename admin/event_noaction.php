@@ -54,11 +54,63 @@ $orgs = get_organizations();
 		<div class="row">
 			<div class="twelve cols callout">
 				<h2 class="callout-title">Details <a href="#" class="add-event"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
+                   <script>
+                        $("a.add-event").click(eventEditMode);
+
+                        function eventEditMode() {
+                           $(".event_title").replaceWith("<input id=\"new_event_title\" type=\"text\" value=\"" + $(".event_title").text() + "\" class=\"full-width\">");
+                           $(".event_desc").replaceWith("<textarea id=\"new_event_desc\" rows=\"4\" class=\"full-width\">" + $(".event_desc").text() + "</textarea>");
+                           var eventDate = new Date($(".event_date").text());
+                           $(".event_date").replaceWith("<span id=\"new_date_picker\"><input readonly type=\"text\" id=\"event_display\" value=\"" + $(".event_date").text() + "\">&nbsp;<input style=\"display: none;\" class=\"full-width\" type=\"text\" id=\"edp\" name=\"edp\" value=\"" + eventDate.toJSON().substring(0, eventDate.toJSON().indexOf("T")) + "\" /></span>");
+                           $('#edp').datepicker({
+                              showOn: "button",
+                              buttonImage: "../assets/imgs/cal-icon.png",
+                              buttonImageOnly: true,
+                              buttonText: "Date selector",
+                              showButtonPanel: true,
+                              altField: "#event_display",
+                              altFormat: "MM d, yy",
+                              dateFormat: "yy-mm-dd",
+                              showOtherMonths: true,
+                              selectOtherMonths: true,
+                              changeMonth: true,
+                              changeYear: true,
+                           });
+                           $(".add-event").replaceWith("<a href=\"#\" class=\"add-event save-event\"><span class=\"fa fa-floppy-o\"></span>&nbsp;Save</a>");
+                           $("a.save-event").click(function() {
+                              var xhr = new XMLHttpRequest();
+                              xhr.onreadystatechange = function() {
+                                 if (xhr.readyState == 4 && xhr.status == 200) {
+                                    if (xhr.responseText.indexOf('Success')) {
+                                       console.log('success');
+                                       eventReadMode();
+                                    } else {
+                                       console.log('failure');
+                                    }
+                                 }
+                              }
+                              xhr.open('POST', 'save-event.php', true);
+                              xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                              xhr.send('event_id=<?php print($event['
+                                 event_id ']); ?>&event_title=' + document.getElementById('new_event_title').value + '&event_desc=' + document.getElementById('new_event_desc').value + '&event_date=' + document.getElementById('edp').value);
+                           });
+
+                        }
+
+                        function eventReadMode() {
+                           $("#new_event_title").replaceWith("<h3 class=\"event_title\">" + document.getElementById('new_event_title').value + "</h3>");
+                           $("#new_date_picker").replaceWith("<h4 class=\"event_date\">" + document.getElementById('event_display').value + "</h4>");
+                           $("#new_event_desc").replaceWith("<p class=\"event_desc\">" + document.getElementById('new_event_desc').value + "</p>");
+                           $(".save-event").replaceWith("<a href=\"#\" class=\"add-event save-event\">&nbsp;Update successful!&nbsp;<span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
+                           $("a.add-event").click(eventEditMode);
+
+                        }
+                    </script>
 
 				<div class="row">
-					<h3><?php print($event['location']); ?></h3>
-					<h4><?php print(date("F j, Y", strtotime($event['date']))); ?></h4>
-					<p><?php print($event['note']); ?></p>
+					<h3 class="event_title"><?php print($event['location']); ?></h3>
+					<h4 class="event_date"><?php print(date("F j, Y", strtotime($event['date']))); ?></h4>
+					<p class="event_desc"><?php print($event['note']); ?></p>
 				</div>   
 			</div>  
 		</div>
@@ -76,8 +128,8 @@ $orgs = get_organizations();
 <?php
 if($event['status_id'] == 1) {
 	$html = <<<EOS
-							<button class="btn-open active-status" disabled>Event is Open</button>
-							<button type="submit" class="btn-closed-outline">Mark as Complete</button></a>
+							<button class="btn-open m-full-width active-status" disabled>Event is Open</button>
+							<button type="submit" class="m-full-width btn-closed-outline">Mark as Complete</button></a>
 							<p><small><em>
 								Marking this event as complete will add it to the Completed Events page. You will no longer be able to make additional changes unless you reopen the event.
 							</em></small></p>
@@ -105,7 +157,7 @@ print($html);
 <?php
 foreach($presets as $preset) {
 	$html = <<<EOS
-							<button onclick="document.getElementById('preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
+							<button class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
 EOS;
 print($html);
 }
