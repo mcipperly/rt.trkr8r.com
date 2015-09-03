@@ -744,12 +744,16 @@ function search_responses($element_ids, $search) {
 		return $search_results;
 	
 	foreach($element_ids as $element_id) {
+		if($search['org_name'])
+			$org_join_query = "JOIN `volunteer` ON `volunteer`.`volunteer_id` = `volunteer_event`.`volunteer_id`\nJOIN `company` USING (`company_id`)";
+		
 		$query = <<<EOS
-SELECT `volunteer_id`, `value`
+SELECT `volunteer_event`.`volunteer_id`, `value`
 FROM `form_response`
 JOIN `form_element` USING (`fe_id`)
 JOIN `volunteer_event` USING (`volunteer_id`)
 JOIN `event` USING (`event_id`)
+{$org_join_query}
 WHERE `element_id` = {$element_id}
 
 EOS;
@@ -762,6 +766,9 @@ EOS;
 	
 		if($search['event_id'])
 			$query .= "AND `event_id` = {$search['event_id']}\n";
+		
+		if($search['org_name'])
+			$query .= "AND `company`.`name` LIKE '%{$search['org_name']}%'\n";
 	
 		$query .= "ORDER BY `volunteer_id`";
 

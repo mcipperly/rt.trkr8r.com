@@ -87,7 +87,7 @@ include ( '../includes/admin-sidebar.php');
                         <input type="checkbox" checked disabled />
                     </div>
                 </div>
-                <input type="submit" value="Update" class="right">
+                <input type="submit" value="Update" class="right m-full-width">
 
                 </form>
             </div>
@@ -98,7 +98,7 @@ include ( '../includes/admin-sidebar.php');
                 <h2 class="callout-title">Update Waiver Text</h2>
                 <form>
                     <textarea class="full-width">Prefilled with the current waiver text</textarea>
-                    <input type="submit" value="Update" class="right">
+                    <input type="submit" value="Update" class="right m-full-width">
                 </form>
             </div>
         </div>

@@ -25,7 +25,7 @@ include ('../includes/admin-sidebar.php');
         <h3><strong>Volunteers: </strong> 2,500</h3>
         <h3 style="margin-top:15px;margin-bottom:15px;padding-bottom:17px;padding-top:17px;border-bottom:1px dotted #A5A5A5;border-top:1px dotted #A5A5A5"><strong>Hours:</strong> 2,500</h3>
         <h3><strong>Quick Export</strong></h3>
-        <a href="#"><button>All Fields</button></a> <a href="#"><button>Postal Fields</button></a> <a href="#"><button>Email Fields</button></a>
+        <a href="#"><button class="m-full-width">All Fields</button></a> <a href="#"><button class="m-full-width">Postal Fields</button></a> <a href="#"><button class="m-full-width">Email Fields</button></a>
     </div>    
     
 </div>

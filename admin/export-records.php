@@ -10,6 +10,9 @@ if($_REQUEST['element_ids'] || $_REQUEST['preset_id']) {
 	if($_REQUEST['event_id'])
 		$search['event_id'] = $_REQUEST['event_id'];
 	
+	if($_REQUEST['org_name'])
+		$search['org_name'] = $_REQUEST['org_name'];
+	
 	if($_REQUEST['start_date'] && $_REQUEST['end_date']) {
 		$search['start_date'] = $_REQUEST['start_date'];
 		$search['end_date'] = $_REQUEST['end_date'];
@@ -32,11 +35,14 @@ $events = get_events($event_search);
 			<div class="twelve cols callout">
 				<h2 class="callout-title">Choose Filter Method</h2>
 				<div class="row">
-					<div class="six cols">
+					<div class="four cols">
 						<input type="radio" name="primary_filter" value="by_date" class="big"><label>&nbsp;&nbsp;By Date Range</label>
 					</div>
-					<div class="six cols">
+					<div class="four cols">
 						<input type="radio" name="primary_filter" value="by_event" class="big"><label>&nbsp;&nbsp;By Event</label>
+					</div>
+					<div class="four cols">
+						<input type="radio" name="primary_filter" value="by_org" class="big"><label>&nbsp;&nbsp;By Organization</label>
 					</div>
 				</div>
 			</div>
@@ -106,31 +112,23 @@ $(function() {
 					</div>
 					<!-- DISPLAYS IF THE PRIMARY FILTER CHOSEN IS BY EVENT -->
 					<h3>Select Event</h3>
+					<select class="full-width" name="event_id" "id="event_id">
+						<option value="0">--</option>
 <?php
 
 foreach($events as $key => $event) {
-	if($key == 0) {
-		$html = <<<EOS
-					<select class="full-width" name="event_id" "id="event_id">
-						<option value="0">--</option>
-EOS;
-		print($html);
-	}
-	
 	$html = <<<EOS
 						<option value="{$event['event_id']}">{$event['date']} - {$event['location']}</option>
 EOS;
 	print($html);
-	
-	if($key + 1 == sizeof($events)) {
-		$html = <<<EOS
-					</select>
-EOS;
-		print($html);
-	}
 }
 ?>
-        
+					</select>
+					
+					<!-- DISPLAYS IF THE PRIMARY FILTER CHOSEN IS BY ORG -->
+					<h3>Select Organization(s)</h3>
+					<input class="full-width" type="text" name="org_name" placeholder='e.g. "Pitt" for any org that includes "Pitt" in its name' value="" />
+					
      <!-- FROM HERE DOWN, THESE DISPLAY WITH EITHER PRIMARY FILTER -->
 					<h3>Quick Export</h3>
 					<input type="hidden" name="preset_id" id="preset_id" value="" />
@@ -144,7 +142,7 @@ EOS;
 	}
 
 	$html = <<<EOS
-						<button onclick="document.getElementById('preset_id').value={$preset['preset_id']}">Export {$preset['name']}</button>
+						<button  class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}">Export {$preset['name']}</button>
 EOS;
 	print($html);
 	
@@ -221,7 +219,7 @@ EOS;
                 </div>
             </div>
      <br>
-            <input type="submit" value="Export">
+            <input type="submit" value="Export" class="m-full-width">
         </form>
         <script type="text/javascript">
         function toggleAll() {

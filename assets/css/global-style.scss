@@ -6,16 +6,15 @@
 @import "1-tools/normalize";
 
 // 2 - BASICS
+@import "2-basics/mixins";
 @import "2-basics/vars";
 @import "2-basics/grid";
 @import "2-basics/core";
 @import "2-basics/utilities";
-@import "2-basics/mixins";
 @import "2-basics/type";
-@import "2-basics/structure";
 
 // 3 - MODULES
 @import "3-modules/buttons";
 @import "3-modules/datepicker";
 @import "3-modules/forms";
-@import "3-modules/lists";
+@import "3-modules/lists"; 
