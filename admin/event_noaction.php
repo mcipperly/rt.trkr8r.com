@@ -91,8 +91,7 @@ $orgs = get_organizations();
                               }
                               xhr.open('POST', 'save-event.php', true);
                               xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                              xhr.send('event_id=<?php print($event['
-                                 event_id ']); ?>&event_title=' + document.getElementById('new_event_title').value + '&event_desc=' + document.getElementById('new_event_desc').value + '&event_date=' + document.getElementById('edp').value);
+                              xhr.send('event_id=<?php print($event['event_id ']); ?>&event_title=' + document.getElementById('new_event_title').value + '&event_desc=' + document.getElementById('new_event_desc').value + '&event_date=' + document.getElementById('edp').value);
                            });
 
                         }
@@ -103,7 +102,6 @@ $orgs = get_organizations();
                            $("#new_event_desc").replaceWith("<p class=\"event_desc\">" + document.getElementById('new_event_desc').value + "</p>");
                            $(".save-event").replaceWith("<a href=\"#\" class=\"add-event save-event\">&nbsp;Update successful!&nbsp;<span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
                            $("a.add-event").click(eventEditMode);
-
                         }
                     </script>
 
