@@ -799,6 +799,7 @@ function get_events($search = null) {
 		$query .= "\nLIMIT {$search['offset']}, {$search['count']}";
 	}
 
+	
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	$event_ids = _get_col($result);
 	
@@ -830,10 +831,15 @@ function get_event($event_id) {
 	
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	$event['volunteers'] = _get_all($result);
+
+	$event['totals']['volunteers'] = 0;
+	$event['totals']['duration'] = 0;
 	
 	foreach($event['volunteers'] as &$volunteer) {
 		$volunteer_info = get_volunteer_info($volunteer['volunteer_id']);
 		$volunteer = array_merge($volunteer, $volunteer_info);
+		$event['totals']['volunteers']++;
+		$event['totals']['duration'] += $volunteer['duration'];
 	}
 	unset($volunteer);
 

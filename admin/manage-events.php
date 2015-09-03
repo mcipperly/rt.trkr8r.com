@@ -165,7 +165,6 @@ $(function(){
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Completed Events</h2>
-
             <table>
                 <thead>
                     <tr>
@@ -176,33 +175,32 @@ $(function(){
                         <th>Details</th>
                     </tr>
                 </thead>
-
                 <tbody>
+<?php
 
+//Get the three most recent closed events
+$search['status_id'] = 2; //Closed
+$search['sort_dir'] = 1; //DESC
+$search['count'] = 3;
+$events = get_events($search);
+
+foreach($events as $event) {
+	$event_date = date("m/d/Y", strtotime($event['date']));
+	$event_vols = number_format($event['totals']['volunteers']);
+	$event_dur = number_format($event['totals']['duration'], 2);
+	$html = <<<EOS
                     <tr>
-                        <td data-label="Event">This is a Completed Event</td>
-                        <td data-label="Date">00/00/00</td>
-                        <td data-label="Volunteers">1,000</td>
-                        <td data-label="Hours">100,000</td>
-                        <td data-label="Details"><a href="event_completed.php"><button>View</button></a></td>
+                        <td data-label="Event">{$event['location']}</td>
+                        <td data-label="Date">{$event_date}</td>
+                        <td data-label="Volunteers">{$event_vols}</td>
+                        <td data-label="Hours">{$event_dur}</td>
+                        <td data-label="Details"><a href="event_noaction.php?event_id={$event['event_id']}"><button>View</button></a></td>
                     </tr>
+EOS;
+	print($html);
+}
 
-
-                    <tr>
-                        <td data-label="Event">Event Name</td>
-                        <td data-label="Date">00/00/00</td>
-                        <td data-label="Volunteers">1,000</td>
-                        <td data-label="Hours">100,000</td>
-                        <td data-label="Details"><a href="#"><button>View</button></a></td>
-                    </tr>
-
-                    <tr>
-                        <td data-label="Event">Event Name</td>
-                        <td data-label="Date">00/00/00</td>
-                        <td data-label="Volunteers">1,000</td>
-                        <td data-label="Hours">100,000</td>
-                        <td data-label="Details"><a href="#"><button>View</button></a></td>
-                    </tr>
+?>
                 </tbody>
             </table>
            <div class="right"><a href="completed-events.php">More <span class="fa fa-arrow-circle-right"></span></a></div>
