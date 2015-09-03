@@ -2,7 +2,7 @@
 	ADMIN SECTION
 -----------------------------------------------------*/
 
-/* Overall */
+/* Overall Structure */
 #admin-wrap,
 .admin-sidebar,
 .toggle-menu {
@@ -29,7 +29,7 @@
 
 .admin-sidebar {
     position: fixed;
-    top: 48px;
+    top: 52px;
     left: 0;
     width: 250px;
     margin-left: -250px;
@@ -79,7 +79,7 @@
     left: 0 !important;
     background: #1b1b1b;
     background: rgba(27,27,27,0.7);
-    font-size: 26px;
+    @include font-size(2.6);
     z-index: 10;
     padding: 10px 13px 11px 10px;
     color: #fff;
@@ -107,11 +107,10 @@ body.admin-body {
         margin: -16px 0 20px 0;
         padding: 0;
         text-transform: uppercase;
-        font-size: 1.5rem;
+        @include font-size(1.5);
+        @include line-height(2.6);
         font-weight: 400;
-        letter-spacing: .025rem;
         color: #696969;
-        line-height: 1.7;
         
         a {
             color: #696969;
@@ -126,19 +125,16 @@ body.admin-body {
     }
     
     h3 {
-        font-size: 1.8rem;
-        line-height: 1.3;
-        letter-spacing: -0.05rem;
         text-transform: uppercase;
         font-weight: 600;
         padding: 0;
-        margin: 0 0 10px 0px;;
+        margin: 0 0 10px 0px;
     }
 }
 
 .admin-content-wrapper {
     background-color: #EFEFEF;
-    padding: 20px 20px 30px 40px;
+    padding: 20px 20px 0 40px;
 }
 
 .admin-header-wrapper {
@@ -156,12 +152,11 @@ body.admin-body {
     left: 0;
 
     h1 {
-        font-size: 1.9rem;
+        @include font-size(1.9);
         font-weight: 400;
-        letter-spacing: .05rem;
         color: #fff;
         text-transform: uppercase;
-        padding: 15px 0;
+        padding: 20px 0;
         margin: 0 0 0 15px;
     }
     
@@ -231,7 +226,7 @@ body.admin-body {
     }
     
     .toggle-menu {
-        font-size: 23px;
+        @include font-size(3);
     }
     
     .admin-content-wrapper {
@@ -243,13 +238,13 @@ body.admin-body {
 
         h1 {
             margin: 0 0 0 55px;
-            font-size: 1.5rem;
+            @include font-size(1.5);
         }
 
         nav ul {
     
             li {
-                font-size: 1.5rem;
+                @include font-size(1.5);
 
                 a {
                     padding: 10px 15px 10px 10px;
@@ -265,9 +260,8 @@ body.admin-body {
             li {
 
                 a {
-                    font-size: 1.4rem;
+                    @include font-size(1.4);
                     padding: 9px;
-
                 }
             }
         }   
@@ -286,8 +280,8 @@ body.admin-body {
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.2);
     
     h2.callout-title {
-        font-size: 1.8rem;
-        letter-spacing: 0.01rem;
+        @include font-size(1.8);
+        @include line-height(1.7);
         background-color: $primary-color;
         padding: 9px;
         color: #fff;
@@ -296,10 +290,10 @@ body.admin-body {
     }
     
     .text {
-        font-size: 4.8rem;
+        @include font-size(4.8);
+        @include line-height(6);
         padding: 0;
         margin: 0;
-        line-height: 6rem;
     }
     
     .stroke-text {
@@ -313,12 +307,12 @@ body.admin-body {
     }
     
     span.fa.dash {
+        @include font-size(6.5);
         color: $secondary-color;
         font-weight: normal;
         display: inline-block;
         width: 5%;
         height: 5%;
-        font-size: 1.5em;
     }
 }
 
@@ -381,9 +375,6 @@ a.event-box {
     
 
     h3 {
-        font-size: 1.6rem;
-        font-weight: 700;
-        margin-bottom: 6px;
         text-transform: none;
         padding-right: 12px;
     }
@@ -394,9 +385,9 @@ a.event-box {
     }
     
     p.desc {
+        @include font-size(1.3);
+        @include line-height(1.8);
         margin-bottom: 0;
-        font-size: 75%;
-        line-height: 1.7;
     }
     
     &:hover {

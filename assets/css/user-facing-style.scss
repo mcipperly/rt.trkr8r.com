@@ -1,10 +1,12 @@
 /* User-Facing Styles */
 
 // 1 - TOOLS
+@import "2-basics/mixins";
+@import "2-basics/vars";
 @import "1-tools/vex/vex";
 
-// 2 - BASICS
-@import "2-basics/vars";
+// 2 - PAGES
+@import "4-pages/user-pages";
 
 // 3 - MODULES
 @import "3-modules/signature";

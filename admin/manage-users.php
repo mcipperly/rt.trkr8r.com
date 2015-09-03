@@ -86,7 +86,7 @@ EOS;
     
                     </tbody>
                     </table>
-                    <input type="submit" value="Remove Selected Users" class="right">
+                    <input type="submit" value="Remove Selected Users" class="right m-full-width">
 </form>
 </div>
 </div>

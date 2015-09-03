@@ -144,7 +144,7 @@ EOS;
 	}
 
 	$html = <<<EOS
-						<button onclick="document.getElementById('preset_id').value={$preset['preset_id']}">Export {$preset['name']}</button>
+						<button  class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}">Export {$preset['name']}</button>
 EOS;
 	print($html);
 	
@@ -221,7 +221,7 @@ EOS;
                 </div>
             </div>
      <br>
-            <input type="submit" value="Export">
+            <input type="submit" value="Export" class="m-full-width">
         </form>
         <script type="text/javascript">
         function toggleAll() {
