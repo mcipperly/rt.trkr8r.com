@@ -421,4 +421,23 @@ a.event-box {
     &:hover {
         opacity: .85;
     }
-}      
+}    
+.dash_eventlist {
+    @include line-height(1.9);
+    margin-bottom: 12px;
+    
+    &:last-of-type {
+        margin-bottom: 0;
+        padding-bottom: 0 !important;
+        
+        @media (max-width: $break-small) {
+            margin-bottom: 15px;
+        }
+    }
+    
+
+}
+
+.dash_eventdate {
+    @include font-size(1.2);
+}

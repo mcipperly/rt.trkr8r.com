@@ -87,7 +87,7 @@ $presets = get_export_presets();
         <ol class="list-group">
 <?php
 foreach($top_volunteers as $volunteer) {
-	print("<li>{$volunteer['firstname']} {$volunteer['lastname']} - {$volunteer['total_duration']} hours</li>");
+	print("<li>{$volunteer['firstname']} {$volunteer['lastname']} ({$volunteer['total_duration']} hours)</li>");
 }
 ?>
         </ol>
@@ -98,7 +98,7 @@ foreach($top_volunteers as $volunteer) {
         <ol class="list-group">
 <?php
 foreach($top_orgs as $org) {
-	print("<li>{$org['name']} - {$org['total_duration']} hours</li>");
+	print("<li>{$org['name']} ({$org['total_duration']} hours)</li>");
 }
 ?>
         </ol>
@@ -116,7 +116,7 @@ foreach($top_orgs as $org) {
 foreach($pending_events as $event) {
 	$event['date'] = date("m/d/Y", strtotime($event['date']));
 	$html = <<<EOS
-<li><a href="event-details.php?event_id={$event['event_id']}">{$event['location']} - {$event['date']}</a></li>
+<li class="dash_eventlist"><a href="event-details.php?event_id={$event['event_id']}">{$event['location']}<br><span class="dash_eventdate">{$event['date']}</span></a></li>
 EOS;
 	print($html);
 }
@@ -130,7 +130,7 @@ EOS;
 foreach($open_events as $event) {
 	$event['date'] = date("m/d/Y", strtotime($event['date']));
 	$html = <<<EOS
-<li><a href="event-details.php?event_id={$event['event_id']}">{$event['location']} - {$event['date']}</a></li>
+<li class="dash_eventlist"><a href="event-details.php?event_id={$event['event_id']}">{$event['location']}<br><span class="dash_eventdate">{$event['date']}</span></a></li>
 EOS;
 	print($html);
 }
@@ -145,7 +145,7 @@ EOS;
 foreach($closed_events as $event) {
 	$event['date'] = date("m/d/Y", strtotime($event['date']));
 	$html = <<<EOS
-<li><a href="event-details.php?event_id={$event['event_id']}">{$event['location']} - {$event['date']}</a></li>
+<li class="dash_eventlist"><a href="event-details.php?event_id={$event['event_id']}">{$event['location']}<br><span class="dash_eventdate">{$event['date']}</span></a></li>
 EOS;
 	print($html);
 }
