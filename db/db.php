@@ -308,7 +308,7 @@ function delete_element($element_id) {
 	//don't delete an element currently used in a form
 	$query = "SELECT COUNT(1) FROM `form_element` WHERE `element_id` = {$element_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-	if(_get_one($sql))
+	if(_get_one($query))
 		return FALSE;
 	
 	$query = "DELETE FROM `element` WHERE `element_id` = {$element_id}";
@@ -587,32 +587,103 @@ function volunteer_name_cmp($a, $b) {
 		return strcmp($a['lastname'], $b['lastname']);
 }
 
-/*
-function get_volunteers_of_day($service_date = null) {
-	//function to grab all volunteers with a signature for a given day (today by default)
+function get_volunteer_count($start_date = null, $end_date = null) {
+	//function to get a count of all signed-in volunteers in range
 	$db_link = setup_db();
 	
-	$service_date = ($service_date) ? $service_date : date("Y-m-d");
+	$start_date = mysqli_real_escape_string($db_link, $start_date);
+	$end_date = mysqli_real_escape_string($db_link, $end_date);
 	
-	$service_date = mysqli_real_escape_string($db_link, $service_date);
-
-	$query = "SELECT `volunteer_id` FROM `volunteer_signature` WHERE `signature_date` = '{$service_date}'";
+	if($start_date && $end_date)
+		$date_query = "AND date BETWEEN '{$start_date}' AND '{$end_date}'";
+	elseif($start_date)
+		$date_query = "AND date >= '{$start_date}'";
+	elseif($end_date)
+		$date_query = "AND date <= '{$end_date}'";
+	
+	$query = <<<EOS
+SELECT COUNT(1) FROM `volunteer_event`
+JOIN `event` USING (`event_id`)
+WHERE 1
+{$date_query}
+EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-	$volunteer_ids = _get_col($result);
 	
-	foreach($volunteer_ids as $volunteer_id) {
-		$volunteer = get_volunteer_info($volunteer_id);
-		$query = "SELECT `duration` FROM `volunteer_time` WHERE `service_date` = '{$service_date}' AND volunteer_id = {$volunteer_id}";
-		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
-		$volunteer['duration'] = _get_one($result);
-		$volunteers[] = $volunteer;
+	return _get_one($result);
+}
+
+function get_duration_count($start_date = null, $end_date = null) {
+	//function to get a count of all unique signed-in volunteers in range
+	$db_link = setup_db();
+	
+	$start_date = mysqli_real_escape_string($db_link, $start_date);
+	$end_date = mysqli_real_escape_string($db_link, $end_date);
+	
+	if($start_date && $end_date)
+		$date_query = "AND date BETWEEN '{$start_date}' AND '{$end_date}'";
+	elseif($start_date)
+		$date_query = "AND date >= '{$start_date}'";
+	elseif($end_date)
+		$date_query = "AND date <= '{$end_date}'";
+	
+	$query = <<<EOS
+SELECT SUM(`duration`) FROM `volunteer_event`
+JOIN `event` USING (`event_id`)
+WHERE 1
+{$date_query}
+EOS;
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return _get_one($result);
+}
+
+function get_top_volunteers($count = 3) {
+	//function to get a ranking of the $count volunteers with the most hours logged
+	$db_link = setup_db();
+	
+	$query = <<<EOS
+SELECT `volunteer_id`, SUM(`duration`) AS `total_duration`
+FROM `volunteer_event`
+GROUP BY `volunteer_id`
+ORDER BY `total_duration` DESC
+EOS;
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	$volunteers = _get_all($result);
+	
+	foreach($volunteers as &$volunteer) {
+		$volunteer = array_merge($volunteer, get_volunteer_info($volunteer['volunteer_id']));
 	}
-	
-	usort($volunteers, "volunteer_name_cmp");
+	unset($volunteer);
 	
 	return $volunteers;
 }
-*/
+
+function get_top_orgs($count = 3) {
+	//function to get a ranking of the $count organizations with the most hours logged
+	$db_link = setup_db();
+	
+	$query = <<<EOS
+SELECT `company_id`, SUM(`duration`) AS `total_duration`
+FROM `volunteer_event`
+JOIN `volunteer` USING (`volunteer_id`)
+GROUP BY `volunteer_id`
+ORDER BY `total_duration` DESC
+EOS;
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	$orgs = _get_all($result);
+	
+	foreach($orgs as &$org) {
+		$query = "SELECT * FROM `company` WHERE `company_id` = {$org['company_id']}";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		
+		$org = array_merge($org, _get_row($result));
+	}
+	unset($org);
+	
+	return $orgs;
+}
 
 function record_volunteer_time($volunteer_id, $event_id, $duration) {
 	//function to record the hours worked for a volunteer
@@ -869,7 +940,10 @@ function create_event($date, $note, $location) {
 	$query = "INSERT INTO `event` (`date`, `note`, `location`) VALUES ('{$date}', '{$note}', '{$location}')";
 	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
-	return TRUE;
+	$query = "SELECT LAST_INSERT_ID()";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return _get_one($result);
 }
 
 function update_event($event_id, $date, $note, $location) {

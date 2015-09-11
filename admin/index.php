@@ -2,6 +2,52 @@
 include ('../includes/admin-header.php'); 
 include('validate.php');
 include ('../includes/admin-sidebar.php'); 
+include('../db/db.php');
+
+if($_REQUEST['preset_id']) {
+	$element_ids = get_export_preset($_REQUEST['preset_id']);
+
+	$search['date'] = $_REQUEST['date'];
+	
+	$file_name = export_csv($element_ids, $search);
+	Header("Location: ../export/{$file_name}");
+}
+
+$start_date = date("Y-m-01");
+
+$month_volunteers = number_format(get_volunteer_count($start_date));
+$month_duration = number_format(get_duration_count($start_date), 2);
+
+$all_time_volunteers = number_format(get_volunteer_count());
+$all_time_duration = number_format(get_duration_count(), 2);
+
+$month_name = date("M");
+
+$top_volunteers = get_top_volunteers();
+$top_orgs = get_top_orgs();
+
+$search = array();
+$search['status_id'] = 1;
+$search['count'] = 3;
+$search['start_date'] = date("Y-m-d", strtotime("-10 year"));
+$search['end_date'] = date("Y-m-d", strtotime("-1 day"));
+$pending_events = get_events($search);
+
+$search = array();
+$search['status_id'] = 1;
+$search['count'] = 3;
+$open_events = get_events($search);
+
+$search = array();
+$search['status_id'] = 2;
+$search['count'] = 3;
+$search['sort_dir'] = 1;
+$closed_events = get_events($search);
+
+$today = date("Y-m-d");
+$yesterday = date("Y-m-d", strtotime("-1 day"));
+$presets = get_export_presets();
+
 ?>
 
 <div class="container">
@@ -10,27 +56,27 @@ include ('../includes/admin-sidebar.php');
 
 <div class="row flexbox">
     <div class="six cols callout">
-        <h2 class="callout-title">This Month's Volunteers </h2>
-        <p class="text"><span class="fa fa-user left dash"></span><span class="right stroke-text">2,500</span></p>
+        <h2 class="callout-title">Volunteers In <?php print($month_name); ?></h2>
+        <p class="text"><span class="fa fa-user left dash"></span><span class="right stroke-text"><?php print($month_volunteers); ?></span></p>
     </div>
 
     
     <div class="six cols callout">
-        <h2 class="callout-title">This Month's Hours</h2>
-        <p class="text"><span class="fa fa-clock-o dash left"></span><span class="right stroke-text">2,500</span></p>
+        <h2 class="callout-title">Hours Logged In <?php print($month_name); ?></h2>
+        <p class="text"><span class="fa fa-clock-o dash left"></span><span class="right stroke-text"><?php print($month_duration); ?></span></p>
     </div> 
     <div class="clear"></div>
 </div>
 
 <div class="row flexbox">
     <div class="six cols callout">
-        <h2 class="callout-title">Volunteers to Date</h2>
-        <p class="text"><span class="fa fa-users left dash "></span><span class="right stroke-text">2,500</span></p>
+        <h2 class="callout-title">Volunteers To-Date</h2>
+        <p class="text"><span class="fa fa-users left dash "></span><span class="right stroke-text"><?php print($all_time_volunteers); ?></span></p>
     </div>  
     
     <div class="six cols callout">
-        <h2 class="callout-title">Hours to Date</h2>
-        <p class="text"><span class="fa fa-clock-o dash left"></span><span class="right stroke-text">2,500</span></p>
+        <h2 class="callout-title">Hours Logged To-Date</h2>
+        <p class="text"><span class="fa fa-clock-o dash left"></span><span class="right stroke-text"><?php print($all_time_duration); ?></span></p>
     </div> 
     <div class="clear"></div>
 </div>
@@ -39,18 +85,22 @@ include ('../includes/admin-sidebar.php');
     <div class="six cols callout">
     <h2 class="callout-title">Top Volunteers</h2>
         <ol class="list-group">
-            <li>Volunteer NameHere</li>
-            <li>Volunteer NameHere</li>
-            <li>Volunteer NameHere</li>
+<?php
+foreach($top_volunteers as $volunteer) {
+	print("<li>{$volunteer['firstname']} {$volunteer['lastname']} - {$volunteer['total_duration']} hours</li>");
+}
+?>
         </ol>
     </div>   
     
     <div class="six cols callout">
     <h2 class="callout-title">Top Organizations</h2>
         <ol class="list-group">
-            <li><a href="#">Organization NameHere</a></li>
-            <li><a href="#">Organization NameHere</a></li>
-            <li><a href="#">Organization NameHere</a></li>
+<?php
+foreach($top_orgs as $org) {
+	print("<li>{$org['name']} - {$org['total_duration']} hours</li>");
+}
+?>
         </ol>
     </div>   
 </div>  
@@ -60,28 +110,46 @@ include ('../includes/admin-sidebar.php');
     <h2 class="callout-title">Your Events</h2>
     <div class="row">
         <div class="four cols">
-        <h3>Requires Action</h3>
+        <h3>Pending Completion</h3>
             <ul class="list-group">
-                <li><a href="#">Event NameHere</a></li>
-                <li><a href="#">Event NameHere</a></li>
-                <li><a href="#">Event NameHere</a></li>
+<?php
+foreach($pending_events as $event) {
+	$event['date'] = date("m/d/Y", strtotime($event['date']));
+	$html = <<<EOS
+<li><a href="event-details.php?event_id={$event['event_id']}">{$event['location']} - {$event['date']}</a></li>
+EOS;
+	print($html);
+}
+?>
             </ul>
          </div>
         <div class="four cols">
         <h3>Open</h3>
             <ul class="list-group">
-                <li><a href="#">Event NameHere</a></li>
-                <li><a href="#">Event NameHere</a></li>
-                <li><a href="#">Event NameHere</a></li>
+<?php
+foreach($open_events as $event) {
+	$event['date'] = date("m/d/Y", strtotime($event['date']));
+	$html = <<<EOS
+<li><a href="event-details.php?event_id={$event['event_id']}">{$event['location']} - {$event['date']}</a></li>
+EOS;
+	print($html);
+}
+?>
             </ul>
          </div>
         
         <div class="four cols">
         <h3>Completed</h3>
             <ul class="list-group">
-                <li><a href="#">Event NameHere</a></li>
-                <li><a href="#">Event NameHere</a></li>
-                <li><a href="#">Event NameHere</a></li>
+<?php
+foreach($closed_events as $event) {
+	$event['date'] = date("m/d/Y", strtotime($event['date']));
+	$html = <<<EOS
+<li><a href="event-details.php?event_id={$event['event_id']}">{$event['location']} - {$event['date']}</a></li>
+EOS;
+	print($html);
+}
+?>
             </ul>
          </div>
     </div>
@@ -94,11 +162,33 @@ include ('../includes/admin-sidebar.php');
     <div class="row">
         <div class="six cols">
             <h3>Today's Data</h3>
-             <a href="#"><button class="m-full-width">All Fields</button></a> <a href="#"><button class="m-full-width">Postal Fields</button></a> <a href="#"><button class="m-full-width">Email Fields</button></a>   
+						<form method="POST">
+							<input type="hidden" name="date" value="<?php print($today); ?>" />
+							<input type="hidden" id="preset_id" name="preset_id" value="" />
+<?php
+foreach($presets as $preset) {
+	$html = <<<EOS
+							<button class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
+EOS;
+print($html);
+}
+?>
+						</form>
         </div>
         <div class="six cols">
             <h3>Yesterday's Data</h3>
-            <a href="#"><button class="m-full-width">All Fields</button></a> <a href="#"><button class="m-full-width">Postal Fields</button></a> <a href="#"><button class="m-full-width">Email Fields</button></a>
+						<form method="POST">
+							<input type="hidden" name="date" value="<?php print($yesterday); ?>" />
+							<input type="hidden" id="preset_id" name="preset_id" value="" />
+<?php
+foreach($presets as $preset) {
+	$html = <<<EOS
+							<button class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
+EOS;
+print($html);
+}
+?>
+						</form>
         </div>
     </div>   
 </div>
