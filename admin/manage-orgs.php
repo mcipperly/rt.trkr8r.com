@@ -73,7 +73,7 @@ EOS;
 	
 	$html = <<<EOS
                     <tr>
-                        <td data-label="Organization" class="manage-table--orgs"><span class="manage-table--break">{$org['name']}</span></td>
+                        <td data-label="Organization" class="manage-table--orgs"><a href="org-details.php?org_id={$org['company_id']}"><span class="manage-table--break">{$org['name']}</span></a></td>
                         <td data-label="Remove" class="manage-table--remove"><input type="checkbox" class="big" name="remove_{$org['company_id']}" size="1"></td>
                     </tr>
 EOS;

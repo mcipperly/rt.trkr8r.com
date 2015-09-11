@@ -368,6 +368,19 @@ function get_organizations($offset = 0, $count = 0) {
 	return array_merge($no_company, $companies);
 }
 
+function get_organization($company_id) {
+	//function to return info about a given organization
+	$db_link = setup_db();
+	
+	if(!$company_id)
+		return array();
+	
+	$query = "SELECT * FROM `company` WHERE `company_id` = {$company_id}";
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return _get_row($result);
+}
+
 function create_organization($name) {
 	//function to create a new organization
 
@@ -815,7 +828,7 @@ function search_responses($element_ids, $search) {
 		return $search_results;
 	
 	foreach($element_ids as $element_id) {
-		if($search['org_name'])
+		if($search['org_name'] || $search['company_id'])
 			$org_join_query = "JOIN `volunteer` ON `volunteer`.`volunteer_id` = `volunteer_event`.`volunteer_id`\nJOIN `company` USING (`company_id`)";
 		
 		$query = <<<EOS
@@ -840,6 +853,9 @@ EOS;
 		
 		if($search['org_name'])
 			$query .= "AND `company`.`name` LIKE '%{$search['org_name']}%'\n";
+	
+		if($search['company_id'])
+			$query .= "AND `company`.`company_id` = {$search['company_id']}\n";
 	
 		$query .= "ORDER BY `volunteer_id`";
 

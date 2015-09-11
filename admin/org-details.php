@@ -2,21 +2,32 @@
 include ('../includes/admin-header.php'); 
 include('validate.php');
 include ('../includes/admin-sidebar.php'); 
+include ('../db/db.php');
+
+if($_REQUEST['preset_id']) {
+	$element_ids = get_export_preset($_REQUEST['preset_id']);
+
+	$search['company_id'] = $_REQUEST['company_id'];
+	
+	$file_name = export_csv($element_ids, $search);
+	Header("Location: ../export/{$file_name}");
+}
+
+$org = get_organization($_REQUEST['org_id']);
+
 ?>
 
 <div class="container">
 <div class="admin-content-wrapper">
-<h1 class="admin-page-title"><span class="fa fa-th"></span>&nbsp;<a href="manage-orgs.php">Manage Organizations</a> <span class="fa fa-angle-right"></span>&nbsp;Sample Organization Detail Page</h1>
+<h1 class="admin-page-title"><span class="fa fa-th"></span>&nbsp;<a href="manage-orgs.php">Manage Organizations</a> <span class="fa fa-angle-right"></span>&nbsp;<?php print($org['name']); ?></h1>
     
 <div class="row flexbox">
     <div class="eight cols callout">
         <h2 class="callout-title">Details <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
             
-            <h3>Organization Name</h3>
-            <h4><strong>Contact Name:</strong> Contact Name &bull; <strong>Contact Details:</strong> Phone or Email</h4>
-            <p>Description lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin risus congue ipsum porta, at eleifend. 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sollicitudin risus congue ipsum porta, at eleifend. Dolor sit 
-    amet, consectetur adipiscing elit. Ut sollicitudin risus congue ipsum porta.</p>
+            <h3><?php print($org['name']); ?></h3>
+            <h4><strong>Contact Name:</strong> <?php print($org['contact_name']); ?> &bull; <strong>Contact Details:</strong> <?php print($org['contact_details']); ?></h4>
+            <p><?php print($org['description']); ?></p>
     </div> 
     
     <div class="four cols callout">
