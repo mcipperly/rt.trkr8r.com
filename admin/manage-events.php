@@ -125,7 +125,7 @@ $(function(){
 </div>
 <div class="row">
     <div class="twelve cols callout" id="openevents">
-        <h2 class="callout-title">Open Events <a href="#" class="add-event"><span class="fa fa-plus-circle"></span>&nbsp;Add New Event</a></h2>
+        <h2 class="callout-title">Open Events <a href="event_create.php" class="add-event"><span class="fa fa-plus-circle"></span>&nbsp;Add New Event</a></h2>
           <div class="eventslide">
             <div id="events_0">
               <div class="row flexbox">
