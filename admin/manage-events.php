@@ -52,7 +52,7 @@ function getMoreEvents(lastEvent,qt) {
       if(val.note.length>100) {
         val.note = val.note.substring(0, 100)+" (cont.)";
       }
-      html += '<div class="four cols '+colorClass+'"><a href="event_noaction.php?event_id='+val.event_id+'" class="event-box"><h3>'+val.location+'</h3><h4>'+val.date+'</h4><p class="desc">'+val.note+'</p></div>';
+      html += '<div class="four cols '+colorClass+'"><a href="event-details.php?event_id='+val.event_id+'" class="event-box"><h3>'+val.location+'</h3><h4>'+val.date+'</h4><p class="desc">'+val.note+'</p></div>';
       iter = key;
     });
     iter++;
@@ -107,7 +107,7 @@ $(function(){
                   ?></div></div><div id="a_events_3"><div class="row flexbox"><?php
                 }
                 ?><div class="four cols bkg-less-opaque">
-                    <a href="event_noaction.php?event_id=<?php print($event['event_id']) ?>" class="event-box">
+                    <a href="event-details.php?event_id=<?php print($event['event_id']) ?>" class="event-box">
                       <h3><?php print($event['location']) ?></h3>
                       <h4><?php print($event['date']) ?></h4>
                       <p class="desc"><?php print($event['note']) ?></p>
@@ -145,7 +145,7 @@ $(function(){
                 ?></div></div><div id="events_6"><div class="row flexbox"><?php
               }
               ?><div class="four cols bkg-more-opaque">
-                  <a href="event_noaction.php?event_id=<?php print($event['event_id']) ?>" class="event-box">
+                  <a href="event-details.php?event_id=<?php print($event['event_id']) ?>" class="event-box">
                     <h3><?php print($event['location']) ?></h3>
                     <h4><?php print($event['date']) ?></h4>
                     <p class="desc"><?php print($event['note']) ?></p>
@@ -194,7 +194,7 @@ foreach($events as $event) {
                         <td data-label="Date">{$event_date}</td>
                         <td data-label="Volunteers">{$event_vols}</td>
                         <td data-label="Hours">{$event_dur}</td>
-                        <td data-label="Details"><a href="event_noaction.php?event_id={$event['event_id']}"><button>View</button></a></td>
+                        <td data-label="Details"><a href="event-details.php?event_id={$event['event_id']}"><button>View</button></a></td>
                     </tr>
 EOS;
 	print($html);

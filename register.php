@@ -189,7 +189,7 @@ EOS;
 
 	if($key + 1 == sizeof($form['elements'])) {
 		$html = <<<EOS
-    <input type="submit" value="Submit">
+    <br><input type="submit" value="Submit">
 
 </form>
 EOS;
