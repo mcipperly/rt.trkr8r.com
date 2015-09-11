@@ -231,7 +231,7 @@ body.admin-body {
     
     .admin-content-wrapper {
         overflow: hidden !important;
-        padding: 15px;
+        padding: 1em;
     }
 
     .admin-header-bar {
@@ -268,6 +268,12 @@ body.admin-body {
     }  
 }
 
+@media (max-width: $break-small) {
+    .admin-content-wrapper {
+        overflow: hidden !important;
+        padding: .5em .2em .2em .2em;
+    }
+}
 
 
 .callout {
@@ -319,12 +325,34 @@ body.admin-body {
 
 /* Manage Events Page */
 
-.add-event {
+.edit-action {
     display: inline-block;
     float: right;
     font-size: 1.7rem;
     color: #fff;
     
+    
+    &:hover {
+        color: rgba(255,255,255, .7);
+    }
+    
+    &:after {
+        content: "";
+        display: table;
+        clear: both; 
+    }
+}
+
+.add-action {
+    display: inline-block;
+    float: right;
+    font-size: 1.7rem;
+    color: #fff;
+    margin-bottom: 20px;
+    
+    @media (max-width: $break-tablet) {
+        margin-top: 20px;
+    }
     
     &:hover {
         color: rgba(255,255,255, .7);

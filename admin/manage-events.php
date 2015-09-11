@@ -80,8 +80,9 @@ $(function(){
 
 <div class="container">
 <div class="admin-content-wrapper">
-<h1 class="admin-page-title"><span class="fa fa-calendar"></span>&nbsp;Manage Events</h1>
+<h1 class="admin-page-title"><span class="fa fa-calendar"></span>&nbsp;Manage Events<button class="m-full-width add-action"><span class="fa fa-plus-circle"></span>&nbsp;Add New Event</button></h1>
 
+    
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Events Pending Completion</h2>
@@ -125,7 +126,7 @@ $(function(){
 </div>
 <div class="row">
     <div class="twelve cols callout" id="openevents">
-        <h2 class="callout-title">Open Events <a href="#" class="add-event"><span class="fa fa-plus-circle"></span>&nbsp;Add New Event</a></h2>
+        <h2 class="callout-title">Open Events</h2>
           <div class="eventslide">
             <div id="events_0">
               <div class="row flexbox">

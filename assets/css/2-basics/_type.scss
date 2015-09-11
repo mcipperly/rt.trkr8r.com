@@ -61,6 +61,11 @@ p {
 footer {
     @include font-size(1.2);
     color: $primary-color;
+    
+    @media (max-width: 550px) {
+        @include font-size(.95);
+        @include line-height(1.6);
+    }
 }
 
 small {

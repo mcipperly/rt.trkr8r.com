@@ -53,9 +53,9 @@ $orgs = get_organizations();
 
 		<div class="row">
 			<div class="twelve cols callout">
-				<h2 class="callout-title">Details <a href="#" class="add-event"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
+				<h2 class="callout-title">Details <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
                    <script>
-                        $("a.add-event").click(eventEditMode);
+                        $("a.edit-action").click(eventEditMode);
 
                         function eventEditMode() {
                            $(".event_title").replaceWith("<input id=\"new_event_title\" type=\"text\" value=\"" + $(".event_title").text() + "\" class=\"full-width\">");
@@ -76,7 +76,7 @@ $orgs = get_organizations();
                               changeMonth: true,
                               changeYear: true,
                            });
-                           $(".add-event").replaceWith("<a href=\"#\" class=\"add-event save-event\"><span class=\"fa fa-floppy-o\"></span>&nbsp;Save</a>");
+                           $(".edit-action").replaceWith("<a href=\"#\" class=\"edit-action save-event\"><span class=\"fa fa-floppy-o\"></span>&nbsp;Save</a>");
                            $("a.save-event").click(function() {
                               var xhr = new XMLHttpRequest();
                               xhr.onreadystatechange = function() {
@@ -100,8 +100,8 @@ $orgs = get_organizations();
                            $("#new_event_title").replaceWith("<h3 class=\"event_title\">" + document.getElementById('new_event_title').value + "</h3>");
                            $("#new_date_picker").replaceWith("<h4 class=\"event_date\">" + document.getElementById('event_display').value + "</h4>");
                            $("#new_event_desc").replaceWith("<p class=\"event_desc\">" + document.getElementById('new_event_desc').value + "</p>");
-                           $(".save-event").replaceWith("<a href=\"#\" class=\"add-event save-event\">&nbsp;Update successful!&nbsp;<span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
-                           $("a.add-event").click(eventEditMode);
+                           $(".save-event").replaceWith("<a href=\"#\" class=\"edit-action save-event\">&nbsp;Success!&nbsp;<span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
+                           $("a.edit-action").click(eventEditMode);
                         }
                     </script>
 
