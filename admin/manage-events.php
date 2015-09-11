@@ -166,7 +166,7 @@ $(function(){
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Completed Events</h2>
-            <table>
+            <table class="respond">
                 <thead>
                     <tr>
                         <th>Event</th>

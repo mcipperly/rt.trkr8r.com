@@ -58,7 +58,7 @@ foreach($orgs as $key => $org) {
         <div class="twelve cols callout">
             <h2 class="callout-title">Current Organizations</h2>
             <form method="POST">
-                <table class="manage-table">
+                <table class="respond manage-table">
                     <thead>
                         <tr>
                             <th class="manage-table--orgs">Organization</th>

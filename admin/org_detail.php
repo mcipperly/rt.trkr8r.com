@@ -36,7 +36,7 @@ include ('../includes/admin-sidebar.php');
         <h2 class="callout-title">Volunteers</h2>
             
         <div class="row">
-            <table>
+            <table class="respond">
                 
                 <thead>
                     <tr>

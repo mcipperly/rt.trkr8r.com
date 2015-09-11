@@ -223,7 +223,7 @@ EOS;
 				<form method="POST">
 					<input type="hidden" name="event_id" value="{$event['event_id']}" />
 					<input type="hidden" name="update" value="1" />
-					<table class="right-input">
+					<table class="respond right-input">
 						<tbody>
 EOS;
 	print($html);
@@ -266,7 +266,7 @@ EOS;
 elseif($event['status_id'] == 2) {
 	$html = <<<EOS
 			<div class="row">
-				<table>
+				<table class="respond">
 					<thead>
 						<tr>
 							<th class="print_details"></th>
