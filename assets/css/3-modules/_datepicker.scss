@@ -12,3 +12,8 @@
     border: 1px solid $primary-color;
     background: $secondary-color url("images/ui-bg_glass_55_fbf9ee_1x400.png") 50% 50% repeat-x;
 }
+
+.ui-datepicker-trigger {
+    margin: 0;
+    padding: 0;
+}

@@ -60,7 +60,7 @@ foreach($users as $key => $user) {
             <h2 class="callout-title">Current Users</h2>
 
             <form method="POST">
-                <table class="manage-table">
+                <table class="respond manage-table">
                     <thead>
                         <tr>
                             <th class="manage-table--user" style="text-transform: uppercase;">User</th>

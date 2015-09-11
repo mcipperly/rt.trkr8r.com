@@ -11,9 +11,9 @@ include ( '../includes/admin-sidebar.php');
         
         <div class="row">
             <div class="twelve cols callout">
-                <h2 class="callout-title">Update Form Labels <a href="#" class="add-event"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
+                <h2 class="callout-title">Update Form Labels <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
                    <script>
-                        $( "a.add-event" ).click(function() {  
+                        $( "a.edit-action" ).click(function() {  
                           $( "label" ).replaceWith( "<input type=\"text\" value=\"First Name\" class=\"full-width\">" );
                         });
                     </script>

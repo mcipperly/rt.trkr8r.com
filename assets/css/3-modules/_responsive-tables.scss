@@ -1,5 +1,5 @@
 /* Responsive Standard Tables */
-table {
+table.respond {
     width: 100%;
     margin:0;
     padding:0;
@@ -39,7 +39,7 @@ table.right-input td[data-label="Hours"] {
 
 @media screen and (max-width: $break-phone) {
 
-    table {
+    table.respond {
         border: 0;
         
         thead {
@@ -77,7 +77,7 @@ table.right-input td[data-label="Hours"] {
 
 /* Extras for Management Tables (Orgs and Users) */
 
-table.manage-table {
+table.respond.manage-table {
     .manage-table--user, .manage-table--orgs {
         text-align: left;
     }
@@ -99,7 +99,7 @@ table + div {
 
 @media screen and (max-width: $break-phone) {
 
-    table.manage-table {
+    table.respond.manage-table {
         .manage-table--user,
         .manage-table--orgs,
         .manage-table--break {
@@ -138,7 +138,7 @@ table + div {
     }
 }
 
-table {
+table.respond {
     input, textarea, select, fieldset {
         margin-bottom: 0; 
     }

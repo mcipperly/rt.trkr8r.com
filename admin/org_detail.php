@@ -10,7 +10,7 @@ include ('../includes/admin-sidebar.php');
     
 <div class="row flexbox">
     <div class="eight cols callout">
-        <h2 class="callout-title">Details <a href="#" class="add-event"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
+        <h2 class="callout-title">Details <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
             
             <h3>Organization Name</h3>
             <h4><strong>Contact Name:</strong> Contact Name &bull; <strong>Contact Details:</strong> Phone or Email</h4>
@@ -36,7 +36,7 @@ include ('../includes/admin-sidebar.php');
         <h2 class="callout-title">Volunteers</h2>
             
         <div class="row">
-            <table>
+            <table class="respond">
                 
                 <thead>
                     <tr>

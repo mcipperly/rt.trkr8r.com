@@ -52,7 +52,7 @@ function getMoreEvents(lastEvent,qt) {
       if(val.note.length>100) {
         val.note = val.note.substring(0, 100)+" (cont.)";
       }
-      html += '<div class="four cols '+colorClass+'"><a href="event_noaction.php?event_id='+val.event_id+'" class="event-box"><h3>'+val.location+'</h3><h4>'+val.date+'</h4><p class="desc">'+val.note+'</p></div>';
+      html += '<div class="four cols '+colorClass+'"><a href="event-details.php?event_id='+val.event_id+'" class="event-box"><h3>'+val.location+'</h3><h4>'+val.date+'</h4><p class="desc">'+val.note+'</p></div>';
       iter = key;
     });
     iter++;
@@ -80,8 +80,9 @@ $(function(){
 
 <div class="container">
 <div class="admin-content-wrapper">
-<h1 class="admin-page-title"><span class="fa fa-calendar"></span>&nbsp;Manage Events</h1>
+<h1 class="admin-page-title"><span class="fa fa-calendar"></span>&nbsp;Manage Events<button class="m-full-width add-action"><span class="fa fa-plus-circle"></span>&nbsp;Add New Event</button></h1>
 
+    
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Events Pending Completion</h2>
@@ -107,7 +108,7 @@ $(function(){
                   ?></div></div><div id="a_events_3"><div class="row flexbox"><?php
                 }
                 ?><div class="four cols bkg-less-opaque">
-                    <a href="event_noaction.php?event_id=<?php print($event['event_id']) ?>" class="event-box">
+                    <a href="event-details.php?event_id=<?php print($event['event_id']) ?>" class="event-box">
                       <h3><?php print($event['location']) ?></h3>
                       <h4><?php print($event['date']) ?></h4>
                       <p class="desc"><?php print($event['note']) ?></p>
@@ -125,7 +126,7 @@ $(function(){
 </div>
 <div class="row">
     <div class="twelve cols callout" id="openevents">
-        <h2 class="callout-title">Open Events <a href="event_create.php" class="add-event"><span class="fa fa-plus-circle"></span>&nbsp;Add New Event</a></h2>
+        <h2 class="callout-title">Open Events</h2>
           <div class="eventslide">
             <div id="events_0">
               <div class="row flexbox">
@@ -145,7 +146,7 @@ $(function(){
                 ?></div></div><div id="events_6"><div class="row flexbox"><?php
               }
               ?><div class="four cols bkg-more-opaque">
-                  <a href="event_noaction.php?event_id=<?php print($event['event_id']) ?>" class="event-box">
+                  <a href="event-details.php?event_id=<?php print($event['event_id']) ?>" class="event-box">
                     <h3><?php print($event['location']) ?></h3>
                     <h4><?php print($event['date']) ?></h4>
                     <p class="desc"><?php print($event['note']) ?></p>
@@ -165,7 +166,7 @@ $(function(){
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Completed Events</h2>
-            <table>
+            <table class="respond">
                 <thead>
                     <tr>
                         <th>Event</th>
@@ -194,7 +195,7 @@ foreach($events as $event) {
                         <td data-label="Date">{$event_date}</td>
                         <td data-label="Volunteers">{$event_vols}</td>
                         <td data-label="Hours">{$event_dur}</td>
-                        <td data-label="Details"><a href="event_noaction.php?event_id={$event['event_id']}"><button>View</button></a></td>
+                        <td data-label="Details"><a href="event-details.php?event_id={$event['event_id']}"><button>View</button></a></td>
                     </tr>
 EOS;
 	print($html);
