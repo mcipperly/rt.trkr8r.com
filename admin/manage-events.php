@@ -80,7 +80,7 @@ $(function(){
 
 <div class="container">
 <div class="admin-content-wrapper">
-<h1 class="admin-page-title"><span class="fa fa-calendar"></span>&nbsp;Manage Events<button class="m-full-width add-action"><span class="fa fa-plus-circle"></span>&nbsp;Add New Event</button></h1>
+<h1 class="admin-page-title"><span class="fa fa-calendar"></span>&nbsp;Manage Events<a href="event_create.php"><button class="m-full-width add-action"><span class="fa fa-plus-circle"></span>&nbsp;Add New Event</button></a></h1>
 
     
 <div class="row">
