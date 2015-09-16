@@ -13,10 +13,10 @@ if($_REQUEST['preset_id']) {
 	Header("Location: ../export/{$file_name}");
 }
 
-$start_date = date("Y-m-01");
+$search['start_date'] = date("Y-m-01");
 
-$month_volunteers = number_format(get_volunteer_count($start_date));
-$month_duration = number_format(get_duration_count($start_date), 2);
+$month_volunteers = number_format(get_volunteer_count($search));
+$month_duration = number_format(get_duration_count($search), 2);
 
 $all_time_volunteers = number_format(get_volunteer_count());
 $all_time_duration = number_format(get_duration_count(), 2);
