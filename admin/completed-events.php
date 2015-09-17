@@ -55,7 +55,7 @@ foreach($events as $event) {
                         <td data-label="Date">{$event_date}</td>
                         <td data-label="Volunteers">{$event_vols}</td>
                         <td data-label="Hours">{$event_dur}</td>
-                        <td data-label="Details"><a href="completed-events.php?toggle_event_id={$event['event_id']}&page={$page}"><button>View</button></a></td>
+                        <td data-label="Details"><a href="event-details.php?event_id={$event['event_id']}"><button>View</button></a></td>
                     </tr>
 EOS;
 	print($html);

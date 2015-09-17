@@ -377,8 +377,24 @@ function get_organization($company_id) {
 	
 	$query = "SELECT * FROM `company` WHERE `company_id` = {$company_id}";
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$org = _get_row($result);
 	
-	return _get_row($result);
+	$query = <<<EOS
+SELECT `volunteer_id`, `event_id`, `location`, `duration`
+FROM `volunteer_event`
+JOIN `volunteer` USING (`volunteer_id`)
+JOIN `event` USING (`event_id`) 
+WHERE `company_id` = {$company_id}
+EOS;
+	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	$org['volunteer_events'] = _get_all($result);
+	
+	foreach($org['volunteer_events'] as &$ve) {
+		$ve = array_merge($ve, get_volunteer_info($ve['volunteer_id']));
+	}
+	unset($ve);
+	
+	return $org;
 }
 
 function create_organization($name) {
@@ -600,50 +616,64 @@ function volunteer_name_cmp($a, $b) {
 		return strcmp($a['lastname'], $b['lastname']);
 }
 
-function get_volunteer_count($start_date = null, $end_date = null) {
+function get_volunteer_count($search) {
 	//function to get a count of all signed-in volunteers in range
 	$db_link = setup_db();
 	
-	$start_date = mysqli_real_escape_string($db_link, $start_date);
-	$end_date = mysqli_real_escape_string($db_link, $end_date);
+	foreach($search as &$search_item) {
+		$search_item = mysqli_real_escape_string($db_link, $search_item);
+	}
+	unset($search_item);
 	
-	if($start_date && $end_date)
-		$date_query = "AND date BETWEEN '{$start_date}' AND '{$end_date}'";
-	elseif($start_date)
-		$date_query = "AND date >= '{$start_date}'";
-	elseif($end_date)
-		$date_query = "AND date <= '{$end_date}'";
+	if($search['start_date'] && $search['end_date'])
+		$date_query = "AND date BETWEEN '{$search['start_date']}' AND '{$search['end_date']}'";
+	elseif($search['start_date'])
+		$date_query = "AND date >= '{$search['start_date']}'";
+	elseif($search['end_date'])
+		$date_query = "AND date <= '{$search['end_date']}'";
+	
+	if($search['company_id'])
+		$org_query = "AND company_id = {$search['company_id']}";
 	
 	$query = <<<EOS
 SELECT COUNT(1) FROM `volunteer_event`
 JOIN `event` USING (`event_id`)
+JOIN `volunteer` USING (`volunteer_id`)
 WHERE 1
 {$date_query}
+{$org_query}
 EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
 	return _get_one($result);
 }
 
-function get_duration_count($start_date = null, $end_date = null) {
+function get_duration_count($search) {
 	//function to get a count of all unique signed-in volunteers in range
 	$db_link = setup_db();
 	
-	$start_date = mysqli_real_escape_string($db_link, $start_date);
-	$end_date = mysqli_real_escape_string($db_link, $end_date);
+	foreach($search as &$search_item) {
+		$search_item = mysqli_real_escape_string($db_link, $search_item);
+	}
+	unset($search_item);
 	
-	if($start_date && $end_date)
-		$date_query = "AND date BETWEEN '{$start_date}' AND '{$end_date}'";
-	elseif($start_date)
-		$date_query = "AND date >= '{$start_date}'";
-	elseif($end_date)
-		$date_query = "AND date <= '{$end_date}'";
+	if($search['start_date'] && $search['end_date'])
+		$date_query = "AND date BETWEEN '{$search['start_date']}' AND '{$search['end_date']}'";
+	elseif($search['start_date'])
+		$date_query = "AND date >= '{$search['start_date']}'";
+	elseif($search['end_date'])
+		$date_query = "AND date <= '{$search['end_date']}'";
+	
+	if($search['company_id'])
+		$org_query = "AND company_id = {$search['company_id']}";
 	
 	$query = <<<EOS
 SELECT SUM(`duration`) FROM `volunteer_event`
 JOIN `event` USING (`event_id`)
+JOIN `volunteer` USING (`volunteer_id`)
 WHERE 1
 {$date_query}
+{$org_query}
 EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
