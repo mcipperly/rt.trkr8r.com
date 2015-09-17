@@ -112,7 +112,7 @@ $(function() {
 					</div>
 					<!-- DISPLAYS IF THE PRIMARY FILTER CHOSEN IS BY EVENT -->
 					<h3>Select Event</h3>
-					<select class="full-width" name="event_id" "id="event_id">
+					<select class="full-width" name="event_id" id="event_id">
 						<option value="0">--</option>
 <?php
 
@@ -127,7 +127,20 @@ EOS;
 					
 					<!-- DISPLAYS IF THE PRIMARY FILTER CHOSEN IS BY ORG -->
 					<h3>Select Organization(s)</h3>
-					<input class="full-width" type="text" name="org_name" placeholder='e.g. "Pitt" for any org that includes "Pitt" in its name' value="" />
+                          
+                <div class="input_fields_wrap">
+                        <select name="org_name" class="input_fields_input">
+                          <option value="org1">Volvo</option>
+                          <option value="org2">Saab</option>
+                          <option value="org3">Fiat</option>
+                          <option value="org4">Audi</option>
+                        </select>
+                   &nbsp;&nbsp;<img src="../assets/imgs/add-icon.png" class="add-input">
+               </div>
+                     <br>                      
+	  <script src="../assets/js/add_inputs.js"></script>
+			
+                    
 					
      <!-- FROM HERE DOWN, THESE DISPLAY WITH EITHER PRIMARY FILTER -->
 					<h3>Quick Export</h3>
@@ -142,7 +155,7 @@ EOS;
 	}
 
 	$html = <<<EOS
-						<button  class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}">Export {$preset['name']}</button>
+						<button class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}">Export {$preset['name']}</button>
 EOS;
 	print($html);
 	
@@ -193,8 +206,7 @@ EOS;
                 <input type="checkbox" name="element_ids[]" value="7">&nbsp;City
                 </div>
             </div>
-
-
+                                                                             
             <div class="row">
                 <div class="four cols">
                 <input type="checkbox" name="element_ids[]" value="8">&nbsp;State
@@ -238,8 +250,8 @@ EOS;
             oth.checked = false;
           }
         }
-
-        </script>
+</script>                             
+                                                                      
     </div>
     </div>
 <?php include ('../includes/footer.php'); ?>

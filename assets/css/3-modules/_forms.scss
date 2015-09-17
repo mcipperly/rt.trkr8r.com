@@ -103,3 +103,56 @@ input[disabled] {
     background-color: #F7F7F7;
     border-color: #DEDEDE;
 }
+
+/* Adding/Removing Inputs */
+
+
+.input_fields_wrap {
+    
+    .input_fields_input {
+        width: 92%;
+        
+        @media (max-width: 925px) {
+            width: 90%;
+        }
+        
+        @media (max-width: 505px) {
+            width: 87%;
+        }
+        
+        @media (max-width: 400px) {
+            width: 82%;
+        }
+        
+        @media (max-width: 321px) {
+            width: 80%;
+        }
+    }
+    
+    img.add-input {
+        border: none;
+
+        &:active, &:focus {
+            outline: none !important;
+        }
+
+        &:hover {
+            opacity: .35;
+            cursor: pointer;
+        }
+    }
+
+    img.remove-input {
+        border: none;
+
+        &:active, &:focus {
+            outline: none !important;
+        }
+
+        &:hover {
+            opacity: .35;
+            cursor: pointer;
+        }
+    }
+    
+}
