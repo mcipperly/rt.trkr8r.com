@@ -104,9 +104,8 @@ input[disabled] {
     border-color: #DEDEDE;
 }
 
+
 /* Adding/Removing Inputs */
-
-
 .input_fields_wrap {
     
     .input_fields_input {
@@ -131,6 +130,8 @@ input[disabled] {
     
     img.add-input {
         border: none;
+        position: relative;
+        top: 8px;
 
         &:active, &:focus {
             outline: none !important;
@@ -144,6 +145,8 @@ input[disabled] {
 
     img.remove-input {
         border: none;
+        position: relative;
+        top: 8px;
 
         &:active, &:focus {
             outline: none !important;
