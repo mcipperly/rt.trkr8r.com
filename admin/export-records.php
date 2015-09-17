@@ -47,9 +47,40 @@ $events = get_events($event_search);
 				</div>
 			</div>
 		</div>
+        <script>
+            $(document).ready(function(){
+                $('#show-by-date').hide();
+                $('#show-by-event').hide();
+                $('#show-by-org').hide();
+                $('#show-by-all').hide();
+
+                $("input[value=\"by_date\"]").click(function(){
+                    $("#show-by-all").show();
+                    $("#show-by-date").show();
+                    $("#show-by-event").hide();
+                    $("#show-by-org").hide();
+                });
+                
+                $("input[value=\"by_event\"]").click(function(){
+                    $("#show-by-all").show();
+                    $("#show-by-event").show();
+                    $("#show-by-date").hide();
+                    $("#show-by-org").hide();
+                });
+                
+                $("input[value=\"by_org\"]").click(function(){
+                    $("#show-by-all").show();
+                    $("#show-by-org").show();
+                    $("#show-by-date").hide();
+                    $("#show-by-event").hide();
+                });
+
+            });
+        </script>
+        
 <!-- DONT SHOW THIS BOX UNTIL A PRIMARY FILTER IS CHOSEN, THEN DISPLAY WITH THE CORRESPONDING FILTER OPTION.
 ALWAYS DISPLAY THE QUICK AND CUSTOM EXPORTS -->
-		<form method="POST">
+		<form method="POST">					<div id="show-by-all">
 			<div class="row">
 				<div class="twelve cols callout">
 					<h2 class="callout-title">Create .CSV File</h2>
@@ -92,13 +123,14 @@ $(function() {
    });
 });
 					</script>
+                    <div id="show-by-date">
 					<h3>Select Date Range</h3>
 					<div class="row">
 						<div class="four cols">
 							<input readonly class="full-width" type="text" id="start_display" value=""/>
 						</div>
 						<div class="one cols">
-							<input style="display: none;" class="full-width" type="text" id="start_date" name="start_date" value=""/>
+							<input style="display: none;" class="full-width " type="text" id="start_date" name="start_date" value=""/>
 						</div>
 						<div class="two cols">
 							<p style="text-align: center;">to</p>            
@@ -110,6 +142,9 @@ $(function() {
 							<input style="display: none;" class="full-width" type="text" id="end_date" name="end_date" value=""/>
 						</div>
 					</div>
+                    </div>
+                    
+                    <div id="show-by-event">
 					<!-- DISPLAYS IF THE PRIMARY FILTER CHOSEN IS BY EVENT -->
 					<h3>Select Event</h3>
 					<select class="full-width" name="event_id" id="event_id">
@@ -124,7 +159,9 @@ EOS;
 }
 ?>
 					</select>
-					
+                    </div>
+                    
+                    <div id="show-by-org">
 					<!-- DISPLAYS IF THE PRIMARY FILTER CHOSEN IS BY ORG -->
 					<h3>Select Organization(s)</h3>
                           
@@ -139,9 +176,9 @@ EOS;
                </div>
                      <br>                      
 	  <script src="../assets/js/add_inputs.js"></script>
-			
+                    </div>
                     
-					
+
      <!-- FROM HERE DOWN, THESE DISPLAY WITH EITHER PRIMARY FILTER -->
 					<h3>Quick Export</h3>
 					<input type="hidden" name="preset_id" id="preset_id" value="" />
@@ -215,7 +252,7 @@ EOS;
                 <input type="checkbox" name="element_ids[]" value="9">&nbsp;ZIP
                 </div>
                 <div class="four cols">
-                <input type="checkbox" name="element_ids[]" value="4">&nbsp;Affiliation or Company
+                <input type="checkbox" name="element_ids[]" value="4">&nbsp;Organization
                 </div>
             </div>
 
@@ -251,7 +288,7 @@ EOS;
           }
         }
 </script>                             
-                                                                      
+    </div>                                                                  
     </div>
     </div>
 <?php include ('../includes/footer.php'); ?>
