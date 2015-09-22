@@ -9,7 +9,7 @@ include ('../includes/admin-sidebar.php');
 	<div class="admin-content-wrapper">
 		<h1 class="admin-page-title">
 			<span class="fa fa-calendar"></span>&nbsp;
-			<a href="event_create.php">Create Event</a>
+			<a href="event-create.php">Create Event</a>
 		</h1>
 
 		<div class="row">
