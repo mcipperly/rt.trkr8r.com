@@ -16,7 +16,7 @@ include ('../includes/admin-sidebar.php');
 			<div class="twelve cols callout">
 				<h2 class="callout-title">Details </h2>
 				<form action="./save-event.php" method="POST">
-          <input name="event_title" type="text" placeholder="Event Title" class="full-width" />
+          <input name="event_title" type="text" placeholder="Event Location" class="full-width" />
           <textarea name="event_desc" rows="4" class="full-width" placeholder="Event Description"></textarea>
           <span id="date_picker"><input readonly type="text" id="event_display" placeholder="Date">&nbsp;<input style="display: none;" class="full-width" type="text" id="edp" name="event_date" /></span>
 					<input type="submit" name="type" value="Create" class="right m-full-width" />
