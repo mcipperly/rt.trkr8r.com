@@ -680,7 +680,7 @@ EOS;
 	return _get_one($result);
 }
 
-function get_top_volunteers($count = 3) {
+function get_top_volunteers($count = 5) {
 	//function to get a ranking of the $count volunteers with the most hours logged
 	$db_link = setup_db();
 	
@@ -689,6 +689,7 @@ SELECT `volunteer_id`, SUM(`duration`) AS `total_duration`
 FROM `volunteer_event`
 GROUP BY `volunteer_id`
 ORDER BY `total_duration` DESC
+LIMIT 0, {$count}
 EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
@@ -702,7 +703,7 @@ EOS;
 	return $volunteers;
 }
 
-function get_top_orgs($count = 3) {
+function get_top_orgs($count = 5) {
 	//function to get a ranking of the $count organizations with the most hours logged
 	$db_link = setup_db();
 	
@@ -710,8 +711,9 @@ function get_top_orgs($count = 3) {
 SELECT `company_id`, SUM(`duration`) AS `total_duration`
 FROM `volunteer_event`
 JOIN `volunteer` USING (`volunteer_id`)
-GROUP BY `volunteer_id`
+GROUP BY `company_id`
 ORDER BY `total_duration` DESC
+LIMIT 0, {$count}
 EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
