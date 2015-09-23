@@ -4,6 +4,8 @@ include('validate.php');
 include ('../includes/admin-sidebar.php'); 
 require_once('../db/db.php');
 
+//testing($_REQUEST);
+
 if($_REQUEST['element_ids'] || $_REQUEST['preset_id']) {
 	$element_ids = ($_REQUEST['preset_id']) ? get_export_preset($_REQUEST['preset_id']) : $_REQUEST['element_ids'];
 
@@ -23,6 +25,8 @@ if($_REQUEST['element_ids'] || $_REQUEST['preset_id']) {
 }
 
 $presets = get_export_presets();
+
+$orgs = get_organizations();
 
 $event_search = array("status_id" => 2, "sort_dir" => 1);
 $events = get_events($event_search);
@@ -166,11 +170,15 @@ EOS;
 					<h3>Select Organization(s)</h3>
                           
                 <div class="input_fields_wrap">
-                        <select name="org_name" class="input_fields_input">
-                          <option value="org1">Volvo</option>
-                          <option value="org2">Saab</option>
-                          <option value="org3">Fiat</option>
-                          <option value="org4">Audi</option>
+                        <select name="org_ids[]" class="input_fields_input">
+<?php
+foreach($orgs as $org) {
+	$html = <<<EOS
+							<option value="{$org['company_id']}">{$org['name']}</option>
+EOS;
+	print($html);
+}
+?>
                         </select>
                    &nbsp;&nbsp;<img src="../assets/imgs/add-icon.png" class="add-input">
                </div>

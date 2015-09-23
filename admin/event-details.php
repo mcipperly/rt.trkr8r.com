@@ -39,7 +39,6 @@ $event = get_event($_REQUEST['event_id']);
 
 $orgs = get_organizations();
 
-//testing($event);
 ?>
 
 <div class="container">
