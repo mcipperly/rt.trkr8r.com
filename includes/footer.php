@@ -59,7 +59,9 @@ vex.dialog.open({
           $vexContent.data().vex.value = 'onsite';
           vex.close($vexContent.data().vex.id);
       }}),
-      vex.dialog.buttons.NO
+      $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-primary', text: 'Logout', click: function($vexContent, event) {
+          window.location.replace('/admin/logout.php');
+      }})
   ],
   callback: function(data) {
     var xhra = new XMLHttpRequest();
