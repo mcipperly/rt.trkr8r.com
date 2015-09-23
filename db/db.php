@@ -745,7 +745,9 @@ function get_top_orgs($count = 5) {
 SELECT `company_id`, SUM(`duration`) AS `total_duration`
 FROM `volunteer_event`
 JOIN `volunteer` USING (`volunteer_id`)
+WHERE `company_id` <> 0
 GROUP BY `company_id`
+HAVING `total_duration` > 0
 ORDER BY `total_duration` DESC
 LIMIT 0, {$count}
 EOS;
