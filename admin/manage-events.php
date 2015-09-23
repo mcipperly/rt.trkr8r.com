@@ -132,7 +132,7 @@ if (count($a_events) > 0) {
 <?php } ?>
 <div class="row">
     <div class="twelve cols callout" id="openevents">
-        <h2 class="callout-title">Future Open Events</h2>
+        <h2 class="callout-title">Future Events</h2>
           <div class="eventslide">
             <div id="events_0">
               <div class="row flexbox">
