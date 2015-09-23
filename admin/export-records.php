@@ -10,7 +10,7 @@ if($_REQUEST['element_ids'] || $_REQUEST['preset_id']) {
 	if($_REQUEST['event_id'])
 		$search['event_id'] = $_REQUEST['event_id'];
 	
-	if(isset($_REQUEST['org_ids']))
+	if(isset($_REQUEST['org_ids']) && !($_REQUEST['event_id'] || $_REQUEST['start_date']))
 		$search['org_ids'] = $_REQUEST['org_ids'];
 	
 	if($_REQUEST['start_date'] && $_REQUEST['end_date']) {
