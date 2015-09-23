@@ -1,4 +1,3 @@
-<script src="../assets/js/admin-sidebar.js"></script>
 <script type="text/javascript">
 function adminLogin() {
 vex.dialog.open({

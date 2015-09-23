@@ -1,0 +1,38 @@
+@media print {
+    
+    body {
+        background: none;
+        margin: 0;
+        padding: 0;
+        line-height: 1.4em;
+        word-spacing: 1px;
+        letter-spacing: 0.2px;
+        font: 10pt 'Open Sans', Verdana, Helvetica, Arial, sans-serif !important;
+        color: #000;
+    }
+    
+    h2 {
+        font-size: 11pt !important;
+        margin: 15px 0 5px 0;
+    }
+    
+    p {
+        margin-top: 0;
+    }
+    
+    label {
+        font-weight: bold;
+    }
+    
+        label:after {
+            content: ": ";
+        }
+    
+    /* Removals */
+    footer,
+    .interior-header,
+    button,
+    br {
+        display: none;
+    }
+}

@@ -1,4 +1,4 @@
-(function (window, document) {
+function respMenu(window, document) {
 
     var wrap = document.getElementById('admin-wrap'),
         sidebar = document.getElementById('admin-sidebar'),
@@ -32,4 +32,4 @@
         toggleClass(toggleMenu, active);
     };
 
-}(this, this.document));
+};
