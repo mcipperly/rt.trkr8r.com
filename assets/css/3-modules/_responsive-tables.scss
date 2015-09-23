@@ -112,8 +112,6 @@ table + div {
 /* Extra for Print Icon Column */
 
 .print_details {
-    background-color: #fff; 
-    
     a {
         color: #515151;
         
@@ -126,7 +124,6 @@ table + div {
 @media screen and (max-width: $break-phone) {
     
 .print_details {
-    background-color: transparent;
     
     a {
         color: #515151;

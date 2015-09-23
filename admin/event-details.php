@@ -189,7 +189,7 @@ EOS;
 elseif($event['status_id'] == 1) {
 	$html = <<<EOS
 				<div class="row">
-				<h3>Update ALl Volunteer Stats</h3>
+				<h3>Update All Volunteer Stats</h3>
 				<form method="POST">
 					<input type="hidden" name="event_id" value="{$event['event_id']}" />
 					<input type="hidden" name="update_all" value="1" />
@@ -268,7 +268,7 @@ elseif($event['status_id'] == 2) {
 				<table class="respond">
 					<thead>
 						<tr>
-							<th class="print_details"></th>
+							<th class="print_details">Waiver</th>
 							<th>Volunteer Name</th>
 							<th>Affiliation</th>
 							<th>Hours</th>
@@ -282,7 +282,7 @@ EOS;
 		
 		$html .= <<<EOS
 						<tr>
-							<td data-label="Print Details" class="print_details"><a href="../signature.php?view=1&vid={$volunteer['volunteer_id']}"><span class="fa fa-print fa-lg"></span></a></td>
+							<td data-label="Print Details" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
 							<td data-label="Volunteer Name">{$volunteer['firstname']} {$volunteer['lastname']}</td>
 							<td data-label="Affiliation">{$volunteer['company']['name']}</td>
 							<td data-label="Hours">{$volunteer['duration']}</td>
