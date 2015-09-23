@@ -30,14 +30,18 @@ function getMoreEvents(lastEvent,qt) {
   if(qt=="a") {
     var openEventsDiv = document.getElementById("a_events_" + (lastEvent-3));
     var startDate = new Date(new Date().setDate(new Date().getDate()-3650));
-    var endDate = new Date(new Date().setDate(new Date().getDate()-1));
+    var endDate = new Date();
+    endDate.setHours(endDate.getHours()-(endDate.getTimezoneOffset() / 60));
     var dateQuery = '&start_date='+startDate.toISOString().slice(0, 10)+'&end_date='+endDate.toISOString().slice(0, 10);
     var numQuery = '&count=3';
     var sliderId = '.aeventslide';
     var colorClass = 'bkg-less-opaque';
   } else {
     var openEventsDiv = document.getElementById("events_" + (lastEvent-6));
-    var dateQuery = '';
+    var startDate = new Date();
+    startDate.setHours(startDate.getHours()-(startDate.getTimezoneOffset() / 60));
+    var endDate = new Date(new Date().setDate(new Date().getDate()+3650));
+    var dateQuery = '&start_date='+startDate.toISOString().slice(0, 10)+'&end_date='+endDate.toISOString().slice(0, 10);
     var numQuery = '&count=6';
     var sliderId = '.eventslide';
     var colorClass = 'bkg-more-opaque';
@@ -81,8 +85,20 @@ $(function(){
 <div class="container">
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-calendar"></span>&nbsp;Manage Events<a href="event-create.php"><button class="m-full-width add-action"><span class="fa fa-plus-circle"></span>&nbsp;Add New Event</button></a></h1>
-
-    
+<?php
+// get two panels worth of actionable events from the db
+$start_date = date_create();
+$end_date = date_create();
+date_sub($start_date, date_interval_create_from_date_string('10 years'));
+$a_events_opts = array(
+  status_id => 1,
+  count => 6,
+  start_date => date_format($start_date, "Y-m-d"),
+  end_date => date_format($end_date, "Y-m-d")
+);
+$a_events = get_events($a_events_opts);
+if (count($a_events) > 0) {
+?>
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Events Pending Completion</h2>
@@ -90,19 +106,8 @@ $(function(){
           <div id="events_0" class="flexbox">
 
             <div class="row">
+
               <?php
-              // get two panels worth of actionable events from the db
-              $start_date = date_create();
-              $end_date = date_create();
-              date_sub($start_date, date_interval_create_from_date_string('10 years'));
-              date_sub($end_date, date_interval_create_from_date_string('1 day'));
-              $a_events_opts = array(
-                status_id => 1,
-                count => 6,
-                start_date => date_format($start_date, "Y-m-d"),
-                end_date => date_format($end_date, "Y-m-d")
-              );
-              $a_events = get_events($a_events_opts);
               foreach($a_events as $key => $event) {
                 if ($key == 3) {
                   ?></div></div><div id="a_events_3"><div class="row flexbox"><?php
@@ -124,17 +129,24 @@ $(function(){
 
     </div>
 </div>
+<?php } ?>
 <div class="row">
     <div class="twelve cols callout" id="openevents">
-        <h2 class="callout-title">Open Events</h2>
+        <h2 class="callout-title">Future Open Events</h2>
           <div class="eventslide">
             <div id="events_0">
               <div class="row flexbox">
             <?php
             // get two panels worth of data from the db on load, fetch the rest lazily
+            $o_start_date = date_create();
+            $o_end_date = date_create();
+            date_add($o_start_date, date_interval_create_from_date_string('1 day'));
+            date_add($o_end_date, date_interval_create_from_date_string('10 years'));
             $o_events_opts = array(
               status_id => 1,
-              count => 12
+              count => 12,
+              start_date => date_format($o_start_date, "Y-m-d"),
+              end_date => date_format($o_end_date, "Y-m-d")
             );
             $o_events = get_events($o_events_opts);
             foreach($o_events as $key => $event) {
