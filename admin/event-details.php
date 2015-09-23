@@ -282,7 +282,7 @@ EOS;
 		
 		$html .= <<<EOS
 						<tr>
-							<td data-label="Print Details" class="print_details"><a href="#"><span class="fa fa-print fa-lg"></span></a></td>
+							<td data-label="Print Details" class="print_details"><a href="../signature.php?view=1&vid={$volunteer['volunteer_id']}"><span class="fa fa-print fa-lg"></span></a></td>
 							<td data-label="Volunteer Name">{$volunteer['firstname']} {$volunteer['lastname']}</td>
 							<td data-label="Affiliation">{$volunteer['company']['name']}</td>
 							<td data-label="Hours">{$volunteer['duration']}</td>
