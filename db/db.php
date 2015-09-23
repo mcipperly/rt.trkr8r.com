@@ -680,6 +680,40 @@ EOS;
 	return _get_one($result);
 }
 
+function find_volunteer($search) {
+	//function to return a volunteer_id based on search criteria
+	$db_link = setup_db();
+
+	foreach($search as &$search_item) {
+		$search_item = mysqli_real_escape_string($db_link, $search_item);
+	}
+	unset($search_item);
+
+	if($search['firstname']) {
+		$query = "SELECT `volunteer_id` FROM `form_response` WHERE `fe_id` = 1 AND `value` LIKE '%{$search['firstname']}%' ORDER BY `volunteer_id`";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		$firstname_results = _get_col($result);
+	}
+	
+	if($search['lastname']) {
+		$query = "SELECT `volunteer_id` FROM `form_response` WHERE `fe_id` = 2 AND `value` LIKE '%{$search['lastname']}%' ORDER BY `volunteer_id`";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		$lastname_results = _get_col($result);
+	}
+	
+	if($search['firstname'] && $search['lastname'])
+		$search_results = array_intersect($firstname_results, $lastname_results);
+	elseif($search['firstname'])
+		$search_results = $firstname_results;
+	elseif($search['lastname'])
+		$search_results = $lastname_results;
+	else
+		$search_results = array();
+	
+	if($search_results)
+		return $search_results[0];
+}
+
 function get_top_volunteers($count = 5) {
 	//function to get a ranking of the $count volunteers with the most hours logged
 	$db_link = setup_db();

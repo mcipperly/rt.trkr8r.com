@@ -9,6 +9,12 @@ if($_REQUEST['email']) {
 	if($volunteer_id)
 		Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
 }
+elseif($_REQUEST['firstname'] || $_REQUEST['lastname']) {
+	$volunteer_id = find_volunteer($_REQUEST);
+	if($volunteer_id)
+		Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
+}
+
 ?>
 
 <div class="container">
@@ -22,11 +28,11 @@ if($_REQUEST['email']) {
         <form method="POST">
             <div class="row">
                 <div class="five cols">
-                <input type="text" class="full-width" name="firstname" value="First">
+                <input type="text" class="full-width" name="firstname" placeholder="First Name">
                 </div>
                 
                 <div class="five cols">
-                <input type="text" class="full-width" name="lastname" value="Last">
+                <input type="text" class="full-width" name="lastname" placeholder="Last Name">
                 </div>
 
                 <div class="two cols">
@@ -39,7 +45,7 @@ if($_REQUEST['email']) {
         <form method="POST">
             <div class="row">
                 <div class="ten cols">
-                <input type="email" class="full-width" name="email">
+                <input type="email" class="full-width" name="email" placeholder="Email Address">
                 </div>
 
                 <div class="two cols">
