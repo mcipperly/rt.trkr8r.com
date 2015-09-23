@@ -4,16 +4,14 @@ include('validate.php');
 include ('../includes/admin-sidebar.php'); 
 require_once('../db/db.php');
 
-//testing($_REQUEST);
-
 if($_REQUEST['element_ids'] || $_REQUEST['preset_id']) {
 	$element_ids = ($_REQUEST['preset_id']) ? get_export_preset($_REQUEST['preset_id']) : $_REQUEST['element_ids'];
 
 	if($_REQUEST['event_id'])
 		$search['event_id'] = $_REQUEST['event_id'];
 	
-	if($_REQUEST['org_name'])
-		$search['org_name'] = $_REQUEST['org_name'];
+	if(isset($_REQUEST['org_ids']))
+		$search['org_ids'] = $_REQUEST['org_ids'];
 	
 	if($_REQUEST['start_date'] && $_REQUEST['end_date']) {
 		$search['start_date'] = $_REQUEST['start_date'];

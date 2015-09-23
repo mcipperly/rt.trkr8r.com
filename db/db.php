@@ -896,7 +896,7 @@ function search_responses($element_ids, $search) {
 		return $search_results;
 	
 	foreach($element_ids as $element_id) {
-		if($search['org_name'] || $search['company_id'])
+		if($search['org_ids'] || $search['company_id'])
 			$org_join_query = "JOIN `volunteer` ON `volunteer`.`volunteer_id` = `volunteer_event`.`volunteer_id`\nJOIN `company` USING (`company_id`)";
 		
 		$query = <<<EOS
@@ -919,8 +919,10 @@ EOS;
 		if($search['event_id'])
 			$query .= "AND `event_id` = {$search['event_id']}\n";
 		
-		if($search['org_name'])
-			$query .= "AND `company`.`name` LIKE '%{$search['org_name']}%'\n";
+		if(isset($search['org_ids'])) {
+			$org_id_list = implode(",", $search['org_ids']);
+			$query .= "AND `company`.`company_id` IN ({$org_id_list})\n";
+		}
 	
 		if($search['company_id'])
 			$query .= "AND `company`.`company_id` = {$search['company_id']}\n";
