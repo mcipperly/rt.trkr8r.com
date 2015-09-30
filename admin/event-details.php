@@ -1,8 +1,8 @@
 <?php
-include ('../includes/admin-header.php'); 
+include ('../includes/admin-header.php');
 include('validate.php');
 require_once('../db/db.php');
-include ('../includes/admin-sidebar.php'); 
+include ('../includes/admin-sidebar.php');
 
 if($_REQUEST['toggle_status']) {
 	toggle_event_status($_REQUEST['event_id']);
@@ -12,7 +12,7 @@ if($_REQUEST['preset_id']) {
 	$element_ids = get_export_preset($_REQUEST['preset_id']);
 
 	$search['event_id'] = $_REQUEST['event_id'];
-	
+
 	$file_name = export_csv($element_ids, $search);
 	Header("Location: ../export/{$file_name}");
 }
@@ -99,8 +99,9 @@ $orgs = get_organizations();
                            $("#new_event_title").replaceWith("<h3 class=\"event_title\">" + document.getElementById('new_event_title').value + "</h3>");
                            $("#new_date_picker").replaceWith("<h4 class=\"event_date\">" + document.getElementById('event_display').value + "</h4>");
                            $("#new_event_desc").replaceWith("<p class=\"event_desc\">" + document.getElementById('new_event_desc').value + "</p>");
-                           $(".save-event").replaceWith("<a href=\"#\" class=\"edit-action save-event\">&nbsp;Success!&nbsp;<span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
+                           $(".save-event").replaceWith("<a href=\"#\" class=\"edit-action save-event\">&nbsp;<span class=\"success-msg\">Success!&nbsp;</span><span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
                            $("a.edit-action").click(eventEditMode);
+													 $("span.success-msg").fadeOut(2400);
                         }
                     </script>
 
@@ -108,8 +109,8 @@ $orgs = get_organizations();
 					<h3 class="event_title"><?php print($event['location']); ?></h3>
 					<h4 class="event_date"><?php print(date("F j, Y", strtotime($event['date']))); ?></h4>
 					<p class="event_desc"><?php print($event['note']); ?></p>
-				</div>   
-			</div>  
+				</div>
+			</div>
 		</div>
 
 		<div class="row">
@@ -160,9 +161,9 @@ print($html);
 }
 ?>
 						</form>
-					</div>            
-				</div>   
-			</div>  
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="row">
@@ -174,7 +175,7 @@ if(strtotime(date("Y-m-d")) < strtotime($event['date'])) {
 				<div class="row">
 					<p>This event hasn’t happened yet! Check back after your event date to view volunteers for this event and
 						manage their affiliations and hours.</p>
-				</div>   
+				</div>
 EOS;
 	print($html);
 }
@@ -182,7 +183,7 @@ elseif(count($event['volunteers']) == 0) {
 	$html = <<<EOS
 				<div class="row">
 					<p>There are currently no volunteers for this event.</p>
-				</div>   
+				</div>
 EOS;
 	print($html);
 }
@@ -216,7 +217,7 @@ EOS;
 				</form>
 EOS;
 	print($html);
-	
+
 	$html = <<<EOS
 				<h3><small>OR</small> Update Individual Volunteer Stats</h3>
 				<form method="POST">
@@ -252,7 +253,7 @@ EOS;
 EOS;
 		print($html);
 	}
-	
+
 	$html = <<<EOS
 						</tbody>
 					</table>
@@ -279,7 +280,7 @@ EOS;
 
 	foreach($event['volunteers'] as $volunteer) {
 		$volunteer['duration'] = sprintf("%01.2f", $volunteer['duration']);
-		
+
 		$html .= <<<EOS
 						<tr>
 							<td data-label="Print Details" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
@@ -289,7 +290,7 @@ EOS;
 						</tr>
 EOS;
 	}
-	
+
 	$html .= <<<EOS
 					</tbody>
 				</table>
@@ -299,13 +300,13 @@ EOS;
 	print($html);
 }
 ?>
-			</div>  
+			</div>
 		</div>
 
 		<div>
 			<div class="left"><a href="manage-events.php"><span class="fa fa-calendar"></span> Back to Manage Events</a></div>
 			<div class="clear"></div>
-		</div>  
+		</div>
 	</div>
 </div>
 <?php include ('../includes/footer.php'); ?>
