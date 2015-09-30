@@ -13,6 +13,11 @@ if($_REQUEST['preset_id']) {
 	Header("Location: ../export/{$file_name}");
 }
 
+if($_REQUEST['remove']) {
+	invalidate_organization($_REQUEST['org_id']);
+	Header("Location: manage-orgs.php");
+}
+
 $org = get_organization($_REQUEST['org_id']);
 
 $all_time_volunteers = number_format(get_volunteer_count($search));
@@ -30,9 +35,14 @@ $presets = get_export_presets();
     <div class="eight cols callout">
         <h2 class="callout-title">Details <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
             
-            <h3><?php print($org['name']); ?></h3>
-            <h4><strong>Contact Name:</strong> <?php print($org['contact_name']); ?> &bull; <strong>Contact Details:</strong> <?php print($org['contact_details']); ?></h4>
-            <p><?php print($org['description']); ?></p>
+        <h3><?php print($org['name']); ?></h3>
+        <h4><strong>Contact Name:</strong> <?php print($org['contact_name']); ?> &bull; <strong>Contact Details:</strong> <?php print($org['contact_details']); ?></h4>
+        <p><?php print($org['description']); ?></p>
+		<form method="POST">
+			<input type="hidden" name="remove" value="1" />
+			<input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']);?>" />
+			<button type="submit" class="m-full-width btn-closed">Remove Organization</button>
+		</form>
     </div> 
     
     <div class="four cols callout">
