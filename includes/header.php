@@ -1,4 +1,11 @@
-<?php session_start(); ?><!DOCTYPE html>
+<?php session_start(); 
+if(isset($_SESSION['lastact']) && (time() - $_SESSION['lastact']) > 43200) {
+  $_SESSION['lastact'] = time();
+  Header("HTTP/1.1 302 Moved Temporarily");
+  Header("Location: /admin/logout.php");
+} else {
+  $_SESSION['lastact'] = time();
+} ?><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
     <title>Rebuilding Together Pittsburgh | Volunteer Registration</title>
@@ -24,7 +31,6 @@
 
     <script src="/assets/js/vex.combined.min.js"></script>
     <script>vex.defaultOptions.className = 'vex-theme-plain';</script>
-
 
 </head>
 
