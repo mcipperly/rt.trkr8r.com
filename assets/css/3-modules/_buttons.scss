@@ -23,6 +23,10 @@ input[type="button"] {
     border-bottom: 2px solid darken($primary-color, 10%) !important;
     background: $primary-color !important;
     border-radius: 0 !important;
+    
+    &.btn-small {
+        @include font-size(1.2);
+    }
 }
 .ui-datepicker .ui-datepicker-buttonpane button:hover,
 .btn:hover,
