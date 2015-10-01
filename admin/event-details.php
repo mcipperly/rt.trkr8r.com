@@ -231,7 +231,7 @@ EOS;
 		$volunteer['duration'] = sprintf("%01.2f", $volunteer['duration']);
 		$html = <<<EOS
 							<tr>
-								<td data-label="Print Details" class="print_details"><a href="#"><span class="fa fa-print fa-lg"></span></a></td>
+								<td data-label="Print Details" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
 								<td data-label="Volunteer Name">{$volunteer['firstname']} {$volunteer['lastname']}</td>
 								<td data-label="Org/Affiliation">
 									<select name="companyid_{$volunteer['volunteer_id']}">
