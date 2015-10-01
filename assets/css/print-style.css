@@ -35,4 +35,9 @@
     br {
         display: none;
     }
+    
+    .signature-pad-body {
+        max-width: 300px;
+        max-height: 800px;
+    }
 }

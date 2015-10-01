@@ -88,7 +88,15 @@ table.respond.manage-table {
     
     .manage-table--remove {
         text-align: right;
-    }      
+    }     
+    
+    a {
+        color: #515151;
+
+        &:hover {
+            opacity: 0.5;
+            }
+        }
 }
 
 table + input[type="submit"],
