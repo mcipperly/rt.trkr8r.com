@@ -1,30 +1,30 @@
 /*----------------------------------------------------
 	BUTTON STYLING
 -----------------------------------------------------*/
-
+.ui-datepicker .ui-datepicker-buttonpane button,
 .btn,
 button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
     font-weight: 600 !important;
-    display: inline-block;
-    outline: none;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
+    display: inline-block !important;
+    outline: none !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    text-decoration: none !important;
     @include font-size(1.5);
-    font-family: $primary-font;
+    font-family: $primary-font !important;
     padding: 8px 12px;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
-    color: #fff;
-    cursor: pointer;
-    box-sizing: border-box;
-    border: 0;
-    border-bottom: 2px solid darken($primary-color, 10%); 
-    background-color: $primary-color;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .2) !important;
+    color: #fff !important;
+    box-sizing: border-box !important;
+    border: 0 !important;
+    border-bottom: 2px solid darken($primary-color, 10%) !important;
+    background: $primary-color !important;
+    border-radius: 0 !important;
 }
-
+.ui-datepicker .ui-datepicker-buttonpane button:hover,
 .btn:hover,
 button:hover,
 input[type="submit"]:hover,
@@ -35,62 +35,66 @@ button:focus,
 input[type="submit"]:focus,
 input[type="reset"]:focus,
 input[type="button"]:focus {
-	background-color: darken($primary-color, 4%);
-	border-color: darken($primary-color, 55%);
+	background: darken($primary-color, 4%) !important;
+	border-color: darken($primary-color, 55%) !important;
 }
 
+.ui-datepicker .ui-datepicker-buttonpane button:active,
 .btn:active,
 button:active,
 input[type="submit"]:active,
 input[type="reset"]:active,
 input[type="button"]:active {
-    -webkit-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
-    -moz-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
-    box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
+    -webkit-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61) !important;
+    -moz-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61) !important;
+    box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61) !important;
 }
 
 body.admin-body {
     
+    .ui-datepicker .ui-datepicker-buttonpane button,
     .btn, 
     button,
     input[type="submit"],
     input[type="reset"],
     input[type="button"] {
 
-        color: #fff;
-        background-color: #868686;
-        border-color: darken(#868686, 30%);
-        text-shadow: none;
+        color: #fff !important;
+        background: #868686 !important;
+        border-color: darken(#868686, 30%) !important;
+        text-shadow: none !important;
+        border-radius: 0 !important;
         
         &.btn-open {
-            color: #fff;
-            background-color: #36a97a;
-            border-color: darken(#36a97a, 15%);
+            color: #fff !important;
+            background-color: #36a97a !important;
+            border-color: darken(#36a97a, 15%) !important;
         }
 
         &.btn-open-outline {
             color: #36a97a !important;
-            text-shadow: none;
-            background-color: #fff;
-            border: 2px solid #36a97a;
-            padding: 6px 12px 8px 12px;
+            text-shadow: none !important;
+            background-color: #fff !important;
+            border: 2px solid #36a97a !important;
+            padding: 6px 12px 8px 12px !important;
         }
 
         &.btn-closed {
-            color: #fff;
-            background-color: #e0645c;
-            border-color: darken(#e0645c, 15%);
+            color: #fff !important;
+            background-color: #e0645c !important;
+            border-color: darken(#e0645c, 15%) !important;
         }
 
         &.btn-closed-outline {
-            color: #e0645c;
-            text-shadow: none;
-            background-color: #fff;
-            border: 2px solid #e0645c;
-            padding: 6px 12px 8px 12px;
+            color: #e0645c !important;
+            text-shadow: none !important;
+            background-color: #fff !important;
+            border: 2px solid #e0645c !important;
+            padding: 6px 12px 8px 12px !important;
         }
     }
     
+    .ui-datepicker .ui-datepicker-buttonpane button:hover,
     .btn:hover,
     button:hover,
     input[type="submit"]:hover,
@@ -102,65 +106,65 @@ body.admin-body {
     input[type="reset"]:focus,
     input[type="button"]:focus {
              
-        background-color: darken(#868686, 12%);
-        border-color: darken(#868686, 50%);
+        background-color: darken(#868686, 12%) !important;
+        border-color: darken(#868686, 50%) !important;
         
         &.btn-open:hover,
         &.btn-open:focus {
-            background-color: darken(#36a97a, 12%);
-            border-color: darken(#36a97a, 50%);
+            background-color: darken(#36a97a, 12%) !important;
+            border-color: darken(#36a97a, 50%) !important;
         }
         
         &.btn-open.active-status:hover,
         &.btn-open.active-status:focus {
-            cursor: default;
-            color: #fff;
-            background-color: #36a97a;
-            border-color: darken(#36a97a, 15%);
+            cursor: default !important;
+            color: #fff !important;
+            background-color: #36a97a !important; 
+            border-color: darken(#36a97a, 15%) !important;
         }
 
         &.btn-open-outline:hover,
         &.btn-open-outline:focus {
             color: #fff !important;
-            background-color: #36a97a;
-            border-color: #36a97a;
+            background-color: #36a97a !important;
+            border-color: #36a97a !important;
         }
 
         &.btn-closed:hover,
         &.btn-closed:focus {
-            background-color: darken(#e0645c, 10%);
-            border-color: darken(#e0645c, 50%);
+            background-color: darken(#e0645c, 10%) !important;
+            border-color: darken(#e0645c, 50%) !important;
         }
 
         &.btn-closed-outline:hover,
         &.btn-closed-outline:focus {
-            color: #fff;
-            background-color: #e0645c;
-            border-color: #e0645c;
+            color: #fff !important;
+            background-color: #e0645c !important;
+            border-color: #e0645c !important;
         }
         
         &.btn-closed.active-status:hover,
         &.btn-closed.active-status:focus {
-            cursor: default;
-            color: #fff;
-            background-color: #e0645c;
-            border-color: darken(#e0645c, 15%);
+            cursor: default !important;
+            color: #fff !important;
+            background-color: #e0645c !important;
+            border-color: darken(#e0645c, 15%) !important;
         }
 
     }
-    
+    .ui-datepicker .ui-datepicker-buttonpane button:active,
     .btn:active,
     button:active,
     input[type="submit"]:active,
     input[type="reset"]:active,
     input[type="button"]:active {
-        -webkit-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
-        -moz-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
-        box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61);
+        -webkit-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61) !important;
+        -moz-box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61) !important;
+        box-shadow: inset 0px 0px 49px -8px rgba(0,0,0,0.61) !important;
     }
 
 }
 
 input[type="submit"]:last-child {
-  margin-bottom: 0;
+  margin-bottom: 0 !important;
 }

@@ -2,18 +2,46 @@
 	DATEPICKER
 -----------------------------------------------------*/
 
-#ui-datepicker-div {
-    font-family: $primary-font; 
+.ui-widget-header {
+    border-radius: 0;
+    border: 0;
+    background-image: none;
+    
+    select {
+        cursor: pointer;
+    }
+    
+    a.ui-state-hover, a span:hover { /* The arrows */
+        cursor: pointer;
+    }
+}
+
+.ui-datepicker {
+    font-family: $primary-font !important; 
+}
+
+.ui-datepicker-trigger {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 11px;
+    left: 6px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    background: #e6e6e6;
 }
 
 .ui-state-highlight, 
 .ui-widget-content .ui-state-highlight, 
 .ui-widget-header .ui-state-highlight {
     border: 1px solid $primary-color;
-    background: $secondary-color url("../imgs/cal-icon.png") 50% 50% repeat-x;
-}
-
-.ui-datepicker-trigger {
-    margin: 0;
-    padding: 0;
+    background-color: $secondary-color; 
+    color: darken($primary-color, 30);
+    font-weight: 600;
 }
