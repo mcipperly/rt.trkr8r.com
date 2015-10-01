@@ -211,7 +211,7 @@ EOS;
 }
 ?>
      <br>
-        <h3>Or Custom Export</h3>
+        <h3><small>Or</small> Custom Export</h3>
             <form method="GET">
             <input type="hidden" name="export" value="true"></input>
             <div class="row">
