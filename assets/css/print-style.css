@@ -35,4 +35,8 @@
     br {
         display: none;
     }
+    
+    img {
+        max-width: 250px;
+    }
 }
