@@ -9,10 +9,15 @@ if(!isset($_SESSION['mode'])) {
 
 $volunteer_info = get_volunteer_info($_GET['vid']);
 
-$search['date'] = date("Y-m-d");
-$todays_events = get_events($search);
+if($_REQUEST['event_id']) {
+	$event = get_event($_REQUEST['event_id']);
+}
+else {
+	$search['date'] = date("Y-m-d");
+	$todays_events = get_events($search);
 
-$event = $todays_events[0];
+	$event = $todays_events[0];
+}
 
 function get_response($response) {
 	global $search_element_id;

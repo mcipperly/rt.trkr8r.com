@@ -8,6 +8,7 @@ if(isset($_SESSION['lastact']) && (time() - $_SESSION['lastact']) > 43200) {
   Header("Location: /admin/logout.php");
   exit(0);
 } else {
+
   $_SESSION['lastact'] = time();
   $volunteer_id = validate_volunteer_email($_POST['email']);
 
@@ -29,9 +30,11 @@ if(isset($_SESSION['lastact']) && (time() - $_SESSION['lastact']) > 43200) {
 
   add_form_responses($volunteer_id, $form_id, $responses);
 
+  $event_id = (int) $_REQUEST['event_id'];
+
   Header("HTTP/1.1 302 Moved Temporarily");
   if(isset($_SESSION['mode'])) { 
-    Header("Location: signature.php?vid=" . $volunteer_id); 
+    Header("Location: signature.php?vid=" . $volunteer_id . "&event_id=". $event_id); 
   } else {
     Header("Location: index.php?thanks=2");
   }

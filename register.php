@@ -57,6 +57,7 @@ foreach($form['elements'] as $key => $element) {
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
 <form action="capture-register.php" method="POST" autocomplete="off">
+	<input type="hidden" name="event_id" value="{$_REQUEST['event_id']}" />
 EOS;
 		print($html);
 	}
