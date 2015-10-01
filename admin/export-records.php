@@ -95,7 +95,6 @@ $(function() {
 		buttonImage: "../assets/imgs/cal-icon.png",
 		buttonImageOnly: true,
 		buttonText: "Date selector",
-		showButtonPanel: true,
 
 		altField: "#start_display",
 		altFormat: "MM d, yy",
@@ -112,7 +111,6 @@ $(function() {
 		buttonImage: "../assets/imgs/cal-icon.png",
 		buttonImageOnly: true,
 		buttonText: "Date selector",
-		showButtonPanel: true,
 
 		dateFormat: "yy-mm-dd",
 		

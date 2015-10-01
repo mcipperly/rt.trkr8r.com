@@ -66,7 +66,6 @@ $orgs = get_organizations();
                               buttonImage: "../assets/imgs/cal-icon.png",
                               buttonImageOnly: true,
                               buttonText: "Date selector",
-                              showButtonPanel: true,
                               altField: "#event_display",
                               altFormat: "MM d, yy",
                               dateFormat: "yy-mm-dd",
