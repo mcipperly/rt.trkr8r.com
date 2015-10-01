@@ -82,7 +82,8 @@ $events = get_events($event_search);
         
 <!-- DONT SHOW THIS BOX UNTIL A PRIMARY FILTER IS CHOSEN, THEN DISPLAY WITH THE CORRESPONDING FILTER OPTION.
 ALWAYS DISPLAY THE QUICK AND CUSTOM EXPORTS -->
-		<form method="POST">					<div id="show-by-all">
+		<form method="POST">					
+            <div id="show-by-all">
 			<div class="row">
 				<div class="twelve cols callout">
 					<h2 class="callout-title">Create .CSV File</h2>
@@ -127,23 +128,10 @@ $(function() {
 					</script>
                     <div id="show-by-date">
 					<h3>Select Date Range</h3>
-					<div class="row">
-						<div class="four cols">
-							<input readonly class="full-width" type="text" id="start_display" value=""/>
-						</div>
-						<div class="one cols">
-							<input style="display: none;" class="full-width " type="text" id="start_date" name="start_date" value=""/>
-						</div>
-						<div class="two cols">
-							<p style="text-align: center;">to</p>            
-						</div>
-						<div class="four cols">
-							<input readonly class="full-width" type="text" id="end_display" value=""/>
-						</div>
-						<div class="one cols">
-							<input style="display: none;" class="full-width" type="text" id="end_date" name="end_date" value=""/>
-						</div>
-					</div>
+                        <div class="input_fields_wrap">
+                            <input readonly type="text" class="date-picker-select" id="start_display" value="" placeholder="Start Date"/><input style="display: none;" type="text" id="start_date" name="start_date" value=""/><br>
+                            <input readonly type="text" class="date-picker-select" id="end_display" value="" placeholder="End Date"/><input style="display: none;" type="text" id="end_date" name="end_date" value=""/><br><br>
+                        </div>
                     </div>
                     
                     <div id="show-by-event">
@@ -167,7 +155,8 @@ EOS;
 					<!-- DISPLAYS IF THE PRIMARY FILTER CHOSEN IS BY ORG -->
 					<h3>Select Organization(s)</h3>
                           
-                <div class="input_fields_wrap">
+                
+                        <div class="input_fields_wrap">
                         <select name="org_ids[]" class="input_fields_input">
 <?php
 foreach($orgs as $org) {

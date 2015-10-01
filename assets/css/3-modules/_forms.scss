@@ -19,6 +19,8 @@ input[type="password"] {
     border-radius: 4px;
     box-shadow: none;
     box-sizing: border-box;
+    font-family: $primary-font !important;
+
 }
 /* Removes awkward default styles on some inputs for iOS */
 
@@ -29,6 +31,7 @@ textarea, select {
     border-radius: 4px;
     box-shadow: none;
     box-sizing: border-box;
+    font-family: $primary-font !important;
 }
 
 input[type="email"],
@@ -155,6 +158,26 @@ input[disabled] {
         &:hover {
             opacity: .35;
             cursor: pointer;
+        }
+    }
+    
+    .date-picker-select {
+        width: 30%;
+        
+        @media (max-width: 925px) {
+            width: 90%;
+        }
+        
+        @media (max-width: 505px) {
+            width: 87%;
+        }
+        
+        @media (max-width: 400px) {
+            width: 82%;
+        }
+        
+        @media (max-width: 321px) {
+            width: 80%;
         }
     }
     
