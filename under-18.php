@@ -27,7 +27,7 @@ include('includes/header.php');
 
 <div class="row">
 <p>Text here</p>
-    <a href="RTP_WaiverForUnder18.pdf"><button>Download the waiver!</button></a>
+<p><a href="RTP_WaiverForUnder18.pdf"><button>Download the waiver!</button></a></p>
 </div>
 
 <?php include ( 'includes/footer.php'); ?>
