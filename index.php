@@ -8,14 +8,18 @@ function validateEmail(email) {
 function getEmail() {
 vex.dialog.prompt({
   message: 'Please enter your email address:',
-  placeholder: 'Email Address',
-  input: '<input name="vex" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value="" required>',
+  // placeholder: 'Email Address',
+  input: '<input name="email" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value="" required><input type="checkbox" name="under18" id="under18" value="true"><label style="display:inline" for="under18"> <b>Under 18?</b> Check here to print our waiver!</label>',
   callback: function(value) {
-    if(value) {
-      if(validateEmail(value)) {
-        window.location.assign("/register.php?email="+encodeURIComponent(value));
+    if(value.email) {
+      if(value.under18 === "true") {
+        window.location.assign("/under-18.php");
       } else {
-        invalidEmail(value);
+        if(validateEmail(value.email)) {
+          window.location.assign("/register.php?email="+encodeURIComponent(value.email));
+        } else {
+          invalidEmail(value.email);
+        }
       }
     }
   }
@@ -25,13 +29,17 @@ function invalidEmail(email) {
 vex.dialog.prompt({
   message: '<div style="color:#FF0000">Please enter a valid email address:</div>',
   placeholder: 'Email Address',
-  input: '<input name="vex" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value="" required>',
+  input: '<input name="email" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value="" required><input type="checkbox" name="under18" id="under18" value="true"><label style="display:inline" for="under18"> <b>Under 18?</b> Check here to print our waiver!</label>',
   callback: function(value) {
-    if(value) { 
-      if (validateEmail(value)) {
-        window.location.assign("/register.php?email="+encodeURIComponent(value));
-      } else { 
-        invalidEmail(value);
+    if(value.email) {
+      if(value.under18 === "true") {
+        window.location.assign("/under-18.php");
+      } else {
+        if (validateEmail(value.email)) {
+          window.location.assign("/register.php?email="+encodeURIComponent(value.email));
+        } else { 
+          invalidEmail(value.email);
+        }
       }
     }
   }
@@ -57,10 +65,6 @@ setTimeout(function() {
         <a href="#">
             <button onclick="getEmail()"><?php if(isset($_SESSION['mode'])) { print('Check In'); } else { print('Pre-register'); } ?></button>
         </a>
-        
-        
-        <h2>Are You Under 18?</h2>
-        <p><a href="under-18.php"><button class="btn-small">Click Here</button></a></p>
     </div>
 </div>
 
