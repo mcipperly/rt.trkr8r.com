@@ -61,3 +61,15 @@
     }
     .m-full-width { width: 100%; box-sizing: border-box; }
 }
+
+.failure {
+    background-color: #e0645c !important;
+    font-weight: 600;
+    color: #fff;
+}
+
+.success {
+    background-color: #36a97a !important;
+    font-weight: 600;
+    color: #fff;
+}

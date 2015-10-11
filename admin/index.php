@@ -36,6 +36,8 @@ $pending_events = get_events($search);
 $search = array();
 $search['status_id'] = 1;
 $search['count'] = 3;
+$search['start_date'] = date("Y-m-d");
+$search['end_date'] = date("Y-m-d", strtotime("+10 year"));
 $open_events = get_events($search);
 
 $search = array();
@@ -124,7 +126,7 @@ EOS;
             </ul>
          </div>
         <div class="four cols">
-        <h3>Open</h3>
+        <h3>Future Events</h3>
             <ul class="list-group">
 <?php
 foreach($open_events as $event) {

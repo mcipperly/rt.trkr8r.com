@@ -27,7 +27,7 @@ elseif($_REQUEST['firstname'] || $_REQUEST['lastname']) {
 <?php
 if($no_volunteer) {
 	$html = <<<EOS
-		<div class="row"><div class="twelve cols callout" style="color: red">No Volunteers Found With Those Search Terms</div></div>
+		<div class="row"><div class="twelve cols callout failure">No Volunteers Found With Those Search Terms</div></div>
 EOS;
 	print($html);
 }
