@@ -1,4 +1,11 @@
-<?php include ('includes/header.php'); ?>
+<?php
+include ('includes/header.php');
+require_once('db/db.php');
+
+$search['date'] = date("Y-m-d");
+$events = get_events($search);
+
+?>
 
 <script type="text/javascript">
 function validateEmail(email) { 
