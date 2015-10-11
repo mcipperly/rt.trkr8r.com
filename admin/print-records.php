@@ -8,11 +8,15 @@ if($_REQUEST['email']) {
 	$volunteer_id = validate_volunteer_email($_REQUEST['email']);
 	if($volunteer_id)
 		Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
+	else
+		$no_volunteer = true;
 }
 elseif($_REQUEST['firstname'] || $_REQUEST['lastname']) {
 	$volunteer_id = find_volunteer($_REQUEST);
 	if($volunteer_id)
 		Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
+	else
+		$no_volunteer = true;
 }
 
 ?>
@@ -20,10 +24,17 @@ elseif($_REQUEST['firstname'] || $_REQUEST['lastname']) {
 <div class="container">
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-print"></span>&nbsp;Print Records</h1>
+<?php
+if($no_volunteer) {
+	$html = <<<EOS
+		<div class="row"><div class="twelve cols callout" style="color: red">No Volunteers Found With Those Search Terms</div></div>
+EOS;
+	print($html);
+}
+?>
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Records Lookup</h2>
-        
         <h3>Lookup by Name</h3>
         <form method="POST">
             <div class="row">

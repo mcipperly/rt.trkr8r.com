@@ -397,7 +397,7 @@ EOS;
 	return $org;
 }
 
-function create_organization($name) {
+function create_organization($name, $contact_name, $contact_details, $description) {
 	//function to create a new organization
 
 	if(!$name)
@@ -405,7 +405,17 @@ function create_organization($name) {
 	
 	$db_link = setup_db();
 	
-	$query = "INSERT INTO `company` (`name`, `active`, `date_added`) VALUES ('{$name}', 1, CURRENT_DATE())";
+	$name = mysqli_real_escape_string($db_link, $name);
+	$contact_name = mysqli_real_escape_string($db_link, $contact_name);
+	$contact_details = mysqli_real_escape_string($db_link, $contact_details);
+	$description = mysqli_real_escape_string($db_link, $description);
+	
+	$query = <<<EOS
+INSERT INTO `company`
+(`name`, `contact_name`, `contact_details`, `description`, `date_added`)
+VALUES
+('{$name}', '{$contact_name}', '{$contact_details}', '{$description}', CURRENT_DATE())
+EOS;
 	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
 	return TRUE;
