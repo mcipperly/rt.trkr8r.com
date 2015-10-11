@@ -72,3 +72,7 @@ small {
     @include font-size(1.2);
     @include line-height(1.4);
 }
+
+.semibold {
+    font-weight: 600;
+}

@@ -36,9 +36,11 @@ $presets = get_export_presets();
         <h2 class="callout-title">Details <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
             
         <h3><?php print($org['name']); ?></h3>
-        <h4><strong>Contact Name:</strong> <?php print($org['contact_name']); ?> &bull; <strong>Contact Details:</strong> <?php print($org['contact_details']); ?></h4>
+        <p><span class="semibold">Contact Name:</span> <?php print($org['contact_name']); ?> <br>
+        <span class="semibold">Contact Details:</span> <?php print($org['contact_details']); ?></p>
         <p><?php print($org['description']); ?></p>
-		<form method="POST">
+		<br>
+        <form method="POST">
 			<input type="hidden" name="remove" value="1" />
 			<input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']);?>" />
 			<button type="submit" class="m-full-width btn-closed">Remove Organization</button>
