@@ -12,7 +12,7 @@ foreach($_REQUEST as $key => $value) {
 }
 
 if($_REQUEST['org_name']) {
-	create_organization($_REQUEST['org_name'], $_REQUEST['contact_name'], $_REQUEST['contact_details'], $_REQUEST['description']);
+	$success = create_organization($_REQUEST['org_name'], $_REQUEST['contact_name'], $_REQUEST['contact_details'], $_REQUEST['description']);
 }
 
 $orgs = get_organizations();
@@ -20,11 +20,23 @@ $orgs = get_organizations();
 //do this to remove the "no company" entry at the start of the array
 array_shift($orgs);
 
+if($success) {
+    $success_html = <<<EOS
+		<div class="row"><div class="twelve cols callout success">Organization sucessfully created.</div></div>
+EOS;
+}
+elseif($_REQUEST['org_name'] && !$success) {
+    $success_html = <<<EOS
+		<div class="row"><div class="twelve cols callout failure">Organization not created. Please ensure all fields are properly filled in.</div></div>
+EOS;
+}
+
 $html = <<<EOS
 
 <div class="container">
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-th"></span>&nbsp;Manage Organizations</h1>
+{$success_html}
     <div class="row">
         <div class="twelve cols callout">
             <h2 class="callout-title">Create New Organization</h2>
