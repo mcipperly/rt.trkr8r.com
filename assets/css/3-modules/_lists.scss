@@ -37,6 +37,14 @@ ul.list-group, ol.list-group {
             }
             
         }
+    
+        a {
+            color: #515151;
+
+            &:hover {
+                opacity: 0.5;
+                }
+        }
 }
     
 
