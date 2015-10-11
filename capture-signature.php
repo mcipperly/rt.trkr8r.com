@@ -1,6 +1,11 @@
 <?php
 require_once('db/db.php');
 
+if(!isset($_SESSION['mode'])) {
+  Header("HTTP/1.1 302 Moved Temporarily");
+  Header("Location: /index.php?thanks=2");
+}
+ 
 $data_pieces = explode(",", $_REQUEST['signature-b64']);
 $encoded_image = $data_pieces[1];
 $decoded_image = base64_decode($encoded_image);
