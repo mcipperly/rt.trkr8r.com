@@ -16,7 +16,7 @@ function getEmail() {
 vex.dialog.prompt({
   message: 'Please enter your email address:',
   // placeholder: 'Email Address',
-  input: '<input name="email" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value="" required><input type="checkbox" name="under18" id="under18" value="true"><label style="display:inline" for="under18"> <b>Under 18?</b> Check here to print our waiver!</label>',
+  input: '<input name="email" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value=""><input type="checkbox" name="under18" id="under18" value="true"><label style="display:inline" for="under18"> <b>Under 18?</b> Check here to print our waiver!</label>',
   callback: function(value) {
     if(value.email) {
       if(value.under18 === "true") {
@@ -36,7 +36,7 @@ function invalidEmail(email) {
 vex.dialog.prompt({
   message: '<div style="color:#FF0000">Please enter a valid email address:</div>',
   placeholder: 'Email Address',
-  input: '<input name="email" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value="" required><input type="checkbox" name="under18" id="under18" value="true"><label style="display:inline" for="under18"> <b>Under 18?</b> Check here to print our waiver!</label>',
+  input: '<input name="email" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value=""><input type="checkbox" name="under18" id="under18" value="true"><label style="display:inline" for="under18"> <b>Under 18?</b> Check here to print our waiver!</label>',
   callback: function(value) {
     if(value.email) {
       if(value.under18 === "true") {
