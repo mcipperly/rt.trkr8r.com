@@ -57,10 +57,6 @@ setTimeout(function() {
         <a href="#">
             <button onclick="getEmail()"><?php if(isset($_SESSION['mode'])) { print('Check In'); } else { print('Pre-register'); } ?></button>
         </a>
-        
-        
-        <h2>Are You Under 18?</h2>
-        <p><a href="under-18.php"><button class="btn-small">Click Here</button></a></p>
     </div>
 </div>
 
