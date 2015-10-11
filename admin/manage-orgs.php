@@ -9,16 +9,10 @@ foreach($_REQUEST as $key => $value) {
 		$val_arr = explode('_', $key);
 		invalidate_organization($val_arr[1]);
 	}
-	
-	if(substr_count($key, "update_")) {
-		$val_arr = explode('_', $key);
-		update_organization($val_arr[1], $value);
-	}
 }
 
-
-if($_REQUEST['organization']) {
-	create_organization($_REQUEST['organization']);
+if($_REQUEST['org_name']) {
+	create_organization($_REQUEST['org_name'], $_REQUEST['contact_name'], $_REQUEST['contact_details'], $_REQUEST['description']);
 }
 
 $orgs = get_organizations();
@@ -36,11 +30,25 @@ $html = <<<EOS
             <h2 class="callout-title">Create New Organization</h2>
                 <form method="POST">
                     <div class="row">
-                        <div class="eight cols">
-                            <input autocomplete="off" type="text" class="full-width" id="organization" name="organization" value="" placeholder="Organization">
+                        <div class="twelve cols">
+                            <input autocomplete="off" type="text" class="full-width" id="org_name" name="org_name" value="" placeholder="Organization Name (Required)" required>
                         </div>
-                
-                        <div class="four cols">
+					</div>
+					<div class="row">
+                        <div class="six cols">
+                            <input autocomplete="off" type="text" class="full-width" id="contact_name" name="contact_name" value="" placeholder="Contact Name">
+                        </div>
+                        <div class="six cols">
+                            <input autocomplete="off" type="text" class="full-width" id="contact_details" name="contact_details" value="" placeholder="Contact Details (Phone #)">
+                        </div>
+					</div>
+                    <div class="row">
+                        <div class="twelve cols">
+                            <input autocomplete="off" type="text" class="full-width" id="description" name="description" value="" placeholder="Organization Description">
+                        </div>
+					</div>
+					<div class="row">
+                        <div class="twelve cols">
                             <input type="submit" value="Create" class="full-width no-min">
                         </div>
                     </div>
@@ -87,7 +95,6 @@ EOS;
                     <input type="submit" value="Remove Selected Organizations" class="right m-full-width">
 </form>
 </div>
-<p><a href="org_detail.php">Sample Organization Detail Page</a></p>
 </div>
 EOS;
 		print($html);
