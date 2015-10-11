@@ -18,7 +18,7 @@ vex.dialog.prompt({
   // placeholder: 'Email Address',
   input: '<input name="email" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value=""><input type="checkbox" name="under18" id="under18" value="true"><label style="display:inline" for="under18"> <b>Under 18?</b> Check here to print our waiver!</label>',
   callback: function(value) {
-    if(value.email) {
+    if(value.email||value.under18) {
       if(value.under18 === "true") {
         window.location.assign("/under-18.php");
       } else {
@@ -38,7 +38,7 @@ vex.dialog.prompt({
   placeholder: 'Email Address',
   input: '<input name="email" type="email" class="vex-dialog-prompt-input" placeholder="email@example.com" value=""><input type="checkbox" name="under18" id="under18" value="true"><label style="display:inline" for="under18"> <b>Under 18?</b> Check here to print our waiver!</label>',
   callback: function(value) {
-    if(value.email) {
+    if(value.email||value.under18) {
       if(value.under18 === "true") {
         window.location.assign("/under-18.php");
       } else {
