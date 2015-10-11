@@ -400,12 +400,12 @@ EOS;
 function create_organization($name, $contact_name, $contact_details, $description) {
 	//function to create a new organization
 
-	if(!$name)
+	if(!trim($name))
 		return FALSE;
 	
 	$db_link = setup_db();
 	
-	$name = mysqli_real_escape_string($db_link, $name);
+	$name = mysqli_real_escape_string($db_link, trim($name));
 	$contact_name = mysqli_real_escape_string($db_link, $contact_name);
 	$contact_details = mysqli_real_escape_string($db_link, $contact_details);
 	$description = mysqli_real_escape_string($db_link, $description);
