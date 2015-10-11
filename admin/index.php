@@ -126,7 +126,7 @@ EOS;
             </ul>
          </div>
         <div class="four cols">
-        <h3>Open</h3>
+        <h3>Future Events</h3>
             <ul class="list-group">
 <?php
 foreach($open_events as $event) {
