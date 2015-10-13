@@ -30,6 +30,7 @@ include('includes/header.php');
     
 <p>Turn in the completed forms to a Rebuilding Together Pittsburgh staff member upon arrival at your event. Thanks!</p>
 <p class="center"><a href="RTP_WaiverForUnder18.pdf"><button>Download Our Waiver and Parental Permission Form</button></a></p>
+<p class="center"><a href="/"><button>Return to Registration Page</button></a></p>
 </div>
 
 <?php include ( 'includes/footer.php'); ?>
