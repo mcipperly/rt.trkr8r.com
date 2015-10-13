@@ -82,12 +82,39 @@ vex.dialog.open({
   }
 });
 }
+<?php if($_SESSION['mode'] == 'onsite') {
+
+$search['date'] = date("Y-m-d");
+$events = get_events($search);
+
+?>
+function eventSelectModal() {
+vex.dialog.open({
+  message: 'Please select your event:',
+  input: '<?php foreach($events as $key => $event) { ?><input type=\"radio\" name=\"event\" id=\"event_<?php print($event['event_id']) ?>\" value=\"<?php print($event['event_id']); ?>\"><label style=\"display:inline\" for=\"event_<?php print($event['event_id']) ?>\"> <?php print(htmlentities($event['note'], ENT_QUOTES)); ?></label><br> <?php } ?><br>',
+  callback: function(data) {
+    if (data === false) {
+      return console.log('Cancelled');
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST','/admin_login.php',true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send('user=<?php print($_SESSION['user']) ?>&event_id='+data.event);
+  }
+});
+}
+<?php
+  if(!isset($_SESSION['event_id'])) { ?>
+    window.onload = eventSelectModal();
+  <?php
+  }
+} ?>
   
 </script>
         <footer>
           <div class="row">
                 <div class="twelve cols center">
-                    <p>PaperOut is brought to you by <a href="http://www.rtpittsburgh.org/">Rebuilding Together Pittsburgh</a><br><a href="http://steelcitycodefest.org/apps">Learn More</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="<?php if(isset($_SESSION['user']) && isset($_SESSION['mode']) && $_SESSION['mode'] == 'adminpage') { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>"><?php if(isset($_SESSION['user'])) { if(isset($_SESSION['mode'])) { if($_SESSION['mode'] == "onsite") { print('Onsite Mode: '); } else { print('Logged In: '); } } print($_SESSION['user']); } else { ?>Staff Login<?php } ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:WHignett@rtpittsburgh.org">Got Questions?</a></p>
+                    <p>PaperOut is brought to you by <a href="http://www.rtpittsburgh.org/">Rebuilding Together Pittsburgh</a><br><a href="http://steelcitycodefest.org/apps">Learn More</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="<?php if(isset($_SESSION['user']) && isset($_SESSION['mode']) && $_SESSION['mode'] == 'adminpage') { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>"><?php if(isset($_SESSION['user'])) { if(isset($_SESSION['mode'])) { if($_SESSION['mode'] == "onsite") { print('Onsite Mode: '); } else { print('Logged In: '); } } print($_SESSION['user']); if(isset($_SESSION['event_id'])) { ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:eventSelectModal()">Event: <?php $cur_event = get_event($_SESSION['event_id']); print($cur_event['note']); } } else { ?>Staff Login<?php } ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:WHignett@rtpittsburgh.org">Got Questions?</a></p>
  
                 </div>
         </footer>

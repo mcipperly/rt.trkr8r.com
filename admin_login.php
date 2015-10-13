@@ -20,6 +20,10 @@ if(isset($_SESSION['lastact']) && (time() - $_SESSION['lastact']) > 43200) {
     }
   }
 
+  if(isset($_POST['user']) && isset($_POST['event_id']) && isset($_SESSION['mode']) && $_SESSION['mode'] == 'onsite' ) {
+    $_SESSION['event_id'] = $_POST['event_id'];
+  }
+
   if(isset($_POST['mode']) && isset($_SESSION['user'])) {
     $_SESSION['mode'] = $_POST['mode'];
   }
