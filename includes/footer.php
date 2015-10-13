@@ -82,7 +82,10 @@ vex.dialog.open({
   }
 });
 }
-<?php if($_SESSION['mode'] == 'onsite') {
+<?php 
+include_once('db/db.php');
+
+if($_SESSION['mode'] == 'onsite') {
 
 $search['date'] = date("Y-m-d");
 $events = get_events($search);
