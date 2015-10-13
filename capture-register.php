@@ -25,18 +25,23 @@ if(isset($_SESSION['lastact']) && (time() - $_SESSION['lastact']) > 43200) {
       $responses[$name] = $response;
     }
   }
-
-  $form_id = 1; //Hard-coded for now, until ability to choose forms is available
-
-  add_form_responses($volunteer_id, $form_id, $responses);
-
-  $event_id = (int) $_REQUEST['event_id'];
-
-  Header("HTTP/1.1 302 Moved Temporarily");
-  if(isset($_SESSION['mode'])) { 
-    Header("Location: signature.php?vid=" . $volunteer_id . "&event_id=". $event_id); 
+  if(isset($_POST['age']) && $_POST['age'] < 18) {
+    Header("HTTP/1.1 302 Moved Temporarily");
+    Header("Location: under-18.php");
   } else {
-    Header("Location: index.php?thanks=2");
+
+    $form_id = 1; //Hard-coded for now, until ability to choose forms is available
+
+    add_form_responses($volunteer_id, $form_id, $responses);
+
+    $event_id = (int) $_REQUEST['event_id'];
+
+    Header("HTTP/1.1 302 Moved Temporarily");
+    if(isset($_SESSION['mode'])) { 
+      Header("Location: signature.php?vid=" . $volunteer_id . "&event_id=". $event_id); 
+    } else {
+      Header("Location: index.php?thanks=2");
+    }
   }
 }
 ?>
