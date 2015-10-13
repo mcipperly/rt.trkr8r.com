@@ -87,6 +87,13 @@ vex.dialog.open({
 $search['date'] = date("Y-m-d");
 $events = get_events($search);
 
+if(isset($_SESSION['event_id']) && $_SESSION['event_id'] != "undefined") {
+  $cur_event = get_event($_SESSION['event_id']);
+  if($cur_event['date'] != date("Y-m-d")) {
+    unset($_SESSION['event_id']);
+  }
+}
+
 ?>
 function eventSelectModal() {
 vex.dialog.open({
@@ -104,7 +111,7 @@ vex.dialog.open({
 });
 }
 <?php
-  if(!isset($_SESSION['event_id'])) { ?>
+  if(!isset($_SESSION['event_id']) || $_SESSION['event_id'] == "undefined") { ?>
     window.onload = eventSelectModal();
   <?php
   }
@@ -114,7 +121,7 @@ vex.dialog.open({
         <footer>
           <div class="row">
                 <div class="twelve cols center">
-                    <p>PaperOut is brought to you by <a href="http://www.rtpittsburgh.org/">Rebuilding Together Pittsburgh</a><br><a href="http://steelcitycodefest.org/apps">Learn More</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="<?php if(isset($_SESSION['user']) && isset($_SESSION['mode']) && $_SESSION['mode'] == 'adminpage') { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>"><?php if(isset($_SESSION['user'])) { if(isset($_SESSION['mode'])) { if($_SESSION['mode'] == "onsite") { print('Onsite Mode: '); } else { print('Logged In: '); } } print($_SESSION['user']); if(isset($_SESSION['event_id'])) { ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:eventSelectModal()">Event: <?php $cur_event = get_event($_SESSION['event_id']); print($cur_event['note']); } } else { ?>Staff Login<?php } ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:WHignett@rtpittsburgh.org">Got Questions?</a></p>
+                    <p>PaperOut is brought to you by <a href="http://www.rtpittsburgh.org/">Rebuilding Together Pittsburgh</a><br><a href="http://steelcitycodefest.org/apps">Learn More</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="<?php if(isset($_SESSION['user']) && isset($_SESSION['mode']) && $_SESSION['mode'] == 'adminpage') { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>"><?php if(isset($_SESSION['user'])) { if(isset($_SESSION['mode'])) { if($_SESSION['mode'] == "onsite") { print('Onsite Mode: '); } else { print('Logged In: '); } } print($_SESSION['user']); if(isset($_SESSION['event_id']) && $_SESSION['event_id'] != "undefined") { ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:eventSelectModal()">Event: <?php if(!isset($cur_event)) { $cur_event = get_event($_SESSION['event_id']); } print($cur_event['note']); } } else { ?>Staff Login<?php } ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:WHignett@rtpittsburgh.org">Got Questions?</a></p>
  
                 </div>
         </footer>
