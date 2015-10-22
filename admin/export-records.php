@@ -17,7 +17,7 @@ if($_REQUEST['element_ids'] || $_REQUEST['preset_id']) {
 		$search['start_date'] = $_REQUEST['start_date'];
 		$search['end_date'] = $_REQUEST['end_date'];
 	}
-	
+
 	$file_name = export_csv($element_ids, $search);
 	Header("Location: ../export/{$file_name}");
 }
@@ -154,8 +154,8 @@ EOS;
 					<h3>Select Organization(s)</h3>
                           
                 
-                        <div class="input_fields_wrap">
-                        <select name="org_ids[]" class="input_fields_input">
+                        <div class="input_fields_wrap" id="by_org_wrap">
+                        <select name="org_ids[]" id="first_org_id" class="input_fields_input">
 <?php
 foreach($orgs as $org) {
 	$html = <<<EOS
@@ -168,8 +168,33 @@ EOS;
                    &nbsp;&nbsp;<img src="../assets/imgs/add-icon.png" class="add-input">
                </div>
                      <br>                      
-	  <script src="../assets/js/add_inputs.js"></script>
-                    </div>
+<script type="text/javascript">
+$(document).ready(function() {
+    var max_fields      = 25; //maximum input boxes allowed
+    var wrapper         = $("#by_org_wrap"); //Fields wrapper
+    var add_button      = $(".add-input"); //Add button ID
+    
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+
+			var wrapper_for_clone = $('<div>');
+			var my_clone = $('#first_org_id').clone();
+			my_clone.attr('id', x + '_org_id');
+			my_clone.appendTo($(wrapper_for_clone));
+			$(wrapper_for_clone).append('&nbsp;&nbsp;<img src="../assets/imgs/remove-icon.png" class="remove-input">');
+			$(wrapper_for_clone).appendTo($(wrapper));
+        }
+    });
+    
+    $(wrapper).on("click",".remove-input", function(e){ //user click on remove text
+        e.preventDefault(); $(this).parent('div').remove(); x--;
+    })
+});                    
+</script>
+</div>
                     
 
      <!-- FROM HERE DOWN, THESE DISPLAY WITH EITHER PRIMARY FILTER -->
