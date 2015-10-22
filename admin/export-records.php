@@ -1,7 +1,5 @@
 <?php
-include ('../includes/admin-header.php'); 
 include('validate.php');
-include ('../includes/admin-sidebar.php'); 
 require_once('../db/db.php');
 
 if($_REQUEST['element_ids'] || $_REQUEST['preset_id']) {
@@ -21,6 +19,9 @@ if($_REQUEST['element_ids'] || $_REQUEST['preset_id']) {
 	$file_name = export_csv($element_ids, $search);
 	Header("Location: ../export/{$file_name}");
 }
+
+include ('../includes/admin-header.php');
+include ('../includes/admin-sidebar.php');
 
 $presets = get_export_presets();
 
