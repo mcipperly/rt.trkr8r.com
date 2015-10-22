@@ -134,6 +134,7 @@ EOS;
 	
 	switch($element['type']) {
 		case "text":
+		case "number":
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}<sup>{$asterisk_string}</sup></label>
