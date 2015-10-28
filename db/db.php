@@ -906,6 +906,10 @@ function search_responses($element_ids, $search) {
 		return $search_results;
 	
 	foreach($element_ids as $element_id) {
+		$query = "SELECT `type` FROM `element` WHERE `element_id` = {$element_id}";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		$element_type = _get_one($result);
+		
 		if($search['org_ids'] || $search['company_id'])
 			$org_join_query = "JOIN `volunteer` ON `volunteer`.`volunteer_id` = `volunteer_event`.`volunteer_id`\nJOIN `company` USING (`company_id`)";
 		
@@ -941,9 +945,21 @@ EOS;
 
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 		$element_results = _get_all($result);
-		foreach($element_results as $element_result) {
+		foreach($element_results as &$element_result) {
+			//select elements are stored as one or more se_id values, we need to translate them to their proper text
+			if($element_type == "select") {
+				$value_array = explode("; ", $element_result['value']);
+				$text_array = array();
+				foreach($value_array as $se_id) {
+					$query = "SELECT `text` FROM `select_element` WHERE `se_id` = {$se_id}";
+					$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+					$text_array[] = _get_one($result);
+				}
+				$element_result['value'] = implode("; ", $text_array);
+			}
 			$search_results[$element_result['volunteer_id']][$element_id] = $element_result['value'];
 		}
+		unset($element_result);
 	}
 	
 	return $search_results;
