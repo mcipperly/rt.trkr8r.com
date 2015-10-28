@@ -147,6 +147,7 @@ EOS;
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}" style="display:inline">{$element['label']}</label>
+			<input type="hidden" id="hidden_{$element['name']}" name="{$element['name']}" value="0" disabled="disabled" />
 			<input type="{$element['type']}" name="{$element['name']}" value="1" {$required_html} {$checked_html} />
         </div>
 EOS;
@@ -227,6 +228,17 @@ EOS;
 }
 
 ?>
+<script type="text/javascript">
+$('input[type=checkbox]').on('click', function() {
+	var checkbox_name = $(this).attr("name");
+	if(this.checked) {
+		$('#hidden_' + checkbox_name ).attr("disabled", true);
+	}
+	else {
+		$('#hidden_' + checkbox_name ).removeAttr("disabled");
+	}
+});
+</script>
 <?php if(isset($_REQUEST['email'])) { ?>
 <script type="text/javascript">
   var emailForm = document.getElementsByName('email');
