@@ -73,12 +73,15 @@ main {
     form {
         width: 100%;
                 
-        input[type="text"] {
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
             font-family: $primary-font;
             border: 1px solid $lgt-gray;
             padding: .75em;
             width: 80%;
             max-width: 350px;
+            font-size: 16px;
         }
 
         input[type="submit"] {
