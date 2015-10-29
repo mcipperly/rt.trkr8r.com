@@ -1,20 +1,16 @@
 <?php
-include ('../includes/admin-header.php');
 include('validate.php');
 require_once('../db/db.php');
+
+if($_REQUEST['preset_id']) {
+        Header("Location: csv-export.php", true, 307);
+}
+
+include ('../includes/admin-header.php');
 include ('../includes/admin-sidebar.php');
 
 if($_REQUEST['toggle_status']) {
 	toggle_event_status($_REQUEST['event_id']);
-}
-
-if($_REQUEST['preset_id']) {
-	$element_ids = get_export_preset($_REQUEST['preset_id']);
-
-	$search['event_id'] = $_REQUEST['event_id'];
-
-	$file_name = export_csv($element_ids, $search);
-	Header("Location: ../export/{$file_name}");
 }
 
 if($_REQUEST['update_all']) {

@@ -1,17 +1,13 @@
 <?php
-include ('../includes/admin-header.php'); 
 include('validate.php');
-include ('../includes/admin-sidebar.php'); 
 include('../db/db.php');
 
 if($_REQUEST['preset_id']) {
-	$element_ids = get_export_preset($_REQUEST['preset_id']);
-
-	$search['date'] = $_REQUEST['date'];
-	
-	$file_name = export_csv($element_ids, $search);
-	Header("Location: ../export/{$file_name}");
+	Header("Location: csv-export.php");
 }
+
+include ('../includes/admin-header.php');
+include ('../includes/admin-sidebar.php');
 
 $search['start_date'] = date("Y-m-01");
 
