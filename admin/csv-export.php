@@ -12,8 +12,13 @@ if($_REQUEST['element_ids'] || $_REQUEST['preset_id']) {
                 $search['end_date'] = $_REQUEST['end_date'];
         }
         $csv_content = export_csv($element_ids, $search);
-        Header("Content-type: application/octet-stream");
-        Header("Content-Disposition: attachment; filename=\"export-" . time() . ".csv\"");
+}
+
+Header("Content-type: application/octet-stream");
+Header("Content-Disposition: attachment; filename=\"export-" . time() . ".csv\"");
+if (isset($csv_content) && !(empty($csv_content))) {
         print($csv_content);
+} else {
+        print("No data was available for export");
 }
 ?>
