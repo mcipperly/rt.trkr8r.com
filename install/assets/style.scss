@@ -1,0 +1,136 @@
+// Installer Styles
+
+@import url(https://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700);
+
+/*----------------------------------------------------
+	VAIRABLES & UTILITIES
+-----------------------------------------------------*/
+
+// Typography
+$primary-font:  'PT Sans Narrow', 'Trebuchet MS', Verdana, Helvetica, Arial, sans-serif !default;
+
+// Theme Colors
+$lgt-orange:     #F36E3A;
+$drk-orange:     #97421D;
+$bkg-color:      #F4F4F4;
+$gray:           #58595B;
+$drk-gray:       darken($gray, 80%);
+$lgt-gray:       lighten($gray, 50%);
+
+.center {
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+/*----------------------------------------------------
+    ALL THE REST
+-----------------------------------------------------*/
+
+html {
+    font-size: 62.5%; /* 1.5rem = 15px */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: $primary-font;
+    font-weight: 400;
+    line-height: 1.4;
+    font-size: 16px;
+    margin: 0 auto;
+    background-color: $lgt-gray;
+    padding: 3%;
+    color: $gray;
+}
+
+h1, h2 {
+    color: $drk-gray;
+    margin: 15px 0 7px 0;
+    line-height: 1.4;
+}
+
+p {
+    margin: 0 0 13px 0;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+main {
+    margin: 0 auto;
+    width: 82%;
+    max-width: 1000px;
+    background-color: #fff;
+    padding: 2em;
+    
+    img {
+        width: 85%;
+    }
+    
+    form {
+        width: 100%;
+                
+        input[type="text"] {
+            font-family: $primary-font;
+            border: 1px solid $lgt-gray;
+            padding: .75em;
+            width: 80%;
+            max-width: 350px;
+        }
+
+        input[type="submit"] {
+            font-weight: 700;
+            outline: none;
+            cursor: pointer;
+            text-align: center;
+            font-size: 20px;
+            text-transform: uppercase;
+            padding: 8px 12px;
+            margin-top: 20px;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+            color: #fff;
+            border: 0;
+            border-bottom: 2px solid $drk-orange;
+            background: $lgt-orange;
+            border-radius: 0;
+            
+            &:hover,
+            &:focus {
+                background: darken($lgt-orange, 4%);
+                border-color: darken($drk-orange, 55%);
+            }
+        }
+        
+        table {
+            text-align: left;
+
+            td {
+                padding-bottom: 20px;
+                
+                &.labels {
+                    width: 25%;
+                }
+                
+                &.inputs {
+                    width: 75%;
+                    padding-left: 7%;
+                }
+            }
+
+        }
+        
+        small {
+            display: block;
+            margin-top: 5px;
+            color: lighten($gray, 28%);
+            font-style: italic;
+            font-size: 14px;
+            line-height: 1.3;
+        }
+        
+    }
+
+} 
