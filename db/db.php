@@ -1,7 +1,7 @@
 <?php
 
 function setup_db() {
-	require('db-config.php');
+	require('db-config.php'); 
 	$db_link = mysqli_connect($db_host,$db_user,$db_pass,$db_name) or die(mysqli_error($link));
 
 	return $db_link;
@@ -855,21 +855,19 @@ function get_export_presets() {
 function get_export_preset($preset_id) {
 	//function to return the pre-set list of fields for a CSV export
 	$db_link = setup_db();
-	
+
 	if(!$preset_id)
 		return FALSE;
 	
 	$query = "SELECT `element_id` FROM `preset_element` WHERE `preset_id` = {$preset_id} ORDER BY `ord`"; 
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
 	return _get_col($result);
 }
 
 function export_csv($element_ids, $search) {
-	//function to build a csv string, storing in appropriately named file
+	//function to build a csv string and return it
 	$db_link = setup_db();
-	
-	$now = time();
-	$fp = fopen(getcwd() . "/../export/export_{$now}.csv", "w");
 	
 	foreach($element_ids as $element_id) {
 		$query = "SELECT `name` FROM `element` WHERE `element_id` = {$element_id}";
@@ -878,7 +876,6 @@ function export_csv($element_ids, $search) {
 		$name = str_replace(",", "", $name);
 		$header_array[] = $name;
 	}
-	fputcsv($fp, $header_array);
 
 	$results = search_responses($element_ids, $search);
 
@@ -886,14 +883,11 @@ function export_csv($element_ids, $search) {
 		foreach($line as &$value) {
 			$value = str_replace(",", "", $value);
 		}
-		unset($value);
-		
-		fputcsv($fp, $line);
+                unset($value);
+                $results_array[] = implode(",", $line);
 	}
 	
-	fclose($fp);
-	
-	return "export_{$now}.csv";
+	return implode(",", $header_array) . "\n" . implode("\n", $results_array);
 }
 
 function search_responses($element_ids, $search) {
