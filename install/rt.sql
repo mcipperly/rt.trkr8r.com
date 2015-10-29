@@ -39,7 +39,10 @@ CREATE TABLE IF NOT EXISTS `company` (
   `date_added` date NOT NULL,
   PRIMARY KEY (`company_id`),
   KEY `active` (`active`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+INSERT INTO `element` (`company_id`, `name`, `contact_name`, `contact_details`, `description`, `active`, `date_added`) VALUES
+(0, 'Unaffiliated', '', '', '', 1, CURRENT_DATE());
 
 -- --------------------------------------------------------
 
