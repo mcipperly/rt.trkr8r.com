@@ -1,7 +1,8 @@
 <?php
+include_once('db-config.php');
 
 function setup_db() {
-	require('db-config.php'); 
+	require('db-config.php');
 	$db_link = mysqli_connect($db_host,$db_user,$db_pass,$db_name) or die(mysqli_error($link));
 
 	return $db_link;

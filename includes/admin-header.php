@@ -2,11 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
-    <title>Rebuilding Together Pittsburgh | Volunteer Registration</title>
+    <title><?php print($site_org) ?> | Volunteer Registration</title>
 
     <meta charset="utf-8">
-    <meta name="keywords" content="rebuilding together pittsburgh, home building, home repair, community service, volunteer opportunities, low-income, elderly homeowners, military veterans">
-    <meta name="description" content="Rebuilding Together Pittsburgh repairs and renovates the homes of low-income, elderly homeowners, military veterans, and individuals with permanent physical disabilities. It unites people of all walks of life in an effort to rebuild homes and repair lives.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" media="screen">

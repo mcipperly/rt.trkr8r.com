@@ -1,3 +1,4 @@
+<?php include_once('../db/db.php'); ?>
 <script type="text/javascript">
 function adminLogin() {
 vex.dialog.open({
@@ -83,7 +84,6 @@ vex.dialog.open({
 });
 }
 <?php 
-include_once('db/db.php');
 
 if($_SESSION['mode'] == 'onsite') {
 
@@ -126,7 +126,7 @@ vex.dialog.open({
         <footer>
           <div class="row">
                 <div class="twelve cols center">
-                    <p>PaperOut is brought to you by <a href="http://www.rtpittsburgh.org/">Rebuilding Together Pittsburgh</a><br><a href="http://steelcitycodefest.org/apps">Learn More</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="<?php if(isset($_SESSION['user']) && isset($_SESSION['mode']) && $_SESSION['mode'] == 'adminpage') { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>"><?php if(isset($_SESSION['user'])) { if(isset($_SESSION['mode'])) { if($_SESSION['mode'] == "onsite") { print('Onsite Mode: '); } else { print('Logged In: '); } } print($_SESSION['user']); if(isset($_SESSION['event_id']) && $_SESSION['event_id'] != "undefined") { ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:eventSelectModal()">Event: <?php if(!isset($cur_event)) { $cur_event = get_event($_SESSION['event_id']); } print($cur_event['note']); } elseif (count($events) == 0) { ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;No events scheduled for today<?php } } else { ?>Staff Login</a><?php } ?>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:WHignett@rtpittsburgh.org">Got Questions?</a></p>
+                    <p>PaperOut is brought to you by <a href="http://www.rtpittsburgh.org/"><?php print($site_org) ?></a><br><a href="http://steelcitycodefest.org/apps">Learn More</a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="<?php if(isset($_SESSION['user']) && isset($_SESSION['mode']) && $_SESSION['mode'] == 'adminpage') { ?>javascript:onsiteModeModal()<?php } else { ?>javascript:adminLogin()<?php } ?>"><?php if(isset($_SESSION['user'])) { if(isset($_SESSION['mode'])) { if($_SESSION['mode'] == "onsite") { print('Onsite Mode: '); } else { print('Logged In: '); } } print($_SESSION['user']); if(isset($_SESSION['event_id']) && $_SESSION['event_id'] != "undefined") { ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="javascript:eventSelectModal()">Event: <?php if(!isset($cur_event)) { $cur_event = get_event($_SESSION['event_id']); } print($cur_event['note']); } elseif (count($events) == 0) { ?></a>&nbsp;&nbsp;/&nbsp;&nbsp;No events scheduled for today<?php } } else { ?>Staff Login</a><?php } ?>&nbsp;&nbsp;/&nbsp;&nbsp;<a href="mailto:WHignett@rtpittsburgh.org">Got Questions?</a></p>
  
                 </div>
         </footer>

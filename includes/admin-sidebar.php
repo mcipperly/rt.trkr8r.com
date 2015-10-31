@@ -6,7 +6,7 @@
     <a href="#toggle-menu" id="toggle-menu" class="toggle-menu">
     <i class="fa fa-bars"></i>
     </a>
-        Rebuilding Together Pgh</h1>
+        <?php print($site_org) ?></h1>
     <nav class="right hidden-phone">
         <ul>
             <li><a href="/admin/logout.php"><span class="fa fa-power-off"></span>&nbsp;&nbsp;Logout</a></li>

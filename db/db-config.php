@@ -1,4 +1,5 @@
 <?php
+$site_org='Rebuilding Together Pittsburgh';
 $db_user='rt';
 $db_pass='r3building';
 $db_name='rt';
