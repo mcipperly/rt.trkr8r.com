@@ -1,17 +1,17 @@
 <?php
-include ('../includes/admin-header.php'); 
 include('validate.php');
-include ('../includes/admin-sidebar.php'); 
+include ('../includes/admin-header.php');
+include ('../includes/admin-sidebar.php');
 include '../db/db.php';
 ?>
 
 <div class="container">
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-calendar"></span>&nbsp;<a href="manage-events.php">Manage Events</a> <span class="fa fa-angle-right"></span>&nbsp;Completed Events</h1>
-    
+
 <div class="row">
     <div class="twelve cols callout">
-        <h2 class="callout-title">Completed Events</h2> 
+        <h2 class="callout-title">Completed Events</h2>
             <table class="respond">
                 <thead>
                     <tr>
@@ -95,11 +95,11 @@ EOS;
 	print($html);
 }
 ?>
-    </div>   
+    </div>
             <div>
                 <div class="left"><a href="manage-events.php"><span class="fa fa-calendar"></span> Back to Manage Events</a></div>
                 <div class="clear"></div>
             </div>
-</div>  
+</div>
 
 <?php include ('../includes/footer.php'); ?>

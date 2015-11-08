@@ -1,6 +1,7 @@
 <?php
-include('../db/db.php');
 include('validate.php');
+include('../db/db.php');
+
 header('Content-type: application/json');
 
 if (isset($_REQUEST['status_id'], $_REQUEST['count'])) {

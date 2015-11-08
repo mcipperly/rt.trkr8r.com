@@ -1,6 +1,6 @@
 <?php
-include('includes/header.php'); 
-require_once('db/db.php'); 
+include('includes/header.php');
+require_once('db/db.php');
 
 $volunteer_id = validate_volunteer_email($_REQUEST['email']);
 if(isset($_REQUEST['email']) && $volunteer_id && !$_REQUEST['edit'] && isset($_SESSION['mode'])) {
@@ -47,7 +47,7 @@ foreach($form['elements'] as $key => $element) {
         <div class="eight cols">
             <h1 class="left">Register</h1>
         </div>
-        
+
         <div class="four cols">
             <img src="assets/imgs/rt-logo_small.png" class="right">
         </div>
@@ -108,30 +108,32 @@ EOS;
 			$cols = "twelve";
 			break;
 	}
-	
+
 	$asterisk_string = "";
 	if($element['description']) {
 		$asterisk_count++;
-	
+
 		for($i = 0; $i < $asterisk_count; $i++)
 			$asterisk_string .= "*";
 	}
 
 	$search_element_id = $element['element_id'];
-	$filtered_responses = array_filter($responses, 'get_response');
+  if(isset($responses)) {
+	   $filtered_responses = array_filter($responses, 'get_response');
+   }
 
 	if($filtered_responses)
 		$this_response = array_shift($filtered_responses);
 	else
 		$this_response = array();
-	
+
 	if($element['type'] == "checkbox" && $this_response)
 		$value = ($this_response['value']) ? "Yes" : "No";
 	else
 		$value = $this_response['value'];
-	
+
 	$required_html = ($element['required']) ? " required" : "";
-	
+
 	switch($element['type']) {
 		case "text":
 		case "number":
@@ -143,7 +145,7 @@ EOS;
 EOS;
 			break;
 		case "checkbox":
-			$checked_html = ($value == "Yes" || !isset($value)) ? "checked" : ""; 
+			$checked_html = ($value == "Yes" || !isset($value)) ? "checked" : "";
 			$html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}" style="display:inline">{$element['label']}</label>
@@ -179,11 +181,11 @@ EOS;
 			$html = "";
 			break;
 	}
-	
+
 	print($html);
-	
+
 	$col_count += $element['cols'];
-	
+
 	if($col_count % 12 == 0) {
 		$html = <<<EOS
     </div>
@@ -197,7 +199,7 @@ EOS;
 
 </form>
 EOS;
-    if(!isset($_SESSION['mode'])) { ?><div class="g-recaptcha" data-sitekey="6Lfk0AQTAAAAANW4KIOuZsfwsY-cd0CrZKPf3dem"></div><?php } 
+    if(!isset($_SESSION['mode'])) { ?><div class="g-recaptcha" data-sitekey="6Lfk0AQTAAAAANW4KIOuZsfwsY-cd0CrZKPf3dem"></div><?php }
 		print($html);
 	}
 }
@@ -205,7 +207,7 @@ EOS;
 	$asterisk_string = "";
 	if($element['description']) {
 		$asterisk_count++;
-	
+
 		for($i = 0; $i < $asterisk_count; $i++)
 			$asterisk_string .= "*";
 	}
@@ -219,7 +221,7 @@ foreach($form['elements'] as $element) {
 
 		for($i = 0; $i < $asterisk_count; $i++)
 			$asterisk_string .= "*";
-		
+
 		$html = <<<EOS
 <br><small><sup>{$asterisk_string}</sup><em>{$element['description']}</em></small>
 EOS;

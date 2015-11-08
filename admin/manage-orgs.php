@@ -1,8 +1,8 @@
 <?php
-include ('../includes/admin-header.php'); 
-include ('../includes/admin-sidebar.php'); 
-require_once('../db/db.php');
 include('validate.php');
+include ('../includes/admin-header.php');
+include ('../includes/admin-sidebar.php');
+require_once('../db/db.php');
 
 foreach($_REQUEST as $key => $value) {
 	if(substr_count($key, "remove_")) {
@@ -90,7 +90,7 @@ foreach($orgs as $key => $org) {
 EOS;
 		print($html);
 	}
-	
+
 	$html = <<<EOS
                     <tr>
                         <td data-label="Organization" class="manage-table--orgs"><a href="org-details.php?org_id={$org['company_id']}"><span class="manage-table--break">{$org['name']}</span>&nbsp;&nbsp;<span class="fa fa-angle-right"></span></a></td>
@@ -101,7 +101,7 @@ EOS;
 
 	if($key + 1 == sizeof($orgs)) {
 		$html = <<<EOS
-    
+
                     </tbody>
                     </table>
                     <input type="submit" value="Remove Selected Organizations" class="right m-full-width">

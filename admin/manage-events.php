@@ -1,6 +1,6 @@
 <?php
-include '../includes/admin-header.php';
 include 'validate.php';
+include '../includes/admin-header.php';
 include '../includes/admin-sidebar.php';
 include '../db/db.php';
 ?>

@@ -1,7 +1,7 @@
 <?php
-include ('../includes/admin-header.php');
 include('validate.php');
 require_once('../db/db.php');
+include ('../includes/admin-header.php');
 include ('../includes/admin-sidebar.php');
 ?>
 

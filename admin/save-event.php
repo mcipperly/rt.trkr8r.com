@@ -1,6 +1,6 @@
 <?php
-include('../db/db.php');
 include('validate.php');
+include('../db/db.php');
 
 if (isset($_REQUEST['event_date'], $_REQUEST['event_desc'], $_REQUEST['event_title'])) {
   if (isset($_REQUEST['event_id'])) {

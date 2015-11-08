@@ -1,8 +1,8 @@
 <?php
-include ('../includes/admin-header.php'); 
-include ('../includes/admin-sidebar.php'); 
-require_once('../db/db.php');
 include('validate.php');
+include ('../includes/admin-header.php');
+include ('../includes/admin-sidebar.php');
+require_once('../db/db.php');
 
 foreach($_POST as $key => $value) {
   if(substr($key, 0, 7) == "remove_") {
@@ -36,11 +36,11 @@ $html = <<<EOS
                         <div class="five cols">
                             <input autocomplete="off" type="text" class="full-width" id="username" name="username" value="" placeholder="Username">
                         </div>
-                        
+
                         <div class="five cols">
                             <input autocomplete="off" type="password" class="full-width" id="password" name="password" value="" placeholder="Password">
                         </div>
-                        
+
                         <div class="two cols">
                             <input type="submit" value="Create" class="full-width no-min">
                         </div>
@@ -72,7 +72,7 @@ foreach($users as $key => $user) {
 EOS;
 		print($html);
 	}
-	
+
 	$html = <<<EOS
                     <tr>
                         <td data-label="User" class="manage-table--user"><span class="manage-table--break">{$user['email']}</span></td>
@@ -83,7 +83,7 @@ EOS;
 
 	if($key + 1 == sizeof($users)) {
 		$html = <<<EOS
-    
+
                     </tbody>
                     </table>
                     <input type="submit" value="Remove Selected Users" class="right m-full-width">

@@ -1,19 +1,20 @@
-<?php include ( '../includes/admin-header.php'); 
-include( 'validate.php'); 
-include ( '../includes/admin-sidebar.php'); 
+<?php
+include( 'validate.php');
+include ( '../includes/admin-header.php'); 
+include ( '../includes/admin-sidebar.php');
 ?>
 
 <div class="container">
     <div class="admin-content-wrapper">
         <h1 class="admin-page-title"><span class="fa fa-gear"></span>&nbsp;Manage Form</h1>
 
-     
-        
+
+
         <div class="row">
             <div class="twelve cols callout">
                 <h2 class="callout-title">Update Form Labels <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
                    <script>
-                        $( "a.edit-action" ).click(function() {  
+                        $( "a.edit-action" ).click(function() {
                           $( "label" ).replaceWith( "<input type=\"text\" value=\"First Name\" class=\"full-width\">" );
                         });
                     </script>
@@ -102,7 +103,7 @@ include ( '../includes/admin-sidebar.php');
                 </form>
             </div>
         </div>
-        
+
         <div class="clear"></div>
 
     </div>
