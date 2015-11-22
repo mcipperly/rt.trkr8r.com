@@ -70,3 +70,19 @@ ul,
 ol,
 form {
   margin-bottom: 2.5rem; }
+
+/* Login Page
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+body.admin-login-page {
+    
+    background-color: gray;
+    
+    section {
+    text-align: center;
+    
+        form {
+            margin-top: 25px;
+        }
+    }
+    
+}
