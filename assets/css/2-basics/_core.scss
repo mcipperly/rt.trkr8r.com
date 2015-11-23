@@ -70,3 +70,51 @@ ul,
 ol,
 form {
   margin-bottom: 2.5rem; }
+
+/* Login Page
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+body.admin-login-page {
+    
+    background-color: #F7F7F7;
+    
+    footer {
+        color: #404041 !important;
+        
+        a {
+            color: #404041 !important;
+            
+            &:hover {
+                text-decoration: underline !important;
+            }
+        }
+    }
+    
+    section {
+    text-align: center;
+    
+        h2 {
+            padding-bottom: 20px;
+        }
+        
+        img {
+            margin-bottom: 25px;
+        }
+        
+        form {
+            margin: 0 auto;
+            max-width: 250px;
+            
+            p {
+                margin-bottom: 0;
+                padding-bottom: 2px;
+                text-align: left;
+            }
+            
+            input[type="submit"] {
+                background-color: #F36E3A !important;
+                border-bottom-color: #97421d !important;
+            }
+        }
+    }
+    
+}
