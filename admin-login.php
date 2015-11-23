@@ -10,10 +10,10 @@ function doLogin() {
     xhr.onreadystatechange=function() {
       if (xhr.readyState==4 && xhr.status==200) {
         if (xhr.responseText==1) {
-          $("p").css('color', 'black');
+          $("form").find("p").css('color', 'black');
           onsiteModeModal();
         } else {
-          $("p").css('color', 'red');
+          $("form").find("p").css('color', 'red');
         }
       }
     }
