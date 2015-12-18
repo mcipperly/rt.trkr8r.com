@@ -24,7 +24,7 @@ function doLogin() {
 </script>
 
     <section>
-        <img src="assets/imgs/PaperOut_Logo_Horizontal.svg" onerror="this.src='assets/imgs/PaperOut_Logo_Horizontal.png'">
+        <a href="/"><img src="assets/imgs/PaperOut_Logo_Horizontal.svg" onerror="this.src='assets/imgs/PaperOut_Logo_Horizontal.png'"></a>
         <h2><?php print($site_org) ?></h2>
         <form action="javascript:void(0);">
            <p>Username</p>
