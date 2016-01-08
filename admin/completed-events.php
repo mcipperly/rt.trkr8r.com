@@ -1,8 +1,8 @@
 <?php
 include('validate.php');
+include '../db/db.php';
 include ('../includes/admin-header.php');
 include ('../includes/admin-sidebar.php');
-include '../db/db.php';
 ?>
 
 <div class="container">
