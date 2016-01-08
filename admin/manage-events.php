@@ -1,8 +1,8 @@
 <?php
 include 'validate.php';
+include '../db/db.php';
 include '../includes/admin-header.php';
 include '../includes/admin-sidebar.php';
-include '../db/db.php';
 ?>
 
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.7/slick.css"/>

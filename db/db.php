@@ -879,6 +879,7 @@ function export_csv($element_ids, $search) {
 	}
 
 	$results = search_responses($element_ids, $search);
+	$results_array = array();
 
 	foreach($results as $line) {
 		foreach($line as &$value) {
