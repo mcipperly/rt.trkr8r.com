@@ -1,8 +1,8 @@
 <?php
 include('validate.php');
+require_once('../db/db.php');
 include ('../includes/admin-header.php');
 include ('../includes/admin-sidebar.php');
-require_once('../db/db.php');
 
 if($_REQUEST['email']) {
 	$volunteer_id = validate_volunteer_email($_REQUEST['email']);
