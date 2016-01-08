@@ -1,23 +1,24 @@
 <?php
 include('validate.php');
 require_once('../db/db.php');
-include ('../includes/admin-header.php');
-include ('../includes/admin-sidebar.php');
 
 if($_REQUEST['email']) {
-	$volunteer_id = validate_volunteer_email($_REQUEST['email']);
-	if($volunteer_id)
-		Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
-	else
-		$no_volunteer = true;
+        $volunteer_id = validate_volunteer_email($_REQUEST['email']);
+        if($volunteer_id)
+                Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
+        else
+                $no_volunteer = true;
 }
 elseif($_REQUEST['firstname'] || $_REQUEST['lastname']) {
-	$volunteer_id = find_volunteer($_REQUEST);
-	if($volunteer_id)
-		Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
-	else
-		$no_volunteer = true;
+        $volunteer_id = find_volunteer($_REQUEST);
+        if($volunteer_id)
+                Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
+        else
+                $no_volunteer = true;
 }
+
+include ('../includes/admin-header.php');
+include ('../includes/admin-sidebar.php');
 
 ?>
 
