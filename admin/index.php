@@ -162,11 +162,11 @@ EOS;
             <h3>Today's Data</h3>
 						<form method="POST">
 							<input type="hidden" name="date" value="<?php print($today); ?>" />
-							<input type="hidden" id="preset_id" name="preset_id" value="" />
+							<input type="hidden" id="today_preset_id" name="preset_id" value="" />
 <?php
 foreach($presets as $preset) {
 	$html = <<<EOS
-							<button class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
+							<button class="m-full-width" onclick="document.getElementById('today_preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
 EOS;
 print($html);
 }
@@ -177,11 +177,11 @@ print($html);
             <h3>Yesterday's Data</h3>
 						<form method="POST">
 							<input type="hidden" name="date" value="<?php print($yesterday); ?>" />
-							<input type="hidden" id="preset_id" name="preset_id" value="" />
+							<input type="hidden" id="yesterday_preset_id" name="preset_id" value="" />
 <?php
 foreach($presets as $preset) {
 	$html = <<<EOS
-							<button class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
+							<button class="m-full-width" onclick="document.getElementById('yesterday_preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
 EOS;
 print($html);
 }
