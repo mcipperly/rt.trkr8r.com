@@ -2,19 +2,19 @@
 include('validate.php');
 include ('../db/db.php');
 
+if($_REQUEST['remove']) {
+        invalidate_organization($_REQUEST['org_id']);
+        Header("Location: manage-orgs.php");
+}
+
+include ('../includes/admin-header.php');
+include ('../includes/admin-sidebar.php');
+
 if($_REQUEST['preset_id']) {
 	Header("Location: csv-export.php");
 }
 
 $search['company_id'] = $_REQUEST['org_id'];
-
-include ('../includes/admin-header.php');
-include ('../includes/admin-sidebar.php');
-
-if($_REQUEST['remove']) {
-	invalidate_organization($_REQUEST['org_id']);
-	Header("Location: manage-orgs.php");
-}
 
 $org = get_organization($_REQUEST['org_id']);
 
