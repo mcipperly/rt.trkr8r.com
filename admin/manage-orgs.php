@@ -1,8 +1,8 @@
 <?php
 include('validate.php');
+require_once('../db/db.php');
 include ('../includes/admin-header.php');
 include ('../includes/admin-sidebar.php');
-require_once('../db/db.php');
 
 foreach($_REQUEST as $key => $value) {
 	if(substr_count($key, "remove_")) {
