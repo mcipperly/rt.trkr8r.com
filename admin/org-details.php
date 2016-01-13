@@ -33,10 +33,50 @@ $presets = get_export_presets();
     <div class="eight cols callout">
         <h2 class="callout-title">Details <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
             
-        <h3><?php print($org['name']); ?></h3>
-        <p><span class="semibold">Contact Name:</span> <?php print($org['contact_name']); ?> <br>
-        <span class="semibold">Contact Details:</span> <?php print($org['contact_details']); ?></p>
-        <p><?php print($org['description']); ?></p>
+        <script>
+                        $("a.edit-action").click(eventEditMode);
+
+                        function eventEditMode() {
+                           $(".org_title").replaceWith("<input id=\"new_org_title\" type=\"text\" value=\"" + $(".org_title").text() + "\" class=\"full-width\">");
+                           $(".org_contact_name").replaceWith("<input id=\"new_org_contact_name\" type=\"text\" value=\"" + $(".org_contact_name").text() + "\" class=\"full-width\">");
+                           $(".org_contact_details").replaceWith("<input id=\"new_org_contact_details\" type=\"text\" value=\"" + $(".org_contact_details").text() + "\" class=\"full-width\">");
+                           $(".org_desc").replaceWith("<textarea id=\"new_org_desc\" rows=\"4\" class=\"full-width\">" + $(".org_desc").text() + "</textarea>");
+                          
+                           $(".edit-action").replaceWith("<a href=\"#\" class=\"edit-action save-event\"><span class=\"fa fa-floppy-o\"></span>&nbsp;Save</a>");
+                           $("a.save-event").click(function() {
+                              var xhr = new XMLHttpRequest();
+                              xhr.onreadystatechange = function() {
+                                 if (xhr.readyState == 4 && xhr.status == 200) {
+                                    if (xhr.responseText.indexOf('Success')) {
+                                       console.log('success');
+                                       eventReadMode();
+                                    } else {
+                                       console.log('failure');
+                                    }
+                                 }
+                              }
+                              xhr.open('POST', 'save-org.php', true);
+                              xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                              xhr.send('org_id=<?php print($org['org_id']); ?>&org_title=' + document.getElementById('new_org_title').value + '&org_desc=' + document.getElementById('new_org_desc').value + '&org_contact_name=' + document.getElementById('new_org_contact_name').value + '&org_contact_details=' + document.getElementById('new_org_contact_details').value);
+                           });
+
+                        }
+
+                        function eventReadMode() {
+                           $("#new_org_title").replaceWith("<h3 class=\"org_title\">" + document.getElementById('new_org_title').value + "</h3>");
+                           $("#new_org_contact_name").replaceWith("<p class=\"org_contact_name\"><span class=\"semibold\">Contact Name:</span>" + document.getElementById('new_org_contact_name').value + "</p>");
+                           $("#new_org_contact_details").replaceWith("<p class=\"org_contact_details\"><span class=\"semibold\">Contact Details:</span>" + document.getElementById('new_org_contact_details').value + "</p>");
+                           $("#new_org_desc").replaceWith("<p class=\"org_desc\">" + document.getElementById('new_org_desc').value + "</p>");
+                           $(".save-event").replaceWith("<a href=\"#\" class=\"edit-action save-event\">&nbsp;<span class=\"success-msg\">Success!&nbsp;</span><span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
+                           $("a.edit-action").click(eventEditMode);
+													 $("span.success-msg").fadeOut(2400);
+                        }
+                    </script>
+        
+        <h3 class="org_title">><?php print($org['name']); ?></h3>
+        <p class="org_contact_name"><span class="semibold">Contact Name:</span> <?php print($org['contact_name']); ?></p>
+        <p class="org_contact_details"><span class="semibold">Contact Details:</span> <?php print($org['contact_details']); ?></p>
+        <p class="org_desc"><?php print($org['description']); ?></p>
 		<br>
         <form method="POST">
 			<input type="hidden" name="remove" value="1" />
