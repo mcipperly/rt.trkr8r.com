@@ -56,7 +56,7 @@ $html = <<<EOS
 					</div>
                     <div class="row">
                         <div class="twelve cols">
-                            <input autocomplete="off" type="text" class="full-width" id="description" name="description" value="" placeholder="Organization Description">
+                            <textarea autocomplete="off" type="text" class="full-width" id="description" name="description" value="" placeholder="Organization Description"></textarea>
                         </div>
 					</div>
 					<div class="row">
