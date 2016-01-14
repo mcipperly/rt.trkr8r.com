@@ -75,7 +75,7 @@ $orgs = get_organizations();
                               var xhr = new XMLHttpRequest();
                               xhr.onreadystatechange = function() {
                                  if (xhr.readyState == 4 && xhr.status == 200) {
-                                    if (xhr.responseText.indexOf('Success')) {
+                                    if (xhr.responseText.indexOf('Success') >= 0) {
                                        console.log('success');
                                        eventReadMode();
                                     } else {

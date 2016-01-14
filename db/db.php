@@ -422,7 +422,7 @@ EOS;
 	return TRUE;
 }
 
-function update_organization($company_id, $name) {
+function update_organization($company_id, $contact_name, $contact_details, $desc, $name) {
 	//function to update an organization's name
 
 	if(!($company_id && $name))
@@ -430,9 +430,13 @@ function update_organization($company_id, $name) {
 
 	$db_link = setup_db();
 
-	$name = mysqli_real_escape_string($db_link, $name);
+	$contact_name = mysqli_real_escape_string($db_link, $contact_name);
+	$contact_details = mysqli_real_escape_string($db_link, $contact_details);
+	$desc = mysqli_real_escape_string($db_link, $desc);
+    $name = mysqli_real_escape_string($db_link, $name);
+    
 
-	$query = "UPDATE `company` SET `name` = '{$name}' WHERE `company_id` = {$company_id}";
+	$query = "UPDATE `company` SET `name` = '{$name}', `contact_name` = '{$contact_name}', `contact_details` = '{$contact_details}', `description` = '{$desc}' WHERE `company_id` = {$company_id}";
 	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	return TRUE;
