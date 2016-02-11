@@ -6,3 +6,4 @@ vex
 prepros.cfg
 *.psd
 *.ai
+db/db-config.php
