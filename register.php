@@ -157,7 +157,7 @@ EOS;
 EOS;
 			break;
 		case "select":
-			$se_id = $value;
+			$selected_text = $value;
 			$select_size = sizeof($element['select_elements']);
 			$multi_html_a = ($element['plural']) ? "[]" : "";
 			$multi_html_b = ($element['plural']) ? "multiple size='{$select_size}'" : "";
@@ -169,7 +169,11 @@ EOS;
 		<select class="full-width" name="{$element['name']}{$multi_html_a}" {$multi_html_b}>
 EOS;
 			foreach($element['select_elements'] as $option) {
-				$selected_html = ($option['se_id'] == $se_id) ? "selected" : "";
+				if($selected_text)
+					$selected_html = ($option['text'] == $selected_text) ? "selected" : "";
+				else
+					$selected_html = ($option['default_option']) ? "selected" : "";
+				
 				$html .= <<<EOS
 			<option value="{$option['se_id']}" {$selected_html}>{$option['text']}</option>
 EOS;
