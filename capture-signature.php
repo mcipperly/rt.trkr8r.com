@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once('db/db.php');
 
 if(!isset($_SESSION['mode'])) {

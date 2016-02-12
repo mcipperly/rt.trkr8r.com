@@ -5,7 +5,7 @@ session_start();
 $volunteer_id = validate_volunteer_email($_REQUEST['email']);
 if(isset($_REQUEST['email']) && $volunteer_id && !$_REQUEST['edit'] && isset($_SESSION['mode'])) {
   Header("HTTP/1.1 302 Moved Temporarily");
-  Header("Location: signature.php?vid=" . $volunteer_id);
+  Header("Location: signature.php?vid=" . $volunteer_id . "&event_id=" . $_REQUEST['event_id']);
 } elseif($volunteer_id && !isset($_SESSION['mode'])) {
   Header("HTTP/1.1 302 Moved Temporarily");
   Header("Location: index.php?thanks=3");

@@ -298,7 +298,7 @@ EOS;
 if($event['status_id'] == 1) {
 		$html = <<<EOS
 				<br><h3>Add A Volunteer To This Event</h3>
-				<form action="../register.php" method="POST">
+				<form action="../register.php" method="POST" target="_blank">
 					<input type="hidden" name="event_id" value="{$event['event_id']}" />
 					<div class="row">
 						<div class="nine cols">
