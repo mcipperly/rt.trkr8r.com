@@ -37,7 +37,7 @@ EOS;
     <div class="twelve cols callout">
         <h2 class="callout-title">Records Lookup</h2>
         <h3>Lookup by Name</h3>
-        <form method="POST">
+        <form method="POST" target="_blank">
             <div class="row">
                 <div class="five cols">
                 <input type="text" class="full-width" name="firstname" placeholder="First Name">
@@ -54,7 +54,7 @@ EOS;
         </form>
 
         <h3>Lookup by Email</h3>
-        <form method="POST">
+        <form method="POST" target="_blank">
             <div class="row">
                 <div class="ten cols">
                 <input type="email" class="full-width" name="email" placeholder="Email Address">
