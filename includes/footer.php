@@ -125,7 +125,7 @@ vex.dialog.open({
         <footer>
           <div class="row">
                 <div class="twelve cols center">
-                    <p>PaperOut is brought to you by <a href="http://www.rtpittsburgh.org/"><?php print($site_org) ?></a><br><a href="http://steelcitycodefest.org/apps">Learn More</a>&nbsp;&nbsp;/<?php if(isset($_SESSION['user']) && isset($_SESSION['event_id']) && $_SESSION['event_id'] != "undefined" ) { ?>&nbsp;&nbsp;<a href="javascript:eventSelectModal()">Event: <?php if(!isset($cur_event)) { $cur_event = get_event($_SESSION['event_id']); } print($cur_event['note'] . "&nbsp;&nbsp;/"); } elseif (count($events) == 0 && $_SESSION['mode'] != 'adminpage') { ?></a>&nbsp;&nbsp;No events scheduled for today &nbsp;&nbsp;/<?php } ?>&nbsp;&nbsp;<a href="mailto:">Got Questions?</a></p>
+                    <p>PaperOut is brought to you by <a href="http://www.rtpittsburgh.org/"><?php print($site_org) ?></a><br><a href="http://steelcitycodefest.org/success-stories">Learn More</a>&nbsp;&nbsp;/<?php if(isset($_SESSION['user']) && isset($_SESSION['event_id']) && $_SESSION['event_id'] != "undefined" ) { ?>&nbsp;&nbsp;<a href="javascript:eventSelectModal()">Event: <?php if(!isset($cur_event)) { $cur_event = get_event($_SESSION['event_id']); } print($cur_event['note'] . "&nbsp;&nbsp;/"); } elseif (count($events) == 0 && $_SESSION['mode'] != 'adminpage' && isset($_SESSION['user'])) { ?></a>&nbsp;&nbsp;No events scheduled for today &nbsp;&nbsp;/<?php } ?>&nbsp;&nbsp;<a href="mailto:HBundy@rtpittsburgh.org">Got Questions?</a></p>
 
                 </div>
         </footer>
