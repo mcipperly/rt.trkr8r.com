@@ -34,27 +34,10 @@
 }
 
 /* Checkin/Pregreistration Page */
-.welcome {
-    
-    button {
-        @include font-size(3.7);
-        padding: .5em 1em .5em;
-    }
-    
-    input.register-email {
-        width: 80% !important;
-        height: 60px !important;
-        margin-bottom: 25px;
-    }
-    
-    a.under-18 {
-        display: inline-block;
-        margin-top: 30px;
-        color: #222;
-    }
+.welcome button {
+    @include font-size(3.7);
+    padding: .5em 1em .5em;
 }
-
-
 
 /* Signature page which displays your entered data before you sign */
 .details {

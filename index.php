@@ -69,15 +69,8 @@ setTimeout(function() {
 
 <div class="row center welcome">
     <div class="twelve cols">
-        <input name="email" type="email" placeholder="email@example.com" value="" class="register-email">
-      
         <a href="#">
             <button onclick="getEmail()"><?php if(isset($_SESSION['mode'])) { print('Check In'); } else { print('Pre-register'); } ?></button>
-        </a>
-        
-        <br>
-        <a href="/under-18.php" class="under-18">
-            <b>Under 18?</b> Click here to print our waiver!
         </a>
     </div>
 </div>
