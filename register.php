@@ -261,6 +261,25 @@ $('input[type=submit]').click(function(event) {
 		}
 	});
 });
+$('form').submit(function(event) {
+	var success = true;
+
+	$.each($('input'), function(index, input_element) {
+		console.log($(input_element).attr("required"));
+		if($(input_element).attr("required") == "required") {
+			if($(input_element).val() == null || $(input_element).val() == "") {
+//				$(input_element).focus();
+				success = false;
+			}
+		}
+	});
+
+	if(!success) {
+		alert("Please fill out required fields.");
+	}
+	
+	return success;
+});
 </script>
 <?php if(isset($_REQUEST['email'])) { ?>
 <script type="text/javascript">
