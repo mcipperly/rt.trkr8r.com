@@ -162,10 +162,12 @@ EOS;
 			$multi_html_a = ($element['plural']) ? "[]" : "";
 			$multi_html_b = ($element['plural']) ? "multiple size='{$select_size}'" : "";
 			$multi_html_c = ($element['plural']) ? "&nbsp;<small>(On desktop, hold Ctrl+Shift to select multiple options)</small>" : "";
+			$multi_html_d = ($element['plural']) ? "<input type=\"hidden\" id=\"hidden_{$element['name']}\" name=\"{$element['name']}\" value=\"\" disabled=\"disabled\" />" : "";
 
 			$html = <<<EOS
 	<div class="{$cols} cols">
 		<label for="{$element['name']}">{$element['label']}{$multi_html_c}</label>
+		{$multi_html_d}
 		<select class="full-width" name="{$element['name']}{$multi_html_a}" {$multi_html_b}>
 EOS;
 			foreach($element['select_elements'] as $option) {
@@ -245,6 +247,19 @@ $('input[type=checkbox]').on('click', function() {
 	else {
 		$('#hidden_' + checkbox_name ).removeAttr("disabled");
 	}
+});
+$('input[type=submit]').click(function(event) {
+	$.each($('select'), function(index, value) {
+		if($(value).attr("multiple") == "multiple") {
+			var select_name = $(value).attr("name").slice(0, -2);
+			if($(value).val()) {
+				$('#hidden_' + select_name ).attr("disabled", true);
+			}
+			else {
+				$('#hidden_' + select_name ).removeAttr("disabled");
+			}
+		}
+	});
 });
 </script>
 <?php if(isset($_REQUEST['email'])) { ?>

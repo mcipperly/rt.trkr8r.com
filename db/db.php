@@ -947,7 +947,7 @@ EOS;
 		$element_results = _get_all($result);
 		foreach($element_results as &$element_result) {
 			//select elements are stored as one or more se_id values, we need to translate them to their proper text
-			if($element_type == "select") {
+			if($element_type == "select" && $element_result['value']) {
 				$value_array = explode("; ", $element_result['value']);
 				$text_array = array();
 				foreach($value_array as $se_id) {
