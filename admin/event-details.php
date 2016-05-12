@@ -37,6 +37,10 @@ $orgs = get_organizations();
 
 ?>
 
+<div id="delete-confirm" title="Confirm Deletion">
+   Delete this event?
+</div>
+
 <div class="container">
 	<div class="admin-content-wrapper">
 		<h1 class="admin-page-title">
@@ -50,6 +54,31 @@ $orgs = get_organizations();
 			<div class="twelve cols callout">
 				<h2 class="callout-title">Details <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
                    <script>
+                   $(document).ready(function() {
+                     $("#delete-confirm").dialog({
+                       autoOpen: false,
+                       modal: true
+                     });
+                   $("#delete-event").click(function(e) {
+                     e.preventDefault();
+                     var targetUrl = $(this).attr("href");
+
+                     $("#delete-confirm").dialog({
+                       buttons : {
+                         "Confirm" : function() {
+                           window.location.href = "/admin/manage-events.php?delId=<?php print($_REQUEST['event_id']) ?>";
+                         },
+                         "Cancel" : function() {
+                           $(this).dialog("close");
+                         }
+                       }
+                     });
+
+                     $("#delete-confirm").dialog("open");
+                   });
+                 });
+
+
                         $("a.edit-action").click(eventEditMode);
 
                         function eventEditMode() {
@@ -317,7 +346,10 @@ EOS;
 		</div>
 
 		<div>
-			<button class="right btn-alert"><span class="fa fa-trash-o" aria-hidden="true"></span> Delete Event</button>
+			<button class="right btn-alert" id="delete-event"><span class="fa fa-trash-o" aria-hidden="true"></span> Delete Event</button>
+      <div id="delete-confirm" title="Confirm Deletion">
+        Delete this event?
+      </div>
 			<div class="left"><a href="manage-events.php"><span class="fa fa-calendar"></span> Back to Manage Events</a></div>
 			<div class="clear"></div>
 		</div>
