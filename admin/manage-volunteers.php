@@ -35,8 +35,7 @@ EOS;
 ?>
 <div class="row">
     <div class="twelve cols callout">
-        <h2 class="callout-title">Volunteer Lookup</h2>
-        <h3>Lookup by Name</h3>
+        <h2 class="callout-title">Find a Volunteer</h2>
         <form method="POST" target="_blank">
             <div class="row">
                 <div class="five cols">
@@ -53,33 +52,36 @@ EOS;
             </div>
         </form>
 
-        <h3>Lookup by Email</h3>
-        <form method="POST" target="_blank">
-            <div class="row">
-                <div class="ten cols">
-                <input type="email" class="full-width" name="email" placeholder="Email Address">
-                </div>
+    </div>
+</div>
 
-                <div class="two cols">
-                <input type="submit" value="Search" class="full-width no-min">
-                </div>
-            </div>
-        </form>
-        
-        <h3>Lookup by Address</h3>
-        <form method="POST" target="_blank">
-            <div class="row">
-                <div class="ten cols">
-                <input type="text" class="full-width" name="address" placeholder="Address">
-                </div>
+<div class="row">
+    <div class="twelve cols callout">
+        <h2 class="callout-title">Search Results</h2>
+        <form>
+        <table class="respond manage-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Merge This</th>
+                        <th>Into This</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                <div class="two cols">
-                <input type="submit" value="Search" class="full-width no-min">
-                </div>
-            </div>
+                    <tr>
+                        <td data-label="Name"><a href="volunteer-details.php"><span class="manage-table--break">Name McNameface</span>&nbsp;&nbsp;<span class="fa fa-angle-right"></span></a></td>
+                        <td data-label="Email">Email@email.com</td>
+                        <td data-label="Merge This"><input type="checkbox" /></td>
+                        <td data-label="Into This"><input type="radio" /></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        <input type="button" class="right m-full-width" value="Merge Selected Volunteers" />
         </form>
     </div>
-    </div>
-
-
+</div>
+    
 <?php include ('../includes/footer.php'); ?>
