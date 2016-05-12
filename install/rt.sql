@@ -118,7 +118,8 @@ CREATE TABLE IF NOT EXISTS `event_status` (
 
 INSERT INTO `event_status` (`status_id`, `name`) VALUES
 (1, 'Open'),
-(2, 'Completed');
+(2, 'Completed'),
+(3, 'Deleted');
 
 -- --------------------------------------------------------
 
@@ -398,7 +399,7 @@ CREATE TABLE IF NOT EXISTS `volunteer` (
   `time_added` time NOT NULL,
   PRIMARY KEY (`volunteer_id`),
   UNIQUE KEY `email` (`email`),
-  KEY `company_id` (`company_id`)
+  KEY `company_id` (`company_id`),
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
@@ -440,7 +441,8 @@ CREATE TABLE IF NOT EXISTS `volunteer_status` (
 INSERT INTO `volunteer_status` (`status_id`, `name`) VALUES
 (1, 'Unregistered'),
 (2, 'Unsigned'),
-(3, 'Signed');
+(3, 'Signed'),
+(4, 'Deleted');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

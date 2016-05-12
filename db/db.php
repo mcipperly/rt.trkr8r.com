@@ -162,6 +162,36 @@ function validate_volunteer_email($email) {
 	return (int) _get_one($result);
 }
 
+function merge_duplicate_volunteers($duplicate_ids, $master_id) {
+	//function to merge one or more duplicate volunteers into a master volunteer
+	$db_link = setup_db();
+	
+	if(!($duplicate_ids && $master_id))
+		return FALSE;
+	
+	foreach($duplicate_ids as $volunteer_id) {
+		$query = "UPDATE `volunteer_event` SET `volunteer_id` = {$master_id} WHERE `volunteer_id` = {$volunteer_id}";
+		mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		
+		delete_volunteer($volunteer_id);
+	}
+	
+	return TRUE;
+}
+
+function delete_volunteer($volunteer_id) {
+	//function to delete volunteer (remove them from any searches or reports)
+	$db_link = setup_db();
+
+	if(!$volunteer_id)
+		return FALSE;
+	
+	$query = "UPDATE `volunteer` SET `status_id` = 4 WHERE volunteer_id` = {$volunteer_id}";
+	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	
+	return TRUE;
+}
+
 function get_volunteer_info($volunteer_id) {
 	//function to return vital volunteer info (name, email address)
 	$db_link = setup_db();
@@ -203,7 +233,7 @@ function create_form($name, $title = "", $signature = 0) {
 	$signature = (int) mysqli_real_escape_string($db_link, $signature);
 
 	$query = "INSERT INTO `form` (`name`, `title`, `signature`) VALUES ('{$name}', '{$title}', {$signature})";
-	$mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	return TRUE;
 }
@@ -386,6 +416,8 @@ FROM `volunteer_event`
 JOIN `volunteer` USING (`volunteer_id`)
 JOIN `event` USING (`event_id`)
 WHERE `company_id` = {$company_id}
+AND `event`.`status_id` <> 3 #Deleted Events
+AND `volunteer`.`status_id` <> 4 #Deleted Volunteers
 EOS;
 	$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	$org['volunteer_events'] = _get_all($result);
@@ -654,7 +686,8 @@ function get_volunteer_count($search=array()) {
 SELECT COUNT(1) FROM `volunteer_event`
 JOIN `event` USING (`event_id`)
 JOIN `volunteer` USING (`volunteer_id`)
-WHERE 1
+WHERE `event`.`status_id` <> 3 #Deleted Events
+AND `volunteer`.`status_id` <> 4 #Deleted Volunteers
 {$date_query}
 {$org_query}
 EOS;
@@ -686,7 +719,8 @@ function get_duration_count($search=array()) {
 SELECT SUM(`duration`) FROM `volunteer_event`
 JOIN `event` USING (`event_id`)
 JOIN `volunteer` USING (`volunteer_id`)
-WHERE 1
+WHERE `event`.`status_id` <> 3 #Deleted Events
+AND `volunteer`.`status_id` <> 4 #Deleted Volunteers
 {$date_query}
 {$org_query}
 EOS;
@@ -736,6 +770,8 @@ function get_top_volunteers($count = 5) {
 	$query = <<<EOS
 SELECT `volunteer_id`, SUM(`duration`) AS `total_duration`
 FROM `volunteer_event`
+JOIN `event` USING (`event_id`)
+WHERE `event`.`status_id` <> 3 #Deleted Events
 GROUP BY `volunteer_id`
 ORDER BY `total_duration` DESC
 LIMIT 0, {$count}
@@ -760,7 +796,10 @@ function get_top_orgs($count = 5) {
 SELECT `company_id`, SUM(`duration`) AS `total_duration`
 FROM `volunteer_event`
 JOIN `volunteer` USING (`volunteer_id`)
+JOIN `event` USING (`event_id`)
 WHERE `company_id` <> 0
+AND `event`.`status_id` <> 3 #Deleted Events
+AND `volunteer`.`status_id` <> 4 #Deleted Volunteers
 GROUP BY `company_id`
 HAVING `total_duration` > 0
 ORDER BY `total_duration` DESC
@@ -921,6 +960,7 @@ JOIN `volunteer_event` USING (`volunteer_id`)
 JOIN `event` USING (`event_id`)
 {$org_join_query}
 WHERE `element_id` = {$element_id}
+AND `event`.`status_id` <> 3 #Deleted Events
 
 EOS;
 
@@ -969,7 +1009,7 @@ function get_events($search = null) {
 	//function to grab all events, filtered by supplied search criteria
 	$db_link = setup_db();
 
-	$query = "SELECT `event_id` FROM `event` WHERE 1\n";
+	$query = "SELECT `event_id` FROM `event` WHERE `status_id` <> 3\n";
 
 	if($search['status_id'])
 		$query .= "AND `status_id` = {$search['status_id']}\n";
@@ -1070,6 +1110,19 @@ function update_event($event_id, $date, $note, $location) {
 	$location = mysqli_real_escape_string($db_link, $location);
 
 	$query = "UPDATE `event` SET `date` = '{$date}', `note` = '{$note}', `location` = '{$location}' WHERE `event_id` = {$event_id}";
+	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+
+	return TRUE;
+}
+
+function delete_event($event_id) {
+	//Function to remove given event
+	$db_link = setup_db();
+	
+	if(!$event_id)
+		return FALSE;
+	
+	$query = "UPDATE `event` SET `status_id` = 3 WHERE `event_id` = {$event_id}";
 	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 
 	return TRUE;
