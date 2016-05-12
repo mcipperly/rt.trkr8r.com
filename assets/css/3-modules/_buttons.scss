@@ -80,7 +80,8 @@ body.admin-body {
             padding: 6px 12px 8px 12px !important;
         }
 
-        &.btn-closed {
+        &.btn-closed,
+        &.btn-alert {
             color: #fff !important;
             background-color: #e0645c !important;
             border-color: darken(#e0645c, 15%) !important;
@@ -92,15 +93,6 @@ body.admin-body {
             background-color: #fff !important;
             border: 2px solid #e0645c !important;
             padding: 6px 12px 8px 12px !important;
-        }
-        &.btn-alert {
-            background-color: #ff0000 !important;
-            font-weight: bold !important;
-            border-color: darken(#ff0000, 45%) !important;
-            
-            a {
-                color: #fff !important;
-            }
         }
     }
     
@@ -141,7 +133,9 @@ body.admin-body {
         }
 
         &.btn-closed:hover,
-        &.btn-closed:focus {
+        &.btn-closed:focus,
+        &.btn-alert:hover,
+        &.btn-alert:focus {
             background-color: darken(#e0645c, 10%) !important;
             border-color: darken(#e0645c, 50%) !important;
         }
@@ -159,15 +153,6 @@ body.admin-body {
             color: #fff !important;
             background-color: #e0645c !important;
             border-color: darken(#e0645c, 15%) !important;
-        }
-        
-        &.btn-alert:hover,
-        &.btn-alert:focus {
-            background-color: darken(#ff0000, 20%) !important;
-            
-            a:hover {
-                color: #fff !important;
-            }
         }
     }
     .ui-datepicker .ui-datepicker-buttonpane button:active,

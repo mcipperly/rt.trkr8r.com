@@ -317,7 +317,7 @@ EOS;
 		</div>
 
 		<div>
-			<button class="right btn-alert"><a href="#"><span class="fa fa-trash-o" aria-hidden="true"></span> Delete Event</a></button>
+			<button class="right btn-alert"><span class="fa fa-trash-o" aria-hidden="true"></span> Delete Event</button>
 			<div class="left"><a href="manage-events.php"><span class="fa fa-calendar"></span> Back to Manage Events</a></div>
 			<div class="clear"></div>
 		</div>
