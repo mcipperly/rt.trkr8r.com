@@ -265,11 +265,23 @@ $('form').submit(function(event) {
 	var success = true;
 
 	$.each($('input'), function(index, input_element) {
-		console.log($(input_element).attr("required"));
+		//safari needs help checking for values in required fields
 		if($(input_element).attr("required") == "required") {
 			if($(input_element).val() == null || $(input_element).val() == "") {
 //				$(input_element).focus();
 				success = false;
+			}
+		}
+		
+		//safari needs help stopping users from putting non numerals in number inputs
+		if($(input_element).attr("type") == "number") {
+			old_value = $(input_element).val();
+			console.log('old_value: ' + old_value);
+			new_value = old_value.replace(/\D+/g, "");
+			$(input_element).val(new_value);
+			
+			if(old_value != new_value) {
+				console.log($(input_element).attr("name") + ' ' + $(input_element).val());
 			}
 		}
 	});
