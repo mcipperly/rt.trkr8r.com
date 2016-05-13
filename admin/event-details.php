@@ -66,7 +66,7 @@ $orgs = get_organizations();
                      $("#delete-confirm").dialog({
                        buttons : {
                          "Confirm" : function() {
-                           window.location.href = "/admin/manage-events.php?delId=<?php print($_REQUEST['event_id']) ?>";
+                           window.location.href = "/admin/save-event.php?del_id=<?php print($_REQUEST['event_id']) ?>";
                          },
                          "Cancel" : function() {
                            $(this).dialog("close");

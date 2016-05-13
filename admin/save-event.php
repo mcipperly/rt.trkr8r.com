@@ -12,7 +12,12 @@ if (isset($_REQUEST['event_date'], $_REQUEST['event_desc'], $_REQUEST['event_tit
     header('Location: ./event-details.php?event_id=' . $event_id);
   }
 } else {
-  die('Missing required values');
+  if (isset($_REQUEST['del_id'])) {
+    delete_event($_REQUEST['del_id']);
+    header('Location: ./manage-events.php');
+  } else {
+    die('Missing required values');
+  }
 }
 
 ?>
