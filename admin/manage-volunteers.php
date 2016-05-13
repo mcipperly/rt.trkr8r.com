@@ -2,21 +2,6 @@
 include('validate.php');
 require_once('../db/db.php');
 
-if($_REQUEST['email']) {
-        $volunteer_id = validate_volunteer_email($_REQUEST['email']);
-        if($volunteer_id)
-                Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
-        else
-                $no_volunteer = true;
-}
-elseif($_REQUEST['firstname'] || $_REQUEST['lastname']) {
-        $volunteer_id = find_volunteer($_REQUEST);
-        if($volunteer_id)
-                Header("Location: ../signature.php?view=1&vid={$volunteer_id}");
-        else
-                $no_volunteer = true;
-}
-
 include ('../includes/admin-header.php');
 include ('../includes/admin-sidebar.php');
 
@@ -62,6 +47,7 @@ EOS;
         <table class="respond manage-table">
                 <thead>
                     <tr>
+                        <th class="print_details">Waiver</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Merge This</th>
@@ -71,6 +57,7 @@ EOS;
                 <tbody>
 
                     <tr>
+                        <td data-label="Print Details" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}&event_id={$event['event_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
                         <td data-label="Name"><a href="volunteer-details.php"><span class="manage-table--break">Name McNameface</span>&nbsp;&nbsp;<span class="fa fa-angle-right"></span></a></td>
                         <td data-label="Email">Email@email.com</td>
                         <td data-label="Merge This"><input type="checkbox" /></td>

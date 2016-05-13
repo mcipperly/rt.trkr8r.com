@@ -22,9 +22,8 @@
         <ul>
             <li><a href="/admin/"><span class="fa fa-home"></span>&nbsp;&nbsp;Dashboard</a></li>
             <!--<li><a href="/admin/manage-form.php"><span class="fa fa-gear"></span>&nbsp;&nbsp;Manage Form</a></li>-->
-            <li><a href="/admin/manage-events.php"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Manage Events</a></li>
             <li><a href="/admin/export-records.php"><span class="fa fa-file-excel-o"></span>&nbsp;&nbsp;Export Records</a></li>
-            <li><a href="/admin/print-records.php"><span class="fa fa-print"></span>&nbsp;&nbsp;Print Records</a></li>
+            <li><a href="/admin/manage-events.php"><span class="fa fa-calendar"></span>&nbsp;&nbsp;Manage Events</a></li>
             <li><a href="/admin/manage-volunteers.php"><span class="fa fa-heart"></span>&nbsp;&nbsp;Manage Volunteers</a></li>
             <li><a href="/admin/manage-orgs.php"><span class="fa fa-th"></span>&nbsp;&nbsp;Manage Organizations</a></li>
             <li><a href="/admin/manage-users.php"><span class="fa fa-group"></span>&nbsp;&nbsp;Manage Users</a></li>

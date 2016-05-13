@@ -13,7 +13,7 @@ if(isset($_SESSION['lastact']) && (time() - $_SESSION['lastact']) > 43200) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" media="screen">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" media="screen">
     <link rel="stylesheet" href="/assets/css/global-style.css" media="screen">
     <link rel="stylesheet" href="/assets/css/user-facing-style.css" media="screen">
     <link rel="stylesheet" href="/assets/css/print-style.css" media="print">
@@ -30,11 +30,11 @@ if(isset($_SESSION['lastact']) && (time() - $_SESSION['lastact']) > 43200) {
             <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>  
-    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-    <script src="https://use.fontawesome.com/e1c94424d2.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>  
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+    <script src="//use.fontawesome.com/e1c94424d2.js"></script>
 
     <script src="/assets/js/vex.combined.min.js"></script>
     <script>vex.defaultOptions.className = 'vex-theme-plain';</script>

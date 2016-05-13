@@ -37,10 +37,22 @@ $presets = get_export_presets();
                         $("a.edit-action").click(orgEditMode);
 
                         function orgEditMode() {
-                           $(".org_title").replaceWith("<input id=\"new_org_title\" type=\"text\" value=\"" + $(".org_title").text() + "\" class=\"full-width\">");
-                           $(".org_contact_name").replaceWith("<input id=\"new_org_contact_name\" type=\"text\" value=\"" + $(".org_contact_name").text() + "\" class=\"full-width\">");
-                           $(".org_contact_details").replaceWith("<input id=\"new_org_contact_details\" type=\"text\" value=\"" + $(".org_contact_details").text() + "\" class=\"full-width\">");
-                           $(".org_desc").replaceWith("<textarea id=\"new_org_desc\" rows=\"4\" class=\"full-width\" style=\"margin-top: 10px;\">" + $(".org_desc").text() + "</textarea>");
+                           $(".vol_name_first").replaceWith("<input id=\"new_vol_name_first\" type=\"text\" value=\"" + $(".vol_name_first").text() + "\" class=\"min-full-width\">");
+                           $(".vol_name_last").replaceWith("<input id=\"new_vol_name_last\" type=\"text\" value=\"" + $(".vol_name_last").text() + "\" class=\"min-full-width\">");
+                           $(".vol_age").replaceWith("<input id=\"new_vol_age\" type=\"text\" value=\"" + $(".vol_age").text() + "\" class=\"min-full-width\">");
+                           $(".vol_email").replaceWith("<input id=\"new_vol_email\" type=\"text\" value=\"" + $(".vol_email").text() + "\" class=\"min-full-width\">");
+                           $(".vol_phone").replaceWith("<input id=\"new_vol_phone\" type=\"text\" value=\"" + $(".vol_phone").text() + "\" class=\"min-full-width\">");
+                           $(".vol_address1").replaceWith("<input id=\"new_vol_address1\" type=\"text\" value=\"" + $(".vol_address1").text() + "\" class=\"min-full-width\">");
+                           $(".vol_address2").replaceWith("<input id=\"new_vol_address2\" type=\"text\" value=\"" + $(".vol_address2").text() + "\" class=\"min-full-width\">");
+                           $(".vol_city").replaceWith("<input id=\"new_vol_city\" type=\"text\" value=\"" + $(".vol_city").text() + "\" class=\"min-full-width\">");
+                           $(".vol_state").replaceWith("<input id=\"new_vol_state\" type=\"text\" value=\"" + $(".vol_state").text() + "\" class=\"min-full-width\">");
+                           $(".vol_zip").replaceWith("<input id=\"new_vol_zip\" type=\"text\" value=\"" + $(".vol_zip").text() + "\" class=\"min-full-width\">");
+                           $(".vol_skills").replaceWith("<input id=\"new_vol_skills\" type=\"text\" value=\"" + $(".vol_skills").text() + "\" class=\"min-full-width\">");
+                           $(".vol_newsletter").replaceWith("<input id=\"new_vol_newsletter\" type=\"radio\" value=\"\">&nbsp;Yes &nbsp; <input id=\"new_vol_newsletter\" type=\"radio\" value=\"\">&nbsp;No");
+                           $(".vol_opps").replaceWith("<input id=\"new_vol_opps\" type=\"radio\" value=\"\">&nbsp;Yes &nbsp; <input id=\"new_vol_opps\" type=\"radio\" value=\"\">&nbsp;No");
+                            
+                            
+  
                            $("#remove_org").hide();
                            
                            $(".edit-action").replaceWith("<a href=\"#\" class=\"edit-action save-org\"><span class=\"fa fa-floppy-o\"></span>&nbsp;Save</a>");
@@ -64,10 +76,21 @@ $presets = get_export_presets();
                         }
 
                         function orgReadMode() {
-                           $("#new_org_title").replaceWith("<h3 class=\"org_title\">" + document.getElementById('new_org_title').value + "</h3>");
-                           $("#new_org_contact_name").replaceWith("<span class=\"org_contact_name\">" + document.getElementById('new_org_contact_name').value + "</span>");
-                           $("#new_org_contact_details").replaceWith("<span class=\"org_contact_details\">" + document.getElementById('new_org_contact_details').value + "</span>");
-                           $("#new_org_desc").replaceWith("<p class=\"org_desc\">" + document.getElementById('new_org_desc').value + "</p>");
+                           $("#new_vol_name_first").replaceWith("<span class=\"vol_name_first\">" + document.getElementById('new_vol_name_first').value + "</span>");
+                           $("#new_vol_name_last").replaceWith("<span class=\"vol_name_last\">" + document.getElementById('new_vol_name_first').value + "</span>");
+                           $("#new_vol_age").replaceWith("<span class=\"vol_age\">" + document.getElementById('new_vol_age').value + "</span>");
+                           $("#new_vol_email").replaceWith("<span class=\"vol_email\" style=\"display:block\">" + document.getElementById('new_vol_email').value + "</span>");
+                           $("#new_vol_phone").replaceWith("<span class=\"vol_phone\" style=\"display:block\">" + document.getElementById('new_vol_phone').value + "</span>");
+                           $("#new_vol_address1").replaceWith("<span class=\"vol_address1\" style=\"display:block\">" + document.getElementById('new_vol_address1').value + "</span>");
+                           $("#new_vol_address2").replaceWith("<span class=\"vol_address2\" style=\"display:block\">" + document.getElementById('new_vol_address2').value + "</span>");
+                           $("#new_vol_city").replaceWith("<span class=\"vol_city\">" + document.getElementById('new_vol_city').value + "</span>");
+                           $("#new_vol_state").replaceWith("<span class=\"vol_state\">" + document.getElementById('new_vol_state').value + "</span>");
+                           $("#new_vol_zip").replaceWith("<span class=\"vol_zip\">" + document.getElementById('new_vol_zip').value + "</span>");
+                           $("#new_vol_skills").replaceWith("<span class=\"vol_skills\">" + document.getElementById('new_vol_skills').value + "</span>");
+                           $("#new_vol_newsletter").replaceWith("<span class=\"vol_newsletter\" style=\"display:block\">" + document.getElementById('new_vol_newsletter').value + "</span>");
+                           $("#new_vol_opps").replaceWith("<span class=\"vol_opps\" style=\"display:block\">" + document.getElementById('new_vol_opps').value + "</span>");
+                           
+                           
                            $("#remove_org").show();
                            $(".save-org").replaceWith("<a href=\"#\" class=\"edit-action save-org\">&nbsp;<span class=\"success-msg\">Success!&nbsp;</span><span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
                            $("a.edit-action").click(orgEditMode);
@@ -75,11 +98,27 @@ $presets = get_export_presets();
                         }
                     </script>
         
-        <h3 class="org_title"><?php print($org['name']); ?></h3>
-        <p style="margin-bottom: 0;"><label class="semibold" style="display: inline-block; margin-bottom: 6px;">Contact Name:</label> <span class="org_contact_name"><?php print($org['contact_name']); ?></span></p>
-        <p><label class="semibold" style="display: inline-block; margin-bottom: 6px;">Contact Details:</label> <span class="org_contact_details"><?php print($org['contact_details']); ?></span></p>
-        <p class="org_desc"><?php print($org['description']); ?></p>
-		<br>
+        <h3><span class="vol_name_first">First</span> <span class="vol_name_last">Last</span>, <span class="vol_age">Age</span></h3>
+        <p> 
+            <span class="vol_email" style="display:block">email@email.com</span>
+            <span class="vol_phone" style="display:block">000-000-0000</span>
+        </p>
+        
+         <p> 
+            <span class="vol_address1" style="display:block">Address 1</span>
+            <span class="vol_address2" style="display:block">Address 2</span>
+            <span style="display:block"><span class="vol_city">City</span>, <span class="vol_state">State</span> <span class="vol_zip">Zip</span></span>
+        </p>
+        
+        <p> 
+            <strong>Skills:</strong> <span class="vol_skills">Skills List</span>
+        </p>
+        
+        <p>
+            <span style="display:block"><strong>Newsletter?</strong> <span class="vol_newsletter">Newsletter Yes or No?</span></span>
+            <span style="display:block"><strong>Future Opportunities?</strong> <span class="vol_opps">Opportunities Yes or No?</span></span>
+        </p>
+        
         <form method="POST" id="remove_org" style="margin-top:25px;">
 			<input type="hidden" name="remove" value="1" />
 			<input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']);?>" />
