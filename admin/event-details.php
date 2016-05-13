@@ -347,9 +347,6 @@ EOS;
 
 		<div>
 			<button class="right btn-alert" id="delete-event"><span class="fa fa-trash-o" aria-hidden="true"></span> Delete Event</button>
-      <div id="delete-confirm" title="Confirm Deletion">
-        Delete this event?
-      </div>
 			<div class="left"><a href="manage-events.php"><span class="fa fa-calendar"></span> Back to Manage Events</a></div>
 			<div class="clear"></div>
 		</div>
