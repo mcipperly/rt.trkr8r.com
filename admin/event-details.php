@@ -346,7 +346,7 @@ EOS;
 		</div>
 
 		<div>
-			<button class="right btn-alert"><span class="fa fa-trash-o" aria-hidden="true"></span> Delete Event</button>
+			<button class="right btn-alert" id="delete-event"><span class="fa fa-trash-o" aria-hidden="true"></span> Delete Event</button>
       <div id="delete-confirm" title="Confirm Deletion">
         Delete this event?
       </div>
