@@ -186,7 +186,7 @@ function delete_volunteer($volunteer_id) {
 	if(!$volunteer_id)
 		return FALSE;
 	
-	$query = "UPDATE `volunteer` SET `status_id` = 4 WHERE volunteer_id` = {$volunteer_id}";
+	$query = "UPDATE `volunteer` SET `status_id` = 4 WHERE `volunteer_id` = {$volunteer_id}";
 	mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 	
 	return TRUE;
@@ -729,8 +729,8 @@ EOS;
 	return _get_one($result);
 }
 
-function find_volunteer($search) {
-	//function to return a volunteer_id based on search criteria
+function find_volunteers($search) {
+	//function to return an array of  volunteer_ids based on search criteria
 	$db_link = setup_db();
 
 	foreach($search as &$search_item) {
@@ -739,13 +739,13 @@ function find_volunteer($search) {
 	unset($search_item);
 
 	if($search['firstname']) {
-		$query = "SELECT `volunteer_id` FROM `form_response` WHERE `fe_id` = 1 AND `value` LIKE '%{$search['firstname']}%' ORDER BY `volunteer_id`";
+		$query = "SELECT `volunteer_id` FROM `form_response` JOIN `volunteer` USING (`volunteer_id`) WHERE `fe_id` = 1 AND `value` LIKE '%{$search['firstname']}%' AND `status_id` <> 4 ORDER BY `volunteer_id`";
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 		$firstname_results = _get_col($result);
 	}
 
 	if($search['lastname']) {
-		$query = "SELECT `volunteer_id` FROM `form_response` WHERE `fe_id` = 2 AND `value` LIKE '%{$search['lastname']}%' ORDER BY `volunteer_id`";
+		$query = "SELECT `volunteer_id` FROM `form_response` JOIN `volunteer` USING (`volunteer_id`) WHERE `fe_id` = 2 AND `value` LIKE '%{$search['lastname']}%' AND `status_id` <> 4 ORDER BY `volunteer_id`";
 		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
 		$lastname_results = _get_col($result);
 	}
@@ -759,8 +759,7 @@ function find_volunteer($search) {
 	else
 		$search_results = array();
 
-	if($search_results)
-		return $search_results[0];
+	return $search_results;
 }
 
 function get_top_volunteers($count = 5) {
