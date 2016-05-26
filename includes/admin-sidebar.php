@@ -10,7 +10,12 @@
     <nav class="right hidden-phone">
         <ul>
             <li><a href="/admin/logout.php"><span class="fa fa-power-off"></span>&nbsp;&nbsp;Logout</a></li>
+            <?php
+            $search['date'] = date("Y-m-d");
+            $events = get_events($search);
+            if(count($events) != 0) { ?>
             <li><a href="/admin/onsite.php"><span class="fa fa-toggle-off"></span>&nbsp;&nbsp;Activate On-Site Mode</a></li>
+            <?php } ?>
         </ul>
     </nav>
 </div>
@@ -28,7 +33,10 @@
             <li><a href="/admin/manage-orgs.php"><span class="fa fa-th"></span>&nbsp;&nbsp;Manage Organizations</a></li>
             <li><a href="/admin/manage-users.php"><span class="fa fa-group"></span>&nbsp;&nbsp;Manage Users</a></li>
             <!--<li><a href="#api"><span class="fa fa-paint-brush"></span>&nbsp;&nbsp;Customize Theme</a></li>-->
+            <?php
+            if(count($events) != 0) { ?>
             <li><a href="/admin/onsite.php"><span class="fa fa-toggle-off"></span>&nbsp;&nbsp;Activate On-Site Mode</a></li>
+            <?php } ?>
             <li><a href="/admin/logout.php"><span class="fa fa-power-off"></span>&nbsp;&nbsp;Logout</a></li>
         </ul>
     </nav>
