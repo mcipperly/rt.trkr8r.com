@@ -47,6 +47,12 @@ vex.dialog.open({
   }
 });
 }
+
+<?php
+$search['date'] = date("Y-m-d");
+$events = get_events($search);
+?>
+
 function onsiteModeModal() {
 vex.dialog.open({
   message: 'Login successful - select destination:',
@@ -55,9 +61,14 @@ vex.dialog.open({
           $vexContent.data().vex.value = 'adminpage';
           vex.close($vexContent.data().vex.id);
       }}),
+      <?php if(count($events) == 0) {
+        ?>
+      $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-secondary', text: 'On-site Mode') {
+      <?php } else { ?>
       $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-primary', text: 'On-site Mode', click: function($vexContent, event) {
           $vexContent.data().vex.value = 'onsite';
           vex.close($vexContent.data().vex.id);
+      <?php } ?>
       }}),
       $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-primary', text: 'Logout', click: function($vexContent, event) {
           window.location.replace('/admin/logout.php');
@@ -85,9 +96,6 @@ vex.dialog.open({
 <?php
 
 if($_SESSION['mode'] == 'onsite') {
-
-$search['date'] = date("Y-m-d");
-$events = get_events($search);
 
 if(isset($_SESSION['event_id']) && $_SESSION['event_id'] != "undefined") {
   $cur_event = get_event($_SESSION['event_id']);
