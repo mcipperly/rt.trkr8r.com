@@ -12,10 +12,10 @@ include ('../includes/admin-sidebar.php');
 <h1 class="admin-page-title"><span class="fa fa-heart"></span>&nbsp;Manage Volunteers</h1>
 <?php
 if($no_volunteer) {
-	$html = <<<EOS
-		<div class="row"><div class="twelve cols callout failure">No Volunteers Found With Those Search Terms</div></div>
+    $html = <<<EOS
+        <div class="row"><div class="twelve cols callout failure">No Volunteers Found With Those Search Terms</div></div>
 EOS;
-	print($html);
+    print($html);
 }
 ?>
 <div class="row">
@@ -57,7 +57,7 @@ EOS;
                 <tbody>
 
                     <tr>
-                        <td data-label="Print Details" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}&event_id={$event['event_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
+                        <td data-label="Waiver" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}&event_id={$event['event_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
                         <td data-label="Name"><a href="volunteer-details.php"><span class="manage-table--break">Name McNameface</span>&nbsp;&nbsp;<span class="fa fa-angle-right"></span></a></td>
                         <td data-label="Email">Email@email.com</td>
                         <td data-label="Merge This"><input type="checkbox" /></td>
@@ -70,5 +70,5 @@ EOS;
         </form>
     </div>
 </div>
-    
+
 <?php include ('../includes/footer.php'); ?>
