@@ -63,13 +63,13 @@ vex.dialog.open({
       }}),
       <?php if(count($events) == 0) {
         ?>
-      $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-secondary', text: 'On-site Mode') {
+      $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-secondary', text: 'On-site Mode' }),
       <?php } else { ?>
       $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-primary', text: 'On-site Mode', click: function($vexContent, event) {
           $vexContent.data().vex.value = 'onsite';
           vex.close($vexContent.data().vex.id);
-      <?php } ?>
       }}),
+      <?php } ?>
       $.extend({}, vex.dialog.buttons.NO, { className: 'vex-dialog-button-primary', text: 'Logout', click: function($vexContent, event) {
           window.location.replace('/admin/logout.php');
       }})
