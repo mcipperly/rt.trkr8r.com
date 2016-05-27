@@ -37,12 +37,20 @@ elseif(isset($org_deleted) || $_GET['deleted'] == "success") {
 EOS;
 }
 
+//Not sure how to make work.
+//if($removed) {
+//    $removed_html = <<<EOS
+//        <div class="row"><div class="twelve cols callout failure">Organization(s) sucessfully deleted.</div></div>
+//EOS;
+//}
+
 $html = <<<EOS
 
 <div class="container">
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-th"></span>&nbsp;Manage Organizations</h1>
 {$success_html}
+{$removed_html}
     <div class="row">
         <div class="twelve cols callout">
             <h2 class="callout-title">Create New Organization</h2>
