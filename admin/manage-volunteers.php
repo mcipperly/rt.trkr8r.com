@@ -12,22 +12,21 @@ include ('../includes/admin-sidebar.php');
 <h1 class="admin-page-title"><span class="fa fa-heart"></span>&nbsp;Manage Volunteers</h1>
 <?php
 if($_REQUEST['submit'] == "Merge Selected Volunteers") {
-	merge_duplicate_volunteers($_REQUEST['source'], $_REQUEST['target']);
+    merge_duplicate_volunteers($_REQUEST['source'], $_REQUEST['target']);
 }
 
 if($_REQUEST['submit']) {
-	$search['firstname'] = $_REQUEST['firstname'];
-	$search['lastname'] = $_REQUEST['lastname'];
+    $search['firstname'] = $_REQUEST['firstname'];
+    $search['lastname'] = $_REQUEST['lastname'];
 
-	$volunteer_ids = find_volunteers($search);
-	if(!$volunteer_ids) {
-		$html = <<<EOS
+    $volunteer_ids = find_volunteers($search);
+    if(!$volunteer_ids) {
+        $html = <<<EOS
 <div class="row"><div class="twelve cols callout failure">No Volunteers Found With Those Search Terms</div></div>
 EOS;
-		print($html);
-	}
+        print($html);
+    }
 }
-
 ?>
 <div class="row">
     <div class="twelve cols callout">
@@ -55,8 +54,8 @@ EOS;
     <div class="twelve cols callout">
         <h2 class="callout-title">Search Results</h2>
         <form method="POST">
-			<input type="hidden" name="firstname" value="<?php echo $_REQUEST['firstname'] ?>" />
-			<input type="hidden" name="lastname" value="<?php echo $_REQUEST['lastname'] ?>" />
+            <input type="hidden" name="firstname" value="<?php echo $_REQUEST['firstname'] ?>" />
+            <input type="hidden" name="lastname" value="<?php echo $_REQUEST['lastname'] ?>" />
         <table class="respond manage-table">
                 <thead>
                     <tr>
@@ -70,19 +69,19 @@ EOS;
                 <tbody>
 <?php
 if($volunteer_ids) {
-	foreach($volunteer_ids as $volunteer_id) {
-		$volunteer = get_volunteer_info($volunteer_id);
-		$html = <<<EOS
+    foreach($volunteer_ids as $volunteer_id) {
+        $volunteer = get_volunteer_info($volunteer_id);
+        $html = <<<EOS
                     <tr>
-                        <td data-label="Print Details" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}&event_id={$event['event_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
+                        <td data-label="Waiver" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}&event_id={$event['event_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
                         <td data-label="Name"><a href="volunteer-details.php?vid={$volunteer['volunteer_id']}"><span class="manage-table--break">{$volunteer['firstname']} {$volunteer['lastname']}</span>&nbsp;&nbsp;<span class="fa fa-angle-right"></span></a></td>
                         <td data-label="Email">{$volunteer['email']}</td>
                         <td data-label="Merge This"><input name="source[]" value="{$volunteer['volunteer_id']}" type="checkbox" /></td>
                         <td data-label="Into This"><input name="target" value="{$volunteer['volunteer_id']}" type="radio" /></td>
                     </tr>
 EOS;
-		print($html);
-	}
+        print($html);
+    }
 }
 ?>
 
@@ -92,5 +91,5 @@ EOS;
         </form>
     </div>
 </div>
-    
+
 <?php include ('../includes/footer.php'); ?>

@@ -13,7 +13,7 @@ foreach($_REQUEST as $key => $value) {
 }
 
 if($_REQUEST['org_name']) {
-	$success = create_organization($_REQUEST['org_name'], $_REQUEST['contact_name'], $_REQUEST['contact_details'], $_REQUEST['description']);
+    $success = create_organization($_REQUEST['org_name'], $_REQUEST['contact_name'], $_REQUEST['contact_details'], $_REQUEST['description']);
 }
 
 $orgs = get_organizations();
@@ -23,12 +23,12 @@ array_shift($orgs);
 
 if($success) {
     $success_html = <<<EOS
-		<div class="row"><div class="twelve cols callout success">Organization sucessfully created.</div></div>
+        <div class="row"><div class="twelve cols callout success">Organization sucessfully created.</div></div>
 EOS;
 }
 elseif($_REQUEST['org_name'] && !$success) {
     $success_html = <<<EOS
-		<div class="row"><div class="twelve cols callout failure">Organization not created. Please ensure all fields are properly filled in.</div></div>
+        <div class="row"><div class="twelve cols callout failure">Organization not created. Please ensure all fields are properly filled in.</div></div>
 EOS;
 }
 elseif(isset($org_deleted) || $_GET['deleted'] == "success") {
@@ -51,23 +51,23 @@ $html = <<<EOS
                         <div class="twelve cols">
                             <input autocomplete="off" type="text" class="full-width" id="org_name" name="org_name" value="" placeholder="Organization Name (Required)" required>
                         </div>
-					</div>
-					<div class="row">
+                    </div>
+                    <div class="row">
                         <div class="six cols">
                             <input autocomplete="off" type="text" class="full-width" id="contact_name" name="contact_name" value="" placeholder="Contact Name">
                         </div>
                         <div class="six cols">
                             <input autocomplete="off" type="text" class="full-width" id="contact_details" name="contact_details" value="" placeholder="Contact Details (Phone #)">
                         </div>
-					</div>
+                    </div>
                     <div class="row">
                         <div class="twelve cols">
                             <textarea autocomplete="off" type="text" class="full-width" id="description" name="description" value="" placeholder="Organization Description"></textarea>
                         </div>
-					</div>
-					<div class="row">
+                    </div>
+                    <div class="row">
                         <div class="twelve cols">
-                            <input type="submit" value="Create" class="full-width no-min">
+                            <input type="submit" value="Create New Organization" class="right m-full-width no-min">
                         </div>
                     </div>
                 </form>
@@ -78,8 +78,8 @@ EOS;
 print($html);
 
 foreach($orgs as $key => $org) {
-	if($key == 0) {
-		$html = <<<EOS
+    if($key == 0) {
+        $html = <<<EOS
     <div class="row">
         <div class="twelve cols callout">
             <h2 class="callout-title">Current Organizations</h2>
@@ -94,19 +94,19 @@ foreach($orgs as $key => $org) {
 
                     <tbody>
 EOS;
-		print($html);
-	}
+        print($html);
+    }
 
-	$html = <<<EOS
+    $html = <<<EOS
                     <tr>
                         <td data-label="Organization" class="manage-table--orgs"><a href="org-details.php?org_id={$org['company_id']}"><span class="manage-table--break">{$org['name']}</span>&nbsp;&nbsp;<span class="fa fa-angle-right"></span></a></td>
                         <td data-label="Remove" class="manage-table--remove"><input type="checkbox" class="big" name="remove_{$org['company_id']}" size="1"></td>
                     </tr>
 EOS;
-	print($html);
+    print($html);
 
-	if($key + 1 == sizeof($orgs)) {
-		$html = <<<EOS
+    if($key + 1 == sizeof($orgs)) {
+        $html = <<<EOS
 
                     </tbody>
                     </table>
@@ -115,8 +115,8 @@ EOS;
 </div>
 </div>
 EOS;
-		print($html);
-	}
+        print($html);
+    }
 }
 
 include ('../includes/footer.php');
