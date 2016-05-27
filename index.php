@@ -27,7 +27,7 @@ function getEmail(email) {
 <script type="text/javascript">
 var vexdiag = vex.dialog.alert('<?php if($_GET['thanks'] == 1) { ?>Thanks for registering for <?php print($site_org) ?>!');
 setTimeout(function() {
-   vex.close(vexdiag.data().vex.id); }, 3000);<?php } elseif($_GET['thanks'] == 2) { ?>Thanks for registering with <?php print($site_org) ?>! Please visit the registration table upon arrival at your event!');<?php } else { ?>We\'ve already pre-registered you for <?php print($site_org) ?> - please check in with an event coordinator upon arrival to your event. Thank you!');<?php } ?>
+   vex.close(vexdiag.data().vex.id); }, 6000);<?php } elseif($_GET['thanks'] == 2) { ?>Thanks for registering with <?php print($site_org) ?>! Please visit the registration table upon arrival at your event!');<?php } else { ?>We\'ve already pre-registered you for <?php print($site_org) ?> - please check in with an event coordinator upon arrival to your event. Thank you!');<?php } ?>
 </script>
 <?php } ?>
 
