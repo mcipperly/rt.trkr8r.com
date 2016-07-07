@@ -663,6 +663,43 @@ function volunteer_name_cmp($a, $b) {
 		return strcmp($a['lastname'], $b['lastname']);
 }
 
+function get_volunteer_events($search = array()) {
+	//function to return an array of volunteer_event entries based on search criteria
+	$db_link = setup_db();
+
+	foreach($search as &$search_item) {
+		$search_item = mysqli_real_escape_string($db_link, $search_item);
+	}
+	unset($search_item);
+
+	if($search['volunteer_id']) {
+		$query = "SELECT `ve_id` FROM `volunteer_event` JOIN `volunteer` USING (`volunteer_id`) WHERE `volunteer_id` = {$search['volunteer_id']} AND `status_id` <> 4 ORDER BY `ve_id`";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		$volunteer_results = _get_col($result);
+	}
+
+	if($search['event_id']) {
+		$query = "SELECT `ve_id` FROM `volunteer_event` JOIN `volunteer` USING (`volunteer_id`) WHERE `event_id` = {$search['event_id']} AND `status_id` <> 4 ORDER BY `ve_id`";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		$event_results = _get_col($result);
+	}
+
+	if($search['volunteer_id'] && $search['event_id'])
+		$ve_ids = array_intersect($volunteer_results, $event_results);
+	elseif($search['volunteer_id'])
+		$ve_ids = $volunteer_results;
+	elseif($search['event_id'])
+		$ve_ids = $event_results;
+	else
+		$ve_ids = array();
+	
+	foreach($ve_ids as $ve_id) {
+		
+	}
+
+	return $search_results;
+}
+
 function get_volunteer_count($search=array()) {
 	//function to get a count of all signed-in volunteers in range
 	$db_link = setup_db();
