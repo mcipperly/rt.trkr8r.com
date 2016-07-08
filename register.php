@@ -15,8 +15,8 @@ include('includes/header.php');
 
 
 function get_response($response) {
-	global $search_element_id;
-	return ($response['element_id'] == $search_element_id);
+    global $search_element_id;
+    return ($response['element_id'] == $search_element_id);
 }
 
 $form_id = 1; //Hard-coded for now, until ability to choose forms is available
@@ -31,8 +31,8 @@ if(isset($_SESSION['mode']) && $volunteer_id) {
 $col_count = 0;
 $asterisk_count = 0;
 foreach($form['elements'] as $key => $element) {
-	if($key == 0) {
-		$html = <<<EOS
+    if($key == 0) {
+        $html = <<<EOS
 <div class="row interior-header">
 
     <div class="visible-phone">
@@ -59,240 +59,259 @@ foreach($form['elements'] as $key => $element) {
 <script src='https://www.google.com/recaptcha/api.js'></script>
 
 <form action="capture-register.php" method="POST" autocomplete="off">
-	<input type="hidden" name="event_id" value="{$_REQUEST['event_id']}" />
+    <input type="hidden" name="event_id" value="{$_REQUEST['event_id']}" />
 EOS;
-		print($html);
-	}
+        print($html);
+    }
 
-	if($col_count % 12 == 0) {
-		$html = <<<EOS
+    if($col_count % 12 == 0) {
+        $html = <<<EOS
     <div class="row">
 EOS;
-		print($html);
-	}
+        print($html);
+    }
 
-	switch($element['cols'])
-	{
-		case 1:
-			$cols = "one";
-			break;
-		case 2:
-			$cols = "two";
-			break;
-		case 3:
-			$cols = "three";
-			break;
-		case 4:
-			$cols = "four";
-			break;
-		case 5:
-			$cols = "five";
-			break;
-		case 6:
-			$cols = "six";
-			break;
-		case 7:
-			$cols = "seven";
-			break;
-		case 8:
-			$cols = "eight";
-			break;
-		case 9:
-			$cols = "nine";
-			break;
-		case 10:
-			$cols = "ten";
-			break;
-		case 11:
-			$cols = "eleven";
-			break;
-		case 12:
-			$cols = "twelve";
-			break;
-	}
+    switch($element['cols'])
+    {
+        case 1:
+            $cols = "one";
+            break;
+        case 2:
+            $cols = "two";
+            break;
+        case 3:
+            $cols = "three";
+            break;
+        case 4:
+            $cols = "four";
+            break;
+        case 5:
+            $cols = "five";
+            break;
+        case 6:
+            $cols = "six";
+            break;
+        case 7:
+            $cols = "seven";
+            break;
+        case 8:
+            $cols = "eight";
+            break;
+        case 9:
+            $cols = "nine";
+            break;
+        case 10:
+            $cols = "ten";
+            break;
+        case 11:
+            $cols = "eleven";
+            break;
+        case 12:
+            $cols = "twelve";
+            break;
+    }
 
-	$asterisk_string = "";
-	if($element['description']) {
-		$asterisk_count++;
+    $asterisk_string = "";
+    if($element['description']) {
+        $asterisk_count++;
 
-		for($i = 0; $i < $asterisk_count; $i++)
-			$asterisk_string .= "*";
-	}
+        for($i = 0; $i < $asterisk_count; $i++)
+            $asterisk_string .= "*";
+    }
 
-	$search_element_id = $element['element_id'];
+    $search_element_id = $element['element_id'];
   if(isset($responses)) {
-	   $filtered_responses = array_filter($responses, 'get_response');
+       $filtered_responses = array_filter($responses, 'get_response');
    }
 
-	if($filtered_responses)
-		$this_response = array_shift($filtered_responses);
-	else
-		$this_response = array();
+    if($filtered_responses)
+        $this_response = array_shift($filtered_responses);
+    else
+        $this_response = array();
 
-	if($element['type'] == "checkbox" && $this_response)
-		$value = ($this_response['value']) ? "Yes" : "No";
-	else
-		$value = $this_response['value'];
+    if($element['type'] == "checkbox" && $this_response)
+        $value = ($this_response['value']) ? "Yes" : "No";
+    else
+        $value = $this_response['value'];
 
-	$required_html = ($element['required']) ? " required" : "";
+    $required_html = ($element['required']) ? " required" : "";
 
-	switch($element['type']) {
-		case "text":
-		case "number":
-			$html = <<<EOS
+    switch($element['type']) {
+        case "text":
+        case "number":
+            $html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}<sup>{$asterisk_string}</sup></label>
             <input class="full-width" type="{$element['type']}" placeholder="" name="{$element['name']}"{$required_html} value="{$value}" />
-			</div>
+            </div>
 EOS;
-			break;
-		case "checkbox":
-			$checked_html = ($value == "Yes" || !isset($value)) ? "checked" : "";
-			$html = <<<EOS
+            break;
+        case "checkbox":
+            $checked_html = ($value == "Yes" || !isset($value)) ? "checked" : "";
+            $html = <<<EOS
         <div class="{$cols} cols">
             <label for="{$element['name']}" style="display:inline">{$element['label']}</label>
-			<input type="hidden" id="hidden_{$element['name']}" name="{$element['name']}" value="0" disabled="disabled" />
-			<input type="{$element['type']}" name="{$element['name']}" value="1" {$required_html} {$checked_html} />
+            <input type="hidden" id="hidden_{$element['name']}" name="{$element['name']}" value="0" disabled="disabled" />
+            <input type="{$element['type']}" name="{$element['name']}" value="1" {$required_html} {$checked_html} />
         </div>
 EOS;
-			break;
-		case "select":
-			$selected_text = $value;
-			$select_size = sizeof($element['select_elements']);
-			$multi_html_a = ($element['plural']) ? "[]" : "";
-			$multi_html_b = ($element['plural']) ? "multiple size='{$select_size}'" : "";
-			$multi_html_c = ($element['plural']) ? "&nbsp;<small>(On desktop, hold Ctrl+Shift to select multiple options)</small>" : "";
-			$multi_html_d = ($element['plural']) ? "<input type=\"hidden\" id=\"hidden_{$element['name']}\" name=\"{$element['name']}\" value=\"\" disabled=\"disabled\" />" : "";
+            break;
+        case "date":
+            $html = <<<EOS
+        <div class="{$cols} cols">
+            <label for="{$element['name']}">{$element['label']}</label>
+            <input type="hidden" id="hidden_{$element['name']}" name="{$element['name']}" value="0" disabled="disabled" />
+            <input class="full-width" type="text" name="{$element['name']}" id="bday" {$required_html} {$checked_html}>
+        </div>
+EOS;
+            break;
+        case "select":
+            $selected_text = $value;
+            $select_size = sizeof($element['select_elements']);
+            $multi_html_a = ($element['plural']) ? "[]" : "";
+            $multi_html_b = ($element['plural']) ? "multiple size='{$select_size}'" : "";
+            $multi_html_c = ($element['plural']) ? "&nbsp;<small>(On desktop, hold Ctrl+Shift to select multiple options)</small>" : "";
+            $multi_html_d = ($element['plural']) ? "<input type=\"hidden\" id=\"hidden_{$element['name']}\" name=\"{$element['name']}\" value=\"\" disabled=\"disabled\" />" : "";
 
-			$html = <<<EOS
-	<div class="{$cols} cols">
-		<label for="{$element['name']}">{$element['label']}{$multi_html_c}</label>
-		{$multi_html_d}
-		<select class="full-width" name="{$element['name']}{$multi_html_a}" {$multi_html_b}>
+            $html = <<<EOS
+    <div class="{$cols} cols">
+        <label for="{$element['name']}">{$element['label']}{$multi_html_c}</label>
+        {$multi_html_d}
+        <select class="full-width" name="{$element['name']}{$multi_html_a}" {$multi_html_b}>
 EOS;
-			foreach($element['select_elements'] as $option) {
-				if($selected_text)
-					$selected_html = ($option['text'] == $selected_text) ? "selected" : "";
-				else
-					$selected_html = ($option['default_option']) ? "selected" : "";
-				
-				$html .= <<<EOS
-			<option value="{$option['se_id']}" {$selected_html}>{$option['text']}</option>
+            foreach($element['select_elements'] as $option) {
+                if($selected_text)
+                    $selected_html = ($option['text'] == $selected_text) ? "selected" : "";
+                else
+                    $selected_html = ($option['default_option']) ? "selected" : "";
+
+                $html .= <<<EOS
+            <option value="{$option['se_id']}" {$selected_html}>{$option['text']}</option>
 EOS;
-			}
-			$html .= <<<EOS
+            }
+            $html .= <<<EOS
         </select>
     </div>
 EOS;
-			break;
-		default:
-			$html = "";
-			break;
-	}
+            break;
+        default:
+            $html = "";
+            break;
+    }
 
-	print($html);
+    print($html);
 
-	$col_count += $element['cols'];
+    $col_count += $element['cols'];
 
-	if($col_count % 12 == 0) {
-		$html = <<<EOS
+    if($col_count % 12 == 0) {
+        $html = <<<EOS
     </div>
 EOS;
-		print($html);
-	}
+        print($html);
+    }
 
-	if($key + 1 == sizeof($form['elements'])) {
-		$html = <<<EOS
+    if($key + 1 == sizeof($form['elements'])) {
+        $html = <<<EOS
     <br><input type="submit" value="Submit">
 
 </form>
 EOS;
     if(!isset($_SESSION['mode'])) { ?><div class="g-recaptcha" data-sitekey="6Lfk0AQTAAAAANW4KIOuZsfwsY-cd0CrZKPf3dem"></div><?php }
-		print($html);
-	}
+        print($html);
+    }
 }
 
-	$asterisk_string = "";
-	if($element['description']) {
-		$asterisk_count++;
+    $asterisk_string = "";
+    if($element['description']) {
+        $asterisk_count++;
 
-		for($i = 0; $i < $asterisk_count; $i++)
-			$asterisk_string .= "*";
-	}
+        for($i = 0; $i < $asterisk_count; $i++)
+            $asterisk_string .= "*";
+    }
 
 
 $asterisk_count = 0;
 foreach($form['elements'] as $element) {
-	if($element['description']) {
-		$asterisk_count++;
-		$asterisk_string = "";
+    if($element['description']) {
+        $asterisk_count++;
+        $asterisk_string = "";
 
-		for($i = 0; $i < $asterisk_count; $i++)
-			$asterisk_string .= "*";
+        for($i = 0; $i < $asterisk_count; $i++)
+            $asterisk_string .= "*";
 
-		$html = <<<EOS
+        $html = <<<EOS
 <br><small><sup>{$asterisk_string}</sup><em>{$element['description']}</em></small>
 EOS;
-		print($html);
-	}
+        print($html);
+    }
 }
 
 ?>
 <script type="text/javascript">
 $('input[type=checkbox]').on('click', function() {
-	var checkbox_name = $(this).attr("name");
-	if(this.checked) {
-		$('#hidden_' + checkbox_name ).attr("disabled", true);
-	}
-	else {
-		$('#hidden_' + checkbox_name ).removeAttr("disabled");
-	}
+    var checkbox_name = $(this).attr("name");
+    if(this.checked) {
+        $('#hidden_' + checkbox_name ).attr("disabled", true);
+    }
+    else {
+        $('#hidden_' + checkbox_name ).removeAttr("disabled");
+    }
 });
 $('input[type=submit]').click(function(event) {
-	$.each($('select'), function(index, value) {
-		if($(value).attr("multiple") == "multiple") {
-			var select_name = $(value).attr("name").slice(0, -2);
-			if($(value).val()) {
-				$('#hidden_' + select_name ).attr("disabled", true);
-			}
-			else {
-				$('#hidden_' + select_name ).removeAttr("disabled");
-			}
-		}
-	});
+    $.each($('select'), function(index, value) {
+        if($(value).attr("multiple") == "multiple") {
+            var select_name = $(value).attr("name").slice(0, -2);
+            if($(value).val()) {
+                $('#hidden_' + select_name ).attr("disabled", true);
+            }
+            else {
+                $('#hidden_' + select_name ).removeAttr("disabled");
+            }
+        }
+    });
 });
 $('form').submit(function(event) {
-	var success = true;
+    var success = true;
 
-	$.each($('input'), function(index, input_element) {
-		//safari needs help checking for values in required fields
-		if($(input_element).attr("required") == "required") {
-			if($(input_element).val() == null || $(input_element).val() == "") {
+    $.each($('input'), function(index, input_element) {
+        //safari needs help checking for values in required fields
+        if($(input_element).attr("required") == "required") {
+            if($(input_element).val() == null || $(input_element).val() == "") {
 //				$(input_element).focus();
-				success = false;
-			}
-		}
-		
-		//safari needs help stopping users from putting non numerals in number inputs
-		if($(input_element).attr("type") == "number") {
-			old_value = $(input_element).val();
-			console.log('old_value: ' + old_value);
-			new_value = old_value.replace(/\D+/g, "");
-			$(input_element).val(new_value);
-			
-			if(old_value != new_value) {
-				console.log($(input_element).attr("name") + ' ' + $(input_element).val());
-			}
-		}
-	});
+                success = false;
+            }
+        }
 
-	if(!success) {
-		alert("Please fill out required fields.");
-	}
-	
-	return success;
+        //safari needs help stopping users from putting non numerals in number inputs
+        if($(input_element).attr("type") == "number") {
+            old_value = $(input_element).val();
+            console.log('old_value: ' + old_value);
+            new_value = old_value.replace(/\D+/g, "");
+            $(input_element).val(new_value);
+
+            if(old_value != new_value) {
+                console.log($(input_element).attr("name") + ' ' + $(input_element).val());
+            }
+        }
+    });
+
+    if(!success) {
+        alert("Please fill out required fields.");
+    }
+
+    return success;
 });
 </script>
+<script>
+$(function() {
+    $( "#bday" ).datepicker({
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "1930:1998"
+    });
+});
+</script>
+
 <?php if(isset($_REQUEST['email'])) { ?>
 <script type="text/javascript">
   var emailForm = document.getElementsByName('email');
