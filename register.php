@@ -304,7 +304,7 @@ $('form').submit(function(event) {
 </script>
 <script>
 $(function() {
-    $( "#bday" ).datepicker({
+    $("#bday").datepicker({
         changeMonth: true,
         changeYear: true,
         yearRange: "1930:1998"
