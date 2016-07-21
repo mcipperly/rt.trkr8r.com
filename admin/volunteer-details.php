@@ -3,8 +3,8 @@ include('validate.php');
 include ('../db/db.php');
 
 if($_REQUEST['remove']) {
-        invalidate_organization($_REQUEST['org_id']);
-        Header("Location: manage-orgs.php");
+        delete_volunteer($_REQUEST['vol_id']);
+        Header("Location: manage-volunteers.php");
 }
 
 include ('../includes/admin-header.php');
@@ -14,7 +14,7 @@ if($_REQUEST['preset_id']) {
 	Header("Location: csv-export.php");
 }
 
-$search['company_id'] = $_REQUEST['org_id'];
+$search['volunteer_id'] = $_REQUEST['vol_id'];
 
 $vol = get_volunteer_info($_GET['vid']);
 
@@ -40,50 +40,55 @@ $volunteer['events'] = get_volunteer_events($param);
         <h2 class="callout-title">Details <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
             
         <script>
-                        $("a.edit-action").click(orgEditMode);
+                        $("a.edit-action").click(volEditMode);
 
-                        function orgEditMode() {
-                           $(".vol_name_first").replaceWith("<input id=\"new_vol_name_first\" type=\"text\" value=\"" + $(".vol_name_first").text() + "\" class=\"min-full-width\">");
-                           $(".vol_name_last").replaceWith("<input id=\"new_vol_name_last\" type=\"text\" value=\"" + $(".vol_name_last").text() + "\" class=\"min-full-width\">");
-                           $(".vol_age").replaceWith("<input id=\"new_vol_age\" type=\"text\" value=\"" + $(".vol_age").text() + "\" class=\"min-full-width\">");
-                           $(".vol_email").replaceWith("<input id=\"new_vol_email\" type=\"text\" value=\"" + $(".vol_email").text() + "\" class=\"min-full-width\">");
-                           $(".vol_phone").replaceWith("<input id=\"new_vol_phone\" type=\"text\" value=\"" + $(".vol_phone").text() + "\" class=\"min-full-width\">");
-                           $(".vol_address1").replaceWith("<input id=\"new_vol_address1\" type=\"text\" value=\"" + $(".vol_address1").text() + "\" class=\"min-full-width\">");
-                           $(".vol_address2").replaceWith("<input id=\"new_vol_address2\" type=\"text\" value=\"" + $(".vol_address2").text() + "\" class=\"min-full-width\">");
-                           $(".vol_city").replaceWith("<input id=\"new_vol_city\" type=\"text\" value=\"" + $(".vol_city").text() + "\" class=\"min-full-width\">");
-                           $(".vol_state").replaceWith("<input id=\"new_vol_state\" type=\"text\" value=\"" + $(".vol_state").text() + "\" class=\"min-full-width\">");
-                           $(".vol_zip").replaceWith("<input id=\"new_vol_zip\" type=\"text\" value=\"" + $(".vol_zip").text() + "\" class=\"min-full-width\">");
-                           $(".vol_skills").replaceWith("<input id=\"new_vol_skills\" type=\"text\" value=\"" + $(".vol_skills").text() + "\" class=\"min-full-width\">");
-                           $(".vol_newsletter").replaceWith("<input id=\"new_vol_newsletter\" type=\"radio\" value=\"\">&nbsp;Yes &nbsp; <input id=\"new_vol_newsletter\" type=\"radio\" value=\"\">&nbsp;No");
-                           $(".vol_opps").replaceWith("<input id=\"new_vol_opps\" type=\"radio\" value=\"\">&nbsp;Yes &nbsp; <input id=\"new_vol_opps\" type=\"radio\" value=\"\">&nbsp;No");
-                            
-                            
+                        function volEditMode() {
+                           $(".editable").each(function (name, field) {
+                              cur = $(field).attr('class').split(' ')[0];
+                              // here we test for the elusive radio button
+                              if(!($(field).text() == "Yes") && !($(field).text() == "No")) { 
+                                 $("." + cur).replaceWith("<input id=\"new_"+cur+"\" type=\"text\" value=\""+$("."+cur).text()+"\" class=\"min-full-width editing\">");
+                              } else {
+                                 // wow a radio button 
+                                 curBool = $(field).text();
+                                 $("." + cur).replaceWith("<input id=\"new_"+cur+"\" type=\"radio\" value=\"Yes\" class=\"editing\">&nbsp;Yes &nbsp; <input id=\"new_"+cur+"\" type=\"radio\" value=\"No\" class=\"editing\">&nbsp;No");
+                                 $("#new_" + cur + "[value=\""+curBool+"\"]").prop("checked", true);
+                              }
+                           });
   
-                           $("#remove_org").hide();
+                           $("#remove_vol").hide();
                            
-                           $(".edit-action").replaceWith("<a href=\"#\" class=\"edit-action save-org\"><span class=\"fa fa-floppy-o\"></span>&nbsp;Save</a>");
-                           $("a.save-org").click(function() {
+                           $(".edit-action").replaceWith("<a href=\"#\" class=\"edit-action save-vol\"><span class=\"fa fa-floppy-o\"></span>&nbsp;Save</a>");
+                           $("a.save-vol").click(function() {
+                              var xhrPostData = [];
+                              $(".editing").each(function (name, field) { 
+                                 // because who wants unchecked radio buttons?
+                                 if(!($(field).attr('type') == "radio" && $(field).prop('checked') == false)) {
+                                    xhrPostData.push($(field).attr('id').replace("new_","") + "=" + $(field).val());
+                                 }
+                              });
+                              console.log(xhrPostData.join('&'));
                               var xhr = new XMLHttpRequest();
                               xhr.onreadystatechange = function() {
                                  if (xhr.readyState == 4 && xhr.status == 200) {
                                     if (xhr.responseText.indexOf('Success') >= 0) {
                                        console.log('success');
-                                       orgReadMode();
+                                       volReadMode();
                                     } else {
                                        console.log('failure');
                                     }
                                  }
                               }
-                              xhr.open('POST', 'save-org.php', true);
+                              xhr.open('POST', 'save-vol.php', true);
                               xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                              xhr.send('org_id=<?php print($org['company_id']); ?>&org_title=' + document.getElementById('new_org_title').value + '&org_desc=' + document.getElementById('new_org_desc').value + '&org_contact_name=' + document.getElementById('new_org_contact_name').value + '&org_contact_details=' + document.getElementById('new_org_contact_details').value);
+                              xhr.send('volunteer_id=<?php print($vol['volunteer_id']); ?>&'+xhrPostData.join('&'));
                            });
 
                         }
 
-                        function orgReadMode() {
-                           $("#new_vol_name_first").replaceWith("<span class=\"vol_name_first\">" + document.getElementById('new_vol_name_first').value + "</span>");
-                           $("#new_vol_name_last").replaceWith("<span class=\"vol_name_last\">" + document.getElementById('new_vol_name_first').value + "</span>");
+                        function volReadMode() {
+                           $("#new_vol_first_name").replaceWith("<span class=\"vol_first_name\">" + document.getElementById('new_vol_first_name').value + "</span>");
+                           $("#new_vol_last_name").replaceWith("<span class=\"vol_last_name\">" + document.getElementById('new_vol_first_name').value + "</span>");
                            $("#new_vol_age").replaceWith("<span class=\"vol_age\">" + document.getElementById('new_vol_age').value + "</span>");
                            $("#new_vol_email").replaceWith("<span class=\"vol_email\" style=\"display:block\">" + document.getElementById('new_vol_email').value + "</span>");
                            $("#new_vol_phone").replaceWith("<span class=\"vol_phone\" style=\"display:block\">" + document.getElementById('new_vol_phone').value + "</span>");
@@ -97,37 +102,37 @@ $volunteer['events'] = get_volunteer_events($param);
                            $("#new_vol_opps").replaceWith("<span class=\"vol_opps\" style=\"display:block\">" + document.getElementById('new_vol_opps').value + "</span>");
                            
                            
-                           $("#remove_org").show();
-                           $(".save-org").replaceWith("<a href=\"#\" class=\"edit-action save-org\">&nbsp;<span class=\"success-msg\">Success!&nbsp;</span><span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
-                           $("a.edit-action").click(orgEditMode);
+                           $("#remove_vol").show();
+                           $(".save-vol").replaceWith("<a href=\"#\" class=\"edit-action save-vol\">&nbsp;<span class=\"success-msg\">Success!&nbsp;</span><span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
+                           $("a.edit-action").click(volEditMode);
 				$("span.success-msg").fadeOut(2400);
                         }
                     </script>
         
-        <h3><span class="vol_name_first"><?php echo $volunteer['firstname']; ?></span> <span class="vol_name_last"><?php echo $volunteer['lastname']; ?></span>, <span class="vol_age"><?php echo $volunteer['waiver'][2]['value']; ?></span></h3>
+        <h3><span class="vol_first_name editable"><?php echo $volunteer['firstname']; ?></span> <span class="vol_last_name editable"><?php echo $volunteer['lastname']; ?></span>, <span class="vol_age editable"><?php echo $volunteer['waiver'][2]['value']; ?></span></h3>
         <p> 
-            <span class="vol_email" style="display:block"><?php echo $volunteer['email']; ?></span>
-            <span class="vol_phone" style="display:block"><?php echo "(" . substr($volunteer['waiver'][4]['value'], 0, 3) . ") ". substr($volunteer['waiver'][4]['value'], 3, 3) . "-" . substr($volunteer['waiver'][4]['value'],6); ?></span>
+            <span class="vol_email editable" style="display:block"><?php echo $volunteer['email']; ?></span>
+            <span class="vol_phone editable" style="display:block"><?php echo "(" . substr($volunteer['waiver'][4]['value'], 0, 3) . ") ". substr($volunteer['waiver'][4]['value'], 3, 3) . "-" . substr($volunteer['waiver'][4]['value'],6); ?></span>
         </p>
         
          <p> 
-            <span class="vol_address1" style="display:block"><?php echo $volunteer['waiver'][5]['value']; ?></span>
-            <span class="vol_address2" style="display:block"><?php echo $volunteer['waiver'][6]['value']; ?></span>
-            <span style="display:block"><span class="vol_city"><?php echo $volunteer['waiver'][7]['value']; ?></span>, <span class="vol_state"><?php echo $volunteer['waiver'][8]['value']; ?></span> <span class="vol_zip"><?php echo $volunteer['waiver'][9]['value']; ?></span></span>
+            <span class="vol_address1 editable" style="display:block"><?php echo $volunteer['waiver'][5]['value']; ?></span>
+            <span class="vol_address2 editable" style="display:block"><?php echo $volunteer['waiver'][6]['value']; ?></span>
+            <span style="display:block"><span class="vol_city editable"><?php echo $volunteer['waiver'][7]['value']; ?></span>, <span class="vol_state editable"><?php echo $volunteer['waiver'][8]['value']; ?></span> <span class="vol_zip editable"><?php echo $volunteer['waiver'][9]['value']; ?></span></span>
         </p>
         
         <p> 
-            <strong>Skills:</strong> <span class="vol_skills"><?php echo $volunteer['waiver'][10]['value']; ?></span>
+            <strong>Skills:</strong> <span class="vol_skills editable"><?php echo $volunteer['waiver'][10]['value']; ?></span>
         </p>
         
         <p>
-            <span style="display:block"><strong>Newsletter?</strong> <span class="vol_newsletter"><?php echo ($volunteer['waiver'][11]['value'] == 1) ? "Yes" : "No"; ?></span></span>
-            <span style="display:block"><strong>Future Opportunities?</strong> <span class="vol_opps"><?php echo ($volunteer['waiver'][12]['value'] == 1) ? "Yes" : "No"; ?></span></span>
+            <span style="display:block"><strong>Newsletter?</strong> <span class="vol_newsletter editable"><?php echo ($volunteer['waiver'][11]['value'] == 1) ? "Yes" : "No"; ?></span></span>
+            <span style="display:block"><strong>Future Opportunities?</strong> <span class="vol_opps editable"><?php echo ($volunteer['waiver'][12]['value'] == 1) ? "Yes" : "No"; ?></span></span>
         </p>
         
-        <form method="POST" id="remove_org" style="margin-top:25px;">
+        <form method="POST" id="remove_vol" style="margin-top:25px;">
 			<input type="hidden" name="remove" value="1" />
-			<input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']);?>" />
+			<input type="hidden" name="vol_id" value="<?php print($_REQUEST['vol_id']);?>" />
 		</form>
     </div> 
     
@@ -138,7 +143,7 @@ $volunteer['events'] = get_volunteer_events($param);
         <h3 style="margin-top:15px;margin-bottom:15px;padding-bottom:17px;padding-top:17px;border-bottom:1px dotted #A5A5A5;border-top:1px dotted #A5A5A5"><strong>Hours:</strong> #####</h3>
         <h3><strong>Quick Export</strong></h3>
 						<form method="POST">
-							<input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']); ?>" />
+							<input type="hidden" name="vol_id" value="<?php print($_REQUEST['vol_id']); ?>" />
 							<input type="hidden" id="preset_id" name="preset_id" value="" />
 <?php
 foreach($presets as $preset) {
