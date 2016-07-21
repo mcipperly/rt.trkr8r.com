@@ -11,7 +11,7 @@ include ('../includes/admin-header.php');
 include ('../includes/admin-sidebar.php');
 
 if($_REQUEST['preset_id']) {
-	Header("Location: csv-export.php");
+    Header("Location: csv-export.php");
 }
 
 $search['company_id'] = $_REQUEST['org_id'];
@@ -34,11 +34,11 @@ $volunteer['events'] = get_volunteer_events($param);
 <div class="container">
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-heart"></span>&nbsp;<a href="manage-volunteers.php">Manage Volunteers</a> <span class="fa fa-angle-right"></span>&nbsp;<?php print($vol['firstname']);?> <?php print($vol['lastname']);?> </h1>
-    
+
 <div class="row flexbox">
     <div class="eight cols callout">
         <h2 class="callout-title">Details <a href="#" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
-            
+
         <script>
                         $("a.edit-action").click(orgEditMode);
 
@@ -56,11 +56,11 @@ $volunteer['events'] = get_volunteer_events($param);
                            $(".vol_skills").replaceWith("<input id=\"new_vol_skills\" type=\"text\" value=\"" + $(".vol_skills").text() + "\" class=\"min-full-width\">");
                            $(".vol_newsletter").replaceWith("<input id=\"new_vol_newsletter\" type=\"radio\" value=\"\">&nbsp;Yes &nbsp; <input id=\"new_vol_newsletter\" type=\"radio\" value=\"\">&nbsp;No");
                            $(".vol_opps").replaceWith("<input id=\"new_vol_opps\" type=\"radio\" value=\"\">&nbsp;Yes &nbsp; <input id=\"new_vol_opps\" type=\"radio\" value=\"\">&nbsp;No");
-                            
-                            
-  
+
+
+
                            $("#remove_org").hide();
-                           
+
                            $(".edit-action").replaceWith("<a href=\"#\" class=\"edit-action save-org\"><span class=\"fa fa-floppy-o\"></span>&nbsp;Save</a>");
                            $("a.save-org").click(function() {
                               var xhr = new XMLHttpRequest();
@@ -95,65 +95,75 @@ $volunteer['events'] = get_volunteer_events($param);
                            $("#new_vol_skills").replaceWith("<span class=\"vol_skills\">" + document.getElementById('new_vol_skills').value + "</span>");
                            $("#new_vol_newsletter").replaceWith("<span class=\"vol_newsletter\" style=\"display:block\">" + document.getElementById('new_vol_newsletter').value + "</span>");
                            $("#new_vol_opps").replaceWith("<span class=\"vol_opps\" style=\"display:block\">" + document.getElementById('new_vol_opps').value + "</span>");
-                           
-                           
+
+
                            $("#remove_org").show();
                            $(".save-org").replaceWith("<a href=\"#\" class=\"edit-action save-org\">&nbsp;<span class=\"success-msg\">Success!&nbsp;</span><span class=\"fa fa-wrench\"></span>&nbsp;Edit</a>");
                            $("a.edit-action").click(orgEditMode);
-				$("span.success-msg").fadeOut(2400);
+                            $("span.success-msg").fadeOut(2400);
                         }
                     </script>
-        
+                    <script>
+
+                    $('body').on('focus',"#new_vol_age", function(){
+                        $(this).datepicker(({
+                            changeMonth: true,
+                            changeYear: true,
+                            yearRange: "1930:1998"
+                        }));
+                    });
+                    </script>
+
         <h3><span class="vol_name_first"><?php echo $volunteer['firstname']; ?></span> <span class="vol_name_last"><?php echo $volunteer['lastname']; ?></span>, <span class="vol_age"><?php echo $volunteer['waiver'][2]['value']; ?></span></h3>
-        <p> 
+        <p>
             <span class="vol_email" style="display:block"><?php echo $volunteer['email']; ?></span>
             <span class="vol_phone" style="display:block"><?php echo "(" . substr($volunteer['waiver'][4]['value'], 0, 3) . ") ". substr($volunteer['waiver'][4]['value'], 3, 3) . "-" . substr($volunteer['waiver'][4]['value'],6); ?></span>
         </p>
-        
-         <p> 
+
+         <p>
             <span class="vol_address1" style="display:block"><?php echo $volunteer['waiver'][5]['value']; ?></span>
             <span class="vol_address2" style="display:block"><?php echo $volunteer['waiver'][6]['value']; ?></span>
             <span style="display:block"><span class="vol_city"><?php echo $volunteer['waiver'][7]['value']; ?></span>, <span class="vol_state"><?php echo $volunteer['waiver'][8]['value']; ?></span> <span class="vol_zip"><?php echo $volunteer['waiver'][9]['value']; ?></span></span>
         </p>
-        
-        <p> 
+
+        <p>
             <strong>Skills:</strong> <span class="vol_skills"><?php echo $volunteer['waiver'][10]['value']; ?></span>
         </p>
-        
+
         <p>
             <span style="display:block"><strong>Newsletter?</strong> <span class="vol_newsletter"><?php echo ($volunteer['waiver'][11]['value'] == 1) ? "Yes" : "No"; ?></span></span>
             <span style="display:block"><strong>Future Opportunities?</strong> <span class="vol_opps"><?php echo ($volunteer['waiver'][12]['value'] == 1) ? "Yes" : "No"; ?></span></span>
         </p>
-        
+
         <form method="POST" id="remove_org" style="margin-top:25px;">
-			<input type="hidden" name="remove" value="1" />
-			<input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']);?>" />
-		</form>
-    </div> 
-    
+            <input type="hidden" name="remove" value="1" />
+            <input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']);?>" />
+        </form>
+    </div>
+
     <div class="four cols callout">
         <h2 class="callout-title">Stats</h2>
-        
+
         <h3><strong>Events Attended:</strong> ####</h3>
         <h3 style="margin-top:15px;margin-bottom:15px;padding-bottom:17px;padding-top:17px;border-bottom:1px dotted #A5A5A5;border-top:1px dotted #A5A5A5"><strong>Hours:</strong> #####</h3>
         <h3><strong>Quick Export</strong></h3>
-						<form method="POST">
-							<input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']); ?>" />
-							<input type="hidden" id="preset_id" name="preset_id" value="" />
+                        <form method="POST">
+                            <input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']); ?>" />
+                            <input type="hidden" id="preset_id" name="preset_id" value="" />
 <?php
 foreach($presets as $preset) {
-	$html = <<<EOS
-							<button class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
+    $html = <<<EOS
+                            <button class="m-full-width" onclick="document.getElementById('preset_id').value={$preset['preset_id']}" type="submit">Export {$preset['name']}</button>
 EOS;
 print($html);
 }
 ?>
-						</form>
-    </div>    
-    
+                        </form>
+    </div>
+
 </div>
-    
-    
+
+
 <div class="row">
     <div class="twelve cols callout">
         <h2 class="callout-title">Participation</h2>
@@ -175,13 +185,13 @@ print($html);
                 </tbody>
             </table>
 
-    </div>  
+    </div>
 </div>
-    
+
 <div>
     <button class="right btn-alert"><span class="fa fa-trash-o" aria-hidden="true"></span> Delete Volunteer</button>
     <div class="left"><a href="manage-volunteers.php"><span class="fa fa-heart"></span> Back to Manage Events</a></div>
     <div class="clear"></div>
 </div>
-    
+
 <?php include ('../includes/footer.php'); ?>
