@@ -28,6 +28,11 @@ $volunteer['waiver'] = get_form_responses($volunteer['volunteer_id'], 1);
 $param['volunteer_id'] = $volunteer['volunteer_id'];
 $volunteer['events'] = get_volunteer_events($param);
 
+$volunteer['total_duration'] = 0;
+foreach($volunteer['events'] as $event) {
+	$volunteer['total_duration'] += $event['duration'];
+}
+
 //testing($volunteer);
 ?>
 
@@ -127,18 +132,18 @@ $volunteer['events'] = get_volunteer_events($param);
         
         <form method="POST" id="remove_org" style="margin-top:25px;">
 			<input type="hidden" name="remove" value="1" />
-			<input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']);?>" />
+			<input type="hidden" name="volunteer_id" value="<?php print($_REQUEST['vid']);?>" />
 		</form>
     </div> 
     
     <div class="four cols callout">
         <h2 class="callout-title">Stats</h2>
         
-        <h3><strong>Events Attended:</strong> ####</h3>
-        <h3 style="margin-top:15px;margin-bottom:15px;padding-bottom:17px;padding-top:17px;border-bottom:1px dotted #A5A5A5;border-top:1px dotted #A5A5A5"><strong>Hours:</strong> #####</h3>
+        <h3><strong>Events Attended:</strong> <?php echo sizeof($volunteer['events']); ?></h3>
+        <h3 style="margin-top:15px;margin-bottom:15px;padding-bottom:17px;padding-top:17px;border-bottom:1px dotted #A5A5A5;border-top:1px dotted #A5A5A5"><strong>Hours:</strong> <?php echo $volunteer['total_duration']; ?></h3>
         <h3><strong>Quick Export</strong></h3>
 						<form method="POST">
-							<input type="hidden" name="org_id" value="<?php print($_REQUEST['org_id']); ?>" />
+							<input type="hidden" name="volunteer_id" value="<?php print($_REQUEST['vid']); ?>" />
 							<input type="hidden" id="preset_id" name="preset_id" value="" />
 <?php
 foreach($presets as $preset) {
@@ -166,12 +171,25 @@ print($html);
                     </tr>
                 </thead>
                 <tbody>
-
+<?php
+if(!$volunteer['events']) {
+	$html = <<<EOS
+					<tr>
+						<td colspan="2">No Events</td>
+					</tr>
+EOS;
+	echo $html;
+}
+foreach($volunteer['events'] as $event) {
+	$html = <<<EOS
                     <tr>
-                        <td data-label="Event">Event Name</td>
-                        <td data-label="Hours">00.00</td>
+                        <td data-label="Event">{$event['event']['location']}</td>
+						<td data-label="Hours">{$event['duration']}</td>
                     </tr>
-
+EOS;
+	echo $html;
+}
+?>
                 </tbody>
             </table>
 

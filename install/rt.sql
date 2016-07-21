@@ -67,9 +67,9 @@ CREATE TABLE IF NOT EXISTS `element` (
 --
 
 INSERT INTO `element` (`element_id`, `name`, `label`, `description`, `type`, `cols`, `plural`) VALUES
-(1, 'firstname', 'First Name', '', 'text', 6, 0),
+(1, 'firstname', 'First Name', '', 'text', 5, 0),
 (2, 'lastname', 'Last Name', '', 'text', 4, 0),
-(3, 'birthdate', 'Birth Date', 'If you are under 18 years of age, please click <a href="./under-18.php">here</a>.', 'date', 2, 0),
+(3, 'birthdate', 'Birth Date', 'If you are under 18 years of age, please click <a href="./under-18.php">here</a>.', 'date', 3, 0),
 (4, 'company', 'Affiliation or Company', '', 'company', 5, 0),
 (5, 'address1', 'Address', '', 'text', 9, 0),
 (6, 'address2', 'Apt/Suite/Floor', '', 'text', 3, 0),

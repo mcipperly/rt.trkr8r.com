@@ -694,7 +694,11 @@ function get_volunteer_events($search = array()) {
 		$ve_ids = array();
 	
 	foreach($ve_ids as $ve_id) {
-		
+		$query = "SELECT * FROM `volunteer_event` WHERE `ve_id` = {$ve_id}";
+		$result = mysqli_query($db_link, $query) or die(mysqli_error($db_link));
+		$ve = _get_row($result);
+		$ve['event'] = get_event($ve['event_id']);
+		$search_results[] = $ve;
 	}
 
 	return $search_results;
