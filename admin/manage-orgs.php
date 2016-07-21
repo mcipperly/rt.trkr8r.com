@@ -5,11 +5,11 @@ include ('../includes/admin-header.php');
 include ('../includes/admin-sidebar.php');
 
 foreach($_REQUEST as $key => $value) {
-	if(substr_count($key, "remove_")) {
-		$val_arr = explode('_', $key);
-		invalidate_organization($val_arr[1]);
-		$org_deleted = 1;
-	}
+    if(substr_count($key, "remove_")) {
+        $val_arr = explode('_', $key);
+        invalidate_organization($val_arr[1]);
+        $org_deleted = 1;
+    }
 }
 
 if($_REQUEST['org_name']) {
@@ -32,8 +32,8 @@ elseif($_REQUEST['org_name'] && !$success) {
 EOS;
 }
 elseif(isset($org_deleted) || $_GET['deleted'] == "success") {
-	$success_html = <<<EOS
-	<div class="row"><div class="twelve cols callout success">Organization deleted!</div></div>
+    $success_html = <<<EOS
+    <div class="row"><div class="twelve cols callout success">Organization deleted!</div></div>
 EOS;
 }
 
