@@ -256,7 +256,7 @@ EOS;
 		$html = <<<EOS
 							<tr>
 								<td data-label="Print Details" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}&event_id={$event['event_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
-								<td data-label="Volunteer Name">{$volunteer['firstname']} {$volunteer['lastname']}</td>
+								<td data-label="Volunteer Name"><a href="volunteer-details.php?vid={$volunteer['volunteer_id']}"><span class="manage-table--break">{$volunteer['firstname']} {$volunteer['lastname']}</span>&nbsp;&nbsp;<span class="fa fa-angle-right"></span></a></td>
 								<td data-label="Org/Affiliation">
 									<select name="companyid_{$volunteer['volunteer_id']}">
 EOS;
@@ -308,7 +308,7 @@ EOS;
 		$html .= <<<EOS
 						<tr>
 							<td data-label="Print Details" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}&event_id={$event['event_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
-							<td data-label="Volunteer Name">{$volunteer['firstname']} {$volunteer['lastname']}</td>
+							<td data-label="Volunteer Name"><a href="volunteer-details.php?vid={$volunteer['volunteer_id']}"><span class="manage-table--break">{$volunteer['firstname']} {$volunteer['lastname']}</span>&nbsp;&nbsp;<span class="fa fa-angle-right"></span></a></td>
 							<td data-label="Affiliation">{$volunteer['company']['name']}</td>
 							<td data-label="Hours">{$volunteer['duration']}</td>
 						</tr>

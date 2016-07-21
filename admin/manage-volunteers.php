@@ -7,6 +7,28 @@ include ('../includes/admin-sidebar.php');
 
 ?>
 
+<script>
+$(document).ready(function() {
+	$('.source').click(function() {
+		var thisId = $(this).attr('id');
+		var thisIdArray = thisId.split('_');
+		
+		var volunteer_id = thisIdArray[1];
+		
+		$('#target_' + volunteer_id).prop('checked', false);
+	});
+	
+	$('.target').click(function() {
+		var thisId = $(this).attr('id');
+		var thisIdArray = thisId.split('_');
+		
+		var volunteer_id = thisIdArray[1];
+		
+		$('#source_' + volunteer_id).prop('checked', false);
+	});
+
+});
+</script>
 <div class="container">
 <div class="admin-content-wrapper">
 <h1 class="admin-page-title"><span class="fa fa-heart"></span>&nbsp;Manage Volunteers</h1>
@@ -76,8 +98,8 @@ if($volunteer_ids) {
                         <td data-label="Waiver" class="print_details"><a href="javascript: w=window.open('../signature.php?view=1&vid={$volunteer['volunteer_id']}&event_id={$event['event_id']}'); w.print()"><span class="fa fa-print fa-lg"></span></a></td>
                         <td data-label="Name"><a href="volunteer-details.php?vid={$volunteer['volunteer_id']}"><span class="manage-table--break">{$volunteer['firstname']} {$volunteer['lastname']}</span>&nbsp;&nbsp;<span class="fa fa-angle-right"></span></a></td>
                         <td data-label="Email">{$volunteer['email']}</td>
-                        <td data-label="Merge This"><input name="source[]" value="{$volunteer['volunteer_id']}" type="checkbox" /></td>
-                        <td data-label="Into This"><input name="target" value="{$volunteer['volunteer_id']}" type="radio" /></td>
+                        <td data-label="Merge This"><input name="source[]" value="{$volunteer['volunteer_id']}" id="source_{$volunteer['volunteer_id']}" class="source" type="checkbox" /></td>
+                        <td data-label="Into This"><input name="target" value="{$volunteer['volunteer_id']}" id="target_{$volunteer['volunteer_id']}" class="target" type="radio" /></td>
                     </tr>
 EOS;
         print($html);
