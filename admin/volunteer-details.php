@@ -87,19 +87,19 @@ $volunteer['events'] = get_volunteer_events($param);
                         }
 
                         function volReadMode() {
-                           $("#new_vol_first_name").replaceWith("<span class=\"vol_first_name\">" + document.getElementById('new_vol_first_name').value + "</span>");
-                           $("#new_vol_last_name").replaceWith("<span class=\"vol_last_name\">" + document.getElementById('new_vol_first_name').value + "</span>");
-                           $("#new_vol_age").replaceWith("<span class=\"vol_age\">" + document.getElementById('new_vol_age').value + "</span>");
-                           $("#new_vol_email").replaceWith("<span class=\"vol_email\" style=\"display:block\">" + document.getElementById('new_vol_email').value + "</span>");
-                           $("#new_vol_phone").replaceWith("<span class=\"vol_phone\" style=\"display:block\">" + document.getElementById('new_vol_phone').value + "</span>");
-                           $("#new_vol_address1").replaceWith("<span class=\"vol_address1\" style=\"display:block\">" + document.getElementById('new_vol_address1').value + "</span>");
-                           $("#new_vol_address2").replaceWith("<span class=\"vol_address2\" style=\"display:block\">" + document.getElementById('new_vol_address2').value + "</span>");
-                           $("#new_vol_city").replaceWith("<span class=\"vol_city\">" + document.getElementById('new_vol_city').value + "</span>");
-                           $("#new_vol_state").replaceWith("<span class=\"vol_state\">" + document.getElementById('new_vol_state').value + "</span>");
-                           $("#new_vol_zip").replaceWith("<span class=\"vol_zip\">" + document.getElementById('new_vol_zip').value + "</span>");
-                           $("#new_vol_skills").replaceWith("<span class=\"vol_skills\">" + document.getElementById('new_vol_skills').value + "</span>");
-                           $("#new_vol_newsletter").replaceWith("<span class=\"vol_newsletter\" style=\"display:block\">" + document.getElementById('new_vol_newsletter').value + "</span>");
-                           $("#new_vol_opps").replaceWith("<span class=\"vol_opps\" style=\"display:block\">" + document.getElementById('new_vol_opps').value + "</span>");
+                           $("#new_firstname").replaceWith("<span class=\"firstname\">" + document.getElementById('new_firstname').value + "</span>");
+                           $("#new_lastname").replaceWith("<span class=\"lastname\">" + document.getElementById('new_lastname').value + "</span>");
+                           $("#new_birthdate").replaceWith("<span class=\"birthdate\">" + document.getElementById('new_birthdate').value + "</span>");
+                           $("#new_email").replaceWith("<span class=\"email\" style=\"display:block\">" + document.getElementById('new_email').value + "</span>");
+                           $("#new_phone").replaceWith("<span class=\"phone\" style=\"display:block\">" + document.getElementById('new_phone').value + "</span>");
+                           $("#new_address1").replaceWith("<span class=\"address1\" style=\"display:block\">" + document.getElementById('new_address1').value + "</span>");
+                           $("#new_address2").replaceWith("<span class=\"address2\" style=\"display:block\">" + document.getElementById('new_address2').value + "</span>");
+                           $("#new_city").replaceWith("<span class=\"city\">" + document.getElementById('new_city').value + "</span>");
+                           $("#new_state").replaceWith("<span class=\"state\">" + document.getElementById('new_state').value + "</span>");
+                           $("#new_postalcode").replaceWith("<span class=\"postalcode\">" + document.getElementById('new_postalcode').value + "</span>");
+                           $("#new_skills").replaceWith("<span class=\"skills\">" + document.getElementById('new_skills').value + "</span>");
+                           $("#new_newsletter").replaceWith("<span class=\"newsletter\" style=\"display:block\">" + document.getElementById('new_newsletter').value + "</span>");
+                           $("#new_future_interest").replaceWith("<span class=\"future_interest\" style=\"display:block\">" + document.getElementById('new_future_interest').value + "</span>");
                            
                            
                            $("#remove_vol").show();
@@ -109,25 +109,25 @@ $volunteer['events'] = get_volunteer_events($param);
                         }
                     </script>
         
-        <h3><span class="vol_first_name editable"><?php echo $volunteer['firstname']; ?></span> <span class="vol_last_name editable"><?php echo $volunteer['lastname']; ?></span>, <span class="vol_age editable"><?php echo $volunteer['waiver'][2]['value']; ?></span></h3>
+        <h3><span class="firstname editable"><?php echo $volunteer['firstname']; ?></span> <span class="lastname editable"><?php echo $volunteer['lastname']; ?></span>, <span class="birthdate editable"><?php echo $volunteer['waiver'][2]['value']; ?></span></h3>
         <p> 
-            <span class="vol_email editable" style="display:block"><?php echo $volunteer['email']; ?></span>
-            <span class="vol_phone editable" style="display:block"><?php echo "(" . substr($volunteer['waiver'][4]['value'], 0, 3) . ") ". substr($volunteer['waiver'][4]['value'], 3, 3) . "-" . substr($volunteer['waiver'][4]['value'],6); ?></span>
+            <span class="email editable" style="display:block"><?php echo $volunteer['email']; ?></span>
+            <span class="phone editable" style="display:block"><?php echo "(" . substr($volunteer['waiver'][4]['value'], 0, 3) . ") ". substr($volunteer['waiver'][4]['value'], 3, 3) . "-" . substr($volunteer['waiver'][4]['value'],6); ?></span>
         </p>
         
          <p> 
-            <span class="vol_address1 editable" style="display:block"><?php echo $volunteer['waiver'][5]['value']; ?></span>
-            <span class="vol_address2 editable" style="display:block"><?php echo $volunteer['waiver'][6]['value']; ?></span>
-            <span style="display:block"><span class="vol_city editable"><?php echo $volunteer['waiver'][7]['value']; ?></span>, <span class="vol_state editable"><?php echo $volunteer['waiver'][8]['value']; ?></span> <span class="vol_zip editable"><?php echo $volunteer['waiver'][9]['value']; ?></span></span>
+            <span class="address1 editable" style="display:block"><?php echo $volunteer['waiver'][5]['value']; ?></span>
+            <span class="address2 editable" style="display:block"><?php echo $volunteer['waiver'][6]['value']; ?></span>
+            <span style="display:block"><span class="city editable"><?php echo $volunteer['waiver'][7]['value']; ?></span>, <span class="state editable"><?php echo $volunteer['waiver'][8]['value']; ?></span> <span class="postalcode editable"><?php echo $volunteer['waiver'][9]['value']; ?></span></span>
         </p>
         
         <p> 
-            <strong>Skills:</strong> <span class="vol_skills editable"><?php echo $volunteer['waiver'][10]['value']; ?></span>
+            <strong>Skills:</strong> <span class="skills editable"><?php echo $volunteer['waiver'][10]['value']; ?></span>
         </p>
         
         <p>
-            <span style="display:block"><strong>Newsletter?</strong> <span class="vol_newsletter editable"><?php echo ($volunteer['waiver'][11]['value'] == 1) ? "Yes" : "No"; ?></span></span>
-            <span style="display:block"><strong>Future Opportunities?</strong> <span class="vol_opps editable"><?php echo ($volunteer['waiver'][12]['value'] == 1) ? "Yes" : "No"; ?></span></span>
+            <span style="display:block"><strong>Newsletter?</strong> <span class="newsletter editable"><?php echo ($volunteer['waiver'][11]['value'] == 1) ? "Yes" : "No"; ?></span></span>
+            <span style="display:block"><strong>Future Opportunities?</strong> <span class="future_interest editable"><?php echo ($volunteer['waiver'][12]['value'] == 1) ? "Yes" : "No"; ?></span></span>
         </p>
         
         <form method="POST" id="remove_vol" style="margin-top:25px;">
