@@ -268,7 +268,7 @@ EOS;
                     <input type="checkbox" name="element_ids[]" value="13">&nbsp;Hours
                 </div>
                 <div class="four cols">
-                    <input type="checkbox" name="element_ids[]" value="14">&nbsp;Event
+                    <input type="checkbox" name="element_ids[]" value="14">&nbsp;Subscription
                 </div>
             </div>
      <br>
