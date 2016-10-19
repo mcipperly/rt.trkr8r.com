@@ -42,7 +42,7 @@ foreach($volunteer['events'] as $event) {
 
 <div class="row flexbox">
     <div class="eight cols callout">
-        <h2 class="callout-title">Details <a href="/register.php?cb=admin&email=<?php echo $volunteer['email'] ?>" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
+        <h2 class="callout-title">Details <a href="/register.php?edit=2&email=<?php print(urlencode($volunteer['email'])); ?>" class="edit-action"><span class="fa fa-wrench"></span>&nbsp;Edit</a></h2>
 
         <h3><span class="vol_name_first"><?php echo $volunteer['firstname']; ?></span> <span class="vol_name_last"><?php echo $volunteer['lastname']; ?></span>, <span class="vol_age"><?php echo $volunteer['waiver'][2]['value']; ?></span></h3>
         <p>
