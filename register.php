@@ -30,6 +30,13 @@ if(isset($_SESSION['mode']) && $volunteer_id) {
 
 $col_count = 0;
 $asterisk_count = 0;
+
+if(isset($_REQUEST['edit'])) {
+  $page_verb = "Edit Profile";
+} else {
+  $page_verb = "Register";
+}
+
 foreach($form['elements'] as $key => $element) {
     if($key == 0) {
         $html = <<<EOS
@@ -41,13 +48,13 @@ foreach($form['elements'] as $key => $element) {
         </div>
 
         <div class="eight cols">
-            <h1>Register</h1>
+            <h1>{$page_verb}</h1>
         </div>
     </div>
 
     <div class="hidden-phone">
         <div class="eight cols">
-            <h1 class="left">Register</h1>
+            <h1 class="left">{$page_verb}</h1>
         </div>
 
         <div class="four cols">

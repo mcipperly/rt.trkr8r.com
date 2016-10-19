@@ -38,7 +38,11 @@ if(isset($_SESSION['lastact']) && (time() - $_SESSION['lastact']) > 43200) {
 
     Header("HTTP/1.1 302 Moved Temporarily");
     if(isset($_SESSION['mode'])) { 
-      Header("Location: signature.php?vid=" . $volunteer_id . "&event_id=". $event_id); 
+      if($_SESSION['mode'] == "onsite" ) {
+        Header("Location: signature.php?vid=" . $volunteer_id . "&event_id=". $event_id); 
+      } else {
+        Header("Location: /admin/volunteer-details.php?vid=" . $volunteer_id );
+      }
     } else {
       Header("Location: index.php?thanks=2");
     }
