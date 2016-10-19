@@ -168,7 +168,7 @@ EOS;
         <div class="{$cols} cols">
             <label for="{$element['name']}">{$element['label']}</label>
             <input type="hidden" id="hidden_{$element['name']}" name="{$element['name']}" value="0" disabled="disabled" />
-            <input class="full-width" type="text" name="{$element['name']}" id="bday" {$required_html} {$checked_html}>
+            <input class="full-width" type="text" name="{$element['name']}" id="bday" value="{$value}" {$required_html} {$checked_html}>
         </div>
 EOS;
             break;
@@ -314,7 +314,10 @@ $(function() {
     $("#bday").datepicker({
         changeMonth: true,
         changeYear: true,
-        yearRange: "1930:1998"
+        yearRange: "-100:-17",
+        minDate: "-100y",
+        maxDate: "-11m -17y",
+        defaultDate: "-18y"
     });
 });
 </script>
